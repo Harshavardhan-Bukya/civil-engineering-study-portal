@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
@@ -28,7 +24,6 @@
       --muted: #667085;
       --border: #e3e8ef;
       --green: #16a36a;
-      --orange: #f59e0b;
       --shadow: 0 16px 40px rgba(20, 35, 60, 0.08);
       --radius: 20px;
     }
@@ -44,24 +39,16 @@
     }
 
     body {
-      font-family:
-        Inter,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
       background: var(--background);
       color: var(--text);
       line-height: 1.6;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
     a {
       text-decoration: none;
       color: inherit;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .topbar {
@@ -89,7 +76,6 @@
       align-items: center;
       gap: 12px;
       font-weight: 800;
-      letter-spacing: -0.3px;
     }
 
     .brand-mark {
@@ -98,14 +84,8 @@
       border-radius: 13px;
       display: grid;
       place-items: center;
-      background:
-        linear-gradient(
-          135deg,
-          var(--blue),
-          var(--cyan)
-        );
-      box-shadow:
-        0 8px 24px rgba(22, 119, 255, 0.28);
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 8px 24px rgba(22, 119, 255, 0.28);
       font-size: 20px;
     }
 
@@ -217,12 +197,7 @@
     }
 
     .hero h1 span {
-      background:
-        linear-gradient(
-          90deg,
-          #67b3ff,
-          #55e0e9
-        );
+      background: linear-gradient(90deg, #67b3ff, #55e0e9);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -251,10 +226,7 @@
       border-radius: 12px;
       font-weight: 750;
       font-size: 14px;
-      transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
 
     .btn:hover {
@@ -263,14 +235,8 @@
 
     .btn-primary {
       color: var(--white);
-      background:
-        linear-gradient(
-          135deg,
-          var(--blue),
-          #0d9bd7
-        );
-      box-shadow:
-        0 12px 28px rgba(22,119,255,.28);
+      background: linear-gradient(135deg, var(--blue), #0d9bd7);
+      box-shadow: 0 12px 28px rgba(22,119,255,.28);
     }
 
     .btn-secondary {
@@ -324,15 +290,10 @@
     }
 
     .progress-bar {
-      width: 0%;
+      width: 100%;
       height: 100%;
       border-radius: inherit;
-      background:
-        linear-gradient(
-          90deg,
-          #3f9cff,
-          #47d9df
-        );
+      background: linear-gradient(90deg, #3f9cff, #47d9df);
     }
 
     main {
@@ -371,8 +332,7 @@
 
     .subjects-grid {
       display: grid;
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
     }
 
@@ -394,8 +354,7 @@
     .subject-card:hover {
       transform: translateY(-5px);
       border-color: #c9dcf5;
-      box-shadow:
-        0 22px 50px rgba(20,35,60,.12);
+      box-shadow: 0 22px 50px rgba(20,35,60,.12);
     }
 
     .subject-card::after {
@@ -490,12 +449,7 @@
       align-items: center;
       padding: 24px;
       border-radius: var(--radius);
-      background:
-        linear-gradient(
-          135deg,
-          #ffffff,
-          #f7fbff
-        );
+      background: linear-gradient(135deg, #ffffff, #f7fbff);
       border: 1px solid #dce8f5;
       box-shadow: var(--shadow);
     }
@@ -507,12 +461,7 @@
       display: grid;
       place-items: center;
       color: var(--white);
-      background:
-        linear-gradient(
-          135deg,
-          var(--navy-light),
-          var(--blue)
-        );
+      background: linear-gradient(135deg, var(--navy-light), var(--blue));
       font-size: 24px;
       font-weight: 900;
     }
@@ -539,6 +488,11 @@
       color: var(--white);
       font-size: 13px;
       font-weight: 800;
+      transition: transform .2s ease;
+    }
+
+    .week-button:hover {
+      transform: translateY(-2px);
     }
 
     footer {
@@ -563,8 +517,7 @@
       }
 
       .subjects-grid {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -625,297 +578,303 @@
 
 <body>
 
-  <header class="topbar">
-    <div class="topbar-inner">
+<header class="topbar">
+  <div class="topbar-inner">
 
-      <a class="brand" href="#">
-        <div class="brand-mark">CE</div>
+    <a class="brand" href="index.html">
+      <div class="brand-mark">CE</div>
 
-        <div class="brand-text">
-          <small>Academic Learning Platform</small>
-          <span>Civil Engineering Study Portal</span>
-        </div>
-      </a>
-
-      <div class="nav-status">
-        <span class="status-dot"></span>
-        Semester Portal
+      <div class="brand-text">
+        <small>Academic Learning Platform</small>
+        <span>Civil Engineering Study Portal</span>
       </div>
+    </a>
 
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      Semester Portal
     </div>
-  </header>
 
-  <section class="hero">
-    <div class="hero-inner">
+  </div>
+</header>
 
-      <div>
-        <div class="eyebrow">
-          Civil Engineering • Study • Practice
-        </div>
+<section class="hero">
+  <div class="hero-inner">
 
-        <h1>
-          Learn engineering
-          <span>one week at a time.</span>
-        </h1>
-
-        <p class="hero-description">
-          A structured Civil Engineering learning portal
-          for class notes, exam-focused questions,
-          previous year questions and interactive
-          topic-wise MCQ practice.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#subjects">
-            Explore Subjects →
-          </a>
-
-          <a class="btn btn-secondary" href="#current-week">
-            Current Module
-          </a>
-        </div>
+    <div>
+      <div class="eyebrow">
+        Civil Engineering • Study • Practice
       </div>
 
-      <aside class="hero-panel">
-        <div class="hero-panel-label">
-          Current Development
-        </div>
+      <h1>
+        Learn engineering
+        <span>one week at a time.</span>
+      </h1>
 
-        <h3>CE2101 — Engineering Geology</h3>
+      <p class="hero-description">
+        A structured Civil Engineering learning portal
+        for class notes, exam-focused questions,
+        previous year questions and interactive
+        topic-wise MCQ practice.
+      </p>
 
-        <p>
-          Week 01 is the first academic module
-          being developed for the portal.
-        </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#subjects">
+          Explore Subjects →
+        </a>
 
-        <div class="progress-row">
-          <span>Portal Progress</span>
-          <span>Week 01</span>
-        </div>
-
-        <div class="progress-track">
-          <div class="progress-bar"></div>
-        </div>
-      </aside>
-
+        <a
+          class="btn btn-secondary"
+          href="subjects/engineering-geology/week-01.html"
+        >
+          Open Current Module →
+        </a>
+      </div>
     </div>
-  </section>
 
-  <main>
-
-    <section id="subjects">
-
-      <div class="section-heading">
-        <div>
-          <small>Semester Subjects</small>
-          <h2>Your Civil Engineering Dashboard</h2>
-        </div>
-
-        <p>
-          Subjects will be activated gradually as
-          their weekly class notes are added and
-          verified.
-        </p>
+    <aside class="hero-panel">
+      <div class="hero-panel-label">
+        Current Development
       </div>
 
-      <div class="subjects-grid">
+      <h3>CE2101 — Engineering Geology</h3>
 
-        <article class="subject-card">
-          <div class="subject-icon">🪨</div>
-          <div class="subject-code">CE2101</div>
-          <h3>Engineering Geology</h3>
+      <p>
+        Week 01 academic module is now available
+        for learning and practice.
+      </p>
 
-          <p>
-            Geological principles and their
-            applications in Civil Engineering.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability active">
-              ● Week 01 Active
-            </span>
-
-            <a class="open-link" href="#current-week">
-              Open →
-            </a>
-          </div>
-        </article>
-
-        <article class="subject-card disabled">
-          <div class="subject-icon">🏗️</div>
-          <div class="subject-code">CE2102</div>
-          <h3>
-            Construction Materials and
-            Concrete Technology
-          </h3>
-
-          <p>
-            Module will be activated when
-            class notes are added.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability">
-              Coming later
-            </span>
-          </div>
-        </article>
-
-        <article class="subject-card disabled">
-          <div class="subject-icon">📐</div>
-          <div class="subject-code">CE2103</div>
-          <h3>Mechanics of Materials</h3>
-
-          <p>
-            Module will be activated when
-            class notes are added.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability">
-              Coming later
-            </span>
-          </div>
-        </article>
-
-        <article class="subject-card disabled">
-          <div class="subject-icon">🌊</div>
-          <div class="subject-code">CE2104</div>
-          <h3>Fluid Mechanics</h3>
-
-          <p>
-            Module will be activated when
-            class notes are added.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability">
-              Coming later
-            </span>
-          </div>
-        </article>
-
-        <article class="subject-card disabled">
-          <div class="subject-icon">📊</div>
-          <div class="subject-code">MA2103</div>
-          <h3>Probability and Statistics</h3>
-
-          <p>
-            Module will be activated when
-            class notes are added.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability">
-              Coming later
-            </span>
-          </div>
-        </article>
-
-        <article class="subject-card disabled">
-          <div class="subject-icon">🧪</div>
-          <div class="subject-code">CE2701</div>
-          <h3>Mechanics of Fluids Lab</h3>
-
-          <p>
-            Laboratory module will be added
-            when experiment notes are supplied.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability">
-              Coming later
-            </span>
-          </div>
-        </article>
-
-        <article class="subject-card disabled">
-          <div class="subject-icon">🔬</div>
-          <div class="subject-code">CE2702</div>
-          <h3>Materials Testing Lab</h3>
-
-          <p>
-            Laboratory module will be added
-            when experiment notes are supplied.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability">
-              Coming later
-            </span>
-          </div>
-        </article>
-
-        <article class="subject-card disabled">
-          <div class="subject-icon">🧱</div>
-          <div class="subject-code">CE2703</div>
-          <h3>Concrete Technology Lab</h3>
-
-          <p>
-            Laboratory module will be added
-            when experiment notes are supplied.
-          </p>
-
-          <div class="card-footer">
-            <span class="availability">
-              Coming later
-            </span>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <section
-      class="week-section"
-      id="current-week"
-    >
-
-      <div class="section-heading">
-        <div>
-          <small>Current Module</small>
-          <h2>Engineering Geology</h2>
-        </div>
-
-        <p>
-          Weekly modules remain separate so that
-          approved academic content can be preserved
-          when later weeks are added.
-        </p>
+      <div class="progress-row">
+        <span>Current Module</span>
+        <span>Week 01 Ready</span>
       </div>
 
-      <div class="week-card">
+      <div class="progress-track">
+        <div class="progress-bar"></div>
+      </div>
+    </aside>
 
-        <div class="week-number">
-          01
-        </div>
+  </div>
+</section>
 
-        <div class="week-info">
-          <small>CE2101 • WEEK 01</small>
+<main>
 
-          <h3>Engineering Geology — Week 01</h3>
+<section id="subjects">
 
-          <p>
-            Branches of Geology • Geological Agents •
-            Weathering of Rocks
-          </p>
-        </div>
+  <div class="section-heading">
+    <div>
+      <small>Semester Subjects</small>
+      <h2>Your Civil Engineering Dashboard</h2>
+    </div>
 
-        <span class="week-button">
-          Module being prepared
+    <p>
+      Subjects are activated gradually as their
+      weekly class notes are added and verified.
+    </p>
+  </div>
+
+  <div class="subjects-grid">
+
+    <article class="subject-card">
+      <div class="subject-icon">🪨</div>
+      <div class="subject-code">CE2101</div>
+      <h3>Engineering Geology</h3>
+
+      <p>
+        Geological principles and their
+        applications in Civil Engineering.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability active">
+          ● Week 01 Available
         </span>
 
+        <a
+          class="open-link"
+          href="subjects/engineering-geology/week-01.html"
+        >
+          Open →
+        </a>
       </div>
+    </article>
 
-    </section>
+    <article class="subject-card disabled">
+      <div class="subject-icon">🏗️</div>
+      <div class="subject-code">CE2102</div>
 
-  </main>
+      <h3>
+        Construction Materials and
+        Concrete Technology
+      </h3>
 
-  <footer>
-    <strong>Civil Engineering Study Portal</strong>
-    <br>
-    Structured weekly learning and examination practice.
-  </footer>
+      <p>
+        Module will be activated when
+        class notes are added.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability">
+          Coming later
+        </span>
+      </div>
+    </article>
+
+    <article class="subject-card disabled">
+      <div class="subject-icon">📐</div>
+      <div class="subject-code">CE2103</div>
+      <h3>Mechanics of Materials</h3>
+
+      <p>
+        Module will be activated when
+        class notes are added.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability">
+          Coming later
+        </span>
+      </div>
+    </article>
+
+    <article class="subject-card disabled">
+      <div class="subject-icon">🌊</div>
+      <div class="subject-code">CE2104</div>
+      <h3>Fluid Mechanics</h3>
+
+      <p>
+        Module will be activated when
+        class notes are added.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability">
+          Coming later
+        </span>
+      </div>
+    </article>
+
+    <article class="subject-card disabled">
+      <div class="subject-icon">📊</div>
+      <div class="subject-code">MA2103</div>
+      <h3>Probability and Statistics</h3>
+
+      <p>
+        Module will be activated when
+        class notes are added.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability">
+          Coming later
+        </span>
+      </div>
+    </article>
+
+    <article class="subject-card disabled">
+      <div class="subject-icon">🧪</div>
+      <div class="subject-code">CE2701</div>
+      <h3>Mechanics of Fluids Lab</h3>
+
+      <p>
+        Laboratory module will be added
+        when experiment notes are supplied.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability">
+          Coming later
+        </span>
+      </div>
+    </article>
+
+    <article class="subject-card disabled">
+      <div class="subject-icon">🔬</div>
+      <div class="subject-code">CE2702</div>
+      <h3>Materials Testing Lab</h3>
+
+      <p>
+        Laboratory module will be added
+        when experiment notes are supplied.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability">
+          Coming later
+        </span>
+      </div>
+    </article>
+
+    <article class="subject-card disabled">
+      <div class="subject-icon">🧱</div>
+      <div class="subject-code">CE2703</div>
+      <h3>Concrete Technology Lab</h3>
+
+      <p>
+        Laboratory module will be added
+        when experiment notes are supplied.
+      </p>
+
+      <div class="card-footer">
+        <span class="availability">
+          Coming later
+        </span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="week-section" id="current-week">
+
+  <div class="section-heading">
+    <div>
+      <small>Available Module</small>
+      <h2>Engineering Geology</h2>
+    </div>
+
+    <p>
+      Week 01 remains a separate module so future
+      weeks can be added without rewriting its
+      academic content.
+    </p>
+  </div>
+
+  <div class="week-card">
+
+    <div class="week-number">
+      01
+    </div>
+
+    <div class="week-info">
+      <small>CE2101 • WEEK 01</small>
+
+      <h3>Engineering Geology — Week 01</h3>
+
+      <p>
+        Branches of Geology • Geological Agents •
+        Weathering of Rocks
+      </p>
+    </div>
+
+    <a
+      class="week-button"
+      href="subjects/engineering-geology/week-01.html"
+    >
+      Open Week 01 →
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <strong>Civil Engineering Study Portal</strong>
+  <br>
+  Structured weekly learning and examination practice.
+</footer>
 
 </body>
 </html>
