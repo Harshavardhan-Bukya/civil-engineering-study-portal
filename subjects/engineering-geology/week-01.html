@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CE2101 Engineering Geology Week 01">
+<title>CE2101 | Engineering Geology | Week 01</title>
+
+<style>
+:root{
+  --navy:#071a2d;
+  --navy2:#0b2947;
+  --blue:#1677ff;
+  --cyan:#16b8d4;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --border:#e1e8f0;
+  --green:#159957;
+  --red:#dc3545;
+  --amber:#f59e0b;
+  --blueSoft:#eaf3ff;
+  --greenSoft:#eaf9f1;
+  --amberSoft:#fff8e6;
+  --redSoft:#fff0f1;
+  --shadow:0 15px 40px rgba(20,35,60,.08);
+  --radius:18px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+}
+
+button,a{
+  font:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(7,26,45,.97);
+  color:white;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+}
+
+.topbar-inner{
+  width:min(1180px,calc(100% - 30px));
+  min-height:68px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:800;
+}
+
+.brand-mark{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  font-weight:900;
+}
+
+.brand small{
+  display:block;
+  color:#a9bad0;
+  font-size:10px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.brand span{font-size:15px}
+
+.home-link{
+  padding:9px 13px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;
+  color:#d8e6f5;
+  font-size:13px;
+  font-weight:700;
+}
+
+.hero{
+  color:white;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(22,184,212,.22),transparent 28%),
+    linear-gradient(145deg,#071a2d,#0b2947);
+}
+
+.hero-inner{
+  width:min(1180px,calc(100% - 30px));
+  margin:auto;
+  padding:52px 0;
+}
+
+.breadcrumb{
+  color:#a9bfd5;
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.hero-code{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  color:#cfe5ff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
+  margin-bottom:13px;
+}
+
+.hero h1{
+  font-size:clamp(32px,5vw,50px);
+  line-height:1.1;
+  letter-spacing:-1.5px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  max-width:780px;
+  color:#c1d2e4;
+}
+
+.topic-nav-wrap{
+  position:sticky;
+  top:68px;
+  z-index:900;
+  background:white;
+  border-bottom:1px solid var(--border);
+}
+
+.topic-nav{
+  width:min(1180px,calc(100% - 30px));
+  margin:auto;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:11px 0;
+  scrollbar-width:none;
+}
+
+.topic-nav::-webkit-scrollbar{display:none}
+
+.topic-nav button{
+  flex:0 0 auto;
+  border:0;
+  background:#eef3f8;
+  color:#43536a;
+  border-radius:999px;
+  padding:9px 14px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.topic-nav button.active{
+  background:var(--navy);
+  color:white;
+}
+
+main{
+  width:min(1180px,calc(100% - 30px));
+  margin:auto;
+  padding:35px 0 75px;
+}
+
+.topic-page{display:none}
+.topic-page.active{display:block}
+
+.topic-heading{
+  margin-bottom:22px;
+}
+
+.topic-heading small{
+  color:var(--blue);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1.2px;
+}
+
+.topic-heading h2{
+  font-size:clamp(27px,4vw,37px);
+  letter-spacing:-1px;
+  margin:3px 0 5px;
+}
+
+.topic-heading p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.mode-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:22px;
+}
+
+.mode-tabs button{
+  border:1px solid var(--border);
+  background:white;
+  color:#48566b;
+  border-radius:11px;
+  padding:10px 14px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.mode-tabs button.active{
+  color:white;
+  background:var(--blue);
+  border-color:var(--blue);
+}
+
+.mode-panel{display:none}
+.mode-panel.active{display:block}
+
+.content-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:25px;
+  margin-bottom:17px;
+}
+
+.content-card h3{
+  font-size:21px;
+  margin-bottom:10px;
+}
+
+.content-card h4{
+  font-size:17px;
+  margin:18px 0 7px;
+}
+
+.content-card p{
+  margin:7px 0;
+}
+
+.content-card ul,
+.content-card ol{
+  padding-left:22px;
+  margin:8px 0;
+}
+
+.content-card li{
+  margin:5px 0;
+}
+
+.definition{
+  background:var(--blueSoft);
+  border-left:4px solid var(--blue);
+  padding:15px 17px;
+  border-radius:10px;
+  margin:13px 0;
+}
+
+.important{
+  background:var(--amberSoft);
+  border-left:4px solid var(--amber);
+  padding:15px 17px;
+  border-radius:10px;
+  margin:13px 0;
+}
+
+.support{
+  background:#f4f0ff;
+  border-left:4px solid #7950d8;
+  padding:14px 17px;
+  border-radius:10px;
+  margin:13px 0;
+  color:#4d3b75;
+}
+
+.flow{
+  margin:15px 0;
+  padding:17px;
+  text-align:center;
+  border-radius:13px;
+  background:#f7faff;
+  border:1px dashed #b9d3f1;
+  font-weight:850;
+  color:#174f91;
+  overflow-x:auto;
+}
+
+.branch-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:13px;
+}
+
+.mini-card{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:17px;
+  background:#fbfcfe;
+}
+
+.mini-card strong{
+  color:var(--navy2);
+}
+
+.question-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:14px;
+  box-shadow:0 8px 25px rgba(20,35,60,.05);
+}
+
+.mark{
+  display:inline-block;
+  color:var(--blue);
+  background:var(--blueSoft);
+  padding:4px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.question-card h4{
+  margin-bottom:10px;
+}
+
+.answer{
+  padding-top:12px;
+  border-top:1px solid var(--border);
+}
+
+.answer strong{
+  color:var(--green);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:12px;
+}
+
+th,td{
+  border:1px solid var(--border);
+  padding:11px;
+  vertical-align:top;
+  text-align:left;
+}
+
+th{
+  background:#eef5fd;
+}
+
+.pyq-empty{
+  text-align:center;
+  padding:45px 20px;
+}
+
+.pyq-empty .icon{
+  font-size:38px;
+  margin-bottom:8px;
+}
+
+.pyq-empty h3{
+  margin-bottom:6px;
+}
+
+.pyq-empty p{
+  color:var(--muted);
+  max-width:580px;
+  margin:auto;
+}
+
+.quiz-shell{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.quiz-head{
+  background:var(--navy);
+  color:white;
+  padding:19px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.quiz-head small{
+  color:#a9bfd5;
+}
+
+.quiz-progress{
+  font-size:13px;
+  font-weight:800;
+}
+
+.quiz-body{
+  padding:24px;
+}
+
+.quiz-question{
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.options{
+  display:grid;
+  gap:10px;
+}
+
+.option{
+  width:100%;
+  text-align:left;
+  border:1px solid var(--border);
+  background:#fbfcfe;
+  border-radius:12px;
+  padding:13px 15px;
+  transition:.18s ease;
+}
+
+.option:hover{
+  border-color:#a9c8ef;
+  background:#f5f9ff;
+}
+
+.option.selected{
+  border-color:var(--blue);
+  background:var(--blueSoft);
+}
+
+.option.correct{
+  border-color:var(--green);
+  background:var(--greenSoft);
+}
+
+.option.wrong{
+  border-color:var(--red);
+  background:var(--redSoft);
+}
+
+.option:disabled{
+  cursor:default;
+}
+
+.quiz-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+
+.quiz-btn{
+  border:0;
+  border-radius:11px;
+  padding:11px 16px;
+  font-weight:850;
+}
+
+.submit-btn{
+  background:var(--blue);
+  color:white;
+}
+
+.next-btn{
+  background:var(--navy);
+  color:white;
+}
+
+.quiz-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.feedback{
+  display:none;
+  margin-top:18px;
+  padding:16px;
+  border-radius:12px;
+}
+
+.feedback.show{display:block}
+.feedback.good{
+  background:var(--greenSoft);
+  border:1px solid #b9e8ce;
+}
+.feedback.bad{
+  background:var(--redSoft);
+  border:1px solid #f0c4c9;
+}
+
+.result{
+  text-align:center;
+  padding:30px 20px;
+}
+
+.score-circle{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  margin:0 auto 18px;
+  color:white;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  font-size:27px;
+  font-weight:900;
+}
+
+.result-grid{
+  max-width:500px;
+  margin:20px auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.result-stat{
+  padding:14px;
+  border-radius:12px;
+  background:#f5f8fc;
+}
+
+.result-stat strong{
+  display:block;
+  font-size:21px;
+}
+
+.retry-btn{
+  border:0;
+  background:var(--navy);
+  color:white;
+  border-radius:11px;
+  padding:12px 18px;
+  font-weight:850;
+}
+
+footer{
+  background:var(--navy);
+  color:#9fb1c6;
+  text-align:center;
+  padding:27px 15px;
+  font-size:12px;
+}
+
+footer strong{color:white}
+
+@media(max-width:760px){
+  .brand small{display:none}
+  .home-link{font-size:11px}
+  .branch-grid{grid-template-columns:1fr}
+  .content-card{padding:19px}
+  .quiz-body{padding:19px}
+  .result-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:480px){
+  .brand span{font-size:12px}
+  .brand-mark{width:38px;height:38px}
+  .hero-inner{padding:38px 0}
+  .topic-nav-wrap{top:64px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../../index.html">
+      <div class="brand-mark">CE</div>
+      <div>
+        <small>Civil Engineering Study Portal</small>
+        <span>CE2101 • Engineering Geology</span>
+      </div>
+    </a>
+
+    <a class="home-link" href="../../index.html">
+      ← Dashboard
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      Dashboard › Engineering Geology › Week 01
+    </div>
+
+    <div class="hero-code">
+      CE2101 • WEEK 01
+    </div>
+
+    <h1>Engineering Geology — Week 01</h1>
+
+    <p>
+      Branches of Geology and their importance in Civil Engineering,
+      Geological Agents, and Weathering of Rocks.
+    </p>
+  </div>
+</section>
+
+<div class="topic-nav-wrap">
+  <nav class="topic-nav">
+    <button class="active" data-topic="topic1">
+      01 • Branches & Importance
+    </button>
+
+    <button data-topic="topic2">
+      02 • Geological Agents
+    </button>
+
+    <button data-topic="topic3">
+      03 • Weathering of Rocks
+    </button>
+  </nav>
+</div>
+
+<main>
+
+<!-- =========================================================
+     TOPIC 01
+========================================================= -->
+
+<section class="topic-page active" id="topic1">
+
+  <div class="topic-heading">
+    <small>TOPIC 01</small>
+    <h2>Branches of Geology & Importance in Civil Engineering</h2>
+    <p>
+      The branches of geology introduced in the Week 01 class notes
+      and their engineering significance.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="active" data-mode="learn">📖 Learn Topic</button>
+    <button data-mode="questions">📝 Topic Questions</button>
+    <button data-mode="pyq">🎓 PYQs</button>
+    <button data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="content-card">
+      <h3>1. Physical Geology</h3>
+
+      <div class="definition">
+        <strong>Definition:</strong>
+        Physical Geology is described in the class notes as
+        Dynamic Geology or Geomorphology and deals with the
+        different physical features of the Earth.
+      </div>
+
+      <p>It deals with physical features such as:</p>
+
+      <ul>
+        <li>Mountains</li>
+        <li>Rivers</li>
+        <li>Lakes</li>
+        <li>Glaciers</li>
+        <li>Volcanoes</li>
+      </ul>
+
+      <p>
+        It also deals with changes occurring on the Earth's surface,
+        including the formation or disappearance of rivers,
+        springs and lakes.
+      </p>
+
+      <p>Natural phenomena considered include:</p>
+
+      <ul>
+        <li>Slides and landslides</li>
+        <li>Earthquakes</li>
+        <li>Weathering</li>
+      </ul>
+
+      <p>
+        The geological work of wind, glaciers, oceans and groundwater
+        continuously modifies the Earth's surface.
+      </p>
+
+      <div class="important">
+        ⭐ <strong>Exam Point:</strong>
+        Physical Geology deals with physical features of the Earth
+        and processes that modify its surface.
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>2. Mineralogy</h3>
+
+      <div class="definition">
+        <strong>Mineralogy</strong> deals with the study of minerals.
+      </div>
+
+      <p>It includes the study of:</p>
+
+      <ul>
+        <li>Formation</li>
+        <li>Composition</li>
+        <li>Occurrence</li>
+        <li>Types</li>
+        <li>Associated properties</li>
+        <li>Uses of minerals</li>
+      </ul>
+    </article>
+
+    <article class="content-card">
+      <h3>3. Petrology</h3>
+
+      <div class="definition">
+        <strong>Petro = Rock</strong><br>
+        <strong>Logy = Study</strong><br><br>
+        Therefore, <strong>Petrology is the study of rocks.</strong>
+      </div>
+
+      <p>
+        The Earth's crust is called the <strong>lithosphere</strong>
+        and is made up of different types of rocks.
+      </p>
+
+      <p>Petrology deals with:</p>
+
+      <ul>
+        <li>Formation</li>
+        <li>Structure</li>
+        <li>Features</li>
+        <li>Composition</li>
+        <li>Occurrence</li>
+        <li>Types of rocks</li>
+      </ul>
+    </article>
+
+    <article class="content-card">
+      <h3>4. Structural Geology</h3>
+
+      <p>
+        Structural Geology deals with rocks forming the Earth's crust
+        that undergo deformation, distortion and disturbances under
+        the influence of tectonic forces.
+      </p>
+
+      <p>These result in geological structures such as:</p>
+
+      <ul>
+        <li>Folds</li>
+        <li>Faults</li>
+        <li>Joints</li>
+        <li>Unconformities</li>
+      </ul>
+
+      <div class="support">
+        <strong>Supporting detail added for clarity:</strong>
+        Tectonic forces are forces associated with movement and
+        deformation of the Earth's crust.
+      </div>
+
+      <div class="important">
+        ⭐ Faults, folds and joints are particularly important in
+        engineering because they can affect the stability of rock masses.
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>5. Historical Geology</h3>
+
+      <p>
+        The Earth's surface provides suitable conditions for deposition
+        of sediments at different places. Sedimentary rocks can therefore
+        preserve evidence representing different periods of Earth's history.
+      </p>
+
+      <p>Investigation of these rocks can reveal the chronological sequence of:</p>
+
+      <ul>
+        <li>Formation of rocks</li>
+        <li>Evolution of life</li>
+        <li>Migration of plants and animals</li>
+        <li>Life during different periods of Earth's history</li>
+      </ul>
+
+      <div class="definition">
+        The study of Earth's history through geological records,
+        particularly sedimentary rocks, is called
+        <strong>Historical Geology</strong>.
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>6. Palaeontology</h3>
+
+      <p>
+        Under favourable conditions, animals and plants may become
+        embedded in sediments and may be preserved partly or completely.
+      </p>
+
+      <div class="definition">
+        Naturally preserved remnants or evidence of ancient life
+        occurring in rocks are known as <strong>fossils</strong>.
+      </div>
+
+      <p>Palaeontology deals with:</p>
+
+      <ul>
+        <li>Mode of formation of fossils</li>
+        <li>Types of fossils</li>
+        <li>Occurrence of fossils</li>
+      </ul>
+
+      <div class="support">
+        <strong>Supporting detail added for clarity:</strong>
+        A fossil is preserved evidence or remains of organisms that
+        lived in the geological past.
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>7. Economic Geology</h3>
+
+      <p>
+        The prosperity of a nation depends to a considerable extent
+        on economically useful mineral deposits.
+      </p>
+
+      <div class="definition">
+        Economic Geology deals with geological materials and mineral
+        deposits having economic importance.
+      </div>
+
+      <p>
+        <strong>Example from the notes:</strong>
+        Countries rich in oil deposits.
+      </p>
+    </article>
+
+    <article class="content-card">
+      <h3>8. Engineering Geology</h3>
+
+      <div class="important">
+        ⭐ <strong>Very Important</strong>
+      </div>
+
+      <div class="definition">
+        <strong>Engineering Geology</strong> deals with the application
+        of geological knowledge in the field of Civil Engineering for
+        execution of safe, stable and economical constructions such as
+        dams, bridges and tunnels.
+      </div>
+
+      <ul>
+        <li>Dams</li>
+        <li>Bridges</li>
+        <li>Tunnels</li>
+      </ul>
+    </article>
+
+    <article class="content-card">
+      <h3>9. Mining Geology</h3>
+
+      <p>
+        Mining Geology deals with the application of geological knowledge
+        in the field of mining.
+      </p>
+
+      <p>A mining engineer should know:</p>
+
+      <ul>
+        <li>Mode of occurrence of ores</li>
+        <li>Associations of ores</li>
+        <li>Properties of ores</li>
+      </ul>
+
+      <p>Important physical parameters mentioned in the notes are:</p>
+
+      <ul>
+        <li>Depth</li>
+        <li>Direction — Strike</li>
+        <li>Inclination — Dip</li>
+        <li>Thickness</li>
+      </ul>
+
+      <div class="support">
+        <strong>Supporting detail added for clarity:</strong>
+        Strike describes the direction of a geological plane,
+        while dip describes its inclination from the horizontal.
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>10. Geophysics</h3>
+
+      <p>
+        Geophysics deals with the Earth's crust and physical properties
+        of the Earth such as density and magnetism.
+      </p>
+
+      <h4>Classification</h4>
+
+      <div class="branch-grid">
+        <div class="mini-card">
+          <strong>Pure Geophysics</strong>
+          <p>
+            Deals with general aspects of the Earth as a whole.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <strong>Exploration Geophysics</strong>
+          <p>
+            Deals with investigation of the upper layers of the Earth's crust.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>11. Geo-hydrology / Hydrogeology</h3>
+
+      <div class="definition">
+        Geo-hydrology is also called <strong>Hydrogeology</strong>.
+      </div>
+
+      <p>It deals with groundwater, including its:</p>
+
+      <ul>
+        <li>Occurrence</li>
+        <li>Movement</li>
+        <li>Nature</li>
+        <li>Quality</li>
+        <li>Quantity</li>
+      </ul>
+
+      <p>
+        Groundwater behaviour is related to properties such as:
+      </p>
+
+      <ul>
+        <li>Porosity</li>
+        <li>Permeability</li>
+        <li>Structure</li>
+        <li>Texture</li>
+        <li>Composition of geological material</li>
+      </ul>
+    </article>
+
+    <article class="content-card">
+      <h3>12. Geochemistry</h3>
+
+      <div class="definition">
+        Geochemistry deals with the chemical composition of minerals
+        and rocks.
+      </div>
+
+      <p>It also deals with:</p>
+
+      <ul>
+        <li>Occurrence</li>
+        <li>Distribution</li>
+        <li>Abundance</li>
+        <li>Mobility</li>
+      </ul>
+    </article>
+
+    <article class="content-card">
+      <h3>⭐ Importance of Geology in Civil Engineering</h3>
+
+      <ol>
+        <li>
+          Before construction, proper <strong>site selection</strong>
+          is important from the point of view of foundation stability.
+        </li>
+
+        <li>
+          Geology provides systematic knowledge of
+          <strong>construction materials and their properties</strong>.
+        </li>
+
+        <li>
+          Knowledge about the <strong>nature of rocks</strong>
+          is useful in tunnelling and construction of roads.
+        </li>
+
+        <li>
+          Foundation problems of <strong>dams, bridges and buildings</strong>
+          are directly related to the geology of the area.
+        </li>
+
+        <li>
+          Knowledge of <strong>groundwater</strong> is necessary for
+          excavation works, water supply, irrigation and other purposes.
+        </li>
+
+        <li>
+          Knowledge of <strong>erosion, transportation and deposition</strong>
+          by surface water helps in soil conservation and river control.
+        </li>
+
+        <li>
+          <strong>Geological maps and sections</strong>
+          considerably help in planning engineering projects.
+        </li>
+
+        <li>
+          Geological features such as <strong>faults, folds and joints</strong>
+          must be suitably treated to maintain stability of rock structures.
+        </li>
+
+        <li>
+          A <strong>pre-geological survey</strong> of the concerned area
+          reduces the cost of planning work.
+        </li>
+      </ol>
+    </article>
+
+  </div>
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question-card">
+      <span class="mark">2 MARKS</span>
+      <h4>⭐ Define Engineering Geology.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        Engineering Geology deals with the application of geological
+        knowledge in Civil Engineering for the execution of safe,
+        stable and economical constructions such as dams, bridges
+        and tunnels.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">2 MARKS</span>
+      <h4>What is Petrology?</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        Petrology is the branch of geology dealing with the study of
+        rocks, including their formation, structure, features,
+        composition, occurrence and types.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">2 MARKS</span>
+      <h4>What is Mineralogy?</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        Mineralogy is the branch of geology dealing with minerals,
+        including their formation, composition, occurrence, types,
+        associated properties and uses.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">3 MARKS</span>
+      <h4>Define Historical Geology and Palaeontology.</h4>
+      <div class="answer">
+        <strong>Answer:</strong><br><br>
+        <strong>Historical Geology:</strong>
+        It deals with Earth's history as revealed through geological
+        records, particularly sedimentary rocks.<br><br>
+
+        <strong>Palaeontology:</strong>
+        It deals with fossils, including their mode of formation,
+        types and occurrence.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">4 MARKS</span>
+      <h4>Explain Structural Geology.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        Structural Geology deals with rocks of the Earth's crust that
+        undergo deformation, distortion and disturbances under tectonic
+        forces. These processes produce geological structures such as
+        folds, faults, joints and unconformities. Such structures are
+        important in engineering because they influence rock stability.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">5 MARKS</span>
+      <h4>Explain Geophysics and Geo-hydrology.</h4>
+      <div class="answer">
+        <strong>Answer:</strong><br><br>
+
+        <strong>Geophysics:</strong>
+        It deals with physical properties of the Earth such as density
+        and magnetism. It is divided into Pure Geophysics and Exploration
+        Geophysics.<br><br>
+
+        <strong>Geo-hydrology:</strong>
+        Also called Hydrogeology, it deals with occurrence, movement,
+        nature, quality and quantity of groundwater. Groundwater behaviour
+        is related to porosity, permeability, structure, texture and
+        composition of geological materials.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">6 MARKS</span>
+      <h4>⭐ Explain any six branches of Geology.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        <ol>
+          <li><strong>Physical Geology:</strong> Studies physical features and surface-changing processes.</li>
+          <li><strong>Mineralogy:</strong> Studies minerals, their composition, occurrence, properties and uses.</li>
+          <li><strong>Petrology:</strong> Studies rocks, their formation, structure, composition and types.</li>
+          <li><strong>Structural Geology:</strong> Studies deformation and structures such as folds, faults and joints.</li>
+          <li><strong>Historical Geology:</strong> Studies Earth's history through geological records.</li>
+          <li><strong>Palaeontology:</strong> Studies fossils and ancient life preserved in rocks.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">8 MARKS</span>
+      <h4>⭐ Explain the importance of Geology in Civil Engineering.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        <ol>
+          <li>Helps in proper site selection with respect to foundation stability.</li>
+          <li>Provides knowledge of construction materials and their properties.</li>
+          <li>Knowledge of rocks is useful in tunnelling and road construction.</li>
+          <li>Foundation problems of dams, bridges and buildings are related to local geology.</li>
+          <li>Groundwater knowledge is required for excavation, water supply and irrigation.</li>
+          <li>Erosion, transportation and deposition knowledge helps in soil conservation and river control.</li>
+          <li>Geological maps and sections help in engineering planning.</li>
+          <li>Faults, folds and joints must be treated suitably for stability.</li>
+          <li>A pre-geological survey can reduce planning cost.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">10 MARKS</span>
+      <h4>⭐ Describe the important branches of Geology.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        The branches covered in the Week 01 notes are Physical Geology,
+        Mineralogy, Petrology, Structural Geology, Historical Geology,
+        Palaeontology, Economic Geology, Engineering Geology, Mining Geology,
+        Geophysics, Geo-hydrology/Hydrogeology and Geochemistry.
+        Each branch should be explained with its definition and principal
+        field of study as given in the Learn Topic section.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="content-card pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No PYQs supplied yet</h3>
+      <p>
+        No Previous Year Question material has been supplied for this
+        topic. Questions will only be labelled as PYQs when they are
+        present in the PYQ material provided for the portal.
+      </p>
+    </div>
+  </div>
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic1"></div>
+  </div>
+
+</section>
+
+<!-- =========================================================
+     TOPIC 02
+========================================================= -->
+
+<section class="topic-page" id="topic2">
+
+  <div class="topic-heading">
+    <small>TOPIC 02</small>
+    <h2>Geological Agents</h2>
+    <p>
+      Geological agents and the distinction between exogenous
+      and endogenous processes.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="active" data-mode="learn">📖 Learn Topic</button>
+    <button data-mode="questions">📝 Topic Questions</button>
+    <button data-mode="pyq">🎓 PYQs</button>
+    <button data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="content-card">
+      <h3>Geological Agents</h3>
+
+      <div class="definition">
+        Geological agents are natural forces or processes responsible
+        for visible/geological changes on or within the Earth.
+      </div>
+
+      <h4>Classification</h4>
+
+      <div class="branch-grid">
+        <div class="mini-card">
+          <strong>1. Exogenous Geological Agents</strong>
+          <p>
+            Agents/processes acting mainly at or near the Earth's surface.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <strong>2. Endogenous Geological Agents</strong>
+          <p>
+            Agents/processes originating below the Earth's surface.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>1. Exogenous Geological Agents</h3>
+
+      <p>
+        According to the notes, agents originating at the Earth's
+        surface work slowly but steadily and erase topographical
+        irregularities or relief.
+      </p>
+
+      <p>
+        Their geological work occurs systematically through:
+      </p>
+
+      <div class="flow">
+        Erosion → Transportation → Deposition
+      </div>
+
+      <h4>Erosion</h4>
+      <p>
+        Erosion involves removal or wearing away of earth/rock material.
+      </p>
+
+      <h4>Transportation</h4>
+      <p>
+        Transportation is the movement of eroded material from one
+        place to another.
+      </p>
+
+      <h4>Deposition</h4>
+      <p>
+        Deposition is the settling or accumulation of transported material.
+      </p>
+
+      <p>
+        The notes refer to rivers and their large-scale transportation
+        of sediments as an example of geological work.
+      </p>
+
+      <div class="important">
+        ⭐ Remember the sequence:
+        <strong>Erosion → Transportation → Deposition</strong>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>2. Endogenous Geological Agents</h3>
+
+      <p>
+        The nature, origin and function of endogenous geological agents
+        are opposite to surface-originating exogenous agents.
+      </p>
+
+      <p>
+        They originate below the Earth's surface and can act suddenly,
+        creating topographical irregularities.
+      </p>
+
+      <p>Examples mentioned around this section of the notes include:</p>
+
+      <ul>
+        <li>Volcanoes</li>
+        <li>Earthquakes</li>
+        <li>Tectonic forces</li>
+        <li>Tsunamis</li>
+      </ul>
+
+      <div class="support">
+        <strong>Clarification:</strong>
+        Groundwater is also written in the example line in the notes.
+        In standard geological classification, groundwater is normally
+        treated as an external geological agent. It is therefore preserved
+        as a note reference here but is not classified as an endogenous
+        process in this portal.
+      </div>
+    </article>
+
+  </div>
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question-card">
+      <span class="mark">2 MARKS</span>
+      <h4>Define geological agents and give their classification.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        Geological agents are natural forces/processes responsible for
+        geological changes on or within the Earth. They are classified
+        into (1) Exogenous geological agents and
+        (2) Endogenous geological agents.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">3 MARKS</span>
+      <h4>⭐ Explain erosion, transportation and deposition.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        <ol>
+          <li><strong>Erosion:</strong> Removal or wearing away of earth/rock material.</li>
+          <li><strong>Transportation:</strong> Movement of eroded material.</li>
+          <li><strong>Deposition:</strong> Settling or accumulation of transported material.</li>
+        </ol>
+        <br>
+        <strong>Sequence:</strong>
+        Erosion → Transportation → Deposition.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">5 MARKS</span>
+      <h4>⭐ Differentiate exogenous and endogenous geological agents.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+
+        <table>
+          <tr>
+            <th>Exogenous Agents</th>
+            <th>Endogenous Agents</th>
+          </tr>
+          <tr>
+            <td>Operate mainly at or near the Earth's surface.</td>
+            <td>Originate from processes below the Earth's surface.</td>
+          </tr>
+          <tr>
+            <td>Generally work slowly and steadily.</td>
+            <td>May act suddenly.</td>
+          </tr>
+          <tr>
+            <td>Include erosion, transportation and deposition.</td>
+            <td>Associated with processes such as earthquakes and volcanic activity.</td>
+          </tr>
+          <tr>
+            <td>Tend to reduce or erase topographical irregularities.</td>
+            <td>Can create topographical irregularities.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="content-card pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No PYQs supplied yet</h3>
+      <p>
+        No supplied PYQ material currently contains verified questions
+        for this topic.
+      </p>
+    </div>
+  </div>
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic2"></div>
+  </div>
+
+</section>
+
+<!-- =========================================================
+     TOPIC 03
+========================================================= -->
+
+<section class="topic-page" id="topic3">
+
+  <div class="topic-heading">
+    <small>TOPIC 03</small>
+    <h2>Weathering of Rocks</h2>
+    <p>
+      Definition, classification and the mechanical-weathering
+      material covered in the Week 01 notes.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="active" data-mode="learn">📖 Learn Topic</button>
+    <button data-mode="questions">📝 Topic Questions</button>
+    <button data-mode="pyq">🎓 PYQs</button>
+    <button data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="content-card">
+      <h3>Weathering of Rocks</h3>
+
+      <div class="definition">
+        Weathering is the process by which rocks are broken down
+        and decomposed by the action of natural agencies such as
+        wind, rivers, rain and temperature changes.
+      </div>
+
+      <h4>Classification of Weathering</h4>
+
+      <ol>
+        <li>Mechanical Weathering</li>
+        <li>Chemical Weathering</li>
+        <li>Biological Weathering</li>
+      </ol>
+
+      <div class="important">
+        ⭐ Remember the three-part classification:
+        <strong>Mechanical • Chemical • Biological</strong>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>1. Mechanical Weathering</h3>
+
+      <p>
+        Mechanical weathering involves the physical breakdown of
+        rocks into smaller pieces due to natural forces.
+      </p>
+
+      <p>The types listed in the notes are:</p>
+
+      <ol>
+        <li>Frost wedging</li>
+        <li>Expansion and contraction</li>
+        <li>Effects of vegetation</li>
+      </ol>
+
+      <div class="support">
+        Expansion and contraction and effects of vegetation are listed
+        in the uploaded notes, but their detailed explanations are not
+        present in the six Week 01 pages. They are therefore not expanded
+        here as teacher-provided material.
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>⭐ Frost Wedging</h3>
+
+      <p>
+        Water present in cracks of rocks freezes during cold conditions
+        and melts when temperature rises.
+      </p>
+
+      <p>
+        Freezing of water causes an increase in volume. This produces
+        pressure against the walls of the rock cracks.
+      </p>
+
+      <p>
+        Repeated freezing and thawing gradually widens the cracks and
+        ultimately causes the rock to break down.
+      </p>
+
+      <div class="flow">
+        Water enters cracks
+        → Freezing
+        → Expansion
+        → Pressure on crack walls
+        → Crack widening
+        → Rock breakdown
+      </div>
+
+      <div class="important">
+        ⭐ <strong>Exam sequence:</strong>
+        Water in cracks → Freezing → Expansion → Pressure →
+        Widening of cracks → Rock disintegration.
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h3>Chemical & Biological Weathering</h3>
+
+      <p>
+        Chemical Weathering and Biological Weathering are included
+        in the classification written in the Week 01 notes.
+      </p>
+
+      <div class="support">
+        Their detailed mechanisms have not yet been explained in the
+        uploaded Week 01 pages. The portal therefore records the
+        classification without introducing a new unprovided lesson.
+      </div>
+    </article>
+
+  </div>
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question-card">
+      <span class="mark">2 MARKS</span>
+      <h4>Define weathering and give its classification.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        Weathering is the process by which rocks are broken down and
+        decomposed by natural agencies. It is classified into
+        Mechanical Weathering, Chemical Weathering and
+        Biological Weathering.
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">3 MARKS</span>
+      <h4>Name the types of mechanical weathering listed in the notes.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        <ol>
+          <li>Frost wedging</li>
+          <li>Expansion and contraction</li>
+          <li>Effects of vegetation</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span class="mark">5 MARKS</span>
+      <h4>⭐ Explain frost wedging.</h4>
+      <div class="answer">
+        <strong>Answer:</strong>
+        <ol>
+          <li>Water enters cracks or openings in rocks.</li>
+          <li>During cold conditions, the water freezes.</li>
+          <li>Water expands on freezing.</li>
+          <li>The expansion produces pressure on the walls of the cracks.</li>
+          <li>Repeated freezing and thawing widens the cracks.</li>
+          <li>Ultimately the rock breaks down into pieces.</li>
+        </ol>
+        <br>
+        <strong>Sequence:</strong>
+        Water in cracks → Freezing → Expansion → Pressure →
+        Crack widening → Rock disintegration.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="content-card pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No PYQs supplied yet</h3>
+      <p>
+        PYQs will be added only after verified Previous Year Question
+        material is supplied.
+      </p>
+    </div>
+  </div>
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic3"></div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <strong>CE2101 — Engineering Geology • Week 01</strong><br>
+  Civil Engineering Study Portal
+</footer>
+
+<script>
+const quizzes = {
+  topic1: [
+    {
+      q:"Physical Geology is also referred to in the notes as:",
+      correct:"Dynamic Geology",
+      wrong:["Economic Geology","Mining Geology","Geochemistry"],
+      explanation:"The notes describe Physical Geology as Dynamic Geology or Geomorphology."
+    },
+    {
+      q:"Which branch deals with the study of minerals?",
+      correct:"Mineralogy",
+      wrong:["Petrology","Palaeontology","Geophysics"],
+      explanation:"Mineralogy deals with minerals, including their formation, composition, occurrence, properties and uses."
+    },
+    {
+      q:"The word 'Petro' means:",
+      correct:"Rock",
+      wrong:["Mineral","Earth","Fossil"],
+      explanation:"In Petrology, Petro means rock and logy means study."
+    },
+    {
+      q:"Petrology primarily deals with the study of:",
+      correct:"Rocks",
+      wrong:["Groundwater","Fossils","Earthquakes"],
+      explanation:"Petrology deals with rocks, including their formation, structure, composition, occurrence and types."
+    },
+    {
+      q:"The Earth's crust is referred to in the notes as the:",
+      correct:"Lithosphere",
+      wrong:["Atmosphere","Hydrosphere","Biosphere"],
+      explanation:"The notes state that the Earth's crust is called the lithosphere and is made of different types of rocks."
+    },
+    {
+      q:"Folds, faults and joints are mainly studied under:",
+      correct:"Structural Geology",
+      wrong:["Economic Geology","Mineralogy","Geochemistry"],
+      explanation:"Structural Geology studies deformation and structures such as folds, faults, joints and unconformities."
+    },
+    {
+      q:"The study of Earth's history through geological records belongs to:",
+      correct:"Historical Geology",
+      wrong:["Mining Geology","Geophysics","Engineering Geology"],
+      explanation:"Historical Geology uses geological records, particularly sedimentary rocks, to understand Earth's history."
+    },
+    {
+      q:"Naturally preserved remnants or evidence of ancient life are called:",
+      correct:"Fossils",
+      wrong:["Ores","Joints","Minerals"],
+      explanation:"Preserved remnants or evidence of ancient life occurring in rocks are fossils."
+    },
+    {
+      q:"The branch concerned with fossils is:",
+      correct:"Palaeontology",
+      wrong:["Petrology","Hydrogeology","Geochemistry"],
+      explanation:"Palaeontology deals with fossils, their formation, types and occurrence."
+    },
+    {
+      q:"Economically useful mineral deposits are primarily associated with:",
+      correct:"Economic Geology",
+      wrong:["Structural Geology","Physical Geology","Historical Geology"],
+      explanation:"Economic Geology deals with mineral deposits and geological materials of economic importance."
+    },
+    {
+      q:"Engineering Geology applies geological knowledge mainly to:",
+      correct:"Civil Engineering",
+      wrong:["Astronomy","Biology","Agriculture"],
+      explanation:"Engineering Geology applies geological knowledge to Civil Engineering works."
+    },
+    {
+      q:"Safe, stable and economical construction is specifically associated with:",
+      correct:"Engineering Geology",
+      wrong:["Palaeontology","Historical Geology","Mineralogy"],
+      explanation:"The notes define Engineering Geology in relation to safe, stable and economical Civil Engineering construction."
+    },
+    {
+      q:"Depth, strike, dip and thickness are important parameters particularly in:",
+      correct:"Mining Geology",
+      wrong:["Palaeontology","Historical Geology","Physical Geology"],
+      explanation:"These physical parameters help describe the position and geometry of ore bodies."
+    },
+    {
+      q:"Density and magnetism of the Earth are studied under:",
+      correct:"Geophysics",
+      wrong:["Mineralogy","Petrology","Hydrogeology"],
+      explanation:"The notes mention density and magnetism as physical properties studied in Geophysics."
+    },
+    {
+      q:"Geophysics is divided in the notes into:",
+      correct:"Pure and Exploration Geophysics",
+      wrong:[
+        "Physical and Chemical Geology",
+        "Mining and Economic Geology",
+        "Historical and Structural Geology"
+      ],
+      explanation:"The notes divide Geophysics into Pure Geophysics and Exploration Geophysics."
+    },
+    {
+      q:"Geo-hydrology is also called:",
+      correct:"Hydrogeology",
+      wrong:["Petrology","Geochemistry","Geomorphology"],
+      explanation:"Geo-hydrology is another name used for Hydrogeology."
+    },
+    {
+      q:"Which property is directly related to groundwater movement in the notes?",
+      correct:"Permeability",
+      wrong:["Fossil content","Mineral colour","Rock age only"],
+      explanation:"The groundwater section relates groundwater to porosity, permeability, structure, texture and composition."
+    },
+    {
+      q:"Chemical composition of minerals and rocks is studied under:",
+      correct:"Geochemistry",
+      wrong:["Mining Geology","Palaeontology","Structural Geology"],
+      explanation:"Geochemistry deals with chemical composition and related occurrence, distribution, abundance and mobility."
+    },
+    {
+      q:"Foundation problems of dams, bridges and buildings are directly related to:",
+      correct:"Geology of the area",
+      wrong:["Fossil age alone","Atmospheric pressure","Mineral colour"],
+      explanation:"The notes state that foundation problems are directly related to the geology of the concerned area."
+    },
+    {
+      q:"Geological maps and sections are particularly useful for:",
+      correct:"Planning engineering projects",
+      wrong:["Fossil preservation","Producing earthquakes","Forming minerals"],
+      explanation:"Geological maps and sections considerably help in planning engineering projects."
+    },
+    {
+      q:"Knowledge of erosion, transportation and deposition helps in:",
+      correct:"Soil conservation and river control",
+      wrong:["Ore formation only","Fossil classification","Measuring magnetism only"],
+      explanation:"The notes connect these surface-water processes with soil conservation and river control."
+    },
+    {
+      q:"Which geological features may require suitable treatment for rock stability?",
+      correct:"Faults, folds and joints",
+      wrong:[
+        "Minerals, fossils and ores",
+        "Rivers, lakes and glaciers",
+        "Density, magnetism and porosity"
+      ],
+      explanation:"Faults, folds and joints can affect rock stability and may require suitable treatment."
+    },
+    {
+      q:"A pre-geological survey can help to:",
+      correct:"Reduce the cost of planning work",
+      wrong:[
+        "Eliminate construction materials",
+        "Prevent all weathering",
+        "Create mineral deposits"
+      ],
+      explanation:"The notes state that a pre-geological survey reduces the cost of planning work."
+    },
+    {
+      q:"Knowledge of groundwater is important for:",
+      correct:"Excavation, water supply and irrigation",
+      wrong:[
+        "Fossil classification only",
+        "Mineral naming only",
+        "Determining Earth's age only"
+      ],
+      explanation:"Groundwater knowledge is important for excavation, water supply, irrigation and other engineering purposes."
+    },
+    {
+      q:"Which branch applies geological knowledge specifically to mining?",
+      correct:"Mining Geology",
+      wrong:["Physical Geology","Historical Geology","Palaeontology"],
+      explanation:"Mining Geology is the application of geological knowledge in mining."
+    }
+  ],
+
+  topic2: [
+    {
+      q:"Geological agents are broadly classified into:",
+      correct:"Exogenous and endogenous agents",
+      wrong:[
+        "Physical and chemical agents",
+        "Mineral and rock agents",
+        "Fold and fault agents"
+      ],
+      explanation:"The notes classify geological agents into exogenous and endogenous geological agents."
+    },
+    {
+      q:"Exogenous geological agents operate mainly:",
+      correct:"At or near the Earth's surface",
+      wrong:[
+        "Only in the Earth's core",
+        "Only inside minerals",
+        "Only below oceans"
+      ],
+      explanation:"Exogenous agents originate and act mainly at or near the Earth's surface."
+    },
+    {
+      q:"Endogenous geological agents originate primarily:",
+      correct:"Below the Earth's surface",
+      wrong:[
+        "From surface sediments only",
+        "From rivers only",
+        "From plants only"
+      ],
+      explanation:"Endogenous agents originate from processes below the Earth's surface."
+    },
+    {
+      q:"Which is the correct geological-work sequence?",
+      correct:"Erosion → Transportation → Deposition",
+      wrong:[
+        "Deposition → Erosion → Transportation",
+        "Transportation → Deposition → Erosion",
+        "Erosion → Deposition → Transportation"
+      ],
+      explanation:"The sequence given in the notes is erosion followed by transportation and deposition."
+    },
+    {
+      q:"Removal or wearing away of earth/rock material is:",
+      correct:"Erosion",
+      wrong:["Deposition","Transportation","Mineralisation"],
+      explanation:"Erosion removes or wears away material."
+    },
+    {
+      q:"Movement of eroded material is called:",
+      correct:"Transportation",
+      wrong:["Deposition","Folding","Fossilisation"],
+      explanation:"Transportation moves eroded material from one place to another."
+    },
+    {
+      q:"Settling of transported material is called:",
+      correct:"Deposition",
+      wrong:["Erosion","Faulting","Weathering only"],
+      explanation:"Deposition is the settling or accumulation of transported material."
+    },
+    {
+      q:"Which is associated with internal Earth processes?",
+      correct:"Tectonic forces",
+      wrong:[
+        "River deposition",
+        "Surface sediment transportation",
+        "Surface erosion"
+      ],
+      explanation:"Tectonic forces are associated with processes originating within the Earth."
+    },
+    {
+      q:"Earthquakes are associated primarily with:",
+      correct:"Endogenous processes",
+      wrong:["Mineralogy","Palaeontology","Sediment deposition only"],
+      explanation:"Earthquakes are examples of processes associated with internal Earth forces."
+    },
+    {
+      q:"Volcanic activity is primarily associated with:",
+      correct:"Endogenous processes",
+      wrong:["Exogenous processes","Fossil formation","Mineral classification"],
+      explanation:"Volcanic activity originates from processes within the Earth."
+    }
+  ],
+
+  topic3: [
+    {
+      q:"Weathering involves the breakdown and/or decomposition of:",
+      correct:"Rocks",
+      wrong:["Clouds","Buildings only","Fossils only"],
+      explanation:"The notes define weathering in relation to the breakdown and decomposition of rocks."
+    },
+    {
+      q:"Weathering is classified in the notes into:",
+      correct:"Three types",
+      wrong:["Two types","Four types","Five types"],
+      explanation:"The notes list Mechanical, Chemical and Biological Weathering."
+    },
+    {
+      q:"Which is a major class of weathering?",
+      correct:"Mechanical Weathering",
+      wrong:["Structural Geology","Mining Geology","Geophysics"],
+      explanation:"Mechanical Weathering is one of the three classes listed in the notes."
+    },
+    {
+      q:"Which is NOT one of the three weathering classes listed?",
+      correct:"Historical Weathering",
+      wrong:[
+        "Mechanical Weathering",
+        "Chemical Weathering",
+        "Biological Weathering"
+      ],
+      explanation:"The three listed classes are Mechanical, Chemical and Biological Weathering."
+    },
+    {
+      q:"Frost wedging belongs to:",
+      correct:"Mechanical Weathering",
+      wrong:[
+        "Chemical Weathering",
+        "Historical Geology",
+        "Geochemistry"
+      ],
+      explanation:"Frost wedging is listed under Mechanical Weathering."
+    },
+    {
+      q:"In frost wedging, water initially enters:",
+      correct:"Cracks in rocks",
+      wrong:["Fossils","Ore deposits","Magma chambers"],
+      explanation:"Frost wedging begins when water is present in cracks or openings in rocks."
+    },
+    {
+      q:"In frost wedging, water expands when it:",
+      correct:"Freezes",
+      wrong:["Evaporates","Deposits sediment","Flows downstream"],
+      explanation:"Freezing causes an increase in the volume of water."
+    },
+    {
+      q:"Expansion of freezing water produces:",
+      correct:"Pressure on crack walls",
+      wrong:["Fossils","Mineral deposits","Sedimentary layers"],
+      explanation:"The increased volume produces pressure against the walls of the cracks."
+    },
+    {
+      q:"Repeated freezing and thawing tends to:",
+      correct:"Widen rock cracks",
+      wrong:[
+        "Close every crack permanently",
+        "Produce fossils",
+        "Form ore bodies"
+      ],
+      explanation:"Repeated freeze-thaw cycles gradually widen cracks."
+    },
+    {
+      q:"The eventual effect of repeated frost wedging can be:",
+      correct:"Rock breakdown",
+      wrong:[
+        "Fossil formation",
+        "Tectonic plate formation",
+        "Ore-body formation"
+      ],
+      explanation:"Continued widening of cracks can ultimately cause rocks to break down."
+    },
+    {
+      q:"Expansion and contraction is listed under:",
+      correct:"Mechanical Weathering",
+      wrong:["Economic Geology","Geophysics","Historical Geology"],
+      explanation:"Expansion and contraction is one of the mechanical-weathering types listed in the notes."
+    },
+    {
+      q:"Effects of vegetation are listed in the notes under:",
+      correct:"Mechanical Weathering",
+      wrong:["Mining Geology","Historical Geology","Geochemistry"],
+      explanation:"Effects of vegetation are listed as a type of Mechanical Weathering in the uploaded notes."
+    }
+  ]
+};
+
+const quizState = {};
+
+function shuffle(array){
+  const copy=[...array];
+
+  for(let i=copy.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [copy[i],copy[j]]=[copy[j],copy[i]];
+  }
+
+  return copy;
+}
+
+function startQuiz(topic){
+  quizState[topic]={
+    index:0,
+    score:0,
+    selected:null,
+    answered:false,
+    questions:quizzes[topic].map(item=>({
+      ...item,
+      options:shuffle([item.correct,...item.wrong])
+    }))
+  };
+
+  renderQuiz(topic);
+}
+
+function renderQuiz(topic){
+  const host=document.querySelector(`[data-quiz="${topic}"]`);
+  const state=quizState[topic];
+
+  if(state.index>=state.questions.length){
+    renderResult(topic);
+    return;
+  }
+
+  const item=state.questions[state.index];
+
+  host.innerHTML=`
+    <div class="quiz-shell">
+      <div class="quiz-head">
+        <div>
+          <strong>Topic Practice Quiz</strong><br>
+          <small>Choose one answer, then submit.</small>
+        </div>
+
+        <div class="quiz-progress">
+          Question ${state.index+1} of ${state.questions.length}
+        </div>
+      </div>
+
+      <div class="quiz-body">
+        <div class="quiz-question">
+          ${item.q}
+        </div>
+
+        <div class="options">
+          ${item.options.map((option,index)=>`
+            <button
+              class="option"
+              data-option="${escapeHtml(option)}"
+              onclick="selectOption('${topic}',${index})"
+            >
+              <strong>${String.fromCharCode(65+index)}.</strong>
+              ${option}
+            </button>
+          `).join("")}
+        </div>
+
+        <div class="quiz-actions">
+          <button
+            class="quiz-btn submit-btn"
+            onclick="submitAnswer('${topic}')"
+            disabled
+          >
+            Submit Answer
+          </button>
+
+          <button
+            class="quiz-btn next-btn"
+            onclick="nextQuestion('${topic}')"
+            style="display:none"
+          >
+            Next Question →
+          </button>
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+    </div>
+  `;
+}
+
+function selectOption(topic,index){
+  const state=quizState[topic];
+
+  if(state.answered) return;
+
+  state.selected=index;
+
+  const host=document.querySelector(`[data-quiz="${topic}"]`);
+  const buttons=host.querySelectorAll(".option");
+
+  buttons.forEach(btn=>btn.classList.remove("selected"));
+  buttons[index].classList.add("selected");
+
+  host.querySelector(".submit-btn").disabled=false;
+}
+
+function submitAnswer(topic){
+  const state=quizState[topic];
+
+  if(state.selected===null || state.answered) return;
+
+  state.answered=true;
+
+  const item=state.questions[state.index];
+  const selectedAnswer=item.options[state.selected];
+  const isCorrect=selectedAnswer===item.correct;
+
+  if(isCorrect) state.score++;
+
+  const host=document.querySelector(`[data-quiz="${topic}"]`);
+  const buttons=host.querySelectorAll(".option");
+
+  buttons.forEach((btn,index)=>{
+    btn.disabled=true;
+
+    const option=item.options[index];
+
+    if(option===item.correct){
+      btn.classList.add("correct");
+    }
+
+    if(index===state.selected && !isCorrect){
+      btn.classList.add("wrong");
+    }
+  });
+
+  const feedback=host.querySelector(".feedback");
+
+  feedback.className=`feedback show ${isCorrect ? "good" : "bad"}`;
+
+  feedback.innerHTML=`
+    <strong>${isCorrect ? "✓ Correct" : "✗ Wrong"}</strong>
+    <br><br>
+    <strong>Correct answer:</strong> ${item.correct}
+    <br>
+    <strong>Explanation:</strong> ${item.explanation}
+  `;
+
+  host.querySelector(".submit-btn").style.display="none";
+  host.querySelector(".next-btn").style.display="inline-block";
+}
+
+function nextQuestion(topic){
+  const state=quizState[topic];
+
+  state.index++;
+  state.selected=null;
+  state.answered=false;
+
+  renderQuiz(topic);
+}
+
+function renderResult(topic){
+  const host=document.querySelector(`[data-quiz="${topic}"]`);
+  const state=quizState[topic];
+
+  const total=state.questions.length;
+  const correct=state.score;
+  const wrong=total-correct;
+  const percentage=Math.round((correct/total)*100);
+
+  host.innerHTML=`
+    <div class="quiz-shell">
+      <div class="result">
+        <div class="score-circle">
+          ${percentage}%
+        </div>
+
+        <h2>Quiz Completed</h2>
+
+        <p>
+          Your topic-wise practice result is shown below.
+        </p>
+
+        <div class="result-grid">
+          <div class="result-stat">
+            <strong>${correct}</strong>
+            Correct
+          </div>
+
+          <div class="result-stat">
+            <strong>${wrong}</strong>
+            Wrong
+          </div>
+
+          <div class="result-stat">
+            <strong>${total}</strong>
+            Total
+          </div>
+        </div>
+
+        <button
+          class="retry-btn"
+          onclick="startQuiz('${topic}')"
+        >
+          ↻ Retry Quiz
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(text){
+  return text
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+
+document.querySelectorAll(".topic-nav button").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const target=button.dataset.topic;
+
+    document.querySelectorAll(".topic-nav button")
+      .forEach(btn=>btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".topic-page")
+      .forEach(page=>page.classList.remove("active"));
+
+    document.getElementById(target).classList.add("active");
+
+    window.scrollTo({
+      top:document.querySelector(".hero").offsetHeight,
+      behavior:"smooth"
+    });
+  });
+});
+
+document.querySelectorAll(".topic-page").forEach(page=>{
+  const tabs=page.querySelectorAll(".mode-tabs button");
+  const panels=page.querySelectorAll(".mode-panel");
+
+  tabs.forEach(tab=>{
+    tab.addEventListener("click",()=>{
+      tabs.forEach(item=>item.classList.remove("active"));
+      panels.forEach(panel=>panel.classList.remove("active"));
+
+      tab.classList.add("active");
+
+      const target=tab.dataset.mode;
+
+      page
+        .querySelector(`[data-panel="${target}"]`)
+        .classList.add("active");
+
+      if(target==="quiz"){
+        const quizHost=page.querySelector(".quiz-container");
+
+        if(quizHost && !quizHost.dataset.started){
+          quizHost.dataset.started="true";
+          startQuiz(quizHost.dataset.quiz);
+        }
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
