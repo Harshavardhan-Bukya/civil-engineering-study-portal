@@ -1,0 +1,4704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CE2104 | Fluid Mechanics | Chapter 01</title>
+
+<style>
+:root{
+  --navy:#071f36;
+  --navy2:#0b3557;
+  --blue:#1677ff;
+  --cyan:#20c6e8;
+  --ink:#10233e;
+  --muted:#60718b;
+  --bg:#f4f7fb;
+  --card:#fff;
+  --line:#dbe4ef;
+  --good:#0b9b66;
+  --bad:#d64045;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,
+  "Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.65;
+}
+
+header{
+  background:linear-gradient(120deg,var(--navy),var(--navy2));
+  color:white;
+  padding:18px max(6vw,24px) 42px;
+  position:relative;
+  overflow:hidden;
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:rgba(32,198,232,.10);
+  right:-120px;
+  top:-250px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  position:relative;
+  z-index:2;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:800;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  display:grid;
+  place-items:center;
+}
+
+.back{
+  color:white;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,.25);
+  padding:9px 14px;
+  border-radius:11px;
+}
+
+.hero{
+  max-width:1000px;
+  margin-top:34px;
+  position:relative;
+  z-index:2;
+}
+
+.hero small,
+.topic-head small{
+  font-weight:900;
+  letter-spacing:.12em;
+  color:#69d9ff;
+}
+
+h1{
+  font-size:clamp(2.2rem,6vw,4.8rem);
+  line-height:1.04;
+  margin:8px 0 14px;
+}
+
+.hero p{
+  max-width:850px;
+  color:#d6e7f5;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:white;
+  border-bottom:1px solid var(--line);
+  padding:10px max(6vw,24px);
+  display:flex;
+  gap:8px;
+  overflow:auto;
+}
+
+nav a{
+  white-space:nowrap;
+  text-decoration:none;
+  color:#24415f;
+  background:#edf4fb;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:.82rem;
+}
+
+main{
+  width:min(1180px,88vw);
+  margin:36px auto 90px;
+}
+
+.chapter-note{
+  background:#eaf5ff;
+  border-left:4px solid var(--blue);
+  padding:16px 18px;
+  border-radius:12px;
+  margin-bottom:28px;
+}
+
+.topic{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  margin-bottom:28px;
+  box-shadow:0 12px 35px rgba(13,43,74,.05);
+  overflow:hidden;
+}
+
+.topic-head{
+  padding:28px 30px 10px;
+}
+
+.topic-head small{
+  color:var(--blue);
+}
+
+h2{
+  font-size:clamp(1.55rem,3vw,2.35rem);
+  line-height:1.15;
+  margin:5px 0 8px;
+}
+
+h3{margin-top:24px}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  padding:12px 30px 18px;
+  overflow:auto;
+  border-bottom:1px solid var(--line);
+}
+
+.tab{
+  border:1px solid var(--line);
+  background:white;
+  padding:10px 14px;
+  border-radius:11px;
+  font-weight:800;
+  color:#304964;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.tab.active{
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
+}
+
+.panel{
+  display:none;
+  padding:28px 30px 34px;
+}
+
+.panel.active{display:block}
+
+.callout,
+.box,
+.important,
+.empty{
+  padding:16px 18px;
+  border-radius:14px;
+  margin:14px 0;
+}
+
+.callout{
+  background:#eef6ff;
+  border-left:4px solid var(--blue);
+}
+
+.box{
+  background:#f7f9fc;
+  border:1px solid var(--line);
+}
+
+.important{
+  background:#fff7dc;
+  border:1px solid #f0d77a;
+}
+
+.empty{
+  background:#f7f9fc;
+  text-align:center;
+  color:var(--muted);
+}
+
+.formula{
+  font-family:"Cambria Math",Georgia,serif;
+  font-size:1.2rem;
+  font-weight:700;
+  text-align:center;
+  background:var(--navy);
+  color:white;
+  padding:14px;
+  border-radius:12px;
+  margin:14px 0;
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.qa{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
+  margin:12px 0;
+}
+
+.qa span{
+  display:inline-block;
+  background:#e8f2ff;
+  color:#0966d8;
+  padding:4px 9px;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:900;
+}
+
+.qa h4{
+  margin:10px 0 5px;
+}
+
+.quiz-card{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+}
+
+.quiz-meta{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.option{
+  display:block;
+  width:100%;
+  text-align:left;
+  margin:9px 0;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:white;
+  cursor:pointer;
+}
+
+.option.selected{
+  border-color:var(--blue);
+  background:#eef6ff;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:16px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:11px 16px;
+  font-weight:900;
+  cursor:pointer;
+  background:var(--blue);
+  color:white;
+}
+
+.feedback{
+  margin-top:14px;
+  padding:14px;
+  border-radius:12px;
+}
+
+.feedback.good{
+  background:#e9f8f2;
+  color:#08744f;
+}
+
+.feedback.bad{
+  background:#fff0f1;
+  color:#a6282d;
+}
+
+footer{
+  background:var(--navy);
+  color:#c9d9e8;
+  text-align:center;
+  padding:26px;
+}
+
+@media(max-width:720px){
+  main{width:92vw}
+
+  .grid2{grid-template-columns:1fr}
+
+  .topic-head,
+  .tabs,
+  .panel{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .top{align-items:flex-start}
+
+  .brand span{
+    font-size:.9rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="top">
+
+<div class="brand">
+<div class="logo">CE</div>
+<span>
+CIVIL ENGINEERING STUDY PORTAL<br>
+CE2104 • Fluid Mechanics
+</span>
+</div>
+
+<a class="back" href="../../index.html">
+← Dashboard
+</a>
+
+</div>
+
+<div class="hero">
+
+<small>CHAPTER 01 • COMPLETE MODULE</small>
+
+<h1>Properties of Fluids</h1>
+
+<p>
+Complete Chapter 1 study module covering fundamental
+fluid properties, viscosity, fluid classification,
+surface tension, capillarity, compressibility,
+vapour pressure, exam preparation and strictly
+topic-wise MCQ practice.
+</p>
+
+</div>
+
+</header>
+
+
+<nav>
+<a href="#intro">01 • Introduction</a>
+<a href="#basic">02 • Basic Properties</a>
+<a href="#viscosity">03 • Viscosity</a>
+<a href="#kinematic">04 • Kinematic Viscosity</a>
+<a href="#types">05 • Types of Fluids</a>
+<a href="#temperature">06 • Temperature Effect</a>
+<a href="#surface">07 • Surface Tension</a>
+<a href="#pressure">08 • Droplets & Bubbles</a>
+<a href="#compressibility">09 • Compressibility</a>
+<a href="#vapour">10 • Vapour Pressure</a>
+</nav>
+
+
+<main>
+
+<div class="chapter-note">
+
+<b>Chapter Study System:</b>
+
+The chapter is divided into individual lessons.
+
+Each lesson contains:
+
+<b>Learn Topic → Topic Questions → PYQs →
+Topic-wise Practice MCQs.</b>
+
+MCQs from different lessons are not mixed.
+
+</div>
+
+
+<!-- TOPIC 01 -->
+
+<section class="topic" id="intro">
+
+<div class="topic-head">
+<small>TOPIC 01</small>
+<h2>Introduction to Fluids & Fluid Mechanics</h2>
+</div>
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="intro-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="intro-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="intro-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="intro-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="intro-learn">
+
+<div class="callout">
+
+<b>Fluid Mechanics</b> is the branch of engineering
+science which deals with the behaviour of fluids,
+both liquids and gases, at rest and in motion.
+
+</div>
+
+<h3>What is a Fluid?</h3>
+
+<p>
+A fluid is a substance which undergoes continuous
+deformation when subjected to shear stress,
+however small the applied shear stress may be.
+</p>
+
+<p>
+Liquids and gases are therefore classified as fluids.
+</p>
+
+
+<h3>Main Divisions of Fluid Mechanics</h3>
+
+<div class="grid2">
+
+<div class="box">
+
+<b>Fluid Statics</b>
+
+<p>
+Fluid statics deals with fluids which are at rest.
+</p>
+
+</div>
+
+<div class="box">
+
+<b>Fluid Kinematics</b>
+
+<p>
+Fluid kinematics deals with fluids in motion
+without considering the forces responsible
+for producing the motion.
+</p>
+
+</div>
+
+<div class="box">
+
+<b>Fluid Dynamics</b>
+
+<p>
+Fluid dynamics deals with fluids in motion
+while considering the forces and pressure
+effects responsible for the motion.
+</p>
+
+</div>
+
+<div class="box">
+
+<b>Fluid</b>
+
+<p>
+A substance capable of continuous deformation
+under shear stress.
+</p>
+
+</div>
+
+</div>
+
+
+<h3>Liquids and Gases</h3>
+
+<p>
+A liquid possesses a definite volume but does
+not possess a definite shape. It assumes the
+shape of the container in which it is placed.
+</p>
+
+<p>
+A gas possesses neither a definite shape nor
+a definite volume and expands to occupy the
+available space.
+</p>
+
+
+<h3>Ideal and Real Fluids</h3>
+
+<p>
+An <b>ideal fluid</b> is an imaginary fluid having
+zero viscosity and is generally considered
+incompressible.
+</p>
+
+<p>
+A <b>real fluid</b> possesses viscosity.
+All actual engineering fluids are real fluids.
+</p>
+
+
+<div class="important">
+
+⭐ <b>Important for examination:</b>
+
+Definition of fluid and differences between
+fluid statics, fluid kinematics and fluid dynamics.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="intro-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>1 Mark</span>
+
+<h4>Define a fluid.</h4>
+
+<p>
+A fluid is a substance which deforms continuously
+when subjected to shear stress, however small
+the shear stress may be.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>3 Marks</span>
+
+<h4>
+Differentiate fluid statics, fluid kinematics
+and fluid dynamics.
+</h4>
+
+<p>
+<b>Fluid statics:</b> Study of fluids at rest.
+</p>
+
+<p>
+<b>Fluid kinematics:</b> Study of fluid motion
+without considering the forces causing motion.
+</p>
+
+<p>
+<b>Fluid dynamics:</b> Study of fluid motion
+along with the forces responsible for motion.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>5 Marks</span>
+
+<h4>Explain liquids, gases, ideal fluids and real fluids.</h4>
+
+<p>
+Liquids possess definite volume but no definite shape.
+Gases possess neither definite shape nor definite volume.
+An ideal fluid is an imaginary non-viscous,
+incompressible fluid, whereas a real fluid possesses
+viscosity and represents actual engineering fluids.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="intro-pyq">
+
+<div class="empty">
+
+<b>No verified PYQs added yet.</b>
+
+<p>
+Actual CE2104 previous-year questions will be
+added here only after they are supplied.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="intro-quiz">
+
+<div class="quiz-shell"
+data-topic="intro">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 02 -->
+
+<section class="topic" id="basic">
+
+<div class="topic-head">
+<small>TOPIC 02</small>
+<h2>
+Density, Specific Weight, Specific Volume
+& Specific Gravity
+</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="basic-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="basic-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="basic-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="basic-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="basic-learn">
+
+<h3>1. Mass Density</h3>
+
+<div class="callout">
+
+Mass density is defined as the mass of a fluid
+contained per unit volume.
+
+</div>
+
+<div class="formula">
+ρ = m / V
+</div>
+
+<p>
+Where:
+</p>
+
+<p>
+<b>ρ</b> = mass density in kg/m³<br>
+<b>m</b> = mass in kg<br>
+<b>V</b> = volume in m³
+</p>
+
+<p>
+For water:
+</p>
+
+<div class="formula">
+ρ<sub>w</sub> ≈ 1000 kg/m³
+</div>
+
+
+<h3>2. Specific Weight</h3>
+
+<p>
+Specific weight, also called weight density,
+is the weight of fluid per unit volume.
+</p>
+
+<div class="formula">
+w = W / V
+</div>
+
+<p>
+Since:
+</p>
+
+<div class="formula">
+W = mg
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+w = ρg
+</div>
+
+<p>
+SI unit:
+</p>
+
+<div class="formula">
+N/m³
+</div>
+
+<p>
+For water:
+</p>
+
+<div class="formula">
+w ≈ 9810 N/m³
+</div>
+
+
+<h3>3. Specific Volume</h3>
+
+<p>
+Specific volume is the volume occupied
+by unit mass of fluid.
+</p>
+
+<div class="formula">
+v = V/m = 1/ρ
+</div>
+
+<p>
+SI unit:
+</p>
+
+<div class="formula">
+m³/kg
+</div>
+
+
+<h3>4. Specific Gravity</h3>
+
+<p>
+Specific gravity is the ratio of the density
+of a fluid to the density of a standard fluid.
+</p>
+
+<p>
+For liquids, the standard fluid is water.
+</p>
+
+<div class="formula">
+S = ρ<sub>fluid</sub> / ρ<sub>water</sub>
+</div>
+
+<p>
+It can also be written as:
+</p>
+
+<div class="formula">
+S = w<sub>fluid</sub> / w<sub>water</sub>
+</div>
+
+<p>
+Specific gravity has <b>no unit</b>.
+</p>
+
+
+<h3>Useful Relations</h3>
+
+<div class="formula">
+ρ<sub>liquid</sub> = S × 1000 kg/m³
+</div>
+
+<div class="formula">
+w<sub>liquid</sub> = S × 9810 N/m³
+</div>
+
+
+<h3>Important Conversion</h3>
+
+<div class="formula">
+1 litre = 10⁻³ m³
+</div>
+
+
+<h3>Worked Numerical</h3>
+
+<div class="box">
+
+<p>
+<b>Problem:</b> One litre of a liquid weighs 7 N.
+Find its specific weight, density and specific gravity.
+</p>
+
+<p>
+<b>Given:</b>
+</p>
+
+<p>
+W = 7 N
+</p>
+
+<p>
+V = 1 litre = 0.001 m³
+</p>
+
+<p>
+<b>Specific Weight:</b>
+</p>
+
+<div class="formula">
+w = W/V
+</div>
+
+<div class="formula">
+w = 7/0.001 = 7000 N/m³
+</div>
+
+<p>
+<b>Density:</b>
+</p>
+
+<div class="formula">
+ρ = w/g
+</div>
+
+<div class="formula">
+ρ = 7000/9.81
+</div>
+
+<div class="formula">
+ρ = 713.6 kg/m³
+</div>
+
+<p>
+<b>Specific Gravity:</b>
+</p>
+
+<div class="formula">
+S = 713.6/1000
+</div>
+
+<div class="formula">
+S = 0.714
+</div>
+
+<p>
+<b>Final Answer:</b>
+</p>
+
+<p>
+Specific weight = <b>7000 N/m³</b><br>
+Density = <b>713.6 kg/m³</b><br>
+Specific gravity = <b>0.714</b>
+</p>
+
+</div>
+
+
+<div class="important">
+
+⭐ Specific gravity is dimensionless.
+
+⭐ Specific volume is the reciprocal of density.
+
+⭐ w = ρg is a fundamental relation.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="basic-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>3 Marks</span>
+
+<h4>
+Define density, specific volume and specific weight.
+Give formula and SI unit.
+</h4>
+
+<p>
+<b>Density:</b> Mass per unit volume.
+ρ = m/V. SI unit: kg/m³.
+</p>
+
+<p>
+<b>Specific volume:</b> Volume per unit mass.
+v = V/m = 1/ρ. SI unit: m³/kg.
+</p>
+
+<p>
+<b>Specific weight:</b> Weight per unit volume.
+w = W/V = ρg. SI unit: N/m³.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>5 Marks</span>
+
+<h4>
+Define specific gravity and derive its relation
+with density and specific weight.
+</h4>
+
+<p>
+Specific gravity is the ratio of density of
+a fluid to density of a standard fluid.
+For liquids the standard fluid is water.
+</p>
+
+<div class="formula">
+S = ρ/ρ<sub>w</sub>
+</div>
+
+<p>
+Since ρ<sub>w</sub> = 1000 kg/m³:
+</p>
+
+<div class="formula">
+ρ = 1000S
+</div>
+
+<p>
+Similarly:
+</p>
+
+<div class="formula">
+S = w/w<sub>w</sub>
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+w = 9810S
+</div>
+
+</div>
+
+
+<div class="qa">
+
+<span>6 Marks</span>
+
+<h4>
+One litre of a liquid weighs 7 N.
+Calculate its specific weight, density
+and specific gravity.
+</h4>
+
+<p>
+Use:
+</p>
+
+<div class="formula">
+w = W/V
+</div>
+
+<div class="formula">
+ρ = w/g
+</div>
+
+<div class="formula">
+S = ρ/1000
+</div>
+
+<p>
+Final results:
+</p>
+
+<p>
+w = 7000 N/m³<br>
+ρ = 713.6 kg/m³<br>
+S = 0.714
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="basic-pyq">
+
+<div class="empty">
+
+<b>No verified PYQs added yet.</b>
+
+<p>
+PYQs will be added only from your actual
+previous-year papers.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="basic-quiz">
+
+<div class="quiz-shell"
+data-topic="basic">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 03 -->
+
+<section class="topic" id="viscosity">
+
+<div class="topic-head">
+<small>TOPIC 03</small>
+<h2>Viscosity & Newton's Law of Viscosity</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="viscosity-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="viscosity-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="viscosity-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="viscosity-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="viscosity-learn">
+
+<div class="callout">
+
+<b>Viscosity</b> is the property of a fluid by
+virtue of which it offers resistance to the
+movement of one layer of fluid over an
+adjacent layer.
+
+</div>
+
+
+<h3>Physical Meaning</h3>
+
+<p>
+When fluid layers move at different velocities,
+internal friction develops between adjacent layers.
+This resistance to relative motion is called viscosity.
+</p>
+
+
+<h3>Newton's Law of Viscosity</h3>
+
+<p>
+Consider two adjacent fluid layers separated
+by a small distance <b>dy</b>.
+</p>
+
+<p>
+Let the difference in velocity between the
+layers be <b>du</b>.
+</p>
+
+<p>
+The velocity gradient is:
+</p>
+
+<div class="formula">
+du/dy
+</div>
+
+<p>
+According to Newton's law of viscosity:
+</p>
+
+<div class="formula">
+τ ∝ du/dy
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+
+<h3>Meaning of Symbols</h3>
+
+<p>
+<b>τ</b> = shear stress, N/m²
+</p>
+
+<p>
+<b>μ</b> = dynamic viscosity
+</p>
+
+<p>
+<b>du/dy</b> = velocity gradient, s⁻¹
+</p>
+
+
+<h3>Dynamic Viscosity</h3>
+
+<p>
+Rearranging Newton's law:
+</p>
+
+<div class="formula">
+μ = τ / (du/dy)
+</div>
+
+<p>
+Dynamic viscosity may therefore be interpreted
+as the shear stress required to produce unit
+rate of shear strain.
+</p>
+
+
+<h3>SI Unit</h3>
+
+<div class="formula">
+N·s/m²
+</div>
+
+<p>
+This is equivalent to:
+</p>
+
+<div class="formula">
+Pa·s = kg/(m·s)
+</div>
+
+
+<h3>CGS Unit</h3>
+
+<div class="formula">
+Poise (P)
+</div>
+
+
+<h3>Conversions</h3>
+
+<div class="formula">
+1 P = 0.1 Pa·s
+</div>
+
+<div class="formula">
+1 Pa·s = 10 P
+</div>
+
+<div class="formula">
+1 cP = 0.01 P
+</div>
+
+<div class="formula">
+1 cP = 0.001 Pa·s
+</div>
+
+
+<div class="important">
+
+⭐ Newton's law of viscosity:
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+This is one of the most important formulas
+in Properties of Fluids.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="viscosity-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>2 Marks</span>
+
+<h4>Define viscosity.</h4>
+
+<p>
+Viscosity is the property of a fluid by virtue
+of which it offers resistance to the relative
+motion of adjacent fluid layers.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>6 Marks</span>
+
+<h4>
+State and explain Newton's law of viscosity.
+Also write the units of dynamic viscosity.
+</h4>
+
+<p>
+Newton's law states that shear stress is directly
+proportional to the velocity gradient.
+</p>
+
+<div class="formula">
+τ ∝ du/dy
+</div>
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+<p>
+Where τ is shear stress, μ is dynamic viscosity
+and du/dy is velocity gradient.
+</p>
+
+<p>
+SI unit of μ:
+<b>N·s/m² or Pa·s</b>.
+</p>
+
+<p>
+CGS unit:
+<b>Poise</b>.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="viscosity-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="viscosity-quiz">
+
+<div class="quiz-shell"
+data-topic="viscosity">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 04 -->
+
+<section class="topic" id="kinematic">
+
+<div class="topic-head">
+<small>TOPIC 04</small>
+<h2>Kinematic Viscosity & Viscosity Numericals</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="kinematic-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="kinematic-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="kinematic-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="kinematic-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="kinematic-learn">
+
+<h3>Kinematic Viscosity</h3>
+
+<p>
+Kinematic viscosity is the ratio of dynamic
+viscosity to mass density.
+</p>
+
+<div class="formula">
+ν = μ/ρ
+</div>
+
+<p>
+Where:
+</p>
+
+<p>
+<b>ν</b> = kinematic viscosity<br>
+<b>μ</b> = dynamic viscosity<br>
+<b>ρ</b> = mass density
+</p>
+
+
+<h3>SI Unit</h3>
+
+<div class="formula">
+m²/s
+</div>
+
+
+<h3>CGS Unit</h3>
+
+<div class="formula">
+Stoke (St)
+</div>
+
+
+<h3>Conversions</h3>
+
+<div class="formula">
+1 St = 1 cm²/s
+</div>
+
+<div class="formula">
+1 St = 10⁻⁴ m²/s
+</div>
+
+<div class="formula">
+1 cSt = 10⁻⁶ m²/s
+</div>
+
+
+<h3>Numerical Type 1 — Moving Plate</h3>
+
+<p>
+If a plate moves with velocity <b>u</b> and
+the fluid layer has thickness <b>y</b>, for a
+linear velocity distribution:
+</p>
+
+<div class="formula">
+du/dy = u/y
+</div>
+
+<p>
+Using Newton's law:
+</p>
+
+<div class="formula">
+τ = μu/y
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+μ = τy/u
+</div>
+
+
+<h3>Numerical Procedure</h3>
+
+<div class="box">
+
+<p><b>Step 1 — Given</b></p>
+
+<p>
+Write velocity, distance between plates,
+shear stress and any density data.
+</p>
+
+<p><b>Step 2 — Unit Conversion</b></p>
+
+<p>
+Convert millimetres to metres and viscosity
+units to SI units.
+</p>
+
+<p><b>Step 3 — Formula</b></p>
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+<p><b>Step 4 — Substitution</b></p>
+
+<p>
+Substitute the known values.
+</p>
+
+<p><b>Step 5 — Final Answer</b></p>
+
+<p>
+Write μ in Pa·s or ν in m²/s as required.
+</p>
+
+</div>
+
+
+<h3>Velocity Distribution Problems</h3>
+
+<p>
+If velocity is given as:
+</p>
+
+<div class="formula">
+u = f(y)
+</div>
+
+<p>
+Differentiate the equation:
+</p>
+
+<div class="formula">
+du/dy = d[f(y)]/dy
+</div>
+
+<p>
+Then apply:
+</p>
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+
+<div class="important">
+
+⭐ For viscosity numericals always use:
+
+Given → Conversion → Formula →
+Substitution → Calculation → Final Answer.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="kinematic-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>3 Marks</span>
+
+<h4>
+Define kinematic viscosity.
+Write its formula and units.
+</h4>
+
+<p>
+Kinematic viscosity is the ratio of dynamic
+viscosity to mass density.
+</p>
+
+<div class="formula">
+ν = μ/ρ
+</div>
+
+<p>
+SI unit = m²/s.<br>
+CGS unit = Stoke.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>5 Marks</span>
+
+<h4>
+Explain how shear stress is determined when
+the velocity distribution u = f(y) is given.
+</h4>
+
+<p>
+First differentiate the velocity equation with
+respect to y to obtain the velocity gradient.
+</p>
+
+<div class="formula">
+du/dy
+</div>
+
+<p>
+Evaluate the gradient at the required location
+and substitute it in Newton's law:
+</p>
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+<p>
+The resulting value gives the shear stress.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="kinematic-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="kinematic-quiz">
+
+<div class="quiz-shell"
+data-topic="kinematic">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 05 -->
+
+<section class="topic" id="types">
+
+<div class="topic-head">
+<small>TOPIC 05</small>
+<h2>Classification and Types of Fluids</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="types-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="types-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="types-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="types-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="types-learn">
+
+<h3>Ideal Fluid</h3>
+
+<p>
+An ideal fluid is an imaginary fluid having
+zero viscosity.
+</p>
+
+
+<h3>Real Fluid</h3>
+
+<p>
+A real fluid possesses viscosity.
+All actual fluids are real fluids.
+</p>
+
+
+<h3>Newtonian Fluid</h3>
+
+<p>
+A Newtonian fluid obeys Newton's law of viscosity.
+</p>
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+<p>
+For a Newtonian fluid, μ remains constant
+at a specified temperature and pressure.
+</p>
+
+
+<h3>Non-Newtonian Fluid</h3>
+
+<p>
+A non-Newtonian fluid does not obey the simple
+linear relationship between shear stress and
+velocity gradient.
+</p>
+
+
+<h3>Ideal Plastic Fluid</h3>
+
+<p>
+An ideal plastic fluid requires a certain
+minimum shear stress called <b>yield stress</b>
+before continuous deformation begins.
+</p>
+
+
+<h3>Bingham Plastic</h3>
+
+<p>
+A Bingham plastic behaves approximately as
+a rigid body until the yield stress is exceeded.
+After yielding, shear stress varies approximately
+linearly with the rate of shear strain.
+</p>
+
+
+<h3>Pseudoplastic Fluid</h3>
+
+<p>
+A pseudoplastic fluid is a shear-thinning fluid.
+Its apparent viscosity decreases as shear rate increases.
+</p>
+
+
+<h3>Dilatant Fluid</h3>
+
+<p>
+A dilatant fluid is a shear-thickening fluid.
+Its apparent viscosity increases as shear rate increases.
+</p>
+
+
+<div class="important">
+
+⭐ Important graph:
+
+Shear stress τ is plotted on the vertical axis
+and velocity gradient du/dy on the horizontal axis.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="types-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>5 Marks</span>
+
+<h4>
+Define ideal, real, Newtonian and
+non-Newtonian fluids.
+</h4>
+
+<p>
+An ideal fluid has zero viscosity.
+A real fluid possesses viscosity.
+A Newtonian fluid obeys τ = μdu/dy.
+A non-Newtonian fluid does not follow a
+linear proportionality between shear stress
+and velocity gradient.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>8 Marks</span>
+
+<h4>
+Explain the rheological classification of fluids
+using shear stress versus velocity-gradient behaviour.
+</h4>
+
+<p>
+Plot shear stress τ on the vertical axis and
+du/dy on the horizontal axis.
+</p>
+
+<p>
+An ideal fluid has zero shear stress.
+A Newtonian fluid gives a straight line through
+the origin.
+</p>
+
+<p>
+Plastic-type fluids require a yield stress before
+continuous deformation.
+</p>
+
+<p>
+Pseudoplastic fluids are shear-thinning,
+whereas dilatant fluids are shear-thickening.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="types-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="types-quiz">
+
+<div class="quiz-shell"
+data-topic="types">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 06 -->
+
+<section class="topic" id="temperature">
+
+<div class="topic-head">
+<small>TOPIC 06</small>
+<h2>Effect of Temperature on Viscosity</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="temperature-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="temperature-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="temperature-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="temperature-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="temperature-learn">
+
+<h3>Liquids</h3>
+
+<p>
+The viscosity of liquids generally decreases
+when temperature increases.
+</p>
+
+<p>
+This occurs because the cohesive forces between
+liquid molecules become less effective as
+temperature rises.
+</p>
+
+
+<div class="formula">
+Temperature ↑ → μ of liquid ↓
+</div>
+
+
+<h3>Gases</h3>
+
+<p>
+The viscosity of gases generally increases
+when temperature increases.
+</p>
+
+<p>
+Higher temperature increases molecular motion
+and momentum transfer between gas layers.
+</p>
+
+
+<div class="formula">
+Temperature ↑ → μ of gas ↑
+</div>
+
+
+<h3>Effect of Pressure</h3>
+
+<p>
+For ordinary engineering pressure ranges,
+the effect of pressure on liquid viscosity
+is usually small.
+</p>
+
+<p>
+At very high pressures, however, the effect
+may become significant.
+</p>
+
+
+<div class="important">
+
+⭐ Remember the opposite temperature behaviour:
+
+<b>Liquids:</b> temperature ↑ → viscosity ↓
+
+<br>
+
+<b>Gases:</b> temperature ↑ → viscosity ↑
+
+</div>
+
+</div>
+
+
+<div class="panel" id="temperature-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>4 Marks</span>
+
+<h4>
+Explain the effect of temperature on the
+viscosity of liquids and gases.
+</h4>
+
+<p>
+For liquids, viscosity decreases with increasing
+temperature because cohesive forces become weaker.
+</p>
+
+<p>
+For gases, viscosity increases with increasing
+temperature because molecular momentum transfer
+increases.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>2 Marks</span>
+
+<h4>
+State the effect of pressure on viscosity.
+</h4>
+
+<p>
+At ordinary engineering pressures the effect
+of pressure on liquid viscosity is generally small,
+but it can become significant at very high pressures.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="temperature-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="temperature-quiz">
+
+<div class="quiz-shell"
+data-topic="temperature">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 07 -->
+
+<section class="topic" id="surface">
+
+<div class="topic-head">
+<small>TOPIC 07</small>
+<h2>Surface Tension & Capillarity</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="surface-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="surface-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="surface-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="surface-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="surface-learn">
+
+<h3>Surface Tension</h3>
+
+<div class="callout">
+
+Surface tension is the tensile force acting
+per unit length in the free surface of a liquid,
+normal to an imaginary line drawn in that surface.
+
+</div>
+
+
+<div class="formula">
+σ = F/L
+</div>
+
+<p>
+Where:
+</p>
+
+<p>
+<b>σ</b> = surface tension<br>
+<b>F</b> = force<br>
+<b>L</b> = length
+</p>
+
+
+<h3>SI Unit</h3>
+
+<div class="formula">
+N/m
+</div>
+
+
+<h3>Cause of Surface Tension</h3>
+
+<p>
+A molecule inside a liquid is attracted by
+surrounding molecules in all directions.
+</p>
+
+<p>
+A molecule near the free surface experiences
+an unbalanced inward molecular attraction.
+</p>
+
+<p>
+As a result, the free surface behaves like
+a stretched elastic membrane.
+</p>
+
+
+<h3>Capillarity</h3>
+
+<div class="callout">
+
+Capillarity is the phenomenon of rise or fall
+of a liquid in a small-diameter tube relative
+to the surrounding liquid level.
+
+</div>
+
+
+<h3>Capillary Rise Equation</h3>
+
+<div class="formula">
+h = 4σ cosθ / (ρgd)
+</div>
+
+<p>
+Since w = ρg:
+</p>
+
+<div class="formula">
+h = 4σ cosθ / (wd)
+</div>
+
+
+<h3>Meaning of Symbols</h3>
+
+<p>
+<b>h</b> = capillary rise or fall, m<br>
+<b>σ</b> = surface tension, N/m<br>
+<b>θ</b> = angle of contact<br>
+<b>ρ</b> = density, kg/m³<br>
+<b>d</b> = diameter of capillary tube, m
+</p>
+
+
+<h3>Water in Glass</h3>
+
+<p>
+For clean water and glass:
+</p>
+
+<div class="formula">
+θ ≈ 0°
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+cosθ ≈ 1
+</div>
+
+<p>
+Water rises in the capillary tube.
+</p>
+
+
+<h3>Mercury in Glass</h3>
+
+<p>
+Mercury generally forms an obtuse angle of contact
+with glass and therefore produces capillary depression.
+</p>
+
+
+<h3>Derivation of Capillary Rise</h3>
+
+<p>
+Upward vertical component of surface tension:
+</p>
+
+<div class="formula">
+F = πdσ cosθ
+</div>
+
+<p>
+Weight of liquid column:
+</p>
+
+<div class="formula">
+W = ρg(πd²/4)h
+</div>
+
+<p>
+At equilibrium:
+</p>
+
+<div class="formula">
+πdσ cosθ = ρg(πd²/4)h
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+h = 4σ cosθ/(ρgd)
+</div>
+
+
+<div class="important">
+
+⭐ Capillary rise is inversely proportional
+to tube diameter.
+
+Smaller diameter → greater capillary rise.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="surface-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>3 Marks</span>
+
+<h4>
+Define surface tension and state its SI unit.
+</h4>
+
+<p>
+Surface tension is the tensile force per unit
+length acting at the free surface of a liquid.
+</p>
+
+<div class="formula">
+σ = F/L
+</div>
+
+<p>
+SI unit = N/m.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>8 Marks</span>
+
+<h4>
+Derive the expression for capillary rise
+in a circular tube.
+</h4>
+
+<p>
+Upward surface-tension force:
+</p>
+
+<div class="formula">
+πdσ cosθ
+</div>
+
+<p>
+Weight of liquid column:
+</p>
+
+<div class="formula">
+ρg(πd²/4)h
+</div>
+
+<p>
+Equating:
+</p>
+
+<div class="formula">
+πdσ cosθ =
+ρg(πd²/4)h
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+h = 4σ cosθ/(ρgd)
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="surface-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="surface-quiz">
+
+<div class="quiz-shell"
+data-topic="surface">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 08 -->
+
+<section class="topic" id="pressure">
+
+<div class="topic-head">
+<small>TOPIC 08</small>
+<h2>
+Pressure Inside Liquid Droplets,
+Soap Bubbles & Liquid Jets
+</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="pressure-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="pressure-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="pressure-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="pressure-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="pressure-learn">
+
+<p>
+Surface tension produces an excess pressure
+inside curved liquid surfaces.
+</p>
+
+
+<h3>1. Liquid Droplet</h3>
+
+<p>
+A liquid droplet has one liquid-gas interface.
+</p>
+
+<div class="formula">
+Δp = 4σ/d
+</div>
+
+<p>
+Since d = 2r:
+</p>
+
+<div class="formula">
+Δp = 2σ/r
+</div>
+
+
+<h3>2. Soap Bubble</h3>
+
+<p>
+A soap bubble has two liquid surfaces:
+an inner surface and an outer surface.
+</p>
+
+<div class="formula">
+Δp = 8σ/d
+</div>
+
+<p>
+or:
+</p>
+
+<div class="formula">
+Δp = 4σ/r
+</div>
+
+
+<h3>3. Liquid Jet</h3>
+
+<div class="formula">
+Δp = 2σ/d
+</div>
+
+<p>
+or:
+</p>
+
+<div class="formula">
+Δp = σ/r
+</div>
+
+
+<h3>Comparison</h3>
+
+<div class="box">
+
+<p>
+For the same diameter and surface tension:
+</p>
+
+<p>
+<b>Soap Bubble:</b> 8σ/d
+</p>
+
+<p>
+<b>Liquid Droplet:</b> 4σ/d
+</p>
+
+<p>
+<b>Liquid Jet:</b> 2σ/d
+</p>
+
+</div>
+
+
+<h3>Numerical Method</h3>
+
+<p>
+<b>Given:</b> σ and diameter d.
+</p>
+
+<p>
+<b>Step 1:</b> Convert diameter into metres.
+</p>
+
+<p>
+<b>Step 2:</b> Identify whether it is a
+droplet, soap bubble or liquid jet.
+</p>
+
+<p>
+<b>Step 3:</b> Select the correct formula.
+</p>
+
+<p>
+<b>Step 4:</b> Substitute the values.
+</p>
+
+<p>
+<b>Step 5:</b> Write the final pressure in Pa.
+</p>
+
+
+<div class="important">
+
+⭐ For equal σ and d:
+
+Soap bubble pressure &gt;
+liquid droplet pressure &gt;
+liquid jet pressure.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="pressure-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>6 Marks</span>
+
+<h4>
+Derive the expression for excess pressure
+inside a liquid droplet.
+</h4>
+
+<p>
+Consider one half of a spherical droplet.
+</p>
+
+<p>
+Pressure force:
+</p>
+
+<div class="formula">
+Δp × πd²/4
+</div>
+
+<p>
+Surface-tension force:
+</p>
+
+<div class="formula">
+σπd
+</div>
+
+<p>
+At equilibrium:
+</p>
+
+<div class="formula">
+Δp(πd²/4) = σπd
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+Δp = 4σ/d
+</div>
+
+</div>
+
+
+<div class="qa">
+
+<span>8 Marks</span>
+
+<h4>
+Write and compare the expressions for excess
+pressure inside a liquid droplet, soap bubble
+and liquid jet.
+</h4>
+
+<p>
+Liquid droplet:
+</p>
+
+<div class="formula">
+Δp = 4σ/d
+</div>
+
+<p>
+Soap bubble:
+</p>
+
+<div class="formula">
+Δp = 8σ/d
+</div>
+
+<p>
+Liquid jet:
+</p>
+
+<div class="formula">
+Δp = 2σ/d
+</div>
+
+<p>
+For equal surface tension and diameter,
+the soap bubble has the highest excess pressure.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="pressure-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="pressure-quiz">
+
+<div class="quiz-shell"
+data-topic="pressure">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 09 -->
+
+<section class="topic" id="compressibility">
+
+<div class="topic-head">
+<small>TOPIC 09</small>
+<h2>Compressibility & Bulk Modulus</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="compressibility-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="compressibility-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="compressibility-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="compressibility-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="compressibility-learn">
+
+<h3>Compressibility</h3>
+
+<p>
+Although liquids are frequently treated as
+incompressible in elementary fluid mechanics,
+their volume changes slightly when pressure changes.
+</p>
+
+
+<h3>Bulk Modulus</h3>
+
+<p>
+Bulk modulus is the ratio of increase in pressure
+to the corresponding volumetric strain.
+</p>
+
+<div class="formula">
+K = -Δp / (ΔV/V)
+</div>
+
+
+<h3>Meaning of Symbols</h3>
+
+<p>
+<b>K</b> = bulk modulus, Pa
+</p>
+
+<p>
+<b>Δp</b> = change in pressure, Pa
+</p>
+
+<p>
+<b>ΔV</b> = change in volume
+</p>
+
+<p>
+<b>V</b> = original volume
+</p>
+
+
+<h3>Why is the Negative Sign Used?</h3>
+
+<p>
+When pressure increases, the volume of a fluid
+decreases.
+</p>
+
+<p>
+Therefore ΔV is negative for an increase in pressure.
+The negative sign makes the value of bulk modulus positive.
+</p>
+
+
+<h3>Compressibility</h3>
+
+<p>
+Compressibility is the reciprocal of bulk modulus.
+</p>
+
+<div class="formula">
+β = 1/K
+</div>
+
+
+<h3>Interpretation</h3>
+
+<p>
+A large value of bulk modulus means that the
+fluid is difficult to compress.
+</p>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+Large K → Low Compressibility
+</div>
+
+
+<h3>Effect on Density</h3>
+
+<p>
+For a fixed mass:
+</p>
+
+<div class="formula">
+ρ = m/V
+</div>
+
+<p>
+If pressure increases and volume decreases,
+density increases.
+</p>
+
+
+<div class="important">
+
+⭐ Bulk modulus has the same SI unit as pressure:
+
+<b>N/m² or Pa.</b>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="compressibility-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>5 Marks</span>
+
+<h4>
+Define bulk modulus and compressibility.
+</h4>
+
+<p>
+Bulk modulus is the ratio of pressure change
+to the corresponding volumetric strain.
+</p>
+
+<div class="formula">
+K = -Δp/(ΔV/V)
+</div>
+
+<p>
+Compressibility is the reciprocal of bulk modulus.
+</p>
+
+<div class="formula">
+β = 1/K
+</div>
+
+</div>
+
+
+<div class="qa">
+
+<span>6 Marks</span>
+
+<h4>
+Explain the significance of the negative sign
+in the bulk modulus equation.
+</h4>
+
+<p>
+An increase in pressure causes a decrease in volume.
+Therefore the volume change ΔV is negative.
+The negative sign in the bulk-modulus expression
+ensures that K is expressed as a positive property.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="compressibility-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="compressibility-quiz">
+
+<div class="quiz-shell"
+data-topic="compressibility">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOPIC 10 -->
+
+<section class="topic" id="vapour">
+
+<div class="topic-head">
+<small>TOPIC 10</small>
+<h2>Vapour Pressure & Chapter Formula Revision</h2>
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active"
+data-panel="vapour-learn">
+📖 Learn Topic
+</button>
+
+<button class="tab"
+data-panel="vapour-questions">
+📝 Topic Questions
+</button>
+
+<button class="tab"
+data-panel="vapour-pyq">
+🎓 PYQs
+</button>
+
+<button class="tab"
+data-panel="vapour-quiz">
+✅ Practice MCQs
+</button>
+
+</div>
+
+
+<div class="panel active" id="vapour-learn">
+
+<h3>Vapour Pressure</h3>
+
+<p>
+At a given temperature, some molecules near
+the surface of a liquid possess sufficient energy
+to escape from the liquid into the vapour phase.
+</p>
+
+<p>
+In a closed space, a condition of equilibrium
+may be established between evaporation and condensation.
+</p>
+
+<div class="callout">
+
+The pressure exerted by the vapour when the
+liquid and vapour are in equilibrium at a
+specified temperature is called the
+<b>vapour pressure</b> of the liquid.
+
+</div>
+
+
+<h3>Effect of Temperature</h3>
+
+<p>
+Vapour pressure depends strongly on temperature.
+It generally increases when temperature increases.
+</p>
+
+
+<h3>Engineering Significance</h3>
+
+<p>
+If the local absolute pressure in a flowing liquid
+falls sufficiently close to or below the vapour
+pressure of the liquid, vapour formation may occur.
+</p>
+
+<p>
+This principle becomes important later when
+studying <b>cavitation</b>.
+</p>
+
+
+<h3>Chapter 1 Formula Revision</h3>
+
+<div class="formula">
+ρ = m/V
+</div>
+
+<div class="formula">
+w = ρg
+</div>
+
+<div class="formula">
+v = 1/ρ
+</div>
+
+<div class="formula">
+S = ρ/ρ<sub>w</sub>
+</div>
+
+<div class="formula">
+τ = μ(du/dy)
+</div>
+
+<div class="formula">
+ν = μ/ρ
+</div>
+
+<div class="formula">
+Droplet: Δp = 4σ/d
+</div>
+
+<div class="formula">
+Soap Bubble: Δp = 8σ/d
+</div>
+
+<div class="formula">
+Liquid Jet: Δp = 2σ/d
+</div>
+
+<div class="formula">
+h = 4σ cosθ/(ρgd)
+</div>
+
+<div class="formula">
+K = -Δp/(ΔV/V)
+</div>
+
+
+<div class="important">
+
+⭐ Revise the formula sheet before attempting
+Chapter 1 numericals and MCQs.
+
+</div>
+
+</div>
+
+
+<div class="panel" id="vapour-questions">
+
+<h3>Marks-wise Questions</h3>
+
+<div class="qa">
+
+<span>3 Marks</span>
+
+<h4>Define vapour pressure.</h4>
+
+<p>
+Vapour pressure is the equilibrium pressure
+exerted by vapour above its liquid at a
+specified temperature.
+</p>
+
+</div>
+
+
+<div class="qa">
+
+<span>5 Marks</span>
+
+<h4>
+Explain the engineering significance
+of vapour pressure.
+</h4>
+
+<p>
+Vapour pressure indicates the pressure level
+at which a liquid can begin forming vapour
+at a particular temperature.
+</p>
+
+<p>
+If the local absolute pressure falls to the
+vapour-pressure level, vapour formation can occur.
+This concept is important in the study of cavitation.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel" id="vapour-pyq">
+
+<div class="empty">
+<b>No verified PYQs added yet.</b>
+</div>
+
+</div>
+
+
+<div class="panel" id="vapour-quiz">
+
+<div class="quiz-shell"
+data-topic="vapour">
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+CE2104 • Fluid Mechanics • Chapter 01 —
+Properties of Fluids
+</footer>
+
+
+<script>
+
+/* =========================================================
+   TOPIC-WISE MCQ BANKS
+   Each topic remains completely separate.
+   ========================================================= */
+
+const BANKS = {
+
+intro: [
+
+{
+q:"Fluid mechanics deals with fluids:",
+correct:"At rest and in motion",
+wrong:[
+"Only at rest",
+"Only in motion",
+"Only at high pressure"
+],
+explain:
+"Fluid mechanics studies both stationary and moving fluids."
+},
+
+{
+q:"The study of fluids at rest is known as:",
+correct:"Fluid statics",
+wrong:[
+"Fluid kinematics",
+"Fluid dynamics",
+"Hydrology"
+],
+explain:
+"Fluid statics deals specifically with fluids at rest."
+},
+
+{
+q:"Fluid kinematics deals with:",
+correct:"Fluid motion without considering the forces causing it",
+wrong:[
+"Fluids only at rest",
+"Only pressure forces",
+"Only compressible gases"
+],
+explain:
+"Kinematics describes motion without analysing its causes."
+},
+
+{
+q:"Fluid dynamics deals with:",
+correct:"Fluid motion together with the forces responsible for it",
+wrong:[
+"Only fluid density",
+"Only stationary fluids",
+"Only temperature"
+],
+explain:
+"Dynamics considers both motion and the forces producing it."
+},
+
+{
+q:"A fluid subjected to shear stress:",
+correct:"Deforms continuously",
+wrong:[
+"Always retains its shape",
+"Cannot move",
+"Becomes a solid"
+],
+explain:
+"Continuous deformation under shear stress is a defining property of fluids."
+},
+
+{
+q:"A liquid normally has:",
+correct:"Definite volume but no fixed shape",
+wrong:[
+"Fixed shape and fixed volume",
+"No mass",
+"No definite volume"
+],
+explain:
+"A liquid takes the shape of its container while retaining approximately definite volume."
+},
+
+{
+q:"A gas normally:",
+correct:"Expands to fill the available volume",
+wrong:[
+"Has a fixed free surface",
+"Has a fixed shape",
+"Cannot be compressed"
+],
+explain:
+"A gas occupies the available space in its container."
+},
+
+{
+q:"An ideal fluid is:",
+correct:"An engineering idealisation",
+wrong:[
+"A solid",
+"A mineral",
+"An instrument"
+],
+explain:
+"An ideal fluid is an imaginary model used for simplified analysis."
+},
+
+{
+q:"An ideal fluid is assumed to have:",
+correct:"Zero viscosity",
+wrong:[
+"Infinite viscosity",
+"Zero density",
+"Infinite surface tension"
+],
+explain:
+"An ideal fluid is considered non-viscous."
+},
+
+{
+q:"Actual engineering fluids are:",
+correct:"Real fluids",
+wrong:[
+"Always ideal fluids",
+"Always solids",
+"Always incompressible gases"
+],
+explain:
+"Actual fluids possess viscosity and are therefore real fluids."
+}
+
+],
+
+
+basic: [
+
+{
+q:"Mass per unit volume is called:",
+correct:"Density",
+wrong:[
+"Specific weight",
+"Specific volume",
+"Specific gravity"
+],
+explain:"Density is defined as mass divided by volume."
+},
+
+{
+q:"The SI unit of density is:",
+correct:"kg/m³",
+wrong:[
+"N/m³",
+"m³/kg",
+"Pa·s"
+],
+explain:"Mass density is measured in kilograms per cubic metre."
+},
+
+{
+q:"Specific weight is:",
+correct:"Weight per unit volume",
+wrong:[
+"Mass per unit volume",
+"Volume per unit mass",
+"Density ratio"
+],
+explain:"Specific weight is W/V."
+},
+
+{
+q:"The relation between specific weight and density is:",
+correct:"w = ρg",
+wrong:[
+"w = ρ/g",
+"w = g/ρ",
+"w = 1/ρ"
+],
+explain:"Specific weight equals mass density multiplied by gravitational acceleration."
+},
+
+{
+q:"Specific volume is:",
+correct:"Volume per unit mass",
+wrong:[
+"Mass per unit volume",
+"Weight per unit volume",
+"Force per unit length"
+],
+explain:"Specific volume is V/m."
+},
+
+{
+q:"Specific volume equals:",
+correct:"1/ρ",
+wrong:[
+"ρg",
+"ρ/g",
+"ρ²"
+],
+explain:"Specific volume is the reciprocal of density."
+},
+
+{
+q:"The SI unit of specific volume is:",
+correct:"m³/kg",
+wrong:[
+"kg/m³",
+"N/m³",
+"N/m"
+],
+explain:"Specific volume is volume divided by mass."
+},
+
+{
+q:"Specific gravity is:",
+correct:"Dimensionless",
+wrong:[
+"Measured in kg/m³",
+"Measured in N/m³",
+"Measured in Pa"
+],
+explain:"Specific gravity is a ratio of two quantities having the same units."
+},
+
+{
+q:"The standard reference fluid for specific gravity of liquids is:",
+correct:"Water",
+wrong:[
+"Air",
+"Mercury",
+"Oil"
+],
+explain:"Specific gravity of a liquid is normally referenced to water."
+},
+
+{
+q:"The density of water is approximately:",
+correct:"1000 kg/m³",
+wrong:[
+"100 kg/m³",
+"9810 kg/m³",
+"1 kg/m³"
+],
+explain:"The standard engineering value is approximately 1000 kg/m³."
+},
+
+{
+q:"The specific weight of water is approximately:",
+correct:"9810 N/m³",
+wrong:[
+"1000 N/m³",
+"981 N/m³",
+"9.81 N/m³"
+],
+explain:"w = ρg = 1000 × 9.81 = 9810 N/m³."
+},
+
+{
+q:"One litre is equal to:",
+correct:"0.001 m³",
+wrong:[
+"0.01 m³",
+"0.1 m³",
+"1 m³"
+],
+explain:"1 L = 10⁻³ m³."
+},
+
+{
+q:"If specific gravity is 0.8, density is approximately:",
+correct:"800 kg/m³",
+wrong:[
+"80 kg/m³",
+"8000 kg/m³",
+"9810 kg/m³"
+],
+explain:"ρ = S × 1000 = 0.8 × 1000 = 800 kg/m³."
+},
+
+{
+q:"If density increases, specific volume:",
+correct:"Decreases",
+wrong:[
+"Increases",
+"Always remains constant",
+"Becomes dimensionless"
+],
+explain:"v = 1/ρ, so the two are inversely related."
+},
+
+{
+q:"The symbol commonly used for mass density is:",
+correct:"ρ",
+wrong:[
+"μ",
+"ν",
+"σ"
+],
+explain:"The Greek letter rho, ρ, commonly represents density."
+}
+
+],
+
+
+viscosity: [
+
+{
+q:"Viscosity represents resistance to:",
+correct:"Relative motion between fluid layers",
+wrong:[
+"Compression only",
+"Heating only",
+"Evaporation only"
+],
+explain:
+"Viscosity is the internal resistance to relative movement between adjacent fluid layers."
+},
+
+{
+q:"Newton's law of viscosity is:",
+correct:"τ = μ(du/dy)",
+wrong:[
+"τ = ρg",
+"ν = ρ/μ",
+"σ = F/A"
+],
+explain:"For a Newtonian fluid, shear stress equals viscosity multiplied by velocity gradient."
+},
+
+{
+q:"The symbol μ represents:",
+correct:"Dynamic viscosity",
+wrong:[
+"Kinematic viscosity",
+"Density",
+"Surface tension"
+],
+explain:"μ is the standard symbol for dynamic viscosity."
+},
+
+{
+q:"The symbol τ represents:",
+correct:"Shear stress",
+wrong:[
+"Surface tension",
+"Specific gravity",
+"Bulk modulus"
+],
+explain:"τ is commonly used for shear stress."
+},
+
+{
+q:"The quantity du/dy is called:",
+correct:"Velocity gradient",
+wrong:[
+"Specific volume",
+"Capillary head",
+"Bulk strain"
+],
+explain:"du/dy represents the rate of change of velocity normal to the flow."
+},
+
+{
+q:"The SI unit of dynamic viscosity is:",
+correct:"Pa·s",
+wrong:[
+"m²/s",
+"N/m",
+"kg/m³"
+],
+explain:"Pa·s is equivalent to N·s/m²."
+},
+
+{
+q:"Another SI expression for dynamic viscosity is:",
+correct:"N·s/m²",
+wrong:[
+"N/m",
+"N/m³",
+"m²/s"
+],
+explain:"1 Pa·s = 1 N·s/m²."
+},
+
+{
+q:"The CGS unit of dynamic viscosity is:",
+correct:"Poise",
+wrong:[
+"Stoke",
+"Pascal",
+"Newton"
+],
+explain:"Poise is the CGS unit of dynamic viscosity."
+},
+
+{
+q:"One poise is equal to:",
+correct:"0.1 Pa·s",
+wrong:[
+"10 Pa·s",
+"1 Pa·s",
+"0.01 Pa·s"
+],
+explain:"1 P = 0.1 Pa·s."
+},
+
+{
+q:"One centipoise equals:",
+correct:"0.001 Pa·s",
+wrong:[
+"0.1 Pa·s",
+"1 Pa·s",
+"10 Pa·s"
+],
+explain:"1 cP = 0.01 P = 0.001 Pa·s."
+},
+
+{
+q:"The SI unit of velocity gradient is:",
+correct:"s⁻¹",
+wrong:[
+"m/s",
+"N/m²",
+"kg/m³"
+],
+explain:"(m/s)/m = s⁻¹."
+},
+
+{
+q:"The SI unit of shear stress is:",
+correct:"N/m²",
+wrong:[
+"N/m",
+"m²/s",
+"kg/m³"
+],
+explain:"Shear stress is force divided by area."
+},
+
+{
+q:"For a Newtonian fluid, if velocity gradient doubles while μ remains constant, shear stress:",
+correct:"Doubles",
+wrong:[
+"Becomes half",
+"Becomes zero",
+"Remains unchanged"
+],
+explain:"τ = μdu/dy, so τ is directly proportional to velocity gradient."
+},
+
+{
+q:"At a fixed velocity gradient, increasing μ causes shear stress to:",
+correct:"Increase",
+wrong:[
+"Decrease",
+"Become zero",
+"Remain unchanged"
+],
+explain:"τ is directly proportional to μ."
+},
+
+{
+q:"Viscosity is often described as:",
+correct:"Internal fluid friction",
+wrong:[
+"Buoyant force",
+"Compressibility",
+"Vapour pressure"
+],
+explain:"Viscosity represents internal resistance to relative motion."
+}
+
+],
+
+
+kinematic: [
+
+{
+q:"Kinematic viscosity is defined as:",
+correct:"μ/ρ",
+wrong:[
+"ρ/μ",
+"μρ",
+"ρg"
+],
+explain:"ν = μ/ρ."
+},
+
+{
+q:"The symbol for kinematic viscosity is:",
+correct:"ν",
+wrong:[
+"μ",
+"ρ",
+"σ"
+],
+explain:"The Greek letter nu, ν, represents kinematic viscosity."
+},
+
+{
+q:"The SI unit of kinematic viscosity is:",
+correct:"m²/s",
+wrong:[
+"Pa·s",
+"N/m",
+"kg/m³"
+],
+explain:"ν has dimensions of area per unit time."
+},
+
+{
+q:"The CGS unit of kinematic viscosity is:",
+correct:"Stoke",
+wrong:[
+"Poise",
+"Pascal",
+"Dyne"
+],
+explain:"Stoke is the CGS unit of kinematic viscosity."
+},
+
+{
+q:"One stoke equals:",
+correct:"10⁻⁴ m²/s",
+wrong:[
+"10⁴ m²/s",
+"10⁻² m²/s",
+"1 m²/s"
+],
+explain:"1 St = 1 cm²/s = 10⁻⁴ m²/s."
+},
+
+{
+q:"One centistoke equals:",
+correct:"10⁻⁶ m²/s",
+wrong:[
+"10⁻⁴ m²/s",
+"10⁻² m²/s",
+"1 m²/s"
+],
+explain:"1 cSt = 0.01 St = 10⁻⁶ m²/s."
+},
+
+{
+q:"Kinematic viscosity combines dynamic viscosity with:",
+correct:"Density",
+wrong:[
+"Gravity only",
+"Pressure only",
+"Surface tension only"
+],
+explain:"ν is dynamic viscosity divided by density."
+},
+
+{
+q:"If μ remains constant and density doubles, kinematic viscosity becomes:",
+correct:"Half",
+wrong:[
+"Double",
+"Four times",
+"Unchanged"
+],
+explain:"ν = μ/ρ."
+},
+
+{
+q:"For a linear velocity profile between plates, the velocity gradient is approximately:",
+correct:"u/y",
+wrong:[
+"uy",
+"y/u",
+"u+y"
+],
+explain:"The velocity change u occurs across distance y."
+},
+
+{
+q:"When velocity is given as u = f(y), the first operation required to determine shear stress is:",
+correct:"Differentiate u with respect to y",
+wrong:[
+"Integrate density",
+"Multiply u by gravity",
+"Find specific volume"
+],
+explain:"Newton's law requires du/dy."
+},
+
+{
+q:"Millimetres in a viscosity numerical should normally be converted to:",
+correct:"Metres",
+wrong:[
+"Litres",
+"Newtons",
+"Pascals"
+],
+explain:"Consistent SI units require length in metres."
+},
+
+{
+q:"To convert poise to Pa·s, multiply by:",
+correct:"0.1",
+wrong:[
+"10",
+"100",
+"1000"
+],
+explain:"1 P = 0.1 Pa·s."
+}
+
+],
+
+
+types: [
+
+{
+q:"An ideal fluid has:",
+correct:"Zero viscosity",
+wrong:[
+"Infinite viscosity",
+"Zero density",
+"Infinite density"
+],
+explain:"An ideal fluid is assumed non-viscous."
+},
+
+{
+q:"A real fluid:",
+correct:"Possesses viscosity",
+wrong:[
+"Has zero viscosity",
+"Cannot flow",
+"Has no mass"
+],
+explain:"Actual fluids possess viscosity."
+},
+
+{
+q:"A Newtonian fluid obeys:",
+correct:"τ = μ(du/dy)",
+wrong:[
+"τ = ρg",
+"ν = ρ/μ",
+"w = 1/ρ"
+],
+explain:"Newtonian fluids obey Newton's law of viscosity."
+},
+
+{
+q:"For a Newtonian fluid at specified conditions, μ is:",
+correct:"Constant",
+wrong:[
+"Always zero",
+"Always infinite",
+"Equal to density"
+],
+explain:"The shear stress versus velocity-gradient relation is linear with constant μ."
+},
+
+{
+q:"A non-Newtonian fluid:",
+correct:"Does not have a simple linear τ–du/dy relation",
+wrong:[
+"Always has zero viscosity",
+"Is always a gas",
+"Cannot deform"
+],
+explain:"Its apparent viscosity changes with shear behaviour."
+},
+
+{
+q:"A Bingham plastic requires:",
+correct:"Yield stress",
+wrong:[
+"Zero shear stress always",
+"Zero density",
+"No deformation after yielding"
+],
+explain:"Flow begins after the yield stress is exceeded."
+},
+
+{
+q:"A pseudoplastic fluid is:",
+correct:"Shear-thinning",
+wrong:[
+"Shear-thickening",
+"Inviscid",
+"Always static"
+],
+explain:"Its apparent viscosity decreases with increasing shear rate."
+},
+
+{
+q:"A dilatant fluid is:",
+correct:"Shear-thickening",
+wrong:[
+"Shear-thinning",
+"Ideal",
+"Inviscid"
+],
+explain:"Its apparent viscosity increases with increasing shear rate."
+},
+
+{
+q:"The τ versus du/dy plot for a Newtonian fluid is:",
+correct:"A straight line through the origin",
+wrong:[
+"A horizontal line",
+"A vertical line",
+"A circle"
+],
+explain:"τ is directly proportional to du/dy."
+},
+
+{
+q:"On a shear-stress diagram an ideal fluid has:",
+correct:"Zero shear stress",
+wrong:[
+"Infinite shear stress",
+"τ = ρg",
+"τ = σ/d"
+],
+explain:"An ideal fluid has zero viscosity and therefore no viscous shear stress."
+},
+
+{
+q:"Actual engineering liquids are generally:",
+correct:"Real fluids",
+wrong:[
+"Ideal fluids",
+"Ideal solids",
+"Vacuum"
+],
+explain:"Actual liquids possess viscosity."
+},
+
+{
+q:"A yield value is associated particularly with:",
+correct:"Plastic-type fluid behaviour",
+wrong:[
+"Ideal inviscid fluid only",
+"Density",
+"Specific volume"
+],
+explain:"Plastic fluids begin flowing only after a yield stress is reached."
+}
+
+],
+
+
+temperature: [
+
+{
+q:"With increasing temperature, the viscosity of liquids generally:",
+correct:"Decreases",
+wrong:[
+"Increases",
+"Remains exactly constant",
+"Becomes infinite"
+],
+explain:"Increasing temperature reduces the effect of cohesive forces in liquids."
+},
+
+{
+q:"With increasing temperature, the viscosity of gases generally:",
+correct:"Increases",
+wrong:[
+"Decreases",
+"Becomes zero",
+"Remains exactly constant"
+],
+explain:"Higher temperature increases molecular momentum transfer in gases."
+},
+
+{
+q:"The temperature dependence of liquid viscosity is mainly associated with:",
+correct:"Cohesive forces",
+wrong:[
+"Gravity only",
+"Tube diameter",
+"Specific gravity definition"
+],
+explain:"Cohesive intermolecular effects dominate liquid viscosity behaviour."
+},
+
+{
+q:"Gas viscosity is strongly influenced by:",
+correct:"Molecular momentum transfer",
+wrong:[
+"Capillary depression",
+"Specific volume only",
+"Surface length"
+],
+explain:"Gas viscosity results largely from molecular momentum exchange."
+},
+
+{
+q:"The temperature trends of viscosity for liquids and gases are:",
+correct:"Opposite",
+wrong:[
+"Always identical",
+"Always zero",
+"Independent of temperature"
+],
+explain:"Liquid viscosity decreases while gas viscosity generally increases with temperature."
+},
+
+{
+q:"At ordinary engineering pressures, the pressure effect on liquid viscosity is generally:",
+correct:"Small",
+wrong:[
+"Always dominant",
+"Always infinite",
+"Exactly equal to density"
+],
+explain:"Pressure influence is usually small at ordinary engineering pressures."
+},
+
+{
+q:"At very high pressure, liquid viscosity may:",
+correct:"Change significantly",
+wrong:[
+"Always become zero",
+"Become dimensionless",
+"Equal specific gravity"
+],
+explain:"Pressure effects can become important at very high pressures."
+}
+
+],
+
+
+surface: [
+
+{
+q:"Surface tension is force per unit:",
+correct:"Length",
+wrong:[
+"Area",
+"Volume",
+"Mass"
+],
+explain:"σ = F/L."
+},
+
+{
+q:"The SI unit of surface tension is:",
+correct:"N/m",
+wrong:[
+"N/m²",
+"Pa·s",
+"m²/s"
+],
+explain:"Surface tension is force divided by length."
+},
+
+{
+q:"The common symbol for surface tension is:",
+correct:"σ",
+wrong:[
+"ρ",
+"μ",
+"ν"
+],
+explain:"σ is commonly used for surface tension."
+},
+
+{
+q:"Surface tension primarily results from:",
+correct:"Molecular cohesion",
+wrong:[
+"Gravity alone",
+"Viscosity alone",
+"Bulk modulus alone"
+],
+explain:"Unbalanced molecular cohesive forces at the free surface produce surface tension."
+},
+
+{
+q:"A molecule at a liquid free surface experiences a net molecular tendency:",
+correct:"Inward",
+wrong:[
+"Only upward",
+"Only outward",
+"Zero in every case"
+],
+explain:"Surface molecules experience unbalanced inward attraction."
+},
+
+{
+q:"Capillarity refers to:",
+correct:"Rise or fall of liquid in a small tube",
+wrong:[
+"Only liquid heating",
+"Only fluid compression",
+"Only gas expansion"
+],
+explain:"Capillary action causes liquid rise or depression in narrow tubes."
+},
+
+{
+q:"Capillary rise varies inversely with:",
+correct:"Tube diameter",
+wrong:[
+"Surface tension",
+"cosθ",
+"Density reciprocal"
+],
+explain:"h = 4σcosθ/(ρgd)."
+},
+
+{
+q:"For water in clean glass, the angle of contact is approximately:",
+correct:"0°",
+wrong:[
+"90°",
+"180°",
+"270°"
+],
+explain:"Water wets clean glass and has an approximately zero contact angle."
+},
+
+{
+q:"For θ = 0°, cosθ equals:",
+correct:"1",
+wrong:[
+"0",
+"-1",
+"0.5"
+],
+explain:"cos 0° = 1."
+},
+
+{
+q:"Mercury in glass generally shows:",
+correct:"Capillary depression",
+wrong:[
+"Capillary rise",
+"No meniscus",
+"Zero surface tension"
+],
+explain:"Mercury has an obtuse contact angle with glass."
+},
+
+{
+q:"If the capillary-tube diameter is halved, ideal capillary rise becomes:",
+correct:"Twice",
+wrong:[
+"Half",
+"One-fourth",
+"Unchanged"
+],
+explain:"h is inversely proportional to diameter."
+},
+
+{
+q:"The formula for capillary rise is:",
+correct:"h = 4σcosθ/(ρgd)",
+wrong:[
+"h = ρgd/(4σ)",
+"h = μ/ρ",
+"h = 4ρg/(σd)"
+],
+explain:"The capillary-rise equation follows from balancing surface tension and liquid-column weight."
+}
+
+],
+
+
+pressure: [
+
+{
+q:"Excess pressure inside a liquid droplet is:",
+correct:"4σ/d",
+wrong:[
+"8σ/d",
+"2σ/d",
+"σd/4"
+],
+explain:"A liquid droplet has one interface, giving Δp = 4σ/d."
+},
+
+{
+q:"Excess pressure inside a soap bubble is:",
+correct:"8σ/d",
+wrong:[
+"4σ/d",
+"2σ/d",
+"σ/d²"
+],
+explain:"A soap bubble has two surfaces."
+},
+
+{
+q:"Excess pressure inside a liquid jet is:",
+correct:"2σ/d",
+wrong:[
+"4σ/d",
+"8σ/d",
+"σd"
+],
+explain:"For a cylindrical liquid jet, Δp = 2σ/d."
+},
+
+{
+q:"A soap bubble has:",
+correct:"Two liquid surfaces",
+wrong:[
+"One liquid surface",
+"No surface",
+"Four surfaces"
+],
+explain:"It possesses inner and outer surfaces."
+},
+
+{
+q:"A liquid droplet has:",
+correct:"One liquid-gas interface",
+wrong:[
+"Two liquid interfaces",
+"No interface",
+"Four interfaces"
+],
+explain:"A droplet has one free surface."
+},
+
+{
+q:"For equal σ and d, the greatest excess pressure occurs in a:",
+correct:"Soap bubble",
+wrong:[
+"Liquid jet",
+"Liquid droplet",
+"Flat liquid surface"
+],
+explain:"8σ/d is greater than 4σ/d and 2σ/d."
+},
+
+{
+q:"For fixed surface tension, reducing droplet diameter causes excess pressure to:",
+correct:"Increase",
+wrong:[
+"Decrease",
+"Remain constant",
+"Become zero"
+],
+explain:"Δp is inversely proportional to diameter."
+},
+
+{
+q:"The SI unit of excess pressure is:",
+correct:"Pa",
+wrong:[
+"N/m",
+"Pa·s",
+"m²/s"
+],
+explain:"Excess pressure is measured in N/m² or Pa."
+},
+
+{
+q:"The coefficient in the droplet pressure formula 4σ/d is:",
+correct:"4",
+wrong:[
+"8",
+"2",
+"1"
+],
+explain:"For a spherical liquid droplet Δp = 4σ/d."
+},
+
+{
+q:"The coefficient in the soap-bubble formula is:",
+correct:"8",
+wrong:[
+"4",
+"2",
+"1"
+],
+explain:"A soap bubble has two surfaces, producing Δp = 8σ/d."
+},
+
+{
+q:"The coefficient in the liquid-jet formula is:",
+correct:"2",
+wrong:[
+"8",
+"4",
+"16"
+],
+explain:"For a liquid jet Δp = 2σ/d."
+}
+
+],
+
+
+compressibility: [
+
+{
+q:"Bulk modulus relates pressure change to:",
+correct:"Volumetric strain",
+wrong:[
+"Shear strain only",
+"Velocity gradient",
+"Surface tension"
+],
+explain:"K = -Δp/(ΔV/V)."
+},
+
+{
+q:"The SI unit of bulk modulus is:",
+correct:"Pa",
+wrong:[
+"N/m",
+"m²/s",
+"kg/m³"
+],
+explain:"Bulk modulus has the same unit as pressure."
+},
+
+{
+q:"Volumetric strain is:",
+correct:"ΔV/V",
+wrong:[
+"Δp/V",
+"V/Δp",
+"ρg"
+],
+explain:"Volumetric strain is change in volume divided by original volume."
+},
+
+{
+q:"Compressibility is equal to:",
+correct:"1/K",
+wrong:[
+"K²",
+"ρK",
+"K/ρ"
+],
+explain:"Compressibility is the reciprocal of bulk modulus."
+},
+
+{
+q:"A large bulk modulus indicates:",
+correct:"Low compressibility",
+wrong:[
+"High compressibility",
+"Zero density",
+"High vapour pressure"
+],
+explain:"A fluid with a large K is difficult to compress."
+},
+
+{
+q:"When a fluid is compressed, its volume generally:",
+correct:"Decreases",
+wrong:[
+"Increases",
+"Becomes infinite",
+"Becomes negative"
+],
+explain:"Increasing pressure causes a reduction in volume."
+},
+
+{
+q:"The negative sign in the bulk-modulus equation accounts for:",
+correct:"Volume decrease when pressure increases",
+wrong:[
+"Negative density",
+"Negative mass",
+"Negative time"
+],
+explain:"ΔV is negative when pressure increases."
+},
+
+{
+q:"Compressibility has unit:",
+correct:"Pa⁻¹",
+wrong:[
+"Pa",
+"N/m",
+"m²/s"
+],
+explain:"Since β = 1/K, its unit is reciprocal pressure."
+},
+
+{
+q:"For fixed mass, compression usually causes density to:",
+correct:"Increase",
+wrong:[
+"Decrease",
+"Become zero",
+"Always remain unchanged"
+],
+explain:"ρ = m/V, so reducing V increases density."
+},
+
+{
+q:"A nearly incompressible liquid has:",
+correct:"Large bulk modulus",
+wrong:[
+"Small bulk modulus",
+"Zero density",
+"Infinite vapour pressure"
+],
+explain:"Large K means only a small volume change occurs for a pressure change."
+}
+
+],
+
+
+vapour: [
+
+{
+q:"Vapour pressure is defined at a specified:",
+correct:"Temperature",
+wrong:[
+"Diameter",
+"Velocity gradient",
+"Specific volume only"
+],
+explain:"Vapour pressure is temperature-dependent."
+},
+
+{
+q:"Vapour pressure is:",
+correct:"The equilibrium pressure exerted by vapour above its liquid",
+wrong:[
+"Shear stress",
+"Specific weight",
+"Kinematic viscosity"
+],
+explain:"It is established when evaporation and condensation are in equilibrium."
+},
+
+{
+q:"Vapour pressure generally:",
+correct:"Increases with temperature",
+wrong:[
+"Always decreases with temperature",
+"Never changes",
+"Equals density"
+],
+explain:"Higher temperature generally increases the tendency of molecules to enter the vapour phase."
+},
+
+{
+q:"If local absolute pressure becomes sufficiently low relative to vapour pressure, a liquid may:",
+correct:"Form vapour",
+wrong:[
+"Become an ideal solid",
+"Gain infinite density",
+"Lose all temperature"
+],
+explain:"Low local pressure can permit vapour formation."
+},
+
+{
+q:"The phenomenon related to vapour formation and collapse studied later in fluid mechanics is:",
+correct:"Cavitation",
+wrong:[
+"Specific gravity",
+"Capillarity",
+"Viscosity index"
+],
+explain:"Vapour-pressure effects are fundamental to understanding cavitation."
+},
+
+{
+q:"Vapour pressure involves equilibrium between:",
+correct:"Evaporation and condensation",
+wrong:[
+"Density and viscosity",
+"Gravity and surface tension only",
+"Mass and specific weight"
+],
+explain:"In a closed system, equilibrium can occur between molecules leaving and returning to the liquid."
+}
+
+]
+
+};
+
+
+/* =========================================================
+   QUIZ ENGINE
+   ========================================================= */
+
+const quizState = {};
+
+
+function shuffle(array){
+
+for(let i=array.length-1;i>0;i--){
+
+const j=Math.floor(Math.random()*(i+1));
+
+[array[i],array[j]] =
+[array[j],array[i]];
+
+}
+
+return array;
+
+}
+
+
+document
+.querySelectorAll(".tab")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+const topic =
+button.closest(".topic");
+
+topic
+.querySelectorAll(".tab")
+.forEach(tab=>
+tab.classList.remove("active")
+);
+
+topic
+.querySelectorAll(".panel")
+.forEach(panel=>
+panel.classList.remove("active")
+);
+
+button.classList.add("active");
+
+document
+.getElementById(
+button.dataset.panel
+)
+.classList.add("active");
+
+}
+);
+
+});
+
+
+function startQuiz(topic){
+
+quizState[topic] = {
+
+index:0,
+
+score:0,
+
+selected:null,
+
+locked:false,
+
+questions:
+BANKS[topic].map(
+question=>({...question})
+)
+
+};
+
+renderQuiz(topic);
+
+}
+
+
+function renderQuiz(topic){
+
+const state =
+quizState[topic];
+
+const root =
+document.querySelector(
+'.quiz-shell[data-topic="' +
+topic +
+'"]'
+);
+
+
+if(
+state.index >=
+state.questions.length
+){
+
+const total =
+state.questions.length;
+
+const wrong =
+total - state.score;
+
+const percentage =
+total
+?
+Math.round(
+(state.score/total)*100
+)
+:
+0;
+
+
+root.innerHTML = `
+
+<div class="quiz-card">
+
+<h3>Quiz Complete</h3>
+
+<p>
+<b>Total Questions:</b>
+${total}
+</p>
+
+<p>
+<b>Correct Answers:</b>
+${state.score}
+</p>
+
+<p>
+<b>Wrong Answers:</b>
+${wrong}
+</p>
+
+<div class="formula">
+${percentage}%
+</div>
+
+<button
+class="btn"
+onclick="startQuiz('${topic}')"
+>
+↻ Retry Quiz
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+const question =
+state.questions[
+state.index
+];
+
+
+const options =
+shuffle(
+[
+question.correct,
+...question.wrong
+]
+);
+
+
+root.innerHTML = `
+
+<div class="quiz-card">
+
+<div class="quiz-meta">
+
+<span>
+Question
+${state.index+1}
+of
+${state.questions.length}
+</span>
+
+<span>
+Score:
+${state.score}
+</span>
+
+</div>
+
+
+<h3>
+${question.q}
+</h3>
+
+
+<div class="options">
+
+${
+
+options.map(
+(option,index)=>`
+
+<button
+class="option"
+data-value="${escapeAttribute(option)}"
+onclick="chooseOption('${topic}',this)"
+>
+
+${String.fromCharCode(65+index)}.
+${option}
+
+</button>
+
+`
+).join("")
+
+}
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="submitAnswer('${topic}')"
+>
+Submit Answer
+</button>
+
+</div>
+
+
+<div class="feedback-area">
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function escapeAttribute(text){
+
+return String(text)
+
+.replace(/&/g,"&amp;")
+
+.replace(/"/g,"&quot;")
+
+.replace(/</g,"&lt;")
+
+.replace(/>/g,"&gt;");
+
+}
+
+
+function chooseOption(
+topic,
+element
+){
+
+const state =
+quizState[topic];
+
+if(state.locked){
+return;
+}
+
+state.selected =
+element.dataset.value;
+
+
+element
+.parentElement
+.querySelectorAll(".option")
+.forEach(option=>
+option.classList.remove("selected")
+);
+
+
+element.classList.add(
+"selected"
+);
+
+}
+
+
+function submitAnswer(topic){
+
+const state =
+quizState[topic];
+
+
+if(
+state.locked ||
+!state.selected
+){
+return;
+}
+
+
+const question =
+state.questions[
+state.index
+];
+
+
+state.locked = true;
+
+
+const correct =
+state.selected ===
+question.correct;
+
+
+if(correct){
+state.score++;
+}
+
+
+const feedback =
+document.querySelector(
+'.quiz-shell[data-topic="' +
+topic +
+'"] .feedback-area'
+);
+
+
+feedback.innerHTML = `
+
+<div class="feedback
+${correct ? "good" : "bad"}">
+
+<b>
+${correct ?
+"✓ Correct" :
+"✗ Wrong"}
+</b>
+
+<br>
+
+Correct answer:
+
+<b>
+${question.correct}
+</b>
+
+<br>
+
+<small>
+${question.explain}
+</small>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="nextQuestion('${topic}')"
+>
+Next Question →
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function nextQuestion(topic){
+
+const state =
+quizState[topic];
+
+state.index++;
+
+state.selected = null;
+
+state.locked = false;
+
+renderQuiz(topic);
+
+}
+
+
+Object
+.keys(BANKS)
+.forEach(
+topic=>
+startQuiz(topic)
+);
+
+</script>
+
+</body>
+</html>
