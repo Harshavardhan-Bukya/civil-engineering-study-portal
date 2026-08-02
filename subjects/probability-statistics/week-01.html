@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MA2103 | Probability and Statistics | Week 01</title>
+
+<style>
+:root{
+    --navy:#071f35;
+    --navy2:#0b3555;
+    --blue:#087cf0;
+    --lightblue:#e9f3ff;
+    --bg:#f4f7fb;
+    --white:#ffffff;
+    --text:#10243e;
+    --muted:#607089;
+    --border:#dce5ef;
+    --green:#129447;
+    --greenbg:#eaf8ef;
+    --red:#c83c3c;
+    --redbg:#fff0f0;
+    --yellow:#9b6a00;
+    --yellowbg:#fff8df;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+}
+
+header{
+    background:var(--navy);
+    color:white;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.logo{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#1689ff,#00b9d8);
+    font-weight:900;
+}
+
+.brand small{
+    display:block;
+    color:#b9c9d9;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.brand strong{
+    font-size:17px;
+}
+
+.dashboard{
+    color:white;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,.22);
+    padding:9px 16px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+.hero{
+    padding:55px 6%;
+    background:linear-gradient(110deg,#08233d,#0b4161);
+    color:white;
+}
+
+.hero .code{
+    color:#62b7ff;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.hero h1{
+    font-size:clamp(35px,5vw,60px);
+    line-height:1.08;
+    margin:8px 0 15px;
+}
+
+.hero p{
+    max-width:900px;
+    color:#d6e6f5;
+    font-size:17px;
+}
+
+.week-badge{
+    display:inline-block;
+    background:#0d7ff1;
+    padding:7px 14px;
+    border-radius:20px;
+    font-weight:800;
+    margin-top:8px;
+}
+
+.topic-nav{
+    background:white;
+    border-bottom:1px solid var(--border);
+    padding:12px 6%;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    position:sticky;
+    top:81px;
+    z-index:90;
+}
+
+.topic-nav a{
+    white-space:nowrap;
+    text-decoration:none;
+    background:#eef3f9;
+    color:#29415d;
+    font-size:13px;
+    font-weight:800;
+    padding:9px 14px;
+    border-radius:22px;
+}
+
+.topic-nav a:hover{
+    background:var(--navy);
+    color:white;
+}
+
+main{
+    width:min(1180px,88%);
+    margin:auto;
+    padding:42px 0 80px;
+}
+
+.section{
+    margin-bottom:60px;
+    scroll-margin-top:150px;
+}
+
+.topic-label{
+    color:#087cf0;
+    font-weight:900;
+    font-size:13px;
+    letter-spacing:1.4px;
+}
+
+h2{
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.15;
+    margin:8px 0 10px;
+}
+
+h3{
+    margin-top:28px;
+    font-size:23px;
+}
+
+h4{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:22px 0;
+}
+
+.tab-btn{
+    border:1px solid var(--border);
+    background:white;
+    color:#334b67;
+    padding:11px 16px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.tab-btn.active{
+    background:#087cf0;
+    color:white;
+    border-color:#087cf0;
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px;
+    margin:16px 0;
+    box-shadow:0 10px 30px rgba(16,36,62,.05);
+}
+
+.definition{
+    background:var(--lightblue);
+    border-left:4px solid var(--blue);
+    padding:17px 20px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.formula{
+    background:#071f35;
+    color:white;
+    padding:18px;
+    border-radius:12px;
+    margin:15px 0;
+    overflow-x:auto;
+    font-family:"Cambria Math","Times New Roman",serif;
+    font-size:19px;
+}
+
+.note{
+    background:var(--yellowbg);
+    border-left:4px solid #e1ad22;
+    padding:15px 18px;
+    border-radius:9px;
+    margin:15px 0;
+}
+
+.good{
+    background:var(--greenbg);
+    border-left:4px solid var(--green);
+    padding:15px 18px;
+    border-radius:9px;
+}
+
+.bad{
+    background:var(--redbg);
+    border-left:4px solid var(--red);
+    padding:15px 18px;
+    border-radius:9px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0;
+    background:white;
+}
+
+th,td{
+    border:1px solid #dbe4ee;
+    padding:11px;
+    text-align:center;
+}
+
+th{
+    background:#edf5ff;
+}
+
+.steps{
+    border-left:3px solid #087cf0;
+    padding-left:20px;
+}
+
+.step{
+    margin:17px 0;
+}
+
+.step strong{
+    color:#087cf0;
+}
+
+.answer{
+    background:var(--greenbg);
+    color:#126b37;
+    font-weight:900;
+    padding:12px 15px;
+    border-radius:9px;
+    margin-top:12px;
+}
+
+.exam-q{
+    border-bottom:1px solid var(--border);
+    padding:18px 0;
+}
+
+.mark{
+    display:inline-block;
+    background:#e8f2ff;
+    color:#0869cf;
+    font-size:12px;
+    font-weight:900;
+    border-radius:20px;
+    padding:4px 10px;
+}
+
+.mcq{
+    margin:20px 0;
+    padding:20px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+}
+
+.mcq-option{
+    display:block;
+    padding:10px 12px;
+    margin:7px 0;
+    border:1px solid #dce5ef;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.mcq-option:hover{
+    background:#f0f6ff;
+}
+
+.check-btn{
+    margin-top:10px;
+    border:0;
+    background:#087cf0;
+    color:white;
+    font-weight:800;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.result{
+    display:none;
+    margin-top:10px;
+    padding:10px;
+    border-radius:8px;
+    font-weight:800;
+}
+
+.symbol-table td:first-child{
+    font-family:"Cambria Math","Times New Roman",serif;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.locked{
+    text-align:center;
+    padding:45px 20px;
+}
+
+.lock{
+    font-size:42px;
+}
+
+footer{
+    background:#071f35;
+    color:#cbd9e7;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:700px){
+    header{
+        padding:13px 4%;
+    }
+
+    .brand small{
+        display:none;
+    }
+
+    .brand strong{
+        font-size:14px;
+    }
+
+    .hero{
+        padding:40px 6%;
+    }
+
+    main{
+        width:92%;
+    }
+
+    .topic-nav{
+        top:71px;
+        padding-left:4%;
+    }
+
+    .card{
+        padding:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">
+        <div class="logo">CE</div>
+        <div>
+            <small>CIVIL ENGINEERING STUDY PORTAL</small>
+            <strong>MA2103 • Probability and Statistics</strong>
+        </div>
+    </div>
+
+    <a class="dashboard" href="../../index.html">← Dashboard</a>
+</header>
+
+
+<section class="hero">
+    <div class="code">MA2103 • WEEK 01</div>
+
+    <h1>Random Variables, PMF, PDF &amp; CDF</h1>
+
+    <p>
+        Week 01 covers Random Variables, Discrete and Continuous Random
+        Variables, Probability Mass Function, Probability Distribution,
+        Probability Density Function and Cumulative Distribution Function.
+    </p>
+
+    <span class="week-badge">Week 01 • Completed up to CDF</span>
+</section>
+
+
+<nav class="topic-nav">
+    <a href="#random-variable">01 • Random Variables</a>
+    <a href="#types">02 • Types of RV</a>
+    <a href="#pmf">03 • PMF</a>
+    <a href="#pdf">04 • PDF</a>
+    <a href="#cdf">05 • CDF</a>
+    <a href="#formulas">Formula Sheet</a>
+    <a href="#exam">Exam Questions</a>
+    <a href="#mcqs">MCQs</a>
+    <a href="#pyqs">PYQs</a>
+</nav>
+
+
+<main>
+
+<!-- ====================================================== -->
+<!-- TOPIC 01 -->
+<!-- ====================================================== -->
+
+<section class="section" id="random-variable">
+
+<div class="topic-label">TOPIC 01</div>
+<h2>Random Variable</h2>
+<p class="subtitle">
+    Definition and introductory concepts from the Week 01 class notes.
+</p>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="openTab(event,'rv-learn')">📖 Learn Topic</button>
+    <button class="tab-btn" onclick="openTab(event,'rv-questions')">📝 Topic Questions</button>
+    <button class="tab-btn" onclick="openTab(event,'rv-mcq')">✅ Practice MCQs</button>
+</div>
+
+
+<div id="rv-learn" class="tab-content active">
+
+<div class="card">
+<h3>Definition of Random Variable</h3>
+
+<div class="definition">
+A <strong>random variable</strong> is a function which associates a real
+number with each and every element of the sample space.
+</div>
+
+<div class="formula">
+X : S → R
+</div>
+
+<table class="symbol-table">
+<tr><th>Symbol</th><th>Meaning</th></tr>
+<tr><td>X</td><td>Random variable</td></tr>
+<tr><td>S</td><td>Sample space</td></tr>
+<tr><td>R</td><td>Set of real numbers</td></tr>
+</table>
+</div>
+
+
+<div class="card">
+<h3>Example from the Notes — Drawing Balls</h3>
+
+<p>
+Two balls are drawn in succession without replacement from an urn
+containing <strong>4 red balls and 3 black balls</strong>.
+</p>
+
+<p>
+Let <strong>Y</strong> denote the number of red balls obtained.
+</p>
+
+<p>In the notes, the colour-based possible outcomes are represented as:</p>
+
+<div class="formula">
+RR, RB, BR, BB
+</div>
+
+<p>The random variable <strong>Y</strong> counts the number of red balls.</p>
+
+<table>
+<tr>
+<th>Outcome</th>
+<th>Number of Red Balls, Y</th>
+</tr>
+<tr><td>RR</td><td>2</td></tr>
+<tr><td>RB</td><td>1</td></tr>
+<tr><td>BR</td><td>1</td></tr>
+<tr><td>BB</td><td>0</td></tr>
+</table>
+</div>
+
+
+<div class="card">
+<h3>Sample Spaces</h3>
+
+<p>
+The notes distinguish sample spaces according to the number of
+possibilities.
+</p>
+
+<div class="definition">
+<strong>Discrete sample space:</strong> A sample space containing a finite
+number of possibilities is treated as a discrete sample space.
+</div>
+
+<div class="definition">
+<strong>Continuous sample space:</strong> A sample space containing an
+infinite continuum of possibilities, like points on a line segment, is
+treated as continuous.
+</div>
+
+</div>
+
+</div>
+
+
+<div id="rv-questions" class="tab-content">
+
+<div class="card">
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Define a random variable.</h4>
+<p>
+A random variable is a function which associates a real number with
+each and every element of a sample space.
+</p>
+<div class="formula">X : S → R</div>
+</div>
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>What is the meaning of X : S → R?</h4>
+<p>
+It represents a mapping in which the random variable X assigns a real
+number from R to every outcome belonging to sample space S.
+</p>
+</div>
+
+<div class="exam-q">
+<span class="mark">3 MARKS</span>
+<h4>Explain a random variable using the ball-drawing example.</h4>
+<p>
+When two balls are drawn from an urn containing red and black balls,
+the possible colour outcomes are RR, RB, BR and BB. If Y denotes the
+number of red balls, Y takes values 2, 1, 1 and 0 respectively.
+Therefore Y assigns a numerical value to every outcome and hence is a
+random variable.
+</p>
+</div>
+
+</div>
+</div>
+
+
+<div id="rv-mcq" class="tab-content">
+
+<div class="mcq" data-answer="b">
+<strong>1. A random variable associates each outcome of a sample space with:</strong>
+<label class="mcq-option"><input type="radio" name="rv1" value="a"> another experiment</label>
+<label class="mcq-option"><input type="radio" name="rv1" value="b"> a real number</label>
+<label class="mcq-option"><input type="radio" name="rv1" value="c"> only an integer</label>
+<label class="mcq-option"><input type="radio" name="rv1" value="d"> another sample space</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+<div class="mcq" data-answer="c">
+<strong>2. In X : S → R, S represents:</strong>
+<label class="mcq-option"><input type="radio" name="rv2" value="a"> probability</label>
+<label class="mcq-option"><input type="radio" name="rv2" value="b"> real variable</label>
+<label class="mcq-option"><input type="radio" name="rv2" value="c"> sample space</label>
+<label class="mcq-option"><input type="radio" name="rv2" value="d"> density</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- TOPIC 02 -->
+<!-- ====================================================== -->
+
+<section class="section" id="types">
+
+<div class="topic-label">TOPIC 02</div>
+<h2>Discrete &amp; Continuous Random Variables</h2>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab(event,'types-learn')">📖 Learn Topic</button>
+<button class="tab-btn" onclick="openTab(event,'types-questions')">📝 Topic Questions</button>
+<button class="tab-btn" onclick="openTab(event,'types-mcq')">✅ Practice MCQs</button>
+</div>
+
+
+<div id="types-learn" class="tab-content active">
+
+<div class="card">
+<h3>Discrete Random Variable (DRV)</h3>
+
+<div class="definition">
+A random variable is called a <strong>discrete random variable</strong>
+if its set of possible outcomes/values is countable.
+</div>
+
+<p>A discrete random variable takes distinct, separate values.</p>
+</div>
+
+
+<div class="card">
+<h3>Continuous Random Variable (CRV)</h3>
+
+<div class="definition">
+A <strong>continuous random variable</strong> can take any value over a
+continuous interval.
+</div>
+
+<p>
+Unlike a discrete random variable, its possible values are not limited
+to separate countable points.
+</p>
+</div>
+
+
+<div class="card">
+<h3>Classification Examples from the Notes</h3>
+
+<table>
+<tr>
+<th>Random Variable</th>
+<th>Type</th>
+</tr>
+
+<tr>
+<td>Number of automobile accidents occurring per year in Hyderabad</td>
+<td><strong>Discrete</strong></td>
+</tr>
+
+<tr>
+<td>Length of time to play 18 holes of golf</td>
+<td><strong>Continuous</strong></td>
+</tr>
+
+<tr>
+<td>Amount of milk produced by a cow</td>
+<td><strong>Continuous</strong></td>
+</tr>
+</table>
+
+<div class="note">
+<strong>Useful interpretation:</strong> Counts generally produce discrete
+values, whereas measured quantities such as time and amount generally
+produce continuous values.
+</div>
+
+</div>
+
+</div>
+
+
+<div id="types-questions" class="tab-content">
+
+<div class="card">
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Define a discrete random variable.</h4>
+<p>
+A random variable whose set of possible values is countable is called
+a discrete random variable.
+</p>
+</div>
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Define a continuous random variable.</h4>
+<p>
+A continuous random variable is a random variable which can take any
+value over a continuous interval.
+</p>
+</div>
+
+<div class="exam-q">
+<span class="mark">3 MARKS</span>
+<h4>Distinguish between discrete and continuous random variables.</h4>
+
+<table>
+<tr><th>Discrete RV</th><th>Continuous RV</th></tr>
+<tr>
+<td>Takes distinct/countable values.</td>
+<td>Can take any value in a continuous interval.</td>
+</tr>
+<tr>
+<td>Example: number of accidents.</td>
+<td>Example: time required to play golf.</td>
+</tr>
+</table>
+
+</div>
+
+</div>
+</div>
+
+
+<div id="types-mcq" class="tab-content">
+
+<div class="mcq" data-answer="a">
+<strong>1. Number of automobile accidents occurring in a year is:</strong>
+<label class="mcq-option"><input type="radio" name="type1" value="a"> Discrete</label>
+<label class="mcq-option"><input type="radio" name="type1" value="b"> Continuous</label>
+<label class="mcq-option"><input type="radio" name="type1" value="c"> Constant</label>
+<label class="mcq-option"><input type="radio" name="type1" value="d"> None</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+<div class="mcq" data-answer="b">
+<strong>2. Length of time required to play 18 holes of golf is:</strong>
+<label class="mcq-option"><input type="radio" name="type2" value="a"> Discrete</label>
+<label class="mcq-option"><input type="radio" name="type2" value="b"> Continuous</label>
+<label class="mcq-option"><input type="radio" name="type2" value="c"> Integer</label>
+<label class="mcq-option"><input type="radio" name="type2" value="d"> Impossible</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- TOPIC 03 PMF -->
+<!-- ====================================================== -->
+
+<section class="section" id="pmf">
+
+<div class="topic-label">TOPIC 03</div>
+<h2>Probability Mass Function (PMF) &amp; Probability Distribution</h2>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab(event,'pmf-learn')">📖 Learn Topic</button>
+<button class="tab-btn" onclick="openTab(event,'pmf-num')">🧮 Numericals</button>
+<button class="tab-btn" onclick="openTab(event,'pmf-questions')">📝 Topic Questions</button>
+<button class="tab-btn" onclick="openTab(event,'pmf-mcq')">✅ Practice MCQs</button>
+</div>
+
+
+<div id="pmf-learn" class="tab-content active">
+
+<div class="card">
+<h3>Definition</h3>
+
+<p>
+Suppose X is a discrete random variable having at most a countable
+number of values
+</p>
+
+<div class="formula">
+x₁, x₂, x₃, ...
+</div>
+
+<p>
+With each possible value xᵢ, associate the probability
+</p>
+
+<div class="formula">
+P(X = xᵢ) = p(xᵢ)
+</div>
+
+<p>
+The function p is called the <strong>Probability Mass Function</strong>
+of the discrete random variable X.
+</p>
+
+<p>
+The set of pairs
+<strong>{(xᵢ, p(xᵢ))}</strong> gives the probability distribution of X.
+</p>
+</div>
+
+
+<div class="card">
+<h3>Conditions of a PMF</h3>
+
+<div class="formula">
+1) p(xᵢ) ≥ 0 &nbsp;&nbsp; for every i
+</div>
+
+<div class="formula">
+2) Σ p(xᵢ) = 1
+</div>
+
+<div class="good">
+A probability table is a valid PMF only when both conditions are
+satisfied.
+</div>
+</div>
+
+
+<div class="card">
+<h3>Checking PMF — Example 1</h3>
+
+<table>
+<tr><th>xᵢ</th><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td></tr>
+<tr><th>p(xᵢ)</th><td>0.1</td><td>0.2</td><td>0.3</td><td>0.1</td><td>0.3</td></tr>
+</table>
+
+<p>First condition:</p>
+
+<div class="formula">
+p(xᵢ) ≥ 0
+</div>
+
+<p>All probabilities are non-negative.</p>
+
+<p>Second condition:</p>
+
+<div class="formula">
+0.1 + 0.2 + 0.3 + 0.1 + 0.3 = 1
+</div>
+
+<div class="good">
+Therefore both conditions are satisfied and the given distribution is
+a valid PMF.
+</div>
+</div>
+
+
+<div class="card">
+<h3>Checking PMF — Example 2</h3>
+
+<table>
+<tr><th>xᵢ</th><td>-1</td><td>0</td><td>1</td></tr>
+<tr><th>p(xᵢ)</th><td>0.4</td><td>0</td><td>0.6</td></tr>
+</table>
+
+<div class="formula">
+0.4 + 0 + 0.6 = 1
+</div>
+
+<div class="good">
+Both PMF conditions are satisfied. Therefore it is a valid PMF.
+</div>
+</div>
+
+
+<div class="card">
+<h3>Checking PMF — Example 3</h3>
+
+<table>
+<tr><th>xᵢ</th><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><th>p(xᵢ)</th><td>0.1</td><td>0.2</td><td>0.1</td><td>0.3</td></tr>
+</table>
+
+<div class="formula">
+0.1 + 0.2 + 0.1 + 0.3 = 0.7 ≠ 1
+</div>
+
+<div class="bad">
+The second PMF condition is not satisfied. Therefore the given
+distribution is not a valid PMF.
+</div>
+</div>
+
+</div>
+
+
+
+<!-- PMF NUMERICALS -->
+
+<div id="pmf-num" class="tab-content">
+
+<div class="card">
+<h3>Numerical 1 — Three Tosses of a Fair Coin</h3>
+
+<div class="steps">
+
+<div class="step">
+<strong>Given:</strong><br>
+A fair coin is tossed three times.<br>
+Let X = number of heads.
+</div>
+
+<div class="step">
+<strong>Possible values:</strong>
+<div class="formula">
+X = {0, 1, 2, 3}
+</div>
+</div>
+
+<div class="step">
+<strong>Sample Space:</strong>
+
+<div class="formula">
+S = {HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}
+</div>
+
+There are 8 equally likely outcomes.
+</div>
+
+<div class="step">
+<strong>Calculation:</strong>
+
+<p>X = 0 occurs once: TTT</p>
+<div class="formula">P(X=0) = 1/8</div>
+
+<p>X = 1 occurs three times.</p>
+<div class="formula">P(X=1) = 3/8</div>
+
+<p>X = 2 occurs three times.</p>
+<div class="formula">P(X=2) = 3/8</div>
+
+<p>X = 3 occurs once: HHH</p>
+<div class="formula">P(X=3) = 1/8</div>
+</div>
+
+<div class="step">
+<strong>Final Probability Distribution:</strong>
+
+<table>
+<tr>
+<th>x</th><td>0</td><td>1</td><td>2</td><td>3</td>
+</tr>
+<tr>
+<th>P(X=x)</th><td>1/8</td><td>3/8</td><td>3/8</td><td>1/8</td>
+</tr>
+</table>
+
+<div class="answer">
+Final Answer: P(X=x) = {1/8, 3/8, 3/8, 1/8}
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+
+<div class="card">
+<h3>Numerical 2 — Head Runs in Three Fair-Coin Tosses</h3>
+
+<div class="steps">
+
+<div class="step">
+<strong>Given:</strong><br>
+An experiment consists of three independent tosses of a fair coin.
+</div>
+
+<div class="step">
+<strong>Variables:</strong><br>
+X = number of heads.<br>
+Y = number of head runs.<br>
+Z = length of head runs.
+</div>
+
+<div class="note">
+In the class notes, a head run is described in terms of consecutive
+occurrence of heads. The table below follows the values recorded in the
+notes.
+</div>
+
+<div class="step">
+<strong>Sample-space calculation:</strong>
+
+<table>
+<tr>
+<th>Outcome</th>
+<th>X</th>
+<th>Y</th>
+<th>Z</th>
+<th>X+Y</th>
+<th>XY</th>
+</tr>
+
+<tr><td>HHH</td><td>3</td><td>1</td><td>3</td><td>4</td><td>3</td></tr>
+<tr><td>HHT</td><td>2</td><td>1</td><td>2</td><td>3</td><td>2</td></tr>
+<tr><td>HTH</td><td>2</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>THH</td><td>2</td><td>1</td><td>2</td><td>3</td><td>2</td></tr>
+<tr><td>TTH</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>THT</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>HTT</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>TTT</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+</table>
+</div>
+
+
+<div class="step">
+<strong>(i) Distribution of X</strong>
+
+<table>
+<tr><th>x</th><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><th>P(X=x)</th><td>1/8</td><td>3/8</td><td>3/8</td><td>1/8</td></tr>
+</table>
+</div>
+
+
+<div class="step">
+<strong>(ii) Distribution of Y</strong>
+
+<table>
+<tr><th>y</th><td>0</td><td>1</td></tr>
+<tr><th>P(Y=y)</th><td>5/8</td><td>3/8</td></tr>
+</table>
+</div>
+
+
+<div class="step">
+<strong>(iii) Distribution of Z</strong>
+
+<table>
+<tr><th>z</th><td>0</td><td>2</td><td>3</td></tr>
+<tr><th>P(Z=z)</th><td>5/8</td><td>2/8</td><td>1/8</td></tr>
+</table>
+</div>
+
+
+<div class="step">
+<strong>(iv) Distribution of X + Y</strong>
+
+<table>
+<tr><th>X+Y</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><th>Probability</th><td>1/8</td><td>3/8</td><td>1/8</td><td>2/8</td><td>1/8</td></tr>
+</table>
+</div>
+
+
+<div class="step">
+<strong>(v) Distribution of XY</strong>
+
+<table>
+<tr><th>XY</th><td>0</td><td>2</td><td>3</td></tr>
+<tr><th>Probability</th><td>5/8</td><td>2/8</td><td>1/8</td></tr>
+</table>
+
+<div class="answer">
+The distributions of X, Y, Z, X+Y and XY are obtained from the eight
+equally likely coin-toss outcomes as recorded in the class notes.
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+
+<div class="card">
+<h3>Numerical 3 — Find k from a PMF</h3>
+
+<p>Given:</p>
+
+<div class="formula">
+P(X=x) = k(1/x!), &nbsp; x = 0,1,2,...
+</div>
+
+<div class="steps">
+
+<div class="step">
+<strong>Formula:</strong><br>
+By the second condition of PMF,
+<div class="formula">
+Σ P(X=x) = 1
+</div>
+</div>
+
+<div class="step">
+<strong>Substitution:</strong>
+
+<div class="formula">
+k/0! + k/1! + k/2! + k/3! + ... = 1
+</div>
+
+<div class="formula">
+k(1 + 1/1! + 1/2! + 1/3! + ...) = 1
+</div>
+</div>
+
+<div class="step">
+<strong>Calculation:</strong>
+
+Using
+
+<div class="formula">
+eˣ = Σ(xⁿ/n!)
+</div>
+
+For x = 1,
+
+<div class="formula">
+e = 1 + 1/1! + 1/2! + 1/3! + ...
+</div>
+
+Therefore,
+
+<div class="formula">
+ke = 1
+</div>
+</div>
+
+<div class="answer">
+Final Answer: k = 1/e
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+<div id="pmf-questions" class="tab-content">
+
+<div class="card">
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Define Probability Mass Function.</h4>
+<p>
+If X is a discrete random variable with possible values xᵢ, the
+function p defined by P(X=xᵢ)=p(xᵢ) is called the probability mass
+function of X, provided it satisfies the PMF conditions.
+</p>
+</div>
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>State the two conditions of a PMF.</h4>
+
+<div class="formula">
+p(xᵢ) ≥ 0
+</div>
+
+<div class="formula">
+Σp(xᵢ) = 1
+</div>
+</div>
+
+<div class="exam-q">
+<span class="mark">5 MARKS</span>
+<h4>
+Write the probability distribution of the number of heads obtained
+when a fair coin is tossed three times.
+</h4>
+
+<p>
+Let X be the number of heads. Then X = 0,1,2,3.
+</p>
+
+<table>
+<tr><th>x</th><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><th>P(X=x)</th><td>1/8</td><td>3/8</td><td>3/8</td><td>1/8</td></tr>
+</table>
+</div>
+
+</div>
+</div>
+
+
+<div id="pmf-mcq" class="tab-content">
+
+<div class="mcq" data-answer="d">
+<strong>1. Which conditions must a PMF satisfy?</strong>
+<label class="mcq-option"><input type="radio" name="pmf1" value="a"> p(x) ≤ 0 only</label>
+<label class="mcq-option"><input type="radio" name="pmf1" value="b"> Σp(x)=0</label>
+<label class="mcq-option"><input type="radio" name="pmf1" value="c"> p(x)&gt;1</label>
+<label class="mcq-option"><input type="radio" name="pmf1" value="d"> p(x)≥0 and Σp(x)=1</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+<div class="mcq" data-answer="b">
+<strong>2. A PMF is associated with:</strong>
+<label class="mcq-option"><input type="radio" name="pmf2" value="a"> only continuous variables</label>
+<label class="mcq-option"><input type="radio" name="pmf2" value="b"> discrete random variables</label>
+<label class="mcq-option"><input type="radio" name="pmf2" value="c"> constants only</label>
+<label class="mcq-option"><input type="radio" name="pmf2" value="d"> none</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+<div class="mcq" data-answer="c">
+<strong>3. If P(X=x)=k/x!, x=0,1,2,..., then k is:</strong>
+<label class="mcq-option"><input type="radio" name="pmf3" value="a"> e</label>
+<label class="mcq-option"><input type="radio" name="pmf3" value="b"> 1</label>
+<label class="mcq-option"><input type="radio" name="pmf3" value="c"> 1/e</label>
+<label class="mcq-option"><input type="radio" name="pmf3" value="d"> 0</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- PDF -->
+<!-- ====================================================== -->
+
+<section class="section" id="pdf">
+
+<div class="topic-label">TOPIC 04</div>
+<h2>Probability Density Function (PDF)</h2>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab(event,'pdf-learn')">📖 Learn Topic</button>
+<button class="tab-btn" onclick="openTab(event,'pdf-num')">🧮 Numerical</button>
+<button class="tab-btn" onclick="openTab(event,'pdf-questions')">📝 Topic Questions</button>
+<button class="tab-btn" onclick="openTab(event,'pdf-mcq')">✅ Practice MCQs</button>
+</div>
+
+
+<div id="pdf-learn" class="tab-content active">
+
+<div class="card">
+
+<h3>Definition</h3>
+
+<p>
+Let X be a continuous random variable. If the probability over an
+interval is given by
+</p>
+
+<div class="formula">
+P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx
+</div>
+
+<p>
+then the real-valued function f(x) is called a
+<strong>Probability Density Function (PDF)</strong>, provided the
+following conditions are satisfied.
+</p>
+
+<h3>Conditions of PDF</h3>
+
+<div class="formula">
+1) f(x) ≥ 0
+</div>
+
+<div class="formula">
+2) ∫₋∞^∞ f(x) dx = 1
+</div>
+
+</div>
+
+
+<div class="card">
+<h3>Probability at a Single Point</h3>
+
+<p>
+For a continuous random variable,
+</p>
+
+<div class="formula">
+P(X=a) = P(a ≤ X ≤ a)
+</div>
+
+<div class="formula">
+P(X=a) = ∫ₐᵃ f(x) dx = 0
+</div>
+
+<div class="good">
+Therefore the probability of a continuous random variable taking one
+exact value is zero.
+</div>
+</div>
+
+</div>
+
+
+
+<div id="pdf-num" class="tab-content">
+
+<div class="card">
+
+<h3>Numerical — Piecewise PDF</h3>
+
+<p>The class notes give:</p>
+
+<div class="formula">
+f(x) = 0, &nbsp;&nbsp; x &lt; 0<br><br>
+f(x) = kx, &nbsp;&nbsp; 0 ≤ x &lt; 1<br><br>
+f(x) = k(x+1), &nbsp;&nbsp; 1 ≤ x &lt; 2<br><br>
+f(x) = 0, &nbsp;&nbsp; x ≥ 2
+</div>
+
+<h4>(i) Find the value of k</h4>
+
+<div class="steps">
+
+<div class="step">
+<strong>Given:</strong><br>
+The above piecewise function is a PDF.
+</div>
+
+<div class="step">
+<strong>Formula:</strong><br>
+Using the second condition of PDF,
+
+<div class="formula">
+∫₋∞^∞ f(x)dx = 1
+</div>
+</div>
+
+<div class="step">
+<strong>Substitution:</strong>
+
+<div class="formula">
+∫₋∞⁰ 0 dx
++ ∫₀¹ kx dx
++ ∫₁² k(x+1) dx
++ ∫₂^∞ 0 dx
+= 1
+</div>
+
+Therefore,
+
+<div class="formula">
+k∫₀¹ x dx + k∫₁²(x+1)dx = 1
+</div>
+</div>
+
+<div class="step">
+<strong>Calculation:</strong>
+
+<div class="formula">
+k[x²/2]₀¹ + k[x²/2 + x]₁² = 1
+</div>
+
+<div class="formula">
+k(1/2) + k(5/2) = 1
+</div>
+
+<div class="formula">
+3k = 1
+</div>
+</div>
+
+<div class="answer">
+Final Answer: k = 1/3
+</div>
+
+</div>
+
+
+<h4>(ii) Find P(0 &lt; X ≤ 1.5)</h4>
+
+<div class="steps">
+
+<div class="step">
+<strong>Given:</strong>
+
+<div class="formula">
+k = 1/3
+</div>
+</div>
+
+<div class="step">
+<strong>Formula:</strong>
+
+<div class="formula">
+P(0 &lt; X ≤ 1.5) = ∫₀¹⋅⁵ f(x)dx
+</div>
+</div>
+
+<div class="step">
+<strong>Substitution:</strong>
+
+Because the PDF changes at x=1,
+
+<div class="formula">
+P(0 &lt; X ≤ 1.5)
+=
+∫₀¹ (x/3)dx
++
+∫₁¹⋅⁵ ((x+1)/3)dx
+</div>
+</div>
+
+<div class="step">
+<strong>Calculation:</strong>
+
+<div class="formula">
+= (1/3)[x²/2]₀¹
++ (1/3)[x²/2+x]₁¹⋅⁵
+</div>
+
+<div class="formula">
+= 1/6 + 3/8
+</div>
+
+<div class="formula">
+= 4/24 + 9/24
+</div>
+
+<div class="formula">
+= 13/24
+</div>
+</div>
+
+<div class="answer">
+Final Answer: P(0 &lt; X ≤ 1.5) = 13/24
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+
+<div id="pdf-questions" class="tab-content">
+
+<div class="card">
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Define Probability Density Function.</h4>
+<p>
+For a continuous random variable X, a real-valued function f(x) is
+called a PDF when probabilities are obtained by integrating f(x) over
+an interval and the PDF conditions are satisfied.
+</p>
+</div>
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>State the conditions of a PDF.</h4>
+
+<div class="formula">f(x) ≥ 0</div>
+<div class="formula">∫₋∞^∞ f(x)dx = 1</div>
+</div>
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>What is P(X=a) for a continuous random variable?</h4>
+
+<div class="formula">
+P(X=a)=0
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div id="pdf-mcq" class="tab-content">
+
+<div class="mcq" data-answer="a">
+<strong>1. For a valid PDF:</strong>
+<label class="mcq-option"><input type="radio" name="pdf1" value="a"> ∫f(x)dx over the whole range = 1</label>
+<label class="mcq-option"><input type="radio" name="pdf1" value="b"> ∫f(x)dx = 0</label>
+<label class="mcq-option"><input type="radio" name="pdf1" value="c"> f(x) must always be negative</label>
+<label class="mcq-option"><input type="radio" name="pdf1" value="d"> f(x)=1 everywhere</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+<div class="mcq" data-answer="d">
+<strong>2. For a continuous random variable, P(X=a) equals:</strong>
+<label class="mcq-option"><input type="radio" name="pdf2" value="a"> 1</label>
+<label class="mcq-option"><input type="radio" name="pdf2" value="b"> a</label>
+<label class="mcq-option"><input type="radio" name="pdf2" value="c"> f(a)</label>
+<label class="mcq-option"><input type="radio" name="pdf2" value="d"> 0</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+<div class="mcq" data-answer="b">
+<strong>3. In the piecewise PDF problem in the notes, k equals:</strong>
+<label class="mcq-option"><input type="radio" name="pdf3" value="a"> 1/2</label>
+<label class="mcq-option"><input type="radio" name="pdf3" value="b"> 1/3</label>
+<label class="mcq-option"><input type="radio" name="pdf3" value="c"> 2</label>
+<label class="mcq-option"><input type="radio" name="pdf3" value="d"> 3</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- CDF -->
+<!-- ====================================================== -->
+
+<section class="section" id="cdf">
+
+<div class="topic-label">TOPIC 05</div>
+<h2>Cumulative Distribution Function (CDF)</h2>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab(event,'cdf-learn')">📖 Learn Topic</button>
+<button class="tab-btn" onclick="openTab(event,'cdf-questions')">📝 Topic Questions</button>
+<button class="tab-btn" onclick="openTab(event,'cdf-mcq')">✅ Practice MCQs</button>
+</div>
+
+
+<div id="cdf-learn" class="tab-content active">
+
+<div class="card">
+
+<h3>Definition</h3>
+
+<div class="definition">
+Let X be a random variable. The Cumulative Distribution Function is
+defined by
+</div>
+
+<div class="formula">
+F(x) = P(X ≤ x)
+</div>
+
+<h3>For a Discrete Random Variable</h3>
+
+<div class="formula">
+F(x) = Σ p(t), &nbsp; t ≤ x
+</div>
+
+<h3>For a Continuous Random Variable</h3>
+
+<div class="formula">
+F(x) = ∫₋∞ˣ f(t)dt
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Properties of CDF</h3>
+
+<h4>Property 1</h4>
+
+<div class="formula">
+F(-∞) = 0
+</div>
+
+<div class="formula">
+F(+∞) = 1
+</div>
+
+
+<h4>Property 2</h4>
+
+<div class="formula">
+0 ≤ F(x) ≤ 1
+</div>
+
+
+<h4>Property 3 — Non-decreasing Property</h4>
+
+<p>If x &lt; y, then</p>
+
+<div class="formula">
+F(x) ≤ F(y)
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Interval Probability Relations</h3>
+
+<p>The notes record the following CDF relation:</p>
+
+<div class="formula">
+P(a &lt; X ≤ b) = F(b) - F(a)
+</div>
+
+<p>
+For a continuous random variable, because the probability at a single
+point is zero:
+</p>
+
+<div class="formula">
+P(X=a)=0
+</div>
+
+therefore the endpoint differences do not affect interval probability
+in the same way as for a discrete variable.
+
+The notes consequently obtain:
+
+<div class="formula">
+P(a ≤ X ≤ b) = F(b) - F(a)
+</div>
+
+and
+
+<div class="formula">
+P(a &lt; X &lt; b) = F(b) - F(a)
+</div>
+
+for the continuous case shown in the class work.
+
+</div>
+
+
+<div class="card">
+
+<h3>Relation Between PDF and CDF</h3>
+
+<p>For a continuous random variable:</p>
+
+<div class="formula">
+F(x) = ∫₋∞ˣ f(t)dt
+</div>
+
+<p>
+Thus the CDF accumulates the probability density from
+<strong>-∞ up to x</strong>.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div id="cdf-questions" class="tab-content">
+
+<div class="card">
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Define Cumulative Distribution Function.</h4>
+
+<p>
+If X is a random variable, its cumulative distribution function is
+defined as
+</p>
+
+<div class="formula">
+F(x)=P(X≤x)
+</div>
+</div>
+
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Write the CDF of a discrete random variable.</h4>
+
+<div class="formula">
+F(x)=Σ p(t), &nbsp; t≤x
+</div>
+</div>
+
+
+<div class="exam-q">
+<span class="mark">2 MARKS</span>
+<h4>Write the CDF of a continuous random variable.</h4>
+
+<div class="formula">
+F(x)=∫₋∞ˣ f(t)dt
+</div>
+</div>
+
+
+<div class="exam-q">
+<span class="mark">3 MARKS</span>
+<h4>State the properties of CDF.</h4>
+
+<p>1. F(-∞)=0 and F(+∞)=1.</p>
+<p>2. 0≤F(x)≤1.</p>
+<p>3. If x&lt;y, then F(x)≤F(y).</p>
+</div>
+
+
+<div class="exam-q">
+<span class="mark">3 MARKS</span>
+<h4>Express P(a&lt;X≤b) in terms of CDF.</h4>
+
+<div class="formula">
+P(a&lt;X≤b)=F(b)-F(a)
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+<div id="cdf-mcq" class="tab-content">
+
+<div class="mcq" data-answer="b">
+<strong>1. The CDF F(x) is defined as:</strong>
+<label class="mcq-option"><input type="radio" name="cdf1" value="a"> P(X=x)</label>
+<label class="mcq-option"><input type="radio" name="cdf1" value="b"> P(X≤x)</label>
+<label class="mcq-option"><input type="radio" name="cdf1" value="c"> P(X&gt;x)</label>
+<label class="mcq-option"><input type="radio" name="cdf1" value="d"> f(x)</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+
+<div class="mcq" data-answer="c">
+<strong>2. Which is a correct property of CDF?</strong>
+<label class="mcq-option"><input type="radio" name="cdf2" value="a"> F(x)&gt;1</label>
+<label class="mcq-option"><input type="radio" name="cdf2" value="b"> F(x)&lt;0</label>
+<label class="mcq-option"><input type="radio" name="cdf2" value="c"> 0≤F(x)≤1</label>
+<label class="mcq-option"><input type="radio" name="cdf2" value="d"> F(x) is always zero</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+
+<div class="mcq" data-answer="a">
+<strong>3. If x&lt;y, then a CDF satisfies:</strong>
+<label class="mcq-option"><input type="radio" name="cdf3" value="a"> F(x)≤F(y)</label>
+<label class="mcq-option"><input type="radio" name="cdf3" value="b"> F(x)&gt;F(y)</label>
+<label class="mcq-option"><input type="radio" name="cdf3" value="c"> F(x)=-F(y)</label>
+<label class="mcq-option"><input type="radio" name="cdf3" value="d"> F(x)&gt;1</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+
+<div class="mcq" data-answer="d">
+<strong>4. F(+∞) is equal to:</strong>
+<label class="mcq-option"><input type="radio" name="cdf4" value="a"> -1</label>
+<label class="mcq-option"><input type="radio" name="cdf4" value="b"> ∞</label>
+<label class="mcq-option"><input type="radio" name="cdf4" value="c"> 0</label>
+<label class="mcq-option"><input type="radio" name="cdf4" value="d"> 1</label>
+<button class="check-btn" onclick="checkMCQ(this)">Submit Answer</button>
+<div class="result"></div>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- FORMULA SHEET -->
+<!-- ====================================================== -->
+
+<section class="section" id="formulas">
+
+<div class="topic-label">WEEK 01 REVISION</div>
+<h2>Important Formula Sheet</h2>
+
+<div class="card">
+
+<h3>Random Variable</h3>
+<div class="formula">X : S → R</div>
+
+<h3>PMF</h3>
+<div class="formula">P(X=xᵢ)=p(xᵢ)</div>
+<div class="formula">p(xᵢ) ≥ 0</div>
+<div class="formula">Σp(xᵢ)=1</div>
+
+<h3>PDF</h3>
+<div class="formula">P(a≤X≤b)=∫ₐᵇ f(x)dx</div>
+<div class="formula">f(x)≥0</div>
+<div class="formula">∫₋∞^∞ f(x)dx=1</div>
+<div class="formula">P(X=a)=0 &nbsp; for a continuous random variable</div>
+
+<h3>CDF</h3>
+<div class="formula">F(x)=P(X≤x)</div>
+<div class="formula">F(x)=Σ p(t), &nbsp; t≤x &nbsp; [Discrete]</div>
+<div class="formula">F(x)=∫₋∞ˣ f(t)dt &nbsp; [Continuous]</div>
+<div class="formula">F(-∞)=0</div>
+<div class="formula">F(+∞)=1</div>
+<div class="formula">0≤F(x)≤1</div>
+<div class="formula">x&lt;y ⇒ F(x)≤F(y)</div>
+<div class="formula">P(a&lt;X≤b)=F(b)-F(a)</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Symbol Meanings</h3>
+
+<table class="symbol-table">
+<tr><th>Symbol</th><th>Meaning</th></tr>
+<tr><td>X</td><td>Random variable</td></tr>
+<tr><td>S</td><td>Sample space</td></tr>
+<tr><td>R</td><td>Set of real numbers</td></tr>
+<tr><td>xᵢ</td><td>Possible value of a discrete random variable</td></tr>
+<tr><td>p(xᵢ)</td><td>Probability mass at xᵢ</td></tr>
+<tr><td>f(x)</td><td>Probability density function</td></tr>
+<tr><td>F(x)</td><td>Cumulative distribution function</td></tr>
+<tr><td>Σ</td><td>Summation</td></tr>
+<tr><td>∫</td><td>Integration</td></tr>
+<tr><td>k</td><td>Constant determined using normalization</td></tr>
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- EXAM QUESTIONS -->
+<!-- ====================================================== -->
+
+<section class="section" id="exam">
+
+<div class="topic-label">EXAM PREPARATION</div>
+<h2>Marks-wise Important Questions</h2>
+
+<div class="card">
+
+<h3>2-Mark Questions</h3>
+
+<ol>
+<li>Define a random variable.</li>
+<li>Define a discrete random variable.</li>
+<li>Define a continuous random variable.</li>
+<li>Define Probability Mass Function.</li>
+<li>State the conditions of a PMF.</li>
+<li>Define Probability Density Function.</li>
+<li>State the conditions of a PDF.</li>
+<li>Define Cumulative Distribution Function.</li>
+<li>Write the CDF for a discrete random variable.</li>
+<li>Write the CDF for a continuous random variable.</li>
+<li>State the limiting properties of a CDF.</li>
+<li>What is P(X=a) when X is continuous?</li>
+</ol>
+
+
+<h3>3-Mark Questions</h3>
+
+<ol>
+<li>Differentiate discrete and continuous random variables with examples.</li>
+<li>Explain the conditions required for a probability distribution to be a PMF.</li>
+<li>Check whether a given probability table is a valid PMF.</li>
+<li>State and explain the properties of CDF.</li>
+<li>Express interval probability using the CDF.</li>
+</ol>
+
+
+<h3>5-Mark / Numerical Questions</h3>
+
+<ol>
+<li>
+A fair coin is tossed three times. Find the probability distribution
+of the number of heads.
+</li>
+
+<li>
+For P(X=x)=k/x!, x=0,1,2,..., determine k.
+</li>
+
+<li>
+For the piecewise PDF given in the notes, determine k using the
+normalization condition.
+</li>
+
+<li>
+Using the same PDF, find P(0&lt;X≤1.5).
+</li>
+
+<li>
+For three independent fair-coin tosses, obtain the distributions of
+X, Y, Z, X+Y and XY as defined in the class notes.
+</li>
+</ol>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- MASTER MCQ -->
+<!-- ====================================================== -->
+
+<section class="section" id="mcqs">
+
+<div class="topic-label">WEEK 01 PRACTICE</div>
+<h2>Topic-wise Important MCQs</h2>
+
+<div class="card">
+
+<p>
+MCQs are provided inside every topic above:
+</p>
+
+<ul>
+<li>Random Variable MCQs</li>
+<li>Discrete &amp; Continuous Random Variable MCQs</li>
+<li>PMF MCQs</li>
+<li>PDF MCQs</li>
+<li>CDF MCQs</li>
+</ul>
+
+<div class="note">
+Use the <strong>Practice MCQs</strong> button under each topic to revise
+that specific concept.
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================== -->
+<!-- PYQ -->
+<!-- ====================================================== -->
+
+<section class="section" id="pyqs">
+
+<div class="topic-label">PREVIOUS YEAR QUESTIONS</div>
+<h2>Verified PYQs</h2>
+
+<div class="card locked">
+
+<div class="lock">🔒</div>
+
+<h3>PYQs Not Added Yet</h3>
+
+<p>
+Only actual verified previous-year questions will be added here.
+Class-note questions are not automatically treated as PYQs.
+</p>
+
+<p>
+Upload the MA2103 previous-year question papers to activate this
+section.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- STRICT WEEK BOUNDARY -->
+
+<section class="section">
+<div class="card">
+<div class="note">
+<strong>Week 01 Boundary:</strong>
+This module ends at <strong>Cumulative Distribution Function (CDF)</strong>.
+Mathematical Expectation and all later topics belong to future modules
+and are intentionally not included here.
+</div>
+</div>
+</section>
+
+</main>
+
+
+<footer>
+<strong>MA2103 • Probability and Statistics</strong><br>
+Week 01 — Random Variables, PMF, PDF &amp; CDF<br><br>
+Civil Engineering Study Portal
+</footer>
+
+
+<script>
+
+function openTab(event, tabId){
+
+    const section = event.target.closest(".section");
+
+    const contents = section.querySelectorAll(".tab-content");
+    contents.forEach(content => content.classList.remove("active"));
+
+    const buttons = section.querySelectorAll(".tab-btn");
+    buttons.forEach(button => button.classList.remove("active"));
+
+    document.getElementById(tabId).classList.add("active");
+    event.currentTarget.classList.add("active");
+}
+
+
+function checkMCQ(button){
+
+    const mcq = button.closest(".mcq");
+    const correct = mcq.dataset.answer;
+    const selected = mcq.querySelector('input[type="radio"]:checked');
+    const result = mcq.querySelector(".result");
+
+    if(!selected){
+        result.style.display = "block";
+        result.style.background = "#fff8df";
+        result.style.color = "#8a6200";
+        result.textContent = "Please select an answer first.";
+        return;
+    }
+
+    if(selected.value === correct){
+        result.style.display = "block";
+        result.style.background = "#eaf8ef";
+        result.style.color = "#126b37";
+        result.textContent = "✓ Correct Answer";
+    }
+    else{
+        result.style.display = "block";
+        result.style.background = "#fff0f0";
+        result.style.color = "#a52f2f";
+        result.textContent = "✗ Incorrect. Try again.";
+    }
+}
+
+</script>
+
+</body>
+</html>
