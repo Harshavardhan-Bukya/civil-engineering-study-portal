@@ -1,0 +1,3509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CE2103 | Mechanics of Materials | Week 01</title>
+
+<style>
+:root{
+  --navy:#071a2d;
+  --navy2:#0d2944;
+  --blue:#1677ff;
+  --blue-soft:#eaf3ff;
+  --bg:#f4f7fb;
+  --white:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --border:#dfe6ee;
+  --green:#16a36a;
+  --orange:#f59e0b;
+  --red:#dc2626;
+  --shadow:0 14px 38px rgba(20,35,60,.08);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.topbar{
+  background:var(--navy);
+  color:white;
+}
+
+.topbar-inner{
+  width:min(1180px,calc(100% - 32px));
+  margin:auto;
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-mark{
+  width:44px;
+  height:44px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#1677ff,#16b8d4);
+  font-weight:900;
+}
+
+.brand small{
+  display:block;
+  color:#a9bad0;
+  font-size:11px;
+  letter-spacing:1px;
+  font-weight:700;
+}
+
+.brand strong{
+  font-size:17px;
+}
+
+.dashboard{
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:11px;
+  padding:9px 14px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.hero{
+  background:linear-gradient(135deg,#071a2d,#0c3656);
+  color:white;
+}
+
+.hero-inner{
+  width:min(1180px,calc(100% - 32px));
+  margin:auto;
+  padding:36px 0 40px;
+}
+
+.hero-label{
+  color:#79b9ff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.2px;
+}
+
+.hero h1{
+  font-size:clamp(30px,5vw,48px);
+  line-height:1.15;
+  margin:7px 0 10px;
+}
+
+.hero p{
+  color:#c4d5e8;
+  max-width:900px;
+}
+
+.topic-tabs{
+  background:white;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.tabs-inner{
+  width:min(1180px,calc(100% - 32px));
+  margin:auto;
+  padding:12px 0;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+}
+
+.topic-tab{
+  border:0;
+  cursor:pointer;
+  white-space:nowrap;
+  padding:10px 15px;
+  border-radius:999px;
+  background:#edf2f7;
+  color:#334155;
+  font-weight:800;
+  font-size:12px;
+}
+
+.topic-tab.active{
+  background:var(--navy);
+  color:white;
+}
+
+main{
+  width:min(1180px,calc(100% - 32px));
+  margin:auto;
+  padding:36px 0 70px;
+}
+
+.topic-panel{
+  display:none;
+}
+
+.topic-panel.active{
+  display:block;
+}
+
+.topic-heading{
+  margin-bottom:22px;
+}
+
+.topic-number{
+  color:var(--blue);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.2px;
+}
+
+.topic-heading h2{
+  font-size:clamp(28px,4vw,40px);
+  line-height:1.2;
+  margin-top:5px;
+}
+
+.topic-heading p{
+  color:var(--muted);
+  margin-top:7px;
+}
+
+.mode-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:20px 0 24px;
+}
+
+.mode-btn{
+  border:1px solid var(--border);
+  background:white;
+  padding:10px 15px;
+  border-radius:11px;
+  cursor:pointer;
+  font-weight:800;
+  color:#334155;
+}
+
+.mode-btn.active{
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
+}
+
+.mode-panel{
+  display:none;
+}
+
+.mode-panel.active{
+  display:block;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow);
+}
+
+.card h3{
+  font-size:21px;
+  margin-bottom:12px;
+}
+
+.card h4{
+  margin:18px 0 8px;
+  font-size:17px;
+}
+
+.card p{
+  margin:9px 0;
+}
+
+.card ul,
+.card ol{
+  padding-left:23px;
+  margin:10px 0;
+}
+
+.card li{
+  margin:5px 0;
+}
+
+.definition{
+  background:var(--blue-soft);
+  border-left:4px solid var(--blue);
+  padding:14px 16px;
+  border-radius:8px;
+  margin:13px 0;
+}
+
+.note{
+  background:#fff8e7;
+  border-left:4px solid var(--orange);
+  padding:14px 16px;
+  border-radius:8px;
+  margin:13px 0;
+}
+
+.formula{
+  background:#f8fafc;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:13px 16px;
+  margin:12px 0;
+  font-family:"Cambria Math","Times New Roman",serif;
+  font-size:18px;
+  font-weight:700;
+  overflow-x:auto;
+}
+
+.formula-title{
+  color:var(--blue);
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:4px;
+}
+
+.tree{
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  margin:14px 0;
+  font-family:Consolas,monospace;
+  overflow-x:auto;
+}
+
+.diagram{
+  background:#fbfdff;
+  border:1px dashed #94a3b8;
+  border-radius:13px;
+  padding:18px;
+  margin:16px 0;
+  overflow-x:auto;
+}
+
+.diagram-title{
+  font-weight:900;
+  color:var(--blue);
+  margin-bottom:10px;
+}
+
+.diagram pre{
+  font-family:Consolas,monospace;
+  line-height:1.35;
+  white-space:pre;
+}
+
+.example{
+  border:1px solid #b7dfce;
+  background:#f3fbf7;
+  border-radius:13px;
+  padding:18px;
+  margin:16px 0;
+}
+
+.example h4{
+  color:#08764b;
+  margin-top:0;
+}
+
+.answer{
+  background:#eefbf5;
+  border-left:4px solid var(--green);
+  padding:12px 15px;
+  margin-top:12px;
+  font-weight:800;
+}
+
+.table-wrap{
+  overflow-x:auto;
+  margin:15px 0;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:620px;
+}
+
+th,td{
+  border:1px solid var(--border);
+  padding:11px;
+  text-align:left;
+}
+
+th{
+  background:#edf5ff;
+}
+
+.question{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
+  margin:12px 0;
+}
+
+.question .marks{
+  display:inline-block;
+  color:var(--blue);
+  background:var(--blue-soft);
+  border-radius:999px;
+  padding:4px 9px;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:7px;
+}
+
+.pyq-empty{
+  text-align:center;
+  padding:45px 20px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+}
+
+.pyq-empty .icon{
+  font-size:35px;
+}
+
+.quiz-container{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+}
+
+.quiz-question{
+  font-size:19px;
+  font-weight:850;
+  margin-bottom:15px;
+}
+
+.quiz-options{
+  display:grid;
+  gap:10px;
+}
+
+.quiz-option{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:11px 13px;
+  cursor:pointer;
+  background:white;
+  text-align:left;
+}
+
+.quiz-option:hover{
+  background:#f6f9fc;
+}
+
+.quiz-option.correct{
+  border-color:var(--green);
+  background:#ecfdf5;
+}
+
+.quiz-option.wrong{
+  border-color:var(--red);
+  background:#fef2f2;
+}
+
+.quiz-feedback{
+  margin-top:15px;
+  font-weight:700;
+}
+
+.quiz-next{
+  margin-top:15px;
+  background:var(--navy);
+  color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.quick-revision{
+  background:#071a2d;
+  color:white;
+}
+
+.quick-revision h3{
+  color:white;
+}
+
+.quick-revision .formula{
+  color:#172033;
+}
+
+footer{
+  background:var(--navy);
+  color:#a9bad0;
+  text-align:center;
+  padding:25px 15px;
+}
+
+footer strong{
+  color:white;
+}
+
+@media(max-width:650px){
+  .dashboard{
+    display:none;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .topic-heading h2{
+    font-size:28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <a href="../../index.html" class="brand">
+      <div class="brand-mark">CE</div>
+
+      <div>
+        <small>CIVIL ENGINEERING STUDY PORTAL</small>
+        <strong>CE2103 • Mechanics of Materials</strong>
+      </div>
+    </a>
+
+    <a href="../../index.html" class="dashboard">
+      ← Dashboard
+    </a>
+
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-label">
+      CE2103 • WEEK 01
+    </div>
+
+    <h1>Mechanics of Materials</h1>
+
+    <p>
+      Structural Engineering • Classification of Loads • Simple Stress and
+      Strain • Principles and Design • Mechanical Properties • Mild Steel
+      Stress–Strain Behaviour
+    </p>
+
+  </div>
+</section>
+
+
+<nav class="topic-tabs">
+  <div class="tabs-inner">
+
+    <button class="topic-tab active" data-topic="topic1">
+      01 • Basics &amp; Loads
+    </button>
+
+    <button class="topic-tab" data-topic="topic2">
+      02 • Stress
+    </button>
+
+    <button class="topic-tab" data-topic="topic3">
+      03 • Strain
+    </button>
+
+    <button class="topic-tab" data-topic="topic4">
+      04 • Principles &amp; Design
+    </button>
+
+    <button class="topic-tab" data-topic="topic5">
+      05 • Mechanical Properties
+    </button>
+
+    <button class="topic-tab" data-topic="topic6">
+      06 • Mild Steel Curve
+    </button>
+
+  </div>
+</nav>
+
+
+<main>
+
+<!-- =========================================================
+     TOPIC 01
+========================================================= -->
+
+<section class="topic-panel active" id="topic1">
+
+  <div class="topic-heading">
+    <div class="topic-number">TOPIC 01</div>
+    <h2>Basics of Structural Engineering &amp; Classification of Loads</h2>
+    <p>
+      Fundamental structural concepts and the complete classification of loads.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active" data-mode="learn">📖 Learn Topic</button>
+    <button class="mode-btn" data-mode="questions">📝 Topic Questions</button>
+    <button class="mode-btn" data-mode="pyq">🎓 PYQs</button>
+    <button class="mode-btn" data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="card">
+
+      <h3>1. Structural Engineering</h3>
+
+      <div class="tree">
+Structural Engineering
+│
+├── Analysis
+│   ├── EM – Displacement
+│   ├── SOM – Deformation
+│   └── SA – Structural Analysis
+│
+└── Design
+    ├── DRCS
+    ├── SSD
+    └── ASE
+      </div>
+
+      <h4>Structure</h4>
+
+      <div class="definition">
+        <strong>Definition:</strong>
+        A structure is a combination of different members which transfers
+        the applied loads safely to the supports.
+      </div>
+
+      <h4>Nature of Structure</h4>
+
+      <ul>
+        <li>
+          <strong>Elastic nature:</strong> deformation disappears after the
+          load is removed, provided the material remains within its elastic range.
+        </li>
+
+        <li>
+          <strong>Plastic nature:</strong> permanent deformation remains after
+          removal of the load.
+        </li>
+      </ul>
+
+      <h4>Structural Analysis</h4>
+
+      <p>
+        Structural analysis is used to determine the effects developed in a
+        structure due to external loading.
+      </p>
+
+      <ul>
+        <li>Axial force</li>
+        <li>Shear force</li>
+        <li>Bending moment</li>
+        <li>Torsional moment / torque</li>
+        <li>Stress</li>
+        <li>Deformation / displacement</li>
+      </ul>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>2. Classification of Loads</h3>
+
+      <p>
+        Loads are classified according to their nature, direction and manner
+        of distribution.
+      </p>
+
+      <h4>A. With Respect to Time</h4>
+
+      <div class="tree">
+Load
+│
+├── Static Load
+│   ├── Dead Load
+│   └── Gradually Applied Load
+│
+└── Dynamic Load
+    ├── Impact Load
+    └── Fatigue / Repeated Load
+      </div>
+
+      <h4>Static Load</h4>
+
+      <p>
+        A load which is applied without significant acceleration or sudden
+        impact is treated as a static load.
+      </p>
+
+      <h4>Dead Load</h4>
+
+      <p>
+        Dead load is the permanent load caused mainly by the self-weight of
+        structural and permanently attached components.
+      </p>
+
+      <h4>Gradually Applied Load</h4>
+
+      <p>
+        A gradually applied load increases slowly from zero to its final value.
+      </p>
+
+      <h4>Dynamic Load</h4>
+
+      <p>
+        A dynamic load varies with time or is applied with acceleration,
+        vibration or impact effects.
+      </p>
+
+      <h4>Impact Load</h4>
+
+      <p>
+        An impact load acts suddenly due to collision, falling weight or
+        another impact action.
+      </p>
+
+      <h4>Fatigue / Repeated Load</h4>
+
+      <p>
+        Repeated or fluctuating loading may cause fatigue failure after a large
+        number of stress cycles.
+      </p>
+
+
+      <h4>B. With Respect to Direction</h4>
+
+      <div class="tree">
+Load
+│
+├── Normal Load
+│   ├── Tension
+│   └── Compression
+│
+└── Shear Load
+    ├── Direct / Transfer Shear
+    └── Eccentric Shear
+      </div>
+
+      <h4>Normal Load</h4>
+
+      <p>
+        A normal load acts perpendicular to the resisting cross-sectional area.
+      </p>
+
+      <div class="diagram">
+        <div class="diagram-title">Tension</div>
+<pre>
+← P   |======================|   P →
+          Member elongates
+</pre>
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">Compression</div>
+<pre>
+P →   |======================|   ← P
+          Member shortens
+</pre>
+      </div>
+
+      <h4>Shear Load</h4>
+
+      <p>
+        A shear load acts parallel or tangential to the resisting area.
+      </p>
+
+      <h4>Eccentric Load / Eccentric Shear</h4>
+
+      <p>
+        When the line of action of the load does not pass through the relevant
+        centroidal axis and has an eccentricity, additional moment effects are
+        produced.
+      </p>
+
+
+      <h4>C. With Respect to Area / Distribution</h4>
+
+      <div class="tree">
+Load
+│
+├── Concentrated Load
+│   ├── Point Load
+│   └── Concentrated Moment
+│
+└── Distributed Load
+    ├── UDL
+    ├── UVL
+    └── UDM
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">Point Load</div>
+<pre>
+              ↓ P
+────────────────────────
+▲                      ▲
+</pre>
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">Concentrated Moment</div>
+<pre>
+              ↻ M
+──────────────○─────────
+▲                      ▲
+</pre>
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">UDL — Uniformly Distributed Load</div>
+<pre>
+↓   ↓   ↓   ↓   ↓   ↓
+↓   ↓   ↓   ↓   ↓   ↓
+───────────────────────
+▲                     ▲
+</pre>
+
+        <p>
+          Load intensity remains constant over the loaded length.
+        </p>
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">UVL — Uniformly Varying Load</div>
+<pre>
+                    ↓
+                ↓   ↓
+            ↓   ↓   ↓
+        ↓   ↓   ↓   ↓
+───────────────────────
+▲                     ▲
+</pre>
+
+        <p>
+          Load intensity varies uniformly along the loaded length.
+        </p>
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">UDM — Uniformly Distributed Moment</div>
+<pre>
+↻        ↻        ↻        ↻
+────────────────────────────
+▲                          ▲
+</pre>
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question">
+      <span class="marks">2 MARKS</span>
+      <h4>Define a structure.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Classify loads with respect to time.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Classify loads with respect to direction.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>
+        Explain point load, moment, UDL, UVL and UDM with diagrams.
+      </h4>
+    </div>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No verified PYQs supplied yet</h3>
+      <p>
+        PYQs will be added only after verified Previous Year Question material
+        is supplied.
+      </p>
+    </div>
+  </div>
+
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic1"></div>
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TOPIC 02
+========================================================= -->
+
+<section class="topic-panel" id="topic2">
+
+  <div class="topic-heading">
+    <div class="topic-number">TOPIC 02</div>
+    <h2>Stress</h2>
+    <p>
+      Stress, strength, classification of stress, stress at a point and
+      three-dimensional stress components.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active" data-mode="learn">📖 Learn Topic</button>
+    <button class="mode-btn" data-mode="questions">📝 Topic Questions</button>
+    <button class="mode-btn" data-mode="pyq">🎓 PYQs</button>
+    <button class="mode-btn" data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="card">
+
+      <h3>1. Stress</h3>
+
+      <div class="definition">
+        <strong>Definition:</strong>
+        Stress is the internal resisting force developed per unit area due to
+        the action of an external load.
+      </div>
+
+      <div class="formula">
+        <div class="formula-title">AVERAGE NORMAL STRESS</div>
+        σ = P / A
+      </div>
+
+      <p>
+        Where:
+      </p>
+
+      <ul>
+        <li>σ = normal stress</li>
+        <li>P = axial force</li>
+        <li>A = resisting cross-sectional area</li>
+      </ul>
+
+      <h4>Units of Stress</h4>
+
+      <div class="formula">
+        1 Pa = 1 N/m²
+      </div>
+
+      <div class="formula">
+        1 MPa = 10⁶ Pa
+      </div>
+
+      <div class="formula">
+        1 MPa = 1 N/mm²
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>2. Strength</h3>
+
+      <div class="definition">
+        Strength is the ability of a material to resist an applied load or
+        stress without failure.
+      </div>
+
+      <p>
+        Strength is treated as a material property, whereas the actual stress
+        developed in a member depends on loading and geometry.
+      </p>
+
+      <h4>Types of Strength</h4>
+
+      <ul>
+        <li>Tensile strength</li>
+        <li>Compressive strength</li>
+        <li>Shear strength</li>
+      </ul>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>3. Classification of Stress</h3>
+
+      <div class="tree">
+Stress
+│
+├── Direct Stress
+│   │
+│   ├── Normal / Axial Stress
+│   │   ├── Tensile Stress
+│   │   └── Compressive Stress
+│   │
+│   └── Direct Shear Stress
+│
+└── Stress due to Moment
+    ├── Bending Stress
+    └── Torsional Shear Stress
+      </div>
+
+
+      <h4>Tensile Stress</h4>
+
+      <p>
+        Tensile stress is developed when the member is subjected to tensile
+        axial force.
+      </p>
+
+      <div class="formula">
+        σ<sub>t</sub> = +P/A
+      </div>
+
+      <div class="diagram">
+<pre>
+← P  |==========================|  P →
+              ΔL &gt; 0
+</pre>
+      </div>
+
+
+      <h4>Compressive Stress</h4>
+
+      <p>
+        Compressive stress is developed when the member is subjected to
+        compressive axial force.
+      </p>
+
+      <div class="formula">
+        σ<sub>c</sub> = −P/A
+      </div>
+
+      <div class="diagram">
+<pre>
+P →  |==========================|  ← P
+              ΔL &lt; 0
+</pre>
+      </div>
+
+      <div class="note">
+        In the sign convention used here, tensile normal stress is positive
+        and compressive normal stress is negative.
+      </div>
+
+
+      <h4>Shear Stress</h4>
+
+      <div class="definition">
+        Shear stress acts tangentially to the resisting area.
+      </div>
+
+      <div class="formula">
+        τ = V/A
+      </div>
+
+      <p>
+        Where V is the shear force and A is the resisting shear area for a
+        uniform average shear-stress calculation.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>4. Stress at a Point</h3>
+
+      <p>
+        Stress is fundamentally defined at a point. For an infinitesimal area
+        element dA carrying an infinitesimal force dP:
+      </p>
+
+      <div class="formula">
+        σ = dP/dA
+      </div>
+
+      <div class="formula">
+        dP = σ dA
+      </div>
+
+      <p>
+        Over a finite area:
+      </p>
+
+      <div class="formula">
+        P = ∫<sub>A</sub> σ dA
+      </div>
+
+      <p>
+        If the normal stress is uniform over the entire area:
+      </p>
+
+      <div class="formula">
+        P = σA
+      </div>
+
+      <div class="formula">
+        ∴ σ = P/A
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>5. Stress Components in Three Dimensions</h3>
+
+      <p>
+        At a point in a three-dimensional body, the state of stress is
+        represented by normal and shear components.
+      </p>
+
+      <h4>Normal Stress Components</h4>
+
+      <div class="formula">
+        σ<sub>x</sub>, &nbsp;
+        σ<sub>y</sub>, &nbsp;
+        σ<sub>z</sub>
+      </div>
+
+      <h4>Shear Stress Components</h4>
+
+      <div class="formula">
+        τ<sub>xy</sub>, τ<sub>xz</sub>,
+        τ<sub>yx</sub>, τ<sub>yz</sub>,
+        τ<sub>zx</sub>, τ<sub>zy</sub>
+      </div>
+
+      <p>
+        Thus, when written on the three mutually perpendicular faces, there
+        are three normal-stress components and six shear-stress components.
+      </p>
+
+      <div class="diagram">
+        <div class="diagram-title">3-D Stress Element — Conceptual Diagram</div>
+<pre>
+                     y
+                     ↑
+                  _________
+                 /        /|
+                /________/ |
+               |        |  |
+               |   •    |  | ───→ x
+               |        | /
+               |________|/
+              /
+             z
+
+Normal components:
+σx , σy , σz
+
+Shear components:
+τxy , τxz
+τyx , τyz
+τzx , τzy
+</pre>
+      </div>
+
+      <div class="note">
+        The first subscript identifies the face normal direction and the second
+        identifies the direction of the shear-stress component.
+      </div>
+
+    </article>
+
+
+    <article class="card quick-revision">
+
+      <h3>📌 Stress Formula Revision</h3>
+
+      <div class="formula">
+        σ = P/A
+      </div>
+
+      <div class="formula">
+        σ<sub>t</sub> = +P/A
+      </div>
+
+      <div class="formula">
+        σ<sub>c</sub> = −P/A
+      </div>
+
+      <div class="formula">
+        τ = V/A
+      </div>
+
+      <div class="formula">
+        σ = dP/dA
+      </div>
+
+      <div class="formula">
+        P = ∫<sub>A</sub> σ dA
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question">
+      <span class="marks">2 MARKS</span>
+      <h4>Define stress and write its SI unit.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Differentiate tensile stress and compressive stress.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Explain stress at a point.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Explain the classification of stress.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>
+        Explain the normal and shear stress components acting at a point in
+        three dimensions.
+      </h4>
+    </div>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No verified PYQs supplied yet</h3>
+      <p>Only verified PYQs will be added here.</p>
+    </div>
+  </div>
+
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic2"></div>
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TOPIC 03
+========================================================= -->
+
+<section class="topic-panel" id="topic3">
+
+  <div class="topic-heading">
+    <div class="topic-number">TOPIC 03</div>
+    <h2>Strain</h2>
+    <p>
+      Longitudinal, lateral, volumetric and shear strain with derivations and
+      worked examples.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active" data-mode="learn">📖 Learn Topic</button>
+    <button class="mode-btn" data-mode="questions">📝 Topic Questions</button>
+    <button class="mode-btn" data-mode="pyq">🎓 PYQs</button>
+    <button class="mode-btn" data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="card">
+
+      <h3>1. Strain</h3>
+
+      <div class="definition">
+        <strong>Definition:</strong>
+        Strain is the ratio of change in a dimension to the corresponding
+        original dimension.
+      </div>
+
+      <div class="formula">
+        Strain =
+        Change in Dimension / Original Dimension
+      </div>
+
+      <div class="note">
+        Strain is dimensionless because it is a ratio of quantities having the
+        same dimensions.
+      </div>
+
+      <p>
+        Strain can be measured experimentally using a
+        <strong>strain gauge</strong>.
+      </p>
+
+      <h4>Classification of Strain</h4>
+
+      <div class="tree">
+Strain
+│
+├── Normal Strain
+│   ├── Longitudinal / Linear Strain
+│   ├── Lateral Strain
+│   └── Volumetric Strain
+│
+└── Shear Strain
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>2. Longitudinal Strain</h3>
+
+      <div class="definition">
+        Longitudinal strain is the ratio of change in length to the original
+        length in the longitudinal direction.
+      </div>
+
+      <div class="formula">
+        ε<sub>L</sub> = ΔL/L
+      </div>
+
+      <h4>Tensile Strain</h4>
+
+      <div class="formula">
+        ε<sub>t</sub> = +ΔL/L
+      </div>
+
+      <h4>Compressive Strain</h4>
+
+      <div class="formula">
+        ε<sub>c</sub> = −ΔL/L
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>3. Lateral Strain</h3>
+
+      <div class="definition">
+        Lateral strain is the strain produced in a direction perpendicular to
+        the longitudinal direction of loading.
+      </div>
+
+      <div class="formula">
+        ε<sub>lat</sub> =
+        Change in Lateral Dimension /
+        Original Lateral Dimension
+      </div>
+
+      <p>For a circular member:</p>
+
+      <div class="formula">
+        ε<sub>d</sub> = Δd/d
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>4. Volumetric Strain</h3>
+
+      <div class="definition">
+        Volumetric strain is the ratio of change in volume to original volume.
+      </div>
+
+      <div class="formula">
+        ε<sub>v</sub> = ΔV/V
+      </div>
+
+      <div class="note">
+        The differential relations derived below are first-order
+        <strong>small-strain relations</strong>. Products of small changes are
+        neglected.
+      </div>
+
+
+      <h4>A. Rectangular Body</h4>
+
+      <p>For dimensions L, B and H:</p>
+
+      <div class="formula">
+        V = LBH
+      </div>
+
+      <p>Differentiating:</p>
+
+      <div class="formula">
+        dV = BH dL + LH dB + LB dH
+      </div>
+
+      <p>Dividing by V = LBH:</p>
+
+      <div class="formula">
+        dV/V =
+        dL/L + dB/B + dH/H
+      </div>
+
+      <div class="formula">
+        ∴ ε<sub>v</sub> =
+        ε<sub>L</sub> +
+        ε<sub>B</sub> +
+        ε<sub>H</sub>
+      </div>
+
+
+      <h4>B. Cylindrical Body</h4>
+
+      <div class="formula">
+        V = πd²L/4
+      </div>
+
+      <p>Taking the first-order differential:</p>
+
+      <div class="formula">
+        dV/V =
+        dL/L + 2(dd/d)
+      </div>
+
+      <div class="formula">
+        ∴ ε<sub>v</sub> =
+        ε<sub>L</sub> + 2ε<sub>d</sub>
+      </div>
+
+
+      <h4>C. Spherical Body</h4>
+
+      <div class="formula">
+        V = πd³/6
+      </div>
+
+      <p>Differentiating:</p>
+
+      <div class="formula">
+        dV = (πd²/2) dd
+      </div>
+
+      <p>Therefore:</p>
+
+      <div class="formula">
+        dV/V = 3(dd/d)
+      </div>
+
+      <div class="formula">
+        ∴ ε<sub>v</sub> = 3ε<sub>d</sub>
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>5. Shear Strain</h3>
+
+      <div class="definition">
+        Shear strain is the angular distortion produced by shear deformation.
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">Shear Deformation</div>
+<pre>
+Before deformation        After deformation
+
+B ┌──────── C             B'──────── C'
+  │                         /
+  │                        /
+  │                       /
+A └──────── D             A──────── D'
+
+Top displacement = Δx
+Height           = h
+Angular change   = φ
+</pre>
+      </div>
+
+      <div class="formula">
+        tan φ = Δx/h
+      </div>
+
+      <p>For a small angle measured in radians:</p>
+
+      <div class="formula">
+        tan φ ≈ φ
+      </div>
+
+      <div class="formula">
+        ∴ γ ≈ φ ≈ Δx/h
+      </div>
+
+      <p>
+        <strong>Unit:</strong> radian; however, shear strain is fundamentally
+        dimensionless.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>6. Worked Examples</h3>
+
+
+      <div class="example">
+
+        <h4>Example 1 — Cylindrical Rod</h4>
+
+        <p><strong>Given:</strong></p>
+
+        <p>
+          Initial length, L = 1 m<br>
+          Final length = 1.3 m<br>
+          Initial diameter, d = 8 mm<br>
+          Final diameter = 10 mm
+        </p>
+
+        <p><strong>Longitudinal strain:</strong></p>
+
+        <div class="formula">
+          ε<sub>L</sub> =
+          (1.3 − 1)/1
+          = 0.3
+        </div>
+
+        <p><strong>Diameter strain:</strong></p>
+
+        <div class="formula">
+          ε<sub>d</sub> =
+          (10 − 8)/8
+          = 0.25
+        </div>
+
+        <p>
+          Using the small-strain volumetric relation written in the notes:
+        </p>
+
+        <div class="formula">
+          ε<sub>v</sub> =
+          ε<sub>L</sub> + 2ε<sub>d</sub>
+        </div>
+
+        <div class="formula">
+          ε<sub>v</sub> =
+          0.3 + 2(0.25)
+          = 0.8
+        </div>
+
+        <div class="answer">
+          Answer according to the small-strain relation used in the notes:
+          εv = 0.8
+        </div>
+
+        <div class="note">
+          The dimensional changes in this numerical are large. Therefore
+          εv = εL + 2εd is being retained specifically as the
+          small-strain relation used in the notes; it should not be treated as
+          an exact finite-change volume calculation.
+        </div>
+
+      </div>
+
+
+      <div class="example">
+
+        <h4>Example 2 — Sphere</h4>
+
+        <p>
+          Initial diameter = 15 cm<br>
+          Final diameter = 20 cm
+        </p>
+
+        <div class="formula">
+          ε<sub>d</sub> =
+          (20 − 15)/15
+          = 1/3
+        </div>
+
+        <p>
+          Using the small-strain relation:
+        </p>
+
+        <div class="formula">
+          ε<sub>v</sub> = 3ε<sub>d</sub>
+        </div>
+
+        <div class="formula">
+          ε<sub>v</sub> =
+          3 × (1/3)
+          = 1
+        </div>
+
+        <div class="answer">
+          Answer according to the small-strain relation used in the notes:
+          εv = 1
+        </div>
+
+        <div class="note">
+          As the diameter change is large, the differential relation
+          εv = 3εd is not an exact finite-change volume calculation.
+        </div>
+
+      </div>
+
+
+      <div class="example">
+
+        <h4>Example 3 — Shear Strain</h4>
+
+        <p>
+          Height = 1 m = 100 cm<br>
+          Horizontal displacement = 10 cm
+        </p>
+
+        <div class="formula">
+          γ ≈ Δx/h
+        </div>
+
+        <div class="formula">
+          γ ≈ 10/100 = 0.1 rad
+        </div>
+
+        <div class="answer">
+          Shear strain ≈ 0.1 rad
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="card quick-revision">
+
+      <h3>📌 Strain Formula Revision</h3>
+
+      <div class="formula">
+        ε<sub>L</sub> = ΔL/L
+      </div>
+
+      <div class="formula">
+        ε<sub>d</sub> = Δd/d
+      </div>
+
+      <div class="formula">
+        ε<sub>v</sub> = ΔV/V
+      </div>
+
+      <div class="formula">
+        Rectangular body:
+        ε<sub>v</sub> =
+        ε<sub>L</sub> + ε<sub>B</sub> + ε<sub>H</sub>
+      </div>
+
+      <div class="formula">
+        Cylinder:
+        ε<sub>v</sub> =
+        ε<sub>L</sub> + 2ε<sub>d</sub>
+      </div>
+
+      <div class="formula">
+        Sphere:
+        ε<sub>v</sub> = 3ε<sub>d</sub>
+      </div>
+
+      <div class="formula">
+        γ ≈ φ ≈ Δx/h
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question">
+      <span class="marks">2 MARKS</span>
+      <h4>Define strain. Why is strain dimensionless?</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Differentiate longitudinal strain and lateral strain.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Derive the expression for volumetric strain of a rectangular body.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Derive the volumetric-strain relation for a cylindrical body.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Derive the volumetric-strain relation for a sphere.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Define shear strain and explain it with a diagram.</h4>
+    </div>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No verified PYQs supplied yet</h3>
+      <p>Only verified PYQs will be added here.</p>
+    </div>
+  </div>
+
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic3"></div>
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TOPIC 04
+========================================================= -->
+
+<section class="topic-panel" id="topic4">
+
+  <div class="topic-heading">
+    <div class="topic-number">TOPIC 04</div>
+    <h2>Principles, Assumptions &amp; Design Criteria</h2>
+    <p>
+      Material assumptions, superposition, Saint-Venant's principle, Hooke's
+      law, axial deformation, stiffness and design requirements.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active" data-mode="learn">📖 Learn Topic</button>
+    <button class="mode-btn" data-mode="questions">📝 Topic Questions</button>
+    <button class="mode-btn" data-mode="pyq">🎓 PYQs</button>
+    <button class="mode-btn" data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="card">
+
+      <h3>1. Basic Assumptions</h3>
+
+      <ol>
+        <li>The material is treated as homogeneous.</li>
+        <li>The material is treated as isotropic.</li>
+        <li>The member is prismatic where the corresponding formula requires it.</li>
+        <li>Loading is static / gradually applied for the elementary relations.</li>
+        <li>Hooke's law is used within the linear elastic range.</li>
+        <li>The material is treated as a continuum.</li>
+        <li>Superposition is applicable for linear-elastic behaviour.</li>
+        <li>Self-weight may be neglected when specified or insignificant.</li>
+        <li>
+          For pure axial loading, the load passes through the centroidal axis.
+          Eccentric loading introduces additional moment/bending effects.
+        </li>
+        <li>
+          Saint-Venant's principle is used sufficiently far away from localized
+          load application and geometric discontinuities.
+        </li>
+      </ol>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>2. Homogeneous Material</h3>
+
+      <div class="definition">
+        A homogeneous material has the same material properties from one point
+        to another throughout the body.
+      </div>
+
+      <h3>3. Isotropic Material</h3>
+
+      <div class="definition">
+        An isotropic material has the same material properties in every
+        direction at a point.
+      </div>
+
+      <div class="note">
+        Homogeneity concerns variation from <strong>point to point</strong>.
+        Isotropy concerns variation with <strong>direction</strong>.
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>4. Principle of Superposition</h3>
+
+      <p>
+        In a linear-elastic system, the total response caused by several loads
+        is equal to the algebraic sum of the responses produced by the loads
+        acting separately.
+      </p>
+
+      <div class="formula">
+        δ = δ₁ + δ₂ + δ₃ + ...
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>5. Saint-Venant's Principle</h3>
+
+      <p>
+        The exact manner in which a load is distributed over a small region
+        strongly affects stresses near the load application point.
+      </p>
+
+      <p>
+        At sections sufficiently far from that region, statically equivalent
+        load distributions produce essentially the same stress distribution.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>6. Design Criteria</h3>
+
+      <div class="tree">
+Design Criteria
+│
+├── Strength
+├── Stiffness
+├── Strain Energy
+└── Stability
+      </div>
+
+      <h4>Strength Criterion</h4>
+
+      <p>
+        The stress developed in the member must remain within the permissible
+        or allowable stress/strength specified for the design.
+      </p>
+
+      <h4>Stiffness Criterion</h4>
+
+      <p>
+        Deformation must remain within the permissible limit.
+      </p>
+
+      <div class="formula">
+        k = P/δ
+      </div>
+
+      <h4>Strain-Energy Criterion</h4>
+
+      <p>
+        Strain energy is the energy stored in a body due to deformation.
+        Energy absorption/storage requirements may form part of the design
+        criterion.
+      </p>
+
+      <h4>Stability Criterion</h4>
+
+      <p>
+        A structure must remain stable against undesirable instability,
+        overturning or buckling-type behaviour as applicable.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>7. Hooke's Law</h3>
+
+      <div class="definition">
+        Within the proportional limit, stress is directly proportional to
+        strain.
+      </div>
+
+      <div class="formula">
+        σ ∝ ε
+      </div>
+
+      <div class="formula">
+        σ = Eε
+      </div>
+
+      <div class="formula">
+        E = σ/ε
+      </div>
+
+      <p>
+        E is Young's modulus or modulus of elasticity.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>8. Axial Deformation of a Uniform Prismatic Bar</h3>
+
+      <div class="formula">
+        σ = P/A
+      </div>
+
+      <div class="formula">
+        ε = δ/L
+      </div>
+
+      <p>From Hooke's law:</p>
+
+      <div class="formula">
+        E = σ/ε
+      </div>
+
+      <p>Substituting:</p>
+
+      <div class="formula">
+        E =
+        (P/A) / (δ/L)
+      </div>
+
+      <div class="formula">
+        E = PL/(Aδ)
+      </div>
+
+      <p>Therefore:</p>
+
+      <div class="formula">
+        δ = PL/(AE)
+      </div>
+
+      <p>
+        This relation applies to a uniform prismatic member subjected to
+        constant axial load with linear-elastic behaviour.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>9. Axial Stiffness</h3>
+
+      <div class="formula">
+        k = P/δ
+      </div>
+
+      <p>Using:</p>
+
+      <div class="formula">
+        δ = PL/(AE)
+      </div>
+
+      <p>Therefore:</p>
+
+      <div class="formula">
+        k = AE/L
+      </div>
+
+      <p>
+        Hence axial stiffness:
+      </p>
+
+      <ul>
+        <li>increases with cross-sectional area A,</li>
+        <li>increases with Young's modulus E,</li>
+        <li>decreases with member length L.</li>
+      </ul>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>10. Worked Example — Axial Extension</h3>
+
+      <div class="example">
+
+        <p><strong>Given:</strong></p>
+
+        <p>
+          P = 10 kN<br>
+          L = 1 m<br>
+          d = 10 mm<br>
+          E = 2 × 10⁵ N/mm²
+        </p>
+
+        <p><strong>Convert units:</strong></p>
+
+        <div class="formula">
+          P = 10 × 1000 = 10,000 N
+        </div>
+
+        <div class="formula">
+          L = 1 × 1000 = 1000 mm
+        </div>
+
+        <p><strong>Area:</strong></p>
+
+        <div class="formula">
+          A = πd²/4
+        </div>
+
+        <div class="formula">
+          A =
+          π(10)²/4
+          = 78.54 mm²
+        </div>
+
+        <p><strong>Axial extension:</strong></p>
+
+        <div class="formula">
+          δ = PL/(AE)
+        </div>
+
+        <div class="formula">
+          δ =
+          (10,000 × 1000) /
+          (78.54 × 2 × 10⁵)
+        </div>
+
+        <div class="formula">
+          δ ≈ 0.637 mm
+        </div>
+
+        <div class="answer">
+          Final Answer: δ ≈ 0.637 mm
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="card quick-revision">
+
+      <h3>📌 Main Formulas</h3>
+
+      <div class="formula">
+        σ = Eε
+      </div>
+
+      <div class="formula">
+        E = σ/ε
+      </div>
+
+      <div class="formula">
+        δ = PL/(AE)
+      </div>
+
+      <div class="formula">
+        k = P/δ
+      </div>
+
+      <div class="formula">
+        k = AE/L
+      </div>
+
+      <div class="formula">
+        δ = δ₁ + δ₂ + δ₃ + ...
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question">
+      <span class="marks">2 MARKS</span>
+      <h4>Define homogeneous and isotropic materials.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>State the principle of superposition.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>State Saint-Venant's principle.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Explain the main design criteria.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Derive δ = PL/AE for a uniform axially loaded prismatic bar.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Derive the expression for axial stiffness.</h4>
+    </div>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No verified PYQs supplied yet</h3>
+      <p>Only verified PYQs will be added here.</p>
+    </div>
+  </div>
+
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic4"></div>
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TOPIC 05
+========================================================= -->
+
+<section class="topic-panel" id="topic5">
+
+  <div class="topic-heading">
+    <div class="topic-number">TOPIC 05</div>
+    <h2>Mechanical Properties of Materials</h2>
+    <p>
+      Strength, stiffness, elasticity, plasticity, ductility, malleability,
+      brittleness, hardness, resilience, toughness, fatigue and creep.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active" data-mode="learn">📖 Learn Topic</button>
+    <button class="mode-btn" data-mode="questions">📝 Topic Questions</button>
+    <button class="mode-btn" data-mode="pyq">🎓 PYQs</button>
+    <button class="mode-btn" data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="card">
+
+      <h3>1. Strength</h3>
+
+      <div class="definition">
+        Strength is the ability of a material to resist applied stress without
+        failure.
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>2. Stiffness</h3>
+
+      <div class="definition">
+        Stiffness is the ability of a member to resist deformation.
+      </div>
+
+      <div class="formula">
+        k = P/δ
+      </div>
+
+      <p>For a uniform axially loaded prismatic bar:</p>
+
+      <div class="formula">
+        k = AE/L
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>3. Elasticity</h3>
+
+      <div class="definition">
+        Elasticity is the property by which a material regains its original
+        shape and dimensions after removal of load, provided it has not been
+        loaded beyond its elastic range.
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>4. Plasticity</h3>
+
+      <div class="definition">
+        Plasticity is the ability of a material to undergo permanent
+        deformation without rupture and retain the deformed shape after
+        unloading.
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>5. Malleability</h3>
+
+      <div class="definition">
+        Malleability is the ability of a material to undergo plastic
+        deformation mainly under compressive loading and to be formed into
+        thin sheets.
+      </div>
+
+      <p>
+        Examples include gold, silver and aluminium.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>6. Ductility</h3>
+
+      <div class="definition">
+        Ductility is the ability of a material to undergo considerable plastic
+        deformation under tensile loading before fracture.
+      </div>
+
+      <p>
+        A ductile material can be drawn into wires.
+      </p>
+
+      <p>
+        Mild steel is a common example of a ductile engineering material.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>7. Brittleness</h3>
+
+      <div class="definition">
+        Brittleness is the tendency of a material to fracture with little
+        plastic deformation.
+      </div>
+
+      <p>
+        Examples include glass, ceramics and concrete.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>8. Hardness</h3>
+
+      <div class="definition">
+        Hardness is the resistance of a material to localized plastic
+        deformation, indentation, penetration or scratching.
+      </div>
+
+      <h4>Hardness Tests</h4>
+
+      <ol>
+        <li>Brinell hardness test</li>
+        <li>Rockwell hardness test</li>
+        <li>Vickers hardness test</li>
+      </ol>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>9. Resilience</h3>
+
+      <div class="definition">
+        Resilience is the capacity of a material to absorb and store strain
+        energy within the elastic range.
+      </div>
+
+      <p>
+        On a stress–strain diagram, the elastic strain energy per unit volume
+        corresponds to the area under the elastic portion of the curve.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>10. Toughness</h3>
+
+      <div class="definition">
+        Toughness is the capacity of a material to absorb energy up to
+        fracture.
+      </div>
+
+      <p>
+        It is represented by the total area under the stress–strain curve up
+        to fracture.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>11. Fatigue</h3>
+
+      <div class="definition">
+        Fatigue is progressive damage and possible failure caused by repeated,
+        fluctuating or reversing stresses.
+      </div>
+
+      <p>
+        Fatigue failure may occur after a large number of loading cycles.
+      </p>
+
+      <h4>Endurance Strength / Endurance Limit</h4>
+
+      <p>
+        Endurance behaviour describes the resistance of a material to repeated
+        cyclic stresses.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>12. Creep</h3>
+
+      <div class="definition">
+        Creep is progressive time-dependent deformation under sustained stress
+        or load, particularly important at elevated temperature.
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>13. Ductile and Brittle Behaviour</h3>
+
+      <div class="table-wrap">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Ductile Material</th>
+              <th>Brittle Material</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Large plastic deformation before fracture</td>
+              <td>Little plastic deformation before fracture</td>
+            </tr>
+
+            <tr>
+              <td>Noticeable deformation gives warning before failure</td>
+              <td>Failure may occur relatively suddenly</td>
+            </tr>
+
+            <tr>
+              <td>Example: Mild steel</td>
+              <td>Examples: Concrete, glass, ceramics</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>14. RCC Concept</h3>
+
+      <p>
+        Concrete has high compressive strength but comparatively low tensile
+        strength.
+      </p>
+
+      <p>
+        In reinforced cement concrete, steel reinforcement is provided mainly
+        to resist tensile stresses, while concrete is particularly effective
+        in compression.
+      </p>
+
+    </article>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question">
+      <span class="marks">2 MARKS</span>
+      <h4>Define elasticity and plasticity.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Differentiate ductility and malleability.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Differentiate resilience and toughness.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Define fatigue and creep.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Explain the important mechanical properties of materials.</h4>
+    </div>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No verified PYQs supplied yet</h3>
+      <p>Only verified PYQs will be added here.</p>
+    </div>
+  </div>
+
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic5"></div>
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TOPIC 06
+========================================================= -->
+
+<section class="topic-panel" id="topic6">
+
+  <div class="topic-heading">
+    <div class="topic-number">TOPIC 06</div>
+    <h2>Mild Steel Stress–Strain Curve</h2>
+    <p>
+      Tensile testing, UTM, proportional and elastic limits, yielding, strain
+      hardening, ultimate tensile stress, necking and fracture.
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-btn active" data-mode="learn">📖 Learn Topic</button>
+    <button class="mode-btn" data-mode="questions">📝 Topic Questions</button>
+    <button class="mode-btn" data-mode="pyq">🎓 PYQs</button>
+    <button class="mode-btn" data-mode="quiz">✅ Practice MCQs</button>
+  </div>
+
+
+  <div class="mode-panel active" data-panel="learn">
+
+    <article class="card">
+
+      <h3>1. Tensile Test of Mild Steel</h3>
+
+      <p>
+        A tensile test is performed to study the mechanical behaviour of a
+        material under gradually increasing tensile load.
+      </p>
+
+      <h4>Universal Testing Machine — UTM</h4>
+
+      <p>
+        A Universal Testing Machine is used to apply and measure the tensile
+        load on the specimen.
+      </p>
+
+      <h4>Extensometer</h4>
+
+      <p>
+        An extensometer is used to measure extension over a specified gauge
+        length.
+      </p>
+
+      <div class="formula">
+        Engineering Stress = P/A₀
+      </div>
+
+      <div class="formula">
+        Engineering Strain = ΔL/L₀
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>2. Mild Steel Stress–Strain Diagram</h3>
+
+      <div class="diagram">
+        <div class="diagram-title">Typical Engineering Stress–Strain Curve</div>
+<pre>
+Engineering
+Stress, σ
+   ↑
+   │                                      E
+   │                                    /\
+   │                                   /  \
+   │                                  /    \
+   │                                 /      \ F
+   │                    D __________/
+   │              C'   /
+   │              /\__C
+   │             /
+   │            B
+   │          /
+   │        A
+   │      /
+   │    /
+   │  /
+   O────────────────────────────────────────→ Engineering Strain, ε
+
+O–A : Linear proportional region
+A   : Proportional limit
+B   : Elastic limit
+C'  : Upper yield point
+C   : Lower yield point
+C–D : Yielding / plastic-flow transition
+D–E : Strain hardening
+E   : Ultimate tensile stress
+E–F : Necking region
+F   : Fracture / breaking point
+</pre>
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>3. O–A: Linear Proportional Region</h3>
+
+      <p>
+        In this region, stress is directly proportional to strain.
+      </p>
+
+      <div class="formula">
+        σ ∝ ε
+      </div>
+
+      <div class="formula">
+        σ = Eε
+      </div>
+
+      <div class="formula">
+        E = σ/ε
+      </div>
+
+      <p>
+        The slope of the straight portion of the stress–strain curve is
+        Young's modulus.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>4. Proportional Limit — Point A</h3>
+
+      <p>
+        Point A represents the limit up to which stress remains proportional
+        to strain.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>5. Elastic Limit — Point B</h3>
+
+      <p>
+        Up to the elastic limit, the specimen can regain its original
+        dimensions after unloading.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>6. Upper and Lower Yield Points</h3>
+
+      <h4>Upper Yield Point — C′</h4>
+
+      <p>
+        Mild steel first reaches the upper yield point, after which the
+        engineering stress drops.
+      </p>
+
+      <h4>Lower Yield Point — C</h4>
+
+      <p>
+        After the upper yield point, the stress falls to the lower yield level.
+        Significant plastic strain can occur with relatively little change in
+        engineering stress.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>7. Strain Hardening</h3>
+
+      <p>
+        After the yielding stage, further plastic deformation requires an
+        increase in stress. This behaviour is called strain hardening.
+      </p>
+
+      <p>
+        During strain hardening, the engineering stress rises toward the
+        ultimate tensile stress.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>8. Ultimate Tensile Stress — Point E</h3>
+
+      <div class="definition">
+        Ultimate tensile stress is the maximum engineering stress reached by
+        the specimen during the tensile test.
+      </div>
+
+      <div class="formula">
+        UTS = P<sub>max</sub>/A₀
+      </div>
+
+      <p>
+        After the ultimate point, localized reduction in cross-sectional area
+        begins.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>9. Necking</h3>
+
+      <div class="definition">
+        Necking is the localized reduction in cross-sectional area that occurs
+        after the ultimate tensile stress is reached in a ductile specimen.
+      </div>
+
+      <div class="diagram">
+<pre>
+Before necking             During necking
+
+|==========|               |====\  /====|
+                                 \/
+                                 /\
+</pre>
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>10. Fracture / Breaking Point — F</h3>
+
+      <p>
+        Continued necking ultimately causes the specimen to fracture.
+      </p>
+
+      <p>
+        Point F represents the fracture or breaking point on the engineering
+        stress–strain curve.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>11. Complete Sequence</h3>
+
+      <div class="tree">
+Linear Proportional Behaviour
+        ↓
+Proportional Limit
+        ↓
+Elastic Limit
+        ↓
+Upper Yield Point
+        ↓
+Lower Yield Point
+        ↓
+Yielding / Plastic Flow
+        ↓
+Strain Hardening
+        ↓
+Ultimate Tensile Stress
+        ↓
+Necking
+        ↓
+Fracture
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>12. Cup-and-Cone Fracture</h3>
+
+      <p>
+        A ductile mild-steel tensile specimen commonly exhibits a cup-and-cone
+        type fracture.
+      </p>
+
+      <div class="diagram">
+        <div class="diagram-title">Conceptual Cup-and-Cone Fracture</div>
+<pre>
+                 Necking
+                    ↓
+
+───────────────\      /───────────────
+                \    /
+                 \  /
+                  \/
+                  /\
+                 /  \
+                /    \
+───────────────/      \───────────────
+
+Inclined shear regions are approximately
+45° to the tensile axis.
+</pre>
+      </div>
+
+      <p>
+        Under uniaxial tensile loading, planes of maximum shear stress occur at
+        approximately 45° to the tensile axis.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <h3>13. Important Stress–Strain Formulas</h3>
+
+      <div class="formula">
+        σ = Eε
+      </div>
+
+      <div class="formula">
+        E = σ/ε
+      </div>
+
+      <div class="formula">
+        Engineering stress = P/A₀
+      </div>
+
+      <div class="formula">
+        Engineering strain = ΔL/L₀
+      </div>
+
+      <div class="formula">
+        UTS = P<sub>max</sub>/A₀
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="questions">
+
+    <div class="question">
+      <span class="marks">2 MARKS</span>
+      <h4>What is a Universal Testing Machine?</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">2 MARKS</span>
+      <h4>What is the function of an extensometer?</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Define proportional limit and elastic limit.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Explain upper and lower yield points of mild steel.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>What is strain hardening?</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">3 MARKS</span>
+      <h4>Define ultimate tensile stress and necking.</h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>
+        Draw and explain the engineering stress–strain curve for mild steel.
+      </h4>
+    </div>
+
+    <div class="question">
+      <span class="marks">5 MARKS</span>
+      <h4>Explain cup-and-cone fracture in a ductile material.</h4>
+    </div>
+
+  </div>
+
+
+  <div class="mode-panel" data-panel="pyq">
+    <div class="pyq-empty">
+      <div class="icon">🎓</div>
+      <h3>No verified PYQs supplied yet</h3>
+      <p>Only verified PYQs will be added here.</p>
+    </div>
+  </div>
+
+
+  <div class="mode-panel" data-panel="quiz">
+    <div class="quiz-container" data-quiz="topic6"></div>
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+  <strong>CE2103 — Mechanics of Materials • Week 01</strong>
+  <br>
+  Civil Engineering Study Portal
+</footer>
+
+
+<script>
+
+/* ==========================================================
+   MAIN TOPIC NAVIGATION
+========================================================== */
+
+const topicTabs = document.querySelectorAll(".topic-tab");
+const topicPanels = document.querySelectorAll(".topic-panel");
+
+topicTabs.forEach(tab => {
+
+  tab.addEventListener("click", () => {
+
+    topicTabs.forEach(t => t.classList.remove("active"));
+    topicPanels.forEach(p => p.classList.remove("active"));
+
+    tab.classList.add("active");
+
+    const target = document.getElementById(tab.dataset.topic);
+
+    if(target){
+      target.classList.add("active");
+    }
+
+    window.scrollTo({
+      top: document.querySelector(".topic-tabs").offsetTop,
+      behavior: "smooth"
+    });
+
+  });
+
+});
+
+
+/* ==========================================================
+   LEARN / QUESTIONS / PYQ / QUIZ NAVIGATION
+========================================================== */
+
+document.querySelectorAll(".topic-panel").forEach(topic => {
+
+  const buttons = topic.querySelectorAll(".mode-btn");
+  const panels = topic.querySelectorAll(".mode-panel");
+
+  buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      buttons.forEach(b => b.classList.remove("active"));
+      panels.forEach(p => p.classList.remove("active"));
+
+      button.classList.add("active");
+
+      const mode = button.dataset.mode;
+
+      const targetPanel =
+        topic.querySelector(`[data-panel="${mode}"]`);
+
+      if(targetPanel){
+        targetPanel.classList.add("active");
+      }
+
+      if(mode === "quiz"){
+
+        const quizHost =
+          topic.querySelector(".quiz-container");
+
+        if(
+          quizHost &&
+          !quizHost.dataset.started
+        ){
+
+          quizHost.dataset.started = "true";
+
+          startQuiz(
+            quizHost.dataset.quiz,
+            quizHost
+          );
+
+        }
+
+      }
+
+    });
+
+  });
+
+});
+
+
+/* ==========================================================
+   QUIZ DATABASE
+========================================================== */
+
+const quizData = {
+
+topic1:[
+
+{
+q:"A load that acts suddenly due to collision or falling weight is:",
+correct:"Impact load",
+wrong:[
+"Dead load",
+"UDL",
+"Gradually applied load"
+],
+explanation:
+"Impact loading is produced when a load is applied suddenly, such as by collision or a falling body."
+},
+
+{
+q:"A load acting perpendicular to the resisting cross-section is classified as:",
+correct:"Normal load",
+wrong:[
+"Shear load",
+"Distributed moment",
+"Torsional load only"
+],
+explanation:
+"A normal load acts perpendicular to the resisting cross-sectional area."
+},
+
+{
+q:"UDL stands for:",
+correct:"Uniformly Distributed Load",
+wrong:[
+"Uniformly Developed Load",
+"Universal Distributed Load",
+"Unequal Distributed Load"
+],
+explanation:
+"In a UDL, the load intensity remains constant along the loaded length."
+},
+
+{
+q:"Which load has an intensity that varies uniformly along its length?",
+correct:"UVL",
+wrong:[
+"UDL",
+"Point load",
+"Dead load only"
+],
+explanation:
+"UVL means Uniformly Varying Load."
+}
+
+],
+
+
+topic2:[
+
+{
+q:"Normal stress in a member subjected to a uniform axial load is:",
+correct:"σ = P/A",
+wrong:[
+"σ = PA",
+"σ = A/P",
+"σ = PL"
+],
+explanation:
+"Average normal stress equals axial force divided by the resisting cross-sectional area."
+},
+
+{
+q:"One MPa is equal to:",
+correct:"1 N/mm²",
+wrong:[
+"1 N/m²",
+"100 N/mm²",
+"0.001 N/mm²"
+],
+explanation:
+"1 MPa = 10⁶ N/m² = 1 N/mm²."
+},
+
+{
+q:"Stress acting tangentially to an area is:",
+correct:"Shear stress",
+wrong:[
+"Normal stress",
+"Volumetric strain",
+"Young's modulus"
+],
+explanation:
+"Shear stress acts parallel or tangential to the resisting area."
+},
+
+{
+q:"For a nonuniform normal-stress distribution, the resultant axial force is:",
+correct:"P = ∫A σ dA",
+wrong:[
+"P = σ/A",
+"P = A/σ",
+"P = σL"
+],
+explanation:
+"The force on an elemental area is dP = σdA; integrating over the area gives the resultant."
+}
+
+],
+
+
+topic3:[
+
+{
+q:"Longitudinal strain is:",
+correct:"εL = ΔL/L",
+wrong:[
+"εL = L/ΔL",
+"εL = ΔV/V",
+"εL = P/A"
+],
+explanation:
+"Longitudinal strain is change in length divided by original length."
+},
+
+{
+q:"For a small-strain cylindrical body, volumetric strain is:",
+correct:"εv = εL + 2εd",
+wrong:[
+"εv = εL + εd",
+"εv = 2εL + εd",
+"εv = 3εL"
+],
+explanation:
+"For V = πd²L/4, logarithmic differentiation gives dV/V = dL/L + 2dd/d."
+},
+
+{
+q:"For a small-strain spherical body:",
+correct:"εv = 3εd",
+wrong:[
+"εv = εd",
+"εv = 2εd",
+"εv = 4εd"
+],
+explanation:
+"Since V is proportional to d³, dV/V = 3dd/d."
+},
+
+{
+q:"For a small angular deformation, shear strain is approximately:",
+correct:"γ ≈ Δx/h",
+wrong:[
+"γ = h/Δx",
+"γ = P/A",
+"γ = ΔV/V"
+],
+explanation:
+"For a small angle, tanφ ≈ φ, giving γ ≈ Δx/h."
+}
+
+],
+
+
+topic4:[
+
+{
+q:"Hooke's law in uniaxial loading is:",
+correct:"σ = Eε",
+wrong:[
+"σ = E/ε",
+"σ = ε/E",
+"σ = PL"
+],
+explanation:
+"Within the proportional linear-elastic range, stress equals Young's modulus multiplied by strain."
+},
+
+{
+q:"Axial deformation of a uniform prismatic bar is:",
+correct:"δ = PL/AE",
+wrong:[
+"δ = AE/PL",
+"δ = PA/EL",
+"δ = PAE/L"
+],
+explanation:
+"Combining σ=P/A, ε=δ/L and E=σ/ε gives δ=PL/AE."
+},
+
+{
+q:"Axial stiffness of a uniform prismatic bar is:",
+correct:"k = AE/L",
+wrong:[
+"k = AL/E",
+"k = EL/A",
+"k = L/AE"
+],
+explanation:
+"Since k=P/δ and δ=PL/AE, k=AE/L."
+},
+
+{
+q:"Superposition is applicable to:",
+correct:"Linear-elastic response",
+wrong:[
+"All nonlinear plastic response without restriction",
+"Only fractured members",
+"Only fluids"
+],
+explanation:
+"Superposition requires a linear response."
+}
+
+],
+
+
+topic5:[
+
+{
+q:"The ability of a material to undergo significant plastic deformation in tension before fracture is:",
+correct:"Ductility",
+wrong:[
+"Brittleness",
+"Hardness",
+"Stiffness"
+],
+explanation:
+"Ductility describes significant plastic deformation under tensile loading before fracture."
+},
+
+{
+q:"Energy absorption capacity up to fracture is called:",
+correct:"Toughness",
+wrong:[
+"Resilience",
+"Stiffness",
+"Hardness"
+],
+explanation:
+"Toughness corresponds to energy absorbed per unit volume up to fracture."
+},
+
+{
+q:"Which is a hardness test?",
+correct:"Vickers test",
+wrong:[
+"Slump test",
+"Compaction factor test",
+"Flow-table test"
+],
+explanation:
+"Brinell, Rockwell and Vickers are common hardness tests."
+},
+
+{
+q:"Time-dependent deformation under sustained stress, especially at elevated temperature, is:",
+correct:"Creep",
+wrong:[
+"Fatigue",
+"Resilience",
+"Elasticity"
+],
+explanation:
+"Creep is progressive time-dependent deformation under sustained stress."
+}
+
+],
+
+
+topic6:[
+
+{
+q:"The slope of the initial linear portion of the stress–strain curve is:",
+correct:"Young's modulus",
+wrong:[
+"Toughness",
+"Hardness",
+"Poisson load"
+],
+explanation:
+"In the proportional linear region, E = σ/ε."
+},
+
+{
+q:"The maximum engineering stress in a tensile test is:",
+correct:"Ultimate tensile stress",
+wrong:[
+"Lower yield stress only",
+"Elastic strain",
+"Shear strain"
+],
+explanation:
+"UTS is the maximum value of engineering stress reached during the tensile test."
+},
+
+{
+q:"Localized reduction in cross-sectional area after UTS is called:",
+correct:"Necking",
+wrong:[
+"Hardening only",
+"Resilience",
+"Homogeneity"
+],
+explanation:
+"After the ultimate engineering stress is reached, deformation localizes and necking develops."
+},
+
+{
+q:"A ductile mild-steel tensile specimen commonly shows:",
+correct:"Cup-and-cone fracture",
+wrong:[
+"No deformation before failure",
+"Only compressive crushing",
+"Perfectly horizontal fracture in every case"
+],
+explanation:
+"Ductile tensile fracture commonly develops a cup-and-cone appearance with inclined shear regions."
+}
+
+]
+
+};
+
+
+/* ==========================================================
+   QUIZ ENGINE
+========================================================== */
+
+const quizState = {};
+
+function shuffle(array){
+
+  const copy = [...array];
+
+  for(let i = copy.length - 1; i > 0; i--){
+
+    const j =
+      Math.floor(Math.random() * (i + 1));
+
+    [copy[i],copy[j]] =
+      [copy[j],copy[i]];
+
+  }
+
+  return copy;
+}
+
+
+function startQuiz(name,host){
+
+  if(!quizData[name]){
+    host.innerHTML =
+      "<p>No quiz questions available.</p>";
+    return;
+  }
+
+  quizState[name] = {
+    questions:shuffle(quizData[name]),
+    index:0,
+    score:0
+  };
+
+  renderQuiz(name,host);
+
+}
+
+
+function renderQuiz(name,host){
+
+  const state = quizState[name];
+
+  if(state.index >= state.questions.length){
+
+    host.innerHTML = `
+      <h3>Quiz Completed</h3>
+
+      <p style="font-size:20px;margin-top:10px;">
+        Score:
+        <strong>
+          ${state.score}/${state.questions.length}
+        </strong>
+      </p>
+
+      <button
+        class="quiz-next"
+        onclick="startQuiz('${name}',this.parentElement)"
+      >
+        Restart Quiz
+      </button>
+    `;
+
+    return;
+  }
+
+  const item =
+    state.questions[state.index];
+
+  const options =
+    shuffle([
+      item.correct,
+      ...item.wrong
+    ]);
+
+  host.innerHTML = `
+
+    <div style="color:#667085;font-size:12px;font-weight:800;margin-bottom:8px;">
+      QUESTION ${state.index + 1}
+      OF ${state.questions.length}
+    </div>
+
+    <div class="quiz-question">
+      ${item.q}
+    </div>
+
+    <div class="quiz-options">
+
+      ${options.map(option => `
+        <button
+          class="quiz-option"
+          data-answer="${encodeURIComponent(option)}"
+        >
+          ${option}
+        </button>
+      `).join("")}
+
+    </div>
+
+    <div class="quiz-feedback"></div>
+
+  `;
+
+  const buttons =
+    host.querySelectorAll(".quiz-option");
+
+  buttons.forEach(button => {
+
+    button.addEventListener("click",() => {
+
+      if(host.dataset.answered === "true"){
+        return;
+      }
+
+      host.dataset.answered = "true";
+
+      const selected =
+        decodeURIComponent(
+          button.dataset.answer
+        );
+
+      const feedback =
+        host.querySelector(".quiz-feedback");
+
+      buttons.forEach(btn => {
+
+        const answer =
+          decodeURIComponent(
+            btn.dataset.answer
+          );
+
+        if(answer === item.correct){
+          btn.classList.add("correct");
+        }
+
+      });
+
+      if(selected === item.correct){
+
+        state.score++;
+
+        feedback.innerHTML =
+          `✅ Correct.<br>${item.explanation}`;
+
+      }else{
+
+        button.classList.add("wrong");
+
+        feedback.innerHTML =
+          `❌ Incorrect. Correct answer:
+           <strong>${item.correct}</strong><br>
+           ${item.explanation}`;
+
+      }
+
+      const next =
+        document.createElement("button");
+
+      next.className =
+        "quiz-next";
+
+      next.textContent =
+        state.index ===
+        state.questions.length - 1
+        ? "View Result"
+        : "Next Question →";
+
+      next.onclick = () => {
+
+        state.index++;
+
+        host.dataset.answered = "false";
+
+        renderQuiz(name,host);
+
+      };
+
+      feedback.appendChild(
+        document.createElement("br")
+      );
+
+      feedback.appendChild(next);
+
+    });
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>
