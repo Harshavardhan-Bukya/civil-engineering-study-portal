@@ -993,7 +993,15 @@ footer strong{
   </button>
 
   <button data-topic="topic10">
-    10 • Scaffolding & Formwork
+    10 • Laminates
+  </button>
+
+  <button data-topic="topic11">
+    11 • Scaffolding
+  </button>
+
+  <button data-topic="topic12">
+    12 • Formwork
   </button>
 
 </nav>
@@ -14821,7 +14829,9 @@ here later without changing the learning material.
      TOPIC 12 — FORMWORK
 ========================================================= -->
 
-  <!-- =========================================================
+  </main>
+
+<!-- =========================================================
      FINAL FUNCTIONAL SECTION
      CMCT TOPICS 08–12
 ========================================================= -->
@@ -14834,1400 +14844,1171 @@ here later without changing the learning material.
 
 const cmctQuizData = {
 
-
-/* ============================================================
-   TOPIC 08 — BRICKS
-============================================================ */
-
-topic8: [
-
+topic1: [
 {
-question: "The principal raw material used for manufacturing ordinary clay bricks is:",
-options: [
-"Brick earth",
-"Granite",
-"Gypsum",
-"Cement"
-],
-answer: 0,
-explanation:
-"Ordinary clay bricks are manufactured mainly from suitable brick earth."
-},
-
-{
-question: "Which constituent of brick earth provides plasticity?",
-options: [
-"Silica",
-"Alumina",
-"Iron oxide",
-"Magnesia"
-],
+question: "Building materials are also called:",
+options: ["Geological agents","Materials of construction","Falsework","Preservatives"],
 answer: 1,
-explanation:
-"Alumina provides plasticity and enables brick earth to be moulded."
+explanation: "The notes use 'building materials' and 'materials of construction' for materials used in civil-engineering works."
 },
-
 {
-question: "Which constituent helps to prevent excessive shrinkage of bricks?",
-options: [
-"Silica",
-"Organic matter",
-"Alkalies",
-"Pebbles"
-],
-answer: 0,
-explanation:
-"Silica helps control excessive shrinkage and cracking."
-},
-
-{
-question: "Iron oxide in brick earth mainly contributes to:",
-options: [
-"Colour and burning",
-"Water absorption",
-"Organic content",
-"Frog formation"
-],
-answer: 0,
-explanation:
-"Iron oxide contributes to the colour of burnt bricks and assists the burning process."
-},
-
-{
-question: "Which of the following is an undesirable constituent when present excessively in brick earth?",
-options: [
-"Alumina",
-"Silica",
-"Alkalies",
-"Iron oxide"
-],
+question: "Knowledge of construction materials helps an engineer select a material that is:",
+options: ["Only decorative","Always metallic","Economical, durable and suitable","Always artificial"],
 answer: 2,
-explanation:
-"Excessive alkalies may cause efflorescence and other defects."
+explanation: "Material selection should consider economy, durability and suitability."
 },
-
 {
-question: "The first major stage in brick manufacture is:",
-options: [
-"Burning",
-"Preparation of brick earth",
-"Testing",
-"Painting"
-],
-answer: 1,
-explanation:
-"Brick manufacture begins with preparation of suitable brick earth."
-},
-
-{
-question: "Removal of the upper layer of soil containing vegetation and impurities is called:",
-options: [
-"Tempering",
-"Blending",
-"Unsoiling",
-"Burning"
-],
-answer: 2,
-explanation:
-"Unsoiling is the removal of the undesirable upper layer of soil."
-},
-
-{
-question: "The process of exposing excavated brick earth to atmospheric action is called:",
-options: [
-"Weathering",
-"Burning",
-"Moulding",
-"Pressing"
-],
-answer: 0,
-explanation:
-"Weathering exposes brick earth to atmospheric action before further processing."
-},
-
-{
-question: "Mixing the required ingredients uniformly with brick earth is called:",
-options: [
-"Drying",
-"Blending",
-"Burning",
-"Frogging"
-],
-answer: 1,
-explanation:
-"Blending produces a uniform mixture of the required constituents."
-},
-
-{
-question: "Adding water and thoroughly kneading brick earth to obtain a plastic mass is called:",
-options: [
-"Tempering",
-"Unsoiling",
-"Drying",
-"Burning"
-],
-answer: 0,
-explanation:
-"Tempering produces a homogeneous plastic mass suitable for moulding."
-},
-
-{
-question: "Giving prepared brick earth the required shape is known as:",
-options: [
-"Burning",
-"Moulding",
-"Weathering",
-"Seasoning"
-],
-answer: 1,
-explanation:
-"Moulding gives the prepared clay the required brick shape and dimensions."
-},
-
-{
-question: "Hand moulding may be carried out by:",
-options: [
-"Ground and table moulding",
-"Kiln and clamp moulding",
-"Dry and wet burning",
-"Air and water moulding"
-],
-answer: 0,
-explanation:
-"Ground moulding and table moulding are common hand-moulding methods."
-},
-
-{
-question: "The depression provided on one face of a brick is called:",
-options: [
-"Joint",
-"Frog",
-"Bed",
-"Header"
-],
-answer: 1,
-explanation:
-"The depression on a brick face is called a frog."
-},
-
-{
-question: "One important purpose of a frog is to:",
-options: [
-"Increase brick weight",
-"Provide a key for mortar",
-"Prevent burning",
-"Replace mortar"
-],
-answer: 1,
-explanation:
-"The frog helps provide a key for mortar."
-},
-
-{
-question: "Freshly moulded bricks are dried before burning mainly to:",
-options: [
-"Increase their moisture",
-"Remove moisture",
-"Change clay into cement",
-"Create alkalies"
-],
-answer: 1,
-explanation:
-"Drying removes moisture before the bricks enter the burning stage."
-},
-
-{
-question: "Brick burning develops:",
-options: [
-"Strength and hardness",
-"Vegetation",
-"Plasticity only",
-"Organic matter"
-],
-answer: 0,
-explanation:
-"Proper burning develops strength, hardness, durability and colour."
-},
-
-{
-question: "Which is generally more controlled for burning bricks?",
-options: [
-"Kiln",
-"Open ground",
-"Water tank",
-"Moulding table"
-],
-answer: 0,
-explanation:
-"Kilns permit better control of brick burning than simple clamps."
-},
-
-{
-question: "Burnt bricks are commonly classified into how many quality classes?",
-options: [
-"Two",
-"Three",
-"Four",
-"Six"
-],
-answer: 2,
-explanation:
-"Burnt bricks are commonly classified as first, second, third and fourth class."
-},
-
-{
-question: "Which class represents superior-quality burnt bricks?",
-options: [
-"First class",
-"Second class",
-"Third class",
-"Fourth class"
-],
-answer: 0,
-explanation:
-"First-class bricks are well burnt, regular and of superior quality."
-},
-
-{
-question: "Third-class bricks are generally:",
-options: [
-"Under-burnt",
-"Over-burnt",
-"Metallic",
-"Glazed"
-],
-answer: 0,
-explanation:
-"Third-class bricks are generally under-burnt and comparatively weak."
-},
-
-{
-question: "Fourth-class bricks are generally:",
-options: [
-"Under-burnt",
-"Over-burnt",
-"Unburnt",
-"Transparent"
-],
-answer: 1,
-explanation:
-"Fourth-class bricks are over-burnt and are not normally suitable for masonry."
-},
-
-{
-question: "A good brick should produce which sound when struck against another sound brick?",
-options: [
-"A clear ringing sound",
-"No sound",
-"A soft cracking sound",
-"A hollow plastic sound"
-],
-answer: 0,
-explanation:
-"A clear ringing sound is a common field indication of a sound brick."
-},
-
-{
-question: "The formula for water absorption of a brick is:",
-options: [
-"(W1 − W2)/W2 × 100",
-"(W2 − W1)/W1 × 100",
-"W1/W2",
-"W1 + W2"
-],
-answer: 1,
-explanation:
-"Water absorption (%) = [(W2 − W1) / W1] × 100."
-},
-
-{
-question: "In the water absorption formula, W1 represents:",
-options: [
-"Dry weight",
-"Wet weight",
-"Volume",
-"Compressive load"
-],
-answer: 0,
-explanation:
-"W1 is the dry weight of the brick."
-},
-
-{
-question: "White salt deposits appearing on brick surfaces are called:",
-options: [
-"Efflorescence",
-"Seasoning",
-"Tempering",
-"Weathering"
-],
-answer: 0,
-explanation:
-"Efflorescence is the appearance of whitish deposits caused by soluble salts."
-},
-
-{
-question: "Compressive strength is calculated as:",
-options: [
-"Area / load",
-"Maximum compressive load / loaded area",
-"Weight × area",
-"Volume / weight"
-],
-answer: 1,
-explanation:
-"Compressive strength equals the maximum compressive load divided by the loaded area."
-},
-
-{
-question: "A brick laid with its longer face visible is called a:",
-options: [
-"Header",
-"Stretcher",
-"Closer",
-"Bat"
-],
-answer: 1,
-explanation:
-"A stretcher presents its longer face on the wall face."
-},
-
-{
-question: "A brick laid with its shorter face visible is called a:",
-options: [
-"Stretcher",
-"Header",
-"Bed",
-"Course"
-],
-answer: 1,
-explanation:
-"A header presents its shorter face on the wall face."
-},
-
-{
-question: "In English bond:",
-options: [
-"Headers and stretchers alternate in the same course",
-"Header and stretcher courses alternate",
-"Only stretchers are used",
-"Only headers are used"
-],
-answer: 1,
-explanation:
-"English bond consists of alternate courses of headers and stretchers."
-},
-
-{
-question: "In Flemish bond:",
-options: [
-"Headers and stretchers alternate in the same course",
-"Only headers occur",
-"Only stretchers occur",
-"No bond is provided"
-],
-answer: 0,
-explanation:
-"Flemish bond alternates headers and stretchers within the same course."
-}
-
-],
-
-
-/* ============================================================
-   TOPIC 09 — TIMBER
-============================================================ */
-
-topic9: [
-
-{
-question: "Timber is obtained from:",
-options: [
-"Trees",
-"Clay",
-"Cement",
-"Stone"
-],
-answer: 0,
-explanation:
-"Timber is wood obtained from trees and prepared for engineering or construction use."
-},
-
-{
-question: "Trees that grow outward by forming successive rings are called:",
-options: [
-"Endogenous trees",
-"Exogenous trees",
-"Artificial trees",
-"Fibrous trees"
-],
-answer: 1,
-explanation:
-"Exogenous trees grow outward through successive annual rings."
-},
-
-{
-question: "Most important structural timber is obtained from:",
-options: [
-"Exogenous trees",
-"Endogenous trees only",
-"Grass",
-"Clay"
-],
-answer: 0,
-explanation:
-"Most conventional structural timber comes from exogenous trees."
-},
-
-{
-question: "Coniferous trees commonly yield:",
-options: [
-"Softwood",
-"Clay",
-"Stone",
-"Brick"
-],
-answer: 0,
-explanation:
-"Coniferous trees are commonly associated with softwood."
-},
-
-{
-question: "Teak is commonly classified as a:",
-options: [
-"Deciduous tree",
-"Coniferous tree",
-"Endogenous grass",
-"Palm"
-],
-answer: 0,
-explanation:
-"Teak is a deciduous tree and is commonly associated with hardwood."
-},
-
-{
-question: "The outer protective covering of a tree is:",
-options: [
-"Pith",
-"Bark",
-"Heartwood",
-"Medullary ray"
-],
-answer: 1,
-explanation:
-"Bark forms the external protective covering."
-},
-
-{
-question: "The central core of a tree trunk is called:",
-options: [
-"Pith",
-"Sapwood",
-"Bark",
-"Cambium"
-],
-answer: 0,
-explanation:
-"The pith or medulla forms the central core."
-},
-
-{
-question: "The mature inner portion of timber is:",
-options: [
-"Sapwood",
-"Heartwood",
-"Bark",
-"Cambium"
-],
-answer: 1,
-explanation:
-"Heartwood is the mature inner portion of the tree trunk."
-},
-
-{
-question: "The younger outer wood that participates in movement of sap is:",
-options: [
-"Heartwood",
-"Sapwood",
-"Pith",
-"Bark"
-],
-answer: 1,
-explanation:
-"Sapwood is the younger outer wood involved in sap movement."
-},
-
-{
-question: "Radial tissues extending through timber are called:",
-options: [
-"Medullary rays",
-"Knots",
-"Shakes",
-"Checks"
-],
-answer: 0,
-explanation:
-"Medullary rays extend radially through the trunk."
-},
-
-{
-question: "Seasoning of timber means:",
-options: [
-"Increasing moisture",
-"Reducing moisture content",
-"Burning timber",
-"Painting timber"
-],
-answer: 1,
-explanation:
-"Seasoning is the controlled reduction of moisture content."
-},
-
-{
-question: "One major purpose of seasoning is to improve:",
-options: [
-"Dimensional stability",
-"Moisture absorption",
-"Fungal growth",
-"Timber weight"
-],
-answer: 0,
-explanation:
-"Proper seasoning improves dimensional stability."
-},
-
-{
-question: "Which is a natural seasoning method?",
-options: [
-"Air seasoning",
-"Kiln seasoning",
-"Electrical seasoning",
-"Chemical seasoning"
-],
-answer: 0,
-explanation:
-"Air seasoning is a natural method."
-},
-
-{
-question: "Which seasoning method uses a controlled chamber?",
-options: [
-"Air seasoning",
-"Kiln seasoning",
-"Water seasoning",
-"Ground seasoning"
-],
-answer: 1,
-explanation:
-"Kiln seasoning uses controlled temperature, humidity and air circulation."
-},
-
-{
-question: "Artificial seasoning is generally:",
-options: [
-"More controllable",
-"Impossible to control",
-"Always slower",
-"Performed only underwater"
-],
-answer: 0,
-explanation:
-"Artificial seasoning provides greater control over drying conditions."
-},
-
-{
-question: "Preservation of timber is primarily carried out to:",
-options: [
-"Increase deterioration",
-"Protect timber from destructive agencies",
-"Increase moisture content",
-"Produce clay"
-],
-answer: 1,
-explanation:
-"Preservation improves resistance to fungi, insects, moisture and other destructive agencies."
-},
-
-{
-question: "Which method can provide deeper preservative penetration?",
-options: [
-"Pressure treatment",
-"Simple dusting",
-"Dry cutting",
-"Polishing only"
-],
-answer: 0,
-explanation:
-"Pressure treatment can force preservative deeper into timber."
-},
-
-{
-question: "A portion of a branch embedded in wood is called:",
-options: [
-"Knot",
-"Shake",
-"Check",
-"Split"
-],
-answer: 0,
-explanation:
-"A knot is formed by a branch embedded in the main wood."
-},
-
-{
-question: "Heart shake, star shake and ring shake are:",
-options: [
-"Timber defects",
-"Brick tests",
-"Cement compounds",
-"Formwork members"
-],
-answer: 0,
-explanation:
-"They are forms of shakes found in timber."
-},
-
-{
-question: "Warping is mainly associated with:",
-options: [
-"Unequal shrinkage during drying",
-"Brick burning",
-"Cement hydration",
-"Concrete mixing"
-],
-answer: 0,
-explanation:
-"Unequal drying and shrinkage can distort timber and cause warping."
-},
-
-{
-question: "Which is a form of timber warping?",
-options: [
-"Bow",
-"Frog",
-"Header",
-"Ledger"
-],
-answer: 0,
-explanation:
-"Bow is a common form of warping."
-},
-
-{
-question: "Which of the following is NOT a common form of timber warping?",
-options: [
-"Cup",
-"Twist",
-"Bow",
-"Frog"
-],
+question: "Which is a natural construction material?",
+options: ["Brick","Laminate","Concrete block","Stone"],
 answer: 3,
-explanation:
-"A frog is a feature of a brick, not a timber warping defect."
+explanation: "Stone occurs naturally and is used after extraction and dressing."
 },
-
 {
-question: "Internal cracks produced by severe drying stresses are associated with:",
-options: [
-"Honeycombing",
-"Frog",
-"Efflorescence",
-"Blending"
-],
+question: "Which material in Unit I is obtained from trees?",
+options: ["Timber","Brick","Aggregate","Stone"],
 answer: 0,
-explanation:
-"Honeycombing is an internal seasoning defect."
+explanation: "Timber is wood obtained from trees and converted for construction use."
 },
-
 {
-question: "Dry rot is caused by:",
-options: [
-"Fungal deterioration",
-"Brick moulding",
-"Cement hydration",
-"Steel corrosion only"
-],
-answer: 0,
-explanation:
-"Dry rot is a serious form of fungal deterioration in timber."
+question: "Rocks are geologically classified into:",
+options: ["Fine, medium and coarse","Igneous, sedimentary and metamorphic","Natural, artificial and composite","Hard, soft and plastic"],
+answer: 1,
+explanation: "The geological classification has three groups: igneous, sedimentary and metamorphic."
 },
-
 {
-question: "Termites are responsible for:",
-options: [
-"Insect attack on timber",
-"Brick efflorescence",
-"Cement setting",
-"Concrete compaction"
-],
-answer: 0,
-explanation:
-"Termites can attack and progressively damage timber."
-}
-
-],
-
-
-/* ============================================================
-   TOPIC 10 — LAMINATES
-============================================================ */
-
-topic10: [
-
-{
-question: "A laminate is formed by:",
-options: [
-"Bonding two or more layers",
-"Burning clay",
-"Crushing stone",
-"Hydrating cement"
-],
-answer: 0,
-explanation:
-"A laminate is formed by bonding layers together."
+question: "Granite belongs to which geological group?",
+options: ["Sedimentary","Metamorphic","Igneous","Organic"],
+answer: 2,
+explanation: "Granite is an igneous rock."
 },
-
 {
-question: "The material commonly used to bond laminate layers is:",
-options: [
-"Adhesive or resin",
-"Water only",
-"Sand only",
-"Air"
-],
-answer: 0,
-explanation:
-"Suitable adhesives or resins bond the layers."
-},
-
-{
-question: "The properties of a laminate depend upon:",
-options: [
-"Arrangement and type of layers",
-"Only its colour",
-"Only its name",
-"Only atmospheric pressure"
-],
-answer: 0,
-explanation:
-"Layer material, orientation, adhesive and processing influence laminate properties."
-},
-
-{
-question: "Which is a common use of laminates?",
-options: [
-"Furniture surfaces",
-"Foundation excavation",
-"Brick burning",
-"Concrete batching only"
-],
-answer: 0,
-explanation:
-"Laminates are widely used as furniture and interior surface finishes."
-},
-
-{
-question: "Plywood is manufactured from thin layers called:",
-options: [
-"Veneers",
-"Aggregates",
-"Bricks",
-"Clinkers"
-],
-answer: 0,
-explanation:
-"Plywood is manufactured by bonding thin wood veneers."
-},
-
-{
-question: "In plywood, adjacent veneers are generally arranged with:",
-options: [
-"Different grain directions",
-"Exactly no grain",
-"Only vertical fibres",
-"Random concrete reinforcement"
-],
-answer: 0,
-explanation:
-"Cross-lamination uses different grain directions in adjacent veneers."
-},
-
-{
-question: "Cross-lamination improves:",
-options: [
-"Dimensional stability",
-"Clay plasticity",
-"Cement setting time only",
-"Brick efflorescence"
-],
-answer: 0,
-explanation:
-"Cross-lamination improves dimensional stability and distributes strength."
-},
-
-{
-question: "Which is NOT a normal use of decorative laminates?",
-options: [
-"Cabinets",
-"Wall panels",
-"Furniture",
-"Fresh concrete aggregate"
-],
+question: "Marble belongs to which geological group?",
+options: ["Igneous","Sedimentary","Artificial","Metamorphic"],
 answer: 3,
-explanation:
-"Decorative laminates are not used as normal aggregate in fresh concrete."
+explanation: "Marble is a metamorphic rock."
 },
-
 {
-question: "The final stage in general laminate manufacture may include:",
-options: [
-"Trimming and finishing",
-"Unsoiling",
-"Brick burning",
-"Concrete curing only"
-],
+question: "Sandstone belongs to which geological group?",
+options: ["Sedimentary","Igneous","Metamorphic","Metallic"],
 answer: 0,
-explanation:
-"After bonding and curing, laminates are trimmed and finished."
+explanation: "Sandstone is a sedimentary rock."
 },
-
 {
-question: "A desirable laminate property is:",
-options: [
-"Dimensional stability",
-"Rapid biological decay",
-"High irregularity",
-"Poor surface finish"
-],
+question: "Which topic is concerned with extracting stone from rock beds?",
+options: ["Seasoning","Quarrying","Lamination","Formwork"],
+answer: 1,
+explanation: "Quarrying is the extraction of stone from natural rock beds."
+},
+{
+question: "Which process improves timber by controlled removal of moisture?",
+options: ["Quarrying","Dressing","Seasoning","Burning"],
+answer: 2,
+explanation: "Seasoning reduces timber moisture to a suitable level."
+},
+{
+question: "Which material is manufactured mainly from suitable clay?",
+options: ["Timber","Stone","Scaffolding","Brick"],
+answer: 3,
+explanation: "A brick is moulded from suitable clay, dried and burnt."
+},
+{
+question: "A laminate is formed mainly by:",
+options: ["Bonding two or more layers","Blasting rock","Burning clay only","Drying timber only"],
 answer: 0,
-explanation:
-"Dimensional stability is an important desirable property."
-}
-
-],
-
-
-/* ============================================================
-   TOPIC 11 — SCAFFOLDING
-============================================================ */
-
-topic11: [
-
+explanation: "Laminates are composite products made by bonding layers."
+},
 {
 question: "Scaffolding is primarily used to provide:",
-options: [
-"Working platforms and access",
-"A permanent foundation",
-"Cement hydration",
-"Brick burning"
-],
-answer: 0,
-explanation:
-"Scaffolding provides temporary access and working platforms."
+options: ["A mould for fresh concrete","Working platforms and access at height","Permanent foundations","Brick burning"],
+answer: 1,
+explanation: "Scaffolding provides temporary access and working platforms."
 },
-
 {
-question: "Vertical members in scaffolding are called:",
-options: [
-"Standards",
-"Ledgers",
-"Putlogs",
-"Braces"
-],
-answer: 0,
-explanation:
-"Standards are the principal vertical members."
+question: "Formwork primarily provides:",
+options: ["A quarry face","A timber preservative","A mould for fresh concrete","A brick frog"],
+answer: 2,
+explanation: "Formwork gives fresh concrete its required shape and dimensions."
 },
-
-{
-question: "Horizontal members running parallel to the wall are called:",
-options: [
-"Ledgers",
-"Standards",
-"Props",
-"Frogs"
-],
-answer: 0,
-explanation:
-"Ledgers connect standards horizontally parallel to the wall."
-},
-
-{
-question: "Diagonal members used to increase scaffold stability are:",
-options: [
-"Braces",
-"Standards",
-"Frogs",
-"Headers"
-],
-answer: 0,
-explanation:
-"Braces provide diagonal stiffness and stability."
-},
-
-{
-question: "The surface on which workers stand is the:",
-options: [
-"Working platform",
-"Standard",
-"Ledger",
-"Putlog"
-],
-answer: 0,
-explanation:
-"The working platform supports workers during construction operations."
-},
-
-{
-question: "Toe boards help prevent:",
-options: [
-"Tools and materials falling from platform edges",
-"Concrete hydration",
-"Timber seasoning",
-"Brick burning"
-],
-answer: 0,
-explanation:
-"Toe boards reduce the risk of objects falling from scaffold platforms."
-},
-
-{
-question: "Single scaffolding generally has:",
-options: [
-"One row of standards",
-"Two rows of standards",
-"No standards",
-"Four permanent walls"
-],
-answer: 0,
-explanation:
-"Single scaffolding has one principal row of standards."
-},
-
-{
-question: "Double scaffolding generally has:",
-options: [
-"Two rows of standards",
-"One row only",
-"No standards",
-"Only suspended ropes"
-],
-answer: 0,
-explanation:
-"Double scaffolding uses two rows of standards."
-},
-
-{
-question: "Double scaffolding is also commonly known as:",
-options: [
-"Independent scaffolding",
-"Brick frog",
-"Falsework",
-"Form face"
-],
-answer: 0,
-explanation:
-"Double scaffolding is commonly called independent scaffolding."
-},
-
-{
-question: "Which scaffolding has a platform suspended from above?",
-options: [
-"Suspended scaffolding",
-"Single scaffolding",
-"Trestle scaffolding",
-"Double scaffolding"
-],
-answer: 0,
-explanation:
-"Suspended scaffolding is supported from an overhead structure."
-},
-
-{
-question: "Which scaffolding may be used when normal ground support is obstructed?",
-options: [
-"Cantilever scaffolding",
-"Ground moulding",
-"Air seasoning",
-"English bond"
-],
-answer: 0,
-explanation:
-"Cantilever scaffolding can be considered where ordinary ground support is difficult."
-},
-
-{
-question: "Trestle scaffolding is generally associated with:",
-options: [
-"Work at comparatively limited heights",
-"Deep foundations",
-"Brick kilns",
-"Underwater concrete"
-],
-answer: 0,
-explanation:
-"Trestle scaffolding is commonly used for relatively low-level work."
-},
-
-{
-question: "Steel scaffolding commonly uses:",
-options: [
-"Steel tubes and couplers",
-"Only clay",
-"Only timber veneers",
-"Concrete bricks only"
-],
-answer: 0,
-explanation:
-"Steel or tubular scaffolding uses metallic tubes and suitable couplers."
-},
-
-{
-question: "A good scaffold should have:",
-options: [
-"Adequate strength and stability",
-"No bracing",
-"No access",
-"Unstable supports"
-],
-answer: 0,
-explanation:
-"Strength, stability and safe access are essential scaffold requirements."
-},
-
-{
-question: "Scaffolding is generally:",
-options: [
-"A temporary construction arrangement",
-"A cement compound",
-"A permanent brick bond",
-"A timber defect"
-],
-answer: 0,
-explanation:
-"Scaffolding is normally a temporary construction structure."
-}
-
-],
-
-
-/* ============================================================
-   TOPIC 12 — FORMWORK
-============================================================ */
-
-topic12: [
-
-{
-question: "Formwork is primarily used as:",
-options: [
-"A mould for fresh concrete",
-"A brick kiln",
-"A timber seasoning chamber only",
-"A permanent scaffold"
-],
-answer: 0,
-explanation:
-"Formwork provides the required mould and support for fresh concrete."
-},
-
 {
 question: "Falsework primarily provides:",
-options: [
-"Temporary structural support",
-"Brick colour",
-"Timber grain",
-"Cement composition"
-],
-answer: 0,
-explanation:
-"Falsework temporarily supports formwork and construction loads."
-},
-
-{
-question: "Good formwork should possess:",
-options: [
-"Adequate strength and rigidity",
-"Maximum leakage",
-"Poor alignment",
-"Instability"
-],
-answer: 0,
-explanation:
-"Formwork must remain strong, rigid and stable during concrete placement."
-},
-
-{
-question: "Formwork joints should be sufficiently tight mainly to:",
-options: [
-"Limit loss of cement paste or grout",
-"Increase leakage",
-"Allow concrete to escape",
-"Increase timber defects"
-],
-answer: 0,
-explanation:
-"Tight joints help prevent loss of cement paste or grout."
-},
-
-{
-question: "Which material is commonly used for formwork?",
-options: [
-"Plywood",
-"Brick earth only",
-"Gypsum clinker only",
-"Coal only"
-],
-answer: 0,
-explanation:
-"Plywood is widely used as a form-facing material."
-},
-
-{
-question: "Which is also commonly used for reusable formwork?",
-options: [
-"Steel",
-"Loose sand",
-"Organic soil",
-"Brick powder only"
-],
-answer: 0,
-explanation:
-"Steel formwork is durable and suitable for repeated use."
-},
-
-{
-question: "The surface directly in contact with fresh concrete is commonly called:",
-options: [
-"Form face or sheathing",
-"Ledger",
-"Standard",
-"Frog"
-],
-answer: 0,
-explanation:
-"The form face or sheathing provides the surface against which concrete is cast."
-},
-
-{
-question: "Vertical temporary supports below slab formwork are commonly called:",
-options: [
-"Props or shores",
-"Headers",
-"Frogs",
-"Veneers"
-],
-answer: 0,
-explanation:
-"Props or shores support the slab formwork system."
-},
-
-{
-question: "Column formwork is used to maintain:",
-options: [
-"Column shape, dimensions and alignment",
-"Brick burning temperature",
-"Timber moisture only",
-"Cement colour"
-],
-answer: 0,
-explanation:
-"Column forms maintain the required column section and alignment."
-},
-
-{
-question: "Beam formwork normally includes:",
-options: [
-"Bottom and side forms",
-"Only a brick frog",
-"Only a scaffold standard",
-"No supporting system"
-],
-answer: 0,
-explanation:
-"Beam formwork normally provides a soffit and side forms."
-},
-
-{
-question: "Wall formwork generally has:",
-options: [
-"Form faces on opposite sides",
-"Only one scaffold standard",
-"No support",
-"Only timber knots"
-],
-answer: 0,
-explanation:
-"Concrete wall forms generally enclose both sides of the wall."
-},
-
-{
-question: "Removal of formwork is commonly called:",
-options: [
-"Stripping or de-shuttering",
-"Tempering",
-"Weathering",
-"Blending"
-],
-answer: 0,
-explanation:
-"Stripping or de-shuttering means removal of the forms."
-},
-
-{
-question: "Formwork should be removed:",
-options: [
-"After adequate concrete strength has developed",
-"Immediately after concrete placement",
-"Before placing concrete",
-"Before reinforcement"
-],
-answer: 0,
-explanation:
-"Premature removal can damage or overload the concrete."
-},
-
-{
-question: "Which load must formwork support during concreting?",
-options: [
-"Fresh concrete load",
-"Only wind on trees",
-"Only dry bricks",
-"No construction load"
-],
-answer: 0,
-explanation:
-"Fresh concrete is one of the principal loads acting on formwork."
-},
-
-{
-question: "Scaffolding differs from formwork because scaffolding primarily provides:",
-options: [
-"Access and working platforms",
-"A mould for fresh concrete",
-"Concrete surface finish",
-"Concrete dimensions"
-],
-answer: 0,
-explanation:
-"Scaffolding primarily provides access and working platforms."
-},
-
-{
-question: "Formwork primarily determines the concrete member's:",
-options: [
-"Shape and dimensions",
-"Chemical composition of cement",
-"Timber species",
-"Brick earth composition"
-],
-answer: 0,
-explanation:
-"Formwork establishes the required geometry of the concrete member."
-},
-
-{
-question: "Which is NOT normally a formwork component?",
-options: [
-"Frog",
-"Prop",
-"Sheathing",
-"Waler"
-],
-answer: 0,
-explanation:
-"A frog is a depression in a brick and is unrelated to formwork."
-},
-
-{
-question: "A formwork system must remain stable during:",
-options: [
-"Concrete placement and compaction",
-"Only brick moulding",
-"Only timber felling",
-"Only painting"
-],
-answer: 0,
-explanation:
-"Concrete placement and compaction produce loads that the formwork must safely resist."
-},
-
-{
-question: "Aluminium formwork is advantageous mainly because it is:",
-options: [
-"Relatively lightweight",
-"Made from clay",
-"A timber defect",
-"A brick bond"
-],
-answer: 0,
-explanation:
-"Aluminium provides a relatively lightweight metallic formwork system."
-},
-
-{
-question: "The correct general sequence is:",
-options: [
-"Erect formwork → place reinforcement → place concrete → harden → remove formwork",
-"Concrete → formwork → excavation → brick burning",
-"Burn timber → place concrete → mould bricks",
-"Remove formwork → place concrete → reinforcement"
-],
-answer: 0,
-explanation:
-"The formwork is erected before concrete is placed and is removed only after adequate strength develops."
+options: ["Decorative finish","Stone polishing","Timber seasoning","Temporary structural support"],
+answer: 3,
+explanation: "Falsework supports formwork and construction loads temporarily."
 }
+],
 
+topic2: [
+{
+question: "A building stone is:",
+options: ["Burnt clay unit","Bonded veneer","Natural rock suitable for construction","Temporary platform"],
+answer: 2,
+explanation: "Building stone is natural rock suitable for construction use."
+},
+{
+question: "A good building stone should possess:",
+options: ["Rapid weathering","Very high absorption","Weak structure","Durability"],
+answer: 3,
+explanation: "Durability is a basic requirement of good building stone."
+},
+{
+question: "A good stone should generally have:",
+options: ["Adequate strength","Very low strength","High porosity only","Loose grains"],
+answer: 0,
+explanation: "Strength is an important characteristic for construction stone."
+},
+{
+question: "Low water absorption in stone generally indicates:",
+options: ["Poorer durability always","Better resistance to moisture entry","Higher timber content","More clay moulding"],
+answer: 1,
+explanation: "Low absorption is desirable for durable building stone."
+},
+{
+question: "Granite is commonly valued for:",
+options: ["Being a timber product","Being unburnt clay","Strength and durability","Temporary support only"],
+answer: 2,
+explanation: "Granite is a strong, durable building stone."
+},
+{
+question: "Marble is especially suitable for:",
+options: ["Scaffolding standards","Brick burning","Timber preservation","Decorative and polished work"],
+answer: 3,
+explanation: "Marble takes a good polish and is used decoratively."
+},
+{
+question: "Basalt and trap are commonly used as:",
+options: ["Road metal and aggregate","Veneers","Form ties","Timber preservatives"],
+answer: 0,
+explanation: "Their hardness and durability make them useful as road metal and aggregate."
+},
+{
+question: "Sandstone is commonly used in:",
+options: ["Kiln seasoning","Building and masonry work","Scaffold bracing only","Timber conversion"],
+answer: 1,
+explanation: "Suitable sandstone is used in building and masonry."
+},
+{
+question: "The appearance of stone is particularly important for:",
+options: ["Aggregate crushing only","Timber drying only","Architectural and facing work","Falsework only"],
+answer: 2,
+explanation: "Colour, texture and appearance matter in exposed architectural work."
+},
+{
+question: "Resistance to weathering is related to stone:",
+options: ["Frog","Seasoning","Lamination","Durability"],
+answer: 3,
+explanation: "Durability describes the ability to withstand weathering and service conditions."
+},
+{
+question: "A stone capable of taking a good polish is useful for:",
+options: ["Decorative finishes","Quarry blasting","Timber defects","Scaffold foundations"],
+answer: 0,
+explanation: "Polishability is important for decorative stones."
+},
+{
+question: "Stone used in heavy construction should have suitable:",
+options: ["Fungal decay","Strength and toughness","Frog depth","Moisture seasoning"],
+answer: 1,
+explanation: "Mechanical properties are important for demanding uses."
+},
+{
+question: "The natural source of building stones is:",
+options: ["Brick kilns","Timber yards","Rock formations","Concrete moulds"],
+answer: 2,
+explanation: "Building stones are obtained from natural rock formations."
+},
+{
+question: "Before many stones are used in masonry they are:",
+options: ["Seasoned like timber","Burnt like bricks","Laminated","Dressed to required size and shape"],
+answer: 3,
+explanation: "Dressing shapes and finishes quarried stone."
+},
+{
+question: "Which pair consists of building stones?",
+options: ["Granite and marble","Timber and plywood","Brick and laminate","Scaffold and formwork"],
+answer: 0,
+explanation: "Granite and marble are natural stones."
+}
+],
+
+topic3: [
+{
+question: "Quarrying means:",
+options: ["Drying timber","Moulding bricks","Supporting concrete","Extraction of stone from natural rock beds"],
+answer: 3,
+explanation: "Quarrying is the extraction of stone from natural rock beds."
+},
+{
+question: "Digging or excavation is suitable mainly for:",
+options: ["Soft and shallow rock","Only very hard deep rock","Timber","Fresh concrete"],
+answer: 0,
+explanation: "Excavation is used for comparatively soft and shallow formations."
+},
+{
+question: "Wedging is useful when:",
+options: ["Timber must be seasoned","Regular blocks are required","Bricks must be burnt","Concrete must cure"],
+answer: 1,
+explanation: "Wedging can split rock along a desired line to obtain blocks."
+},
+{
+question: "The plug-and-feather method is a form of:",
+options: ["Seasoning","Brick moulding","Wedging","Lamination"],
+answer: 2,
+explanation: "Plug and feather is a controlled stone-splitting/wedging method."
+},
+{
+question: "In plug-and-feather quarrying, the plug produces:",
+options: ["Timber shrinkage","Concrete hydration","Brick vitrification","Lateral splitting pressure"],
+answer: 3,
+explanation: "Driving the plug forces the feathers outward and splits the rock."
+},
+{
+question: "Blasting is generally used for:",
+options: ["Hard and compact rock","Polishing marble","Seasoning wood","Moulding clay"],
+answer: 0,
+explanation: "Blasting is associated with hard compact rock."
+},
+{
+question: "A quarry is a place where:",
+options: ["Timber is seasoned","Stone is extracted","Concrete is cast only","Laminates are bonded only"],
+answer: 1,
+explanation: "A quarry is an excavation/source for obtaining stone."
+},
+{
+question: "The first concern before selecting a quarrying method is the:",
+options: ["Colour of timber","Brick frog","Nature of the rock","Formwork oil"],
+answer: 2,
+explanation: "Rock condition and required product influence the quarrying method."
+},
+{
+question: "For controlled splitting along a line, a suitable method is:",
+options: ["Kiln seasoning","Flemish bond","Pressure treatment","Wedging"],
+answer: 3,
+explanation: "Wedging is used to split stone along a chosen line."
+},
+{
+question: "Which is NOT a quarrying operation?",
+options: ["Kiln seasoning","Digging","Wedging","Blasting"],
+answer: 0,
+explanation: "Kiln seasoning is a timber-drying method."
+},
+{
+question: "Hard rock requiring large-scale removal may require:",
+options: ["Air seasoning","Controlled blasting","Brick tempering","Plywood pressing"],
+answer: 1,
+explanation: "Controlled blasting can be used for hard compact rock."
+},
+{
+question: "Quarrying occurs before:",
+options: ["Rock formation","Tree growth","Dressing of stone","Concrete hydration"],
+answer: 2,
+explanation: "Stone is first extracted and then dressed."
+},
+{
+question: "The product obtained directly from a quarry is generally:",
+options: ["Seasoned timber","Burnt brick","Fresh laminate","Quarried stone"],
+answer: 3,
+explanation: "Stone is obtained from the quarry before further dressing."
+},
+{
+question: "A method preferred when damage to wanted blocks should be limited is:",
+options: ["Controlled wedging","Uncontrolled breakage","Timber burning","Concrete vibration"],
+answer: 0,
+explanation: "Controlled splitting helps obtain regular blocks."
+},
+{
+question: "The main objective of quarrying is to:",
+options: ["Remove moisture from timber","Obtain usable stone from rock deposits","Shape fresh concrete","Bond veneers"],
+answer: 1,
+explanation: "Quarrying supplies stone for construction and processing."
+}
+],
+
+topic4: [
+{
+question: "Dressing of stone means:",
+options: ["Cutting, shaping and finishing quarried stone","Extracting stone","Drying timber","Burning bricks"],
+answer: 0,
+explanation: "Dressing gives quarried stone the required size, shape and finish."
+},
+{
+question: "One purpose of dressing is to prepare:",
+options: ["Timber sap","Proper beds and joints","Brick clay","Scaffold foundations only"],
+answer: 1,
+explanation: "Dressing prepares suitable beds and joints for masonry."
+},
+{
+question: "Dressing generally occurs:",
+options: ["Before rock formation","During tree growth","After quarrying","After concrete demolition only"],
+answer: 2,
+explanation: "Stone is quarried first and then dressed."
+},
+{
+question: "Polishing produces a:",
+options: ["Blast hole","Timber defect","Brick frog","Smooth finished surface"],
+answer: 3,
+explanation: "Polishing improves smoothness and appearance."
+},
+{
+question: "Marble is commonly polished because it is used for:",
+options: ["Decorative work","Scaffold braces","Falsework props","Brick earth"],
+answer: 0,
+explanation: "Marble is a decorative stone capable of taking a good polish."
+},
+{
+question: "Granite may be polished for:",
+options: ["Timber preservation","Architectural appearance","Brick moulding","Concrete curing"],
+answer: 1,
+explanation: "Polished granite is used where appearance is important."
+},
+{
+question: "Removing irregular projections is part of:",
+options: ["Seasoning","Scaffolding","Stone dressing","Lamination"],
+answer: 2,
+explanation: "Dressing removes unwanted projections and shapes stone."
+},
+{
+question: "A dressed stone should have dimensions suitable for:",
+options: ["Tree growth","Clay weathering","Kiln humidity","Its intended construction use"],
+answer: 3,
+explanation: "Dressing produces required dimensions and geometry."
+},
+{
+question: "Which process is concerned mainly with surface finish?",
+options: ["Polishing","Quarry blasting","Timber felling","Scaffold erection"],
+answer: 0,
+explanation: "Polishing is a finishing process."
+},
+{
+question: "Which pair is correctly sequenced?",
+options: ["Dressing → Rock formation","Quarrying → Dressing","Seasoning → Quarrying","Formwork → Tree felling"],
+answer: 1,
+explanation: "Extraction precedes shaping and finishing."
+},
+{
+question: "A good masonry joint is helped by:",
+options: ["Untreated irregular projections","Timber knots","Properly dressed stone surfaces","Brick overburning"],
+answer: 2,
+explanation: "Proper beds and joints improve masonry construction."
+},
+{
+question: "Stone selected for ornamental work should have good:",
+options: ["Fungal decay","High water absorption","Timber grain only","Appearance and polishability"],
+answer: 3,
+explanation: "Decorative use emphasizes appearance and finish."
+},
+{
+question: "The final appearance of a stone surface can be improved by:",
+options: ["Polishing","Blasting","Seasoning","Tempering clay"],
+answer: 0,
+explanation: "Polishing improves the finished appearance."
+},
+{
+question: "Dressing does NOT mean:",
+options: ["Shaping","Extraction from the natural rock bed","Sizing","Finishing"],
+answer: 1,
+explanation: "Extraction is quarrying; dressing is subsequent processing."
+},
+{
+question: "A primary use of dressed building stone is:",
+options: ["Timber preservation","Brick manufacture","Masonry and architectural construction","Scaffold bracing only"],
+answer: 2,
+explanation: "Dressed stones are used in masonry and architectural work."
+}
+],
+
+topic5: [
+{
+question: "Aggregate is:",
+options: ["Only cement paste","Granular material used in construction","Only timber","Only steel"],
+answer: 1,
+explanation: "Aggregates include sand, gravel and crushed stone."
+},
+{
+question: "Sand is commonly classified as:",
+options: ["Coarse aggregate only","Timber","Fine aggregate","Binder"],
+answer: 2,
+explanation: "Sand is a common fine aggregate."
+},
+{
+question: "Gravel is commonly used as:",
+options: ["Timber preservative","Form oil","Brick clay only","Aggregate"],
+answer: 3,
+explanation: "Gravel is a natural aggregate."
+},
+{
+question: "Crushed stone is commonly used as:",
+options: ["Coarse aggregate","Adhesive","Timber","Paint"],
+answer: 0,
+explanation: "Crushed stone is a common coarse aggregate."
+},
+{
+question: "The conventional dividing sieve between fine and coarse aggregate is:",
+options: ["75 mm","4.75 mm","0.075 mm only","100 mm"],
+answer: 1,
+explanation: "Fine aggregate generally passes and coarse aggregate is retained on 4.75 mm sieve."
+},
+{
+question: "Fine aggregate generally:",
+options: ["Is retained entirely on 80 mm","Is always timber","Passes the 4.75 mm sieve","Is a binder"],
+answer: 2,
+explanation: "The 4.75 mm sieve separates fine and coarse fractions conventionally."
+},
+{
+question: "Coarse aggregate generally:",
+options: ["Passes every sieve","Is cement","Is timber","Is retained on the 4.75 mm sieve"],
+answer: 3,
+explanation: "Coarse aggregate is generally retained on the 4.75 mm sieve."
+},
+{
+question: "Aggregates occupy a significant portion of:",
+options: ["Concrete volume","Timber cells","Brick kiln flame","Scaffold height only"],
+answer: 0,
+explanation: "Aggregates form the granular skeleton of concrete."
+},
+{
+question: "Natural aggregates include:",
+options: ["Plywood and laminate","Sand and gravel","Brick and tile","Steel and glass only"],
+answer: 1,
+explanation: "Sand and gravel are common natural aggregates."
+},
+{
+question: "Manufactured/crushed aggregate can be obtained by:",
+options: ["Seasoning timber","Burning clay only","Crushing rock","Curing concrete"],
+answer: 2,
+explanation: "Crushed stone aggregate is produced by crushing rock."
+},
+{
+question: "Aggregate selection affects concrete:",
+options: ["Only paint colour","Only timber defects","Only scaffold type","Workability and strength-related behaviour"],
+answer: 3,
+explanation: "Aggregate characteristics influence concrete performance."
+},
+{
+question: "A well-graded aggregate contains:",
+options: ["A suitable distribution of particle sizes","Only one particle size","Only flaky particles","Only timber fibres"],
+answer: 0,
+explanation: "Grading refers to particle-size distribution."
+},
+{
+question: "The particle-size distribution of aggregate is studied by:",
+options: ["Kiln seasoning","Sieve analysis","Brick burning","Stone polishing"],
+answer: 1,
+explanation: "Sieve analysis determines aggregate grading."
+},
+{
+question: "Aggregate used in concrete should generally be:",
+options: ["Highly decomposed","Full of harmful impurities","Sound and durable","Always flaky"],
+answer: 2,
+explanation: "Soundness and durability are desirable aggregate qualities."
+},
+{
+question: "Which is NOT an aggregate?",
+options: ["Sand","Gravel","Crushed stone","Plywood"],
+answer: 3,
+explanation: "Plywood is a laminated wood product, not aggregate."
+}
+],
+
+topic6: [
+{
+question: "Angular aggregate is known for:",
+options: ["Maximum smoothness","Being timber","Good interlocking","Being clay"],
+answer: 2,
+explanation: "Angular particles provide good mechanical interlock."
+},
+{
+question: "Rounded aggregate generally gives:",
+options: ["Maximum angular interlock","Timber decay","Brick efflorescence","Better workability"],
+answer: 3,
+explanation: "Rounded particles generally improve workability."
+},
+{
+question: "A flaky particle has:",
+options: ["Small thickness relative to other dimensions","Excessive length only","No dimensions","Circular annual rings"],
+answer: 0,
+explanation: "Flakiness relates to relatively small thickness."
+},
+{
+question: "An elongated particle has:",
+options: ["Small thickness only","Excessive length relative to other dimensions","No length","A brick frog"],
+answer: 1,
+explanation: "Elongation relates to excessive length."
+},
+{
+question: "Aggregate surface texture affects:",
+options: ["Tree seasoning","Brick burning","Bond with cement paste","Scaffold height"],
+answer: 2,
+explanation: "Surface texture influences bond with cement paste."
+},
+{
+question: "Rough-textured aggregate generally provides:",
+options: ["No bond","Timber preservation","Brick vitrification","Better mechanical bond"],
+answer: 3,
+explanation: "Rough texture can improve mechanical interlock with paste."
+},
+{
+question: "Rounded particles usually require:",
+options: ["Less effort for workability","More quarry blasting","Timber seasoning","Brick firing"],
+answer: 0,
+explanation: "Smooth rounded shapes improve movement and workability."
+},
+{
+question: "Highly flaky aggregate is generally:",
+options: ["Always preferred","Undesirable in large proportion","A timber defect","A binder"],
+answer: 1,
+explanation: "Excessive flaky particles can impair aggregate performance."
+},
+{
+question: "Highly elongated aggregate is generally:",
+options: ["Always ideal","A cement compound","Undesirable in large proportion","A timber preservative"],
+answer: 2,
+explanation: "Excessive elongated particles are generally undesirable."
+},
+{
+question: "Particle shape is an aggregate:",
+options: ["Timber defect only","Brick bond","Formwork material only","Physical property"],
+answer: 3,
+explanation: "Shape is a physical characteristic of aggregate."
+},
+{
+question: "Surface texture may be described as:",
+options: ["Smooth or rough","Only hot or cold","Only wet or dry","Only red or blue"],
+answer: 0,
+explanation: "Aggregate surfaces may have different textures affecting bond."
+},
+{
+question: "Which shape has the strongest interlocking tendency?",
+options: ["Rounded","Angular","Perfectly spherical","Polished glass-like"],
+answer: 1,
+explanation: "Angular particles interlock more effectively."
+},
+{
+question: "Which aggregate shape tends to improve concrete workability?",
+options: ["Very angular only","Highly flaky","Rounded","Highly elongated"],
+answer: 2,
+explanation: "Rounded particles reduce internal friction."
+},
+{
+question: "Flakiness and elongation relate primarily to aggregate:",
+options: ["Chemical composition only","Timber moisture","Brick firing","Shape"],
+answer: 3,
+explanation: "Both indices quantify particle shape."
+},
+{
+question: "Aggregate properties should be considered because they affect:",
+options: ["Construction performance","Only website layout","Only timber colour","Only quarry ownership"],
+answer: 0,
+explanation: "Physical properties influence use and performance."
+}
+],
+
+topic7: [
+{
+question: "Aggregate Crushing Value indicates resistance to:",
+options: ["Timber decay","Brick moulding","Stone polishing","Crushing under compressive load"],
+answer: 3,
+explanation: "ACV measures resistance to crushing under gradually applied compressive load."
+},
+{
+question: "ACV is calculated as:",
+options: ["(Weight of fines / Original sample weight) × 100","Original weight / fines × 10","Fines + water only","Volume / time"],
+answer: 0,
+explanation: "The notes give ACV as fines produced divided by original sample weight times 100."
+},
+{
+question: "A lower ACV indicates:",
+options: ["Lower resistance always","Greater resistance to crushing","More timber moisture","More brick efflorescence"],
+answer: 1,
+explanation: "Lower crushing value means fewer fines are produced under load."
+},
+{
+question: "Aggregate Impact Value evaluates resistance to:",
+options: ["Fungal attack","Timber seasoning","Impact or sudden shock","Clay moulding"],
+answer: 2,
+explanation: "Impact value is associated with resistance to impact."
+},
+{
+question: "Abrasion testing evaluates resistance to:",
+options: ["Water freezing only","Timber decay","Brick moulding","Wear"],
+answer: 3,
+explanation: "Abrasion tests assess resistance to wearing action."
+},
+{
+question: "Specific gravity is an aggregate:",
+options: ["Density-related property","Brick bond","Timber defect","Scaffold member"],
+answer: 0,
+explanation: "Specific gravity compares material density with water."
+},
+{
+question: "Bulk density considers the mass of aggregate in:",
+options: ["A timber ring only","A given bulk volume","A brick frog","A scaffold joint only"],
+answer: 1,
+explanation: "Bulk density relates aggregate mass to bulk volume."
+},
+{
+question: "Water absorption test indicates:",
+options: ["Timber bending","Brick bonding","Water taken up by aggregate","Scaffold stability"],
+answer: 2,
+explanation: "Absorption measures water absorbed by aggregate."
+},
+{
+question: "Moisture content indicates:",
+options: ["Stone polish","Timber knot count","Brick course pattern","Water present in aggregate"],
+answer: 3,
+explanation: "Moisture content concerns water present in the aggregate."
+},
+{
+question: "Fineness modulus is an index of:",
+options: ["Overall fineness or coarseness","Timber preservation","Brick colour","Scaffold height"],
+answer: 0,
+explanation: "FM is an empirical grading index."
+},
+{
+question: "Fineness modulus is based on:",
+options: ["Timber annual rings","Cumulative percentages retained on specified sieves","Brick kiln temperature only","Form ties"],
+answer: 1,
+explanation: "FM uses cumulative retained percentages."
+},
+{
+question: "Flakiness Index is the percentage by mass of:",
+options: ["Rounded particles only","Water","Flaky particles","Cement"],
+answer: 2,
+explanation: "FI quantifies flaky particles by mass."
+},
+{
+question: "Elongation Index is the percentage by mass of:",
+options: ["Fine cement","Timber sap","Brick clay","Elongated particles"],
+answer: 3,
+explanation: "EI quantifies elongated particles by mass."
+},
+{
+question: "How many aggregate tests are listed in the reference section?",
+options: ["Nine","Three","Five","Twelve"],
+answer: 0,
+explanation: "The notes explicitly list nine aggregate tests."
+},
+{
+question: "Which test directly concerns particle shape?",
+options: ["Specific gravity","Flakiness Index","Water absorption","Bulk density"],
+answer: 1,
+explanation: "Flakiness Index evaluates particle shape."
+}
+],
+
+topic8: [
+{
+question: "A brick is manufactured mainly from:",
+options: ["Suitable clay","Timber","Steel","Granite only"],
+answer: 0,
+explanation: "The notes define brick as an artificial unit manufactured mainly from suitable clay."
+},
+{
+question: "The normal sequence includes moulding, drying and:",
+options: ["Seasoning","Burning","Quarrying","Polishing"],
+answer: 1,
+explanation: "Bricks are moulded, dried and burnt."
+},
+{
+question: "A frog in a brick is:",
+options: ["A crack in timber","A scaffold brace","A depression on one face","A stone joint"],
+answer: 2,
+explanation: "A frog is a depression provided on a brick face."
+},
+{
+question: "The frog helps provide:",
+options: ["Timber seasoning","Stone blasting","Scaffold access","A key for mortar"],
+answer: 3,
+explanation: "The frog can improve the key for mortar."
+},
+{
+question: "Water absorption of brick is based on:",
+options: ["Dry and wet weights","Only length","Only colour","Only kiln height"],
+answer: 0,
+explanation: "The formula uses dry weight W1 and absorbed-water weight W2."
+},
+{
+question: "Brick water absorption formula is:",
+options: ["W1/W2 × 10","[(W2 − W1) / W1] × 100","W1 + W2","W2 − W1 only"],
+answer: 1,
+explanation: "The supplied notes give this percentage formula."
+},
+{
+question: "In English bond:",
+options: ["Headers and stretchers alternate in same course","Only headers are used","Header and stretcher courses alternate","No mortar is used"],
+answer: 2,
+explanation: "English bond uses alternate header and stretcher courses."
+},
+{
+question: "In Flemish bond:",
+options: ["Only stretcher courses occur","Only header courses occur","Courses are timber","Headers and stretchers alternate in the same course"],
+answer: 3,
+explanation: "Flemish bond alternates headers and stretchers within a course."
+},
+{
+question: "Bricks are widely used for:",
+options: ["Walls and masonry work","Timber seasoning","Stone quarrying","Scaffold bracing only"],
+answer: 0,
+explanation: "Bricks are common masonry units."
+},
+{
+question: "A good brick should have:",
+options: ["Very high cracking","Reasonably uniform shape and sound structure","Loose unburnt clay","Excessive distortion"],
+answer: 1,
+explanation: "Good bricks should be properly formed and sound."
+},
+{
+question: "Drying before burning helps remove:",
+options: ["Aggregate grading","Timber knots","Moisture","Stone polish"],
+answer: 2,
+explanation: "Moulded bricks are dried before firing."
+},
+{
+question: "Burning of bricks is carried out after:",
+options: ["Demolition","Scaffolding","Stone polishing","Drying"],
+answer: 3,
+explanation: "Drying precedes burning in manufacture."
+},
+{
+question: "The material unit called a brick is:",
+options: ["Artificial","A natural rock block","A tree section","A scaffold member"],
+answer: 0,
+explanation: "Brick is an artificial building unit."
+},
+{
+question: "Efflorescence on bricks is associated with:",
+options: ["Timber knots","Soluble salts","Aggregate shape","Scaffold ledgers"],
+answer: 1,
+explanation: "Efflorescence is a salt-related surface deposit."
+},
+{
+question: "Which pair is a masonry bond?",
+options: ["Air and kiln","Single and double scaffold","English and Flemish","Bow and cup"],
+answer: 2,
+explanation: "English and Flemish are brick masonry bonds."
+}
+],
+
+topic9: [
+{
+question: "Timber is:",
+options: ["Burnt clay","Wood converted for engineering/building use","Crushed rock","Fresh concrete"],
+answer: 1,
+explanation: "Timber is wood obtained from trees and converted for construction use."
+},
+{
+question: "The sequence after felling includes:",
+options: ["Brick burning","Stone blasting","Conversion and seasoning","Concrete curing only"],
+answer: 2,
+explanation: "The notes show tree → felling → conversion → seasoning."
+},
+{
+question: "Seasoning of timber mainly reduces:",
+options: ["Stone strength","Brick frog depth","Scaffold height","Moisture content"],
+answer: 3,
+explanation: "Seasoning is controlled drying of timber."
+},
+{
+question: "Kiln seasoning uses controlled:",
+options: ["Temperature, humidity and air circulation","Blasting pressure","Brick bond","Aggregate grading"],
+answer: 0,
+explanation: "Kiln seasoning controls these drying conditions."
+},
+{
+question: "Preservation improves resistance to:",
+options: ["Only gravity","Fungi, insects and moisture-related deterioration","Only polishing","Only concrete setting"],
+answer: 1,
+explanation: "Preservatives protect timber against destructive agencies."
+},
+{
+question: "A method of applying preservative is:",
+options: ["Quarry blasting","Brick moulding","Brushing or painting","Aggregate sieving"],
+answer: 2,
+explanation: "Brushing/painting is one listed application method."
+},
+{
+question: "For deeper preservative penetration, use:",
+options: ["Surface polishing only","Air seasoning only","Stone dressing","Pressure treatment"],
+answer: 3,
+explanation: "Pressure treatment is used for deeper penetration."
+},
+{
+question: "A knot is:",
+options: ["A portion of a branch embedded in wood","A brick depression","A scaffold joint","A stone test"],
+answer: 0,
+explanation: "Knots are branch portions embedded in the main wood."
+},
+{
+question: "Shakes are:",
+options: ["Brick bonds","Separations or cracks within wood","Aggregate sizes","Form ties"],
+answer: 1,
+explanation: "Shakes are internal separations/cracks."
+},
+{
+question: "Heart shake is a type of:",
+options: ["Brick bond","Aggregate test","Timber shake","Scaffold"],
+answer: 2,
+explanation: "Heart shake is one form of shake."
+},
+{
+question: "Bow, cup, spring and twist are forms of:",
+options: ["Quarrying","Brick burning","Lamination","Warping"],
+answer: 3,
+explanation: "These are common forms of timber warping."
+},
+{
+question: "Warping is mainly caused by:",
+options: ["Unequal shrinkage during drying","Stone polishing","Brick bonding","Concrete vibration"],
+answer: 0,
+explanation: "Unequal shrinkage during drying causes distortion."
+},
+{
+question: "Dry rot is classified as a:",
+options: ["Conversion defect","Fungal defect","Brick defect","Aggregate test"],
+answer: 1,
+explanation: "Dry rot is a fungal defect of timber."
+},
+{
+question: "Termite attack is classified as an:",
+options: ["Aggregate property","Stone finish","Insect defect","Brick bond"],
+answer: 2,
+explanation: "Termites are insects that attack timber."
+},
+{
+question: "Diagonal grain and torn grain are:",
+options: ["Fungal defects","Brick tests","Scaffold types","Conversion defects"],
+answer: 3,
+explanation: "They are listed under conversion defects."
+}
+],
+
+topic10: [
+{
+question: "A laminate is formed by:",
+options: ["Blasting rock","Burning brick clay","Bonding two or more layers","Seasoning timber only"],
+answer: 2,
+explanation: "A laminate is a composite made by bonding layers."
+},
+{
+question: "The bonding material in a laminate is generally:",
+options: ["Water only","Sand only","Lime only","Adhesive or resin"],
+answer: 3,
+explanation: "Suitable adhesive/bonding agents join the layers."
+},
+{
+question: "The basic manufacturing principle is:",
+options: ["Layers + bonding + pressure/processing","Quarrying + blasting","Felling + seasoning only","Moulding + burning only"],
+answer: 0,
+explanation: "The notes show layers plus adhesive followed by pressure and processing."
+},
+{
+question: "Final laminate properties depend on:",
+options: ["Only colour","Type and arrangement of layers","Only scaffold height","Only quarry depth"],
+answer: 1,
+explanation: "Layer type, number, thickness and direction affect properties."
+},
+{
+question: "Another factor affecting laminate properties is:",
+options: ["Brick frog","Stone quarry depth","Type of adhesive or resin","Timber knot only"],
+answer: 2,
+explanation: "The bonding system influences the composite."
+},
+{
+question: "Pressure during manufacture affects:",
+options: ["Rock weathering","Brick bond pattern","Scaffold access","Quality of bonding"],
+answer: 3,
+explanation: "Pressure is part of laminate processing."
+},
+{
+question: "Plywood is made by bonding:",
+options: ["Thin wood veneers","Bricks","Stone slabs only","Steel bars only"],
+answer: 0,
+explanation: "Plywood consists of bonded wood veneers."
+},
+{
+question: "In plywood, adjacent grain directions are generally:",
+options: ["Always identical without exception","Arranged differently","Removed","Made of clay"],
+answer: 1,
+explanation: "Cross arrangement improves sheet behaviour."
+},
+{
+question: "Cross-laminated veneers help improve:",
+options: ["Brick burning","Stone blasting","Dimensional behaviour of the sheet","Scaffold footing"],
+answer: 2,
+explanation: "Different grain directions improve composite behaviour."
+},
+{
+question: "Laminates are commonly used for:",
+options: ["Quarry blasting","Aggregate crushing","Concrete hydration","Furniture"],
+answer: 3,
+explanation: "Furniture is a listed use."
+},
+{
+question: "Laminates are also used for:",
+options: ["Wall panelling and partitions","Rock excavation only","Brick kilns only","Scaffold foundations only"],
+answer: 0,
+explanation: "Wall finishes/panelling and partitions are listed uses."
+},
+{
+question: "Cabinets and cupboards are common uses of:",
+options: ["Quarry explosives","Laminates","Aggregate tests","Falsework only"],
+answer: 1,
+explanation: "Cabinet and cupboard surfaces commonly use laminates."
+},
+{
+question: "A laminate is best described as a:",
+options: ["Natural rock only","Loose aggregate only","Composite product","Temporary scaffold only"],
+answer: 2,
+explanation: "Bonded layers form a composite product."
+},
+{
+question: "The number and thickness of layers affect:",
+options: ["Brick frog only","Quarry ownership","Scaffold colour","Laminate properties"],
+answer: 3,
+explanation: "Layer number and thickness are listed influencing factors."
+},
+{
+question: "Temperature and curing conditions may affect:",
+options: ["Laminate manufacture","Natural rock formation only","Scaffold types only","Brick bond naming"],
+answer: 0,
+explanation: "Where applicable, temperature and curing are processing variables."
+}
+],
+
+topic11: [
+{
+question: "Scaffolding is a:",
+options: ["Permanent foundation","Brick unit","Natural rock","Temporary construction structure"],
+answer: 3,
+explanation: "Scaffolding is erected temporarily for access and working platforms."
+},
+{
+question: "The main purpose of scaffolding is to provide:",
+options: ["Working platforms and access","A concrete mould","A timber preservative","A brick kiln"],
+answer: 0,
+explanation: "It supports workers/materials and access at height."
+},
+{
+question: "Standards are:",
+options: ["Horizontal wall-parallel members","Vertical members","Diagonal members","Brick bonds"],
+answer: 1,
+explanation: "Standards are vertical scaffold members."
+},
+{
+question: "Ledgers are:",
+options: ["Vertical standards","Timber defects","Horizontal members parallel to the wall","Concrete moulds"],
+answer: 2,
+explanation: "Ledgers connect standards horizontally."
+},
+{
+question: "Putlogs or transoms are:",
+options: ["Vertical standards","Brick frogs","Stone tests","Transverse members supporting the platform"],
+answer: 3,
+explanation: "They support the working platform transversely."
+},
+{
+question: "Braces are:",
+options: ["Diagonal stability members","Brick courses","Timber veneers","Aggregate fines"],
+answer: 0,
+explanation: "Braces improve scaffold stiffness and stability."
+},
+{
+question: "Guard rails primarily improve:",
+options: ["Brick burning","Worker safety","Stone polishing","Timber seasoning"],
+answer: 1,
+explanation: "Guard rails protect workers at platform edges."
+},
+{
+question: "Toe boards help prevent:",
+options: ["Concrete setting","Timber drying","Materials or tools falling from platform edges","Rock weathering"],
+answer: 2,
+explanation: "Toe boards provide edge protection."
+},
+{
+question: "Single scaffolding normally has:",
+options: ["Two rows of standards","No standards","Only suspended ropes","One row of standards"],
+answer: 3,
+explanation: "Single scaffolding commonly uses one row."
+},
+{
+question: "Double scaffolding normally has:",
+options: ["Two rows of standards","One row only","No ledgers","Only timber boards"],
+answer: 0,
+explanation: "Double scaffolding uses two rows and is more independent."
+},
+{
+question: "Cantilever scaffolding is supported by:",
+options: ["Brick frogs","Members projecting from the structure","Aggregate sieves","Timber knots"],
+answer: 1,
+explanation: "Cantilever scaffolds derive support from projecting members."
+},
+{
+question: "Suspended scaffolding is:",
+options: ["Built only inside a kiln","A natural rock","Suspended from above","A brick bond"],
+answer: 2,
+explanation: "Suspended scaffolds hang from upper support."
+},
+{
+question: "Trestle scaffolding commonly supports platforms on:",
+options: ["Rock strata","Brick frogs","Timber annual rings","Trestles or movable supports"],
+answer: 3,
+explanation: "Trestle scaffolding uses trestles/support frames."
+},
+{
+question: "Steel or tubular scaffolding is valued for:",
+options: ["Strength, durability and reusability","Being clay","Being a natural rock","High water absorption"],
+answer: 0,
+explanation: "The notes list good strength, durability and reusability."
+},
+{
+question: "A safe scaffold should provide:",
+options: ["Intentional instability","Adequate stability and safe access","No platform","Loose unsupported members"],
+answer: 1,
+explanation: "Stability and safe access are essential requirements."
+}
+],
+
+topic12: [
+{
+question: "Formwork is:",
+options: ["A mould for fresh concrete","A timber preservative","A quarry method","A brick bond"],
+answer: 0,
+explanation: "Formwork holds fresh concrete to the required shape."
+},
+{
+question: "Formwork may be:",
+options: ["Only natural rock","Temporary or permanent","Only timber defect","Only aggregate"],
+answer: 1,
+explanation: "The notes define it as a temporary or permanent mould."
+},
+{
+question: "Formwork remains until concrete:",
+options: ["Becomes clay","Is quarried","Develops sufficient strength","Is seasoned"],
+answer: 2,
+explanation: "It supports concrete until it can maintain the required shape."
+},
+{
+question: "Formwork helps control concrete:",
+options: ["Timber knots","Rock origin","Brick salts only","Shape, dimensions and alignment"],
+answer: 3,
+explanation: "It establishes geometry, line and level."
+},
+{
+question: "Falsework provides:",
+options: ["Temporary structural support","Decorative laminate","Brick frog","Stone polish"],
+answer: 0,
+explanation: "Falsework carries formwork and construction loads."
+},
+{
+question: "The difference is that formwork gives shape while falsework gives:",
+options: ["Colour","Support","Moisture","Grain"],
+answer: 1,
+explanation: "Formwork is the mould; falsework is supporting construction."
+},
+{
+question: "Good formwork should have sufficient:",
+options: ["Decay","Leakage","Strength","Distortion"],
+answer: 2,
+explanation: "Sufficient strength is a stated requirement."
+},
+{
+question: "Good formwork should have adequate:",
+options: ["Fungal attack","Water absorption","Flakiness","Rigidity"],
+answer: 3,
+explanation: "Rigidity helps maintain required geometry."
+},
+{
+question: "Joints in formwork should be sufficiently tight to limit:",
+options: ["Loss of cement paste or grout","Timber growth","Stone polishing","Brick firing"],
+answer: 0,
+explanation: "Tight joints reduce leakage."
+},
+{
+question: "Good formwork should maintain required:",
+options: ["Rock type only","Line, level and dimensions","Timber species only","Brick colour only"],
+answer: 1,
+explanation: "Dimensional accuracy is a key requirement."
+},
+{
+question: "Formwork should remain stable during:",
+options: ["Quarry blasting","Timber felling","Concrete placement","Brick moulding"],
+answer: 2,
+explanation: "Stability during placement is essential."
+},
+{
+question: "Removal of formwork should avoid unnecessary:",
+options: ["Aggregate grading","Timber seasoning","Stone formation","Damage to concrete"],
+answer: 3,
+explanation: "Stripping should not damage the concrete."
+},
+{
+question: "A required quality of formwork surface is to provide:",
+options: ["The required concrete finish","Timber decay","Brick efflorescence","Rock blasting"],
+answer: 0,
+explanation: "Formwork influences the surface finish."
+},
+{
+question: "The normal sequence is formwork → reinforcement → concrete placement →:",
+options: ["Quarrying","Hardening","Seasoning","Lamination"],
+answer: 1,
+explanation: "Concrete hardens before formwork is removed when appropriate."
+},
+{
+question: "Which is primarily a supporting system rather than the concrete mould?",
+options: ["Formwork face","Brick frog","Falsework","Laminate"],
+answer: 2,
+explanation: "Falsework supports the formwork/construction loads."
+}
 ]
-
 };
 
 
 /* ============================================================
-   TAB SYSTEM
+   TOPIC NAVIGATION — FIXED
 ============================================================ */
+const cmctTopicButtons = document.querySelectorAll(".topic-nav button");
+const cmctTopicPages = document.querySelectorAll(".topic-page");
 
-document.querySelectorAll(".topic-page").forEach(function(topic) {
+cmctTopicButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    const requestedTopic = button.dataset.topic;
+    const selectedTopic = document.getElementById(requestedTopic);
+    if (!selectedTopic) return;
 
-    const buttons = topic.querySelectorAll(".mode-tabs button");
-    const panels = topic.querySelectorAll(".mode-panel");
+    cmctTopicButtons.forEach(btn => btn.classList.remove("active"));
+    cmctTopicPages.forEach(page => page.classList.remove("active"));
 
-    buttons.forEach(function(button) {
+    button.classList.add("active");
+    selectedTopic.classList.add("active");
 
-        button.addEventListener("click", function() {
-
-            const requestedMode = button.dataset.mode;
-
-            buttons.forEach(function(btn) {
-                btn.classList.remove("active");
-            });
-
-            panels.forEach(function(panel) {
-                panel.classList.remove("active");
-            });
-
-            button.classList.add("active");
-
-            const selectedPanel =
-                topic.querySelector(
-                    '.mode-panel[data-panel="' +
-                    requestedMode +
-                    '"]'
-                );
-
-            if (selectedPanel) {
-                selectedPanel.classList.add("active");
-            }
-
-        });
-
-    });
-
+    const modeButtons = selectedTopic.querySelectorAll(".mode-tabs button");
+    const modePanels = selectedTopic.querySelectorAll(".mode-panel");
+    modeButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.mode === "learn"));
+    modePanels.forEach(panel => panel.classList.toggle("active", panel.dataset.panel === "learn"));
+  });
 });
 
-
 /* ============================================================
-   QUIZ CREATOR
+   LEARN / QUESTIONS / PYQ / MCQ TAB SYSTEM — FIXED
 ============================================================ */
+document.querySelectorAll(".topic-page").forEach(function(topic) {
+  const buttons = topic.querySelectorAll(".mode-tabs button");
+  const panels = topic.querySelectorAll(".mode-panel");
+
+  buttons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      const requestedMode = button.dataset.mode;
+      buttons.forEach(btn => btn.classList.remove("active"));
+      panels.forEach(panel => panel.classList.remove("active"));
+
+      button.classList.add("active");
+      const selectedPanel = topic.querySelector('.mode-panel[data-panel="' + requestedMode + '"]');
+      if (selectedPanel) {
+        selectedPanel.classList.add("active");
+        if (requestedMode === "quiz") buildCMCTQuiz(topic.id);
+      }
+    });
+  });
+});
 
 function buildCMCTQuiz(topicId) {
 
@@ -16569,8 +16350,9 @@ function resetCMCTQuiz(topicId) {
    INITIALIZE ALL QUIZZES
 ============================================================ */
 
-Object.keys(cmctQuizData).forEach(function(topicId) {
+document.querySelectorAll("[data-quiz]").forEach(function(container) {
 
+    const topicId = container.dataset.quiz;
     buildCMCTQuiz(topicId);
 
 });
@@ -16874,3 +16656,11 @@ Object.keys(cmctQuizData).forEach(function(topicId) {
 <!-- =========================================================
      CMCT TOPICS 08–12 FUNCTIONAL CODE COMPLETE
 ========================================================= -->
+
+<footer>
+  <strong>Civil Engineering Study Portal</strong><br>
+  CMCT • Basic Construction Materials • Week 01
+</footer>
+
+</body>
+</html>
