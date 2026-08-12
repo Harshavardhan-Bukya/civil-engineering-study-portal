@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mechanics of Materials — Week 02</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+    line-height: 1.65;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.topbar {
+    background: #071a2d;
+    color: white;
+}
+
+.topbar-inner {
+    width: min(1180px, calc(100% - 32px));
+    margin: auto;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #1677ff, #16b8d4);
+    font-size: 18px;
+}
+
+.brand-text small {
+    display: block;
+    color: #a9bad0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.brand-text span {
+    font-size: 17px;
+}
+
+.dashboard-link {
+    padding: 9px 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    color: white;
+}
+
+.hero {
+    color: white;
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(22,184,212,0.24),
+            transparent 28%
+        ),
+        linear-gradient(
+            145deg,
+            #071a2d,
+            #0b2540 55%,
+            #0a324d
+        );
+}
+
+.hero-inner {
+    width: min(1180px, calc(100% - 32px));
+    margin: auto;
+    padding: 58px 0 52px;
+}
+
+.eyebrow {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #cfe6ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.08;
+    margin: 18px 0 12px;
+}
+
+.hero p {
+    max-width: 820px;
+    color: #c5d4e5;
+    font-size: 17px;
+}
+
+main {
+    width: min(1180px, calc(100% - 32px));
+    margin: auto;
+    padding: 35px 0 80px;
+}
+
+.back-button {
+    display: inline-flex;
+    padding: 11px 17px;
+    background: #123a60;
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+
+.back-button:hover {
+    background: #1677ff;
+}
+
+.study-format {
+    background: white;
+    border-left: 5px solid #1677ff;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 28px rgba(20,35,60,0.06);
+}
+
+.study-format h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.study-format p {
+    color: #5f6b7a;
+}
+
+.topic-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    background: white;
+    padding: 15px;
+    border-bottom: 1px solid #dfe5ec;
+    margin-bottom: 22px;
+}
+
+.topic-nav button {
+    border: 1px solid #d5dce5;
+    background: white;
+    color: #172033;
+    padding: 9px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.topic-nav button:hover,
+.topic-nav button.active {
+    background: #123a60;
+    color: white;
+    border-color: #123a60;
+}
+
+.topic {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 15px 38px rgba(20,35,60,0.07);
+    border: 1px solid #e3e8ef;
+    scroll-margin-top: 20px;
+}
+
+.topic-number {
+    display: inline-grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0d2944, #1677ff);
+    color: white;
+    font-weight: 900;
+    margin-bottom: 14px;
+}
+
+.topic h2 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.topic h3 {
+    font-size: 20px;
+    margin: 25px 0 10px;
+    color: #123a60;
+}
+
+.topic p {
+    margin: 9px 0;
+}
+
+.definition {
+    background: #eef6ff;
+    border-left: 4px solid #1677ff;
+    padding: 17px 19px;
+    border-radius: 10px;
+    margin: 16px 0;
+}
+
+.formula {
+    background: #f7f9fc;
+    border: 1px solid #dce3ec;
+    border-radius: 12px;
+    padding: 17px;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    overflow-x: auto;
+}
+
+.note {
+    background: #fff8e8;
+    border-left: 4px solid #e5a11a;
+    padding: 15px 18px;
+    border-radius: 9px;
+    margin: 16px 0;
+}
+
+.important {
+    background: #edf9f3;
+    border-left: 4px solid #19a463;
+    padding: 15px 18px;
+    border-radius: 9px;
+    margin: 16px 0;
+}
+
+ul,
+ol {
+    padding-left: 24px;
+    margin: 10px 0;
+}
+
+li {
+    margin: 6px 0;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    margin: 18px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 520px;
+}
+
+th,
+td {
+    border: 1px solid #d6dde6;
+    padding: 11px 13px;
+    text-align: center;
+}
+
+th {
+    background: #123a60;
+    color: white;
+}
+
+td {
+    background: #fafbfd;
+}
+
+.step {
+    background: #f8fafc;
+    border: 1px solid #e0e6ee;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+}
+
+.step strong {
+    color: #123a60;
+}
+
+.diagram {
+    margin: 20px auto;
+    max-width: 900px;
+    border: 1px solid #d8e0e9;
+    border-radius: 14px;
+    padding: 22px;
+    background: #fbfcfe;
+}
+
+.diagram-title {
+    text-align: center;
+    font-weight: 800;
+    color: #123a60;
+    margin-bottom: 18px;
+}
+
+.diagram-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.diagram-box {
+    padding: 14px 18px;
+    border-radius: 10px;
+    background: #eaf3ff;
+    border: 1px solid #bdd5f2;
+    font-weight: 700;
+    text-align: center;
+}
+
+.arrow {
+    font-size: 24px;
+    font-weight: 900;
+    color: #1677ff;
+}
+
+.stress-graph {
+    position: relative;
+    height: 260px;
+    max-width: 650px;
+    margin: 20px auto;
+    border-left: 3px solid #172033;
+    border-bottom: 3px solid #172033;
+}
+
+.stress-graph::before {
+    content: "σ";
+    position: absolute;
+    top: -20px;
+    left: -12px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.stress-graph::after {
+    content: "ε";
+    position: absolute;
+    bottom: -32px;
+    right: -4px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.curve {
+    position: absolute;
+    left: 8%;
+    bottom: 8%;
+    width: 75%;
+    height: 75%;
+}
+
+.curve-line {
+    width: 100%;
+    height: 100%;
+    border-top: 4px solid #1677ff;
+    border-radius: 50% 70% 20% 0;
+    transform: rotate(-12deg);
+}
+
+.specimen {
+    width: 90px;
+    height: 220px;
+    margin: auto;
+    position: relative;
+}
+
+.specimen .top,
+.specimen .bottom {
+    width: 90px;
+    height: 65px;
+    border: 3px solid #123a60;
+    background: #eaf3ff;
+}
+
+.specimen .middle {
+    width: 42px;
+    height: 90px;
+    margin: auto;
+    border-left: 3px solid #123a60;
+    border-right: 3px solid #123a60;
+    background: #f7f9fc;
+}
+
+.specimen-label {
+    text-align: center;
+    font-weight: 700;
+    color: #123a60;
+    margin-top: 12px;
+}
+
+.question-box {
+    background: #f8fafc;
+    border: 1px solid #dce3ec;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 12px 0;
+}
+
+.question-box strong {
+    color: #123a60;
+}
+
+.quiz-question {
+    background: #f8fafc;
+    border: 1px solid #dce3ec;
+    border-radius: 13px;
+    padding: 18px;
+    margin: 15px 0;
+}
+
+.qnum {
+    color: #1677ff;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.options {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.option {
+    text-align: left;
+    padding: 11px 14px;
+    background: white;
+    border: 1px solid #ccd5df;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.option:hover {
+    border-color: #1677ff;
+}
+
+.explanation {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #edf9f3;
+    border-radius: 8px;
+    color: #146c43;
+}
+
+.score {
+    font-weight: 800;
+    color: #123a60;
+    margin-bottom: 15px;
+}
+
+footer {
+    background: #071a2d;
+    color: #9fb1c6;
+    padding: 28px 16px;
+    text-align: center;
+    font-size: 13px;
+}
+
+footer strong {
+    color: white;
+}
+
+@media (max-width: 700px) {
+
+    .topbar-inner {
+        min-height: 64px;
+    }
+
+    .brand-text span {
+        font-size: 14px;
+    }
+
+    .brand-text small {
+        display: none;
+    }
+
+    .dashboard-link {
+        font-size: 13px;
+    }
+
+    .topic {
+        padding: 22px;
+    }
+
+    .topic h2 {
+        font-size: 23px;
+    }
+
+    .hero-inner {
+        padding: 45px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="topbar-inner">
+
+        <a class="brand" href="../../index.html">
+
+            <div class="brand-mark">
+                CE
+            </div>
+
+            <div class="brand-text">
+
+                <small>
+                    Academic Learning Platform
+                </small>
+
+                <span>
+                    Civil Engineering Study Portal
+                </span>
+
+            </div>
+
+        </a>
+
+        <a class="dashboard-link" href="index.html">
+            ← Mechanics of Materials
+        </a>
+
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="eyebrow">
+            CE2103 • Mechanics of Materials
+        </div>
+
+        <h1>
+            Mechanics of Materials — Week 02
+        </h1>
+
+        <p>
+            Stages of failure, ductility, stress-strain behaviour,
+            factor of safety and elastic constants.
+        </p>
+
+    </div>
+
+</section>
+
+
+<main>
+
+<a class="back-button" href="index.html">
+    ← Back to Mechanics of Materials
+</a>
+
+
+<div class="study-format">
+
+    <h2>
+        WEEK 02 STUDY FORMAT
+    </h2>
+
+    <p>
+        These notes are arranged point-to-point from the supplied
+        Week 02 material, including the important formulas,
+        diagrams, numerical problems and exam-practice questions.
+    </p>
+
+</div>
+
+
+<nav class="topic-nav">
+
+    <button class="active" data-target="topic-1">
+        01 • Failure
+    </button>
+
+    <button data-target="topic-2">
+        02 • Specimen
+    </button>
+
+    <button data-target="topic-3">
+        03 • Ductility
+    </button>
+
+    <button data-target="topic-4">
+        04 • Stress-Strain
+    </button>
+
+    <button data-target="topic-5">
+        05 • Ideal Materials
+    </button>
+
+    <button data-target="topic-6">
+        06 • Factor of Safety
+    </button>
+
+    <button data-target="topic-7">
+        07 • Elastic Constants
+    </button>
+
+    <button data-target="topic-8">
+        08 • Young's Modulus
+    </button>
+
+    <button data-target="topic-9">
+        09 • Rigidity Modulus
+    </button>
+
+    <button data-target="topic-10">
+        10 • Bulk Modulus
+    </button>
+
+    <button data-target="topic-11">
+        11 • Poisson's Ratio
+    </button>
+
+    <button data-target="topic-12">
+        12 • Relations
+    </button>
+
+    <button data-target="topic-13">
+        13 • Numericals
+    </button>
+
+    <button data-target="topic-14">
+        14 • MCQs
+    </button>
+
+</nav>
+
+
+<!-- TOPIC 01 -->
+
+<section class="topic" id="topic-1">
+
+    <div class="topic-number">01</div>
+
+    <h2>
+        Stages of Failure
+    </h2>
+
+    <p>
+        The notes discuss the stages of a specimen during tensile
+        loading and the development of failure.
+    </p>
+
+    <div class="diagram">
+
+        <div class="diagram-title">
+            Stages of Bar
+        </div>
+
+        <div class="diagram-row">
+
+            <div class="diagram-box">
+                Original<br>Specimen
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="diagram-box">
+                Yield Point
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="diagram-box">
+                Ultimate Point
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="diagram-box">
+                Shear /<br>Failure
+            </div>
+
+        </div>
+
+    </div>
+
+    <h3>
+        Yield and Ultimate Strength
+    </h3>
+
+    <p>
+        The notes mention approximately:
+    </p>
+
+    <div class="formula">
+        Yield strength = 250 MPa
+    </div>
+
+    <div class="formula">
+        Ultimate strength = 400 MPa
+    </div>
+
+    <div class="note">
+        The design value depends on the purpose and the material.
+    </div>
+
+    <h3>
+        Shear Failure
+    </h3>
+
+    <p>
+        The notes indicate that failure occurs along a shear plane.
+        An angle of approximately <strong>45°</strong> is shown as
+        the angle of failure.
+    </p>
+
+    <div class="important">
+        At approximately 45°, maximum shear stress is obtained.
+    </div>
+
+</section>
+
+
+<!-- TOPIC 02 -->
+
+<section class="topic" id="topic-2">
+
+    <div class="topic-number">02</div>
+
+    <h2>
+        Specimen Preparation
+    </h2>
+
+    <p>
+        The notes show the preparation of a tensile specimen with
+        a reduced gauge section and grips at both ends.
+    </p>
+
+    <div class="diagram">
+
+        <div class="diagram-title">
+            Tensile Specimen
+        </div>
+
+        <div class="specimen">
+
+            <div class="top"></div>
+
+            <div class="middle"></div>
+
+            <div class="bottom"></div>
+
+        </div>
+
+        <div class="specimen-label">
+            Gauge length L₀
+        </div>
+
+    </div>
+
+    <h3>
+        Stress
+    </h3>
+
+    <div class="formula">
+        σ = F / A
+    </div>
+
+    <p>
+        Where:
+    </p>
+
+    <ul>
+        <li><strong>F</strong> = applied force</li>
+        <li><strong>A</strong> = cross-sectional area</li>
+    </ul>
+
+    <h3>
+        Gauge Length
+    </h3>
+
+    <p>
+        The notes give the gauge-length relation:
+    </p>
+
+    <div class="formula">
+        L₀ = 5.65 √A₀
+    </div>
+
+    <p>
+        Also:
+    </p>
+
+    <div class="formula">
+        A₀ = (π/4)d²
+    </div>
+
+    <p>
+        For a specimen diameter of approximately 8 mm, the notes
+        show a gauge length of approximately:
+    </p>
+
+    <div class="formula">
+        L₀ ≈ 40 mm
+    </div>
+
+    <div class="note">
+        The notes mention maintaining the same standard conditions
+        and refer to ASTM material-testing practice.
+    </div>
+
+</section>
+
+
+<!-- TOPIC 03 -->
+
+<section class="topic" id="topic-3">
+
+    <div class="topic-number">03</div>
+
+    <h2>
+        Ductility
+    </h2>
+
+    <p>
+        Ductility is expressed in the notes using percentage
+        elongation and percentage reduction in area.
+    </p>
+
+    <h3>
+        1. Percentage Elongation
+    </h3>
+
+    <div class="formula">
+        % Elongation =
+        [(L<sub>f</sub> − L<sub>0</sub>) / L<sub>0</sub>] × 100
+    </div>
+
+    <p>
+        Where:
+    </p>
+
+    <ul>
+        <li><strong>L₀</strong> = original gauge length</li>
+        <li><strong>L<sub>f</sub></strong> = length of specimen after breaking</li>
+    </ul>
+
+    <h3>
+        2. Percentage Reduction in Area
+    </h3>
+
+    <div class="formula">
+        % Reduction in Area =
+        [(A<sub>0</sub> − A<sub>f</sub>) / A<sub>0</sub>] × 100
+    </div>
+
+    <p>
+        Where:
+    </p>
+
+    <ul>
+        <li><strong>A₀</strong> = original cross-sectional area</li>
+        <li><strong>A<sub>f</sub></strong> = cross-sectional area after breaking</li>
+    </ul>
+
+    <div class="important">
+        Both percentage elongation and percentage reduction in area
+        are used as measures of ductility.
+    </div>
+
+</section>
+
+
+<!-- TOPIC 04 -->
+
+<section class="topic" id="topic-4">
+
+    <div class="topic-number">04</div>
+
+    <h2>
+        Stress-Strain Diagrams
+    </h2>
+
+    <p>
+        The notes show stress-strain diagrams for different types
+        of materials.
+    </p>
+
+    <div class="diagram">
+
+        <div class="diagram-title">
+            Typical Stress-Strain Behaviour
+        </div>
+
+        <div class="stress-graph">
+
+            <div class="curve">
+                <div class="curve-line"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h3>
+        Proportional Limit and Ultimate Strength
+    </h3>
+
+    <p>
+        The notes identify the proportional-limit region and the
+        ultimate-strength point on the stress-strain behaviour.
+    </p>
+
+    <div class="important">
+        For brittle material, the notes state that only ultimate
+        strength is generated.
+    </div>
+
+</section>
+
+
+<!-- TOPIC 05 -->
+
+<section class="topic" id="topic-5">
+
+    <div class="topic-number">05</div>
+
+    <h2>
+        Stress-Strain Behaviour of Different Materials
+    </h2>
+
+    <h3>
+        1. Linear Elastic Material
+    </h3>
+
+    <p>
+        Stress is proportional to strain in the linear elastic region.
+    </p>
+
+    <div class="formula">
+        σ ∝ ε
+    </div>
+
+    <div class="formula">
+        σ = Eε
+    </div>
+
+    <h3>
+        2. Non-Linear Elastic Material
+    </h3>
+
+    <p>
+        The notes show a curved stress-strain relationship rather
+        than a straight-line relationship.
+    </p>
+
+    <h3>
+        3. Elastic-Plastic Material
+    </h3>
+
+    <p>
+        The material first behaves elastically and then enters the
+        plastic region.
+    </p>
+
+    <div class="diagram">
+
+        <div class="diagram-title">
+            Elastic-Plastic Behaviour
+        </div>
+
+        <div class="stress-graph">
+
+            <div class="curve">
+                <div class="curve-line"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h3>
+        4. Elastic-Plastic Material with Strain Hardening
+    </h3>
+
+    <p>
+        After the elastic region, the material enters plastic
+        deformation and then shows strain hardening.
+    </p>
+
+    <div class="important">
+        Strain hardening increases the stress required for further
+        plastic deformation.
+    </div>
+
+    <h3>
+        5. Perfectly Plastic / Ideal Plastic Material
+    </h3>
+
+    <p>
+        The notes show a horizontal plastic region after yielding.
+    </p>
+
+    <div class="diagram">
+
+        <div class="diagram-title">
+            Perfectly Plastic Behaviour
+        </div>
+
+        <div class="stress-graph">
+
+            <div class="curve">
+                <div class="curve-line"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <p>
+        The notes state that a sudden load is applied and the
+        constant load can be supported after yielding.
+    </p>
+
+    <h3>
+        Ideal Material
+    </h3>
+
+    <p>
+        The notes describe an ideal material as a rigid material
+        that does not undergo deformation under the applied stress.
+    </p>
+
+    <div class="formula">
+        E = Stress / Strain
+    </div>
+
+    <div class="important">
+        For an ideal rigid material, strain is zero and the notes
+        indicate an infinitely large Young's modulus.
+    </div>
+
+    <h3>
+        Ideal Fluid
+    </h3>
+
+    <p>
+        The notes state:
+    </p>
+
+    <ul>
+        <li>Ideal fluid has no viscosity.</li>
+        <li>Shear resistance is zero.</li>
+        <li>Young's modulus for an ideal fluid is zero.</li>
+    </ul>
+
+</section>
+
+
+<!-- TOPIC 06 -->
+
+<section class="topic" id="topic-6">
+
+    <div class="topic-number">06</div>
+
+    <h2>
+        Factor of Safety
+    </h2>
+
+    <p>
+        The notes define factor of safety as the ratio between
+        strength and working stress.
+    </p>
+
+    <div class="formula">
+        F.S. = Strength / Working Stress
+    </div>
+
+    <p>
+        Another form shown in the notes is:
+    </p>
+
+    <div class="formula">
+        F.S. =
+        Maximum permissible stress / Working stress
+    </div>
+
+    <h3>
+        For Steel
+    </h3>
+
+    <div class="formula">
+        F.S. =
+        Yield Stress / Working Stress
+    </div>
+
+    <h3>
+        For Brittle Materials
+    </h3>
+
+    <div class="formula">
+        F.S. =
+        Ultimate Stress / Working Stress
+    </div>
+
+    <div class="important">
+        The notes state that the factor of safety should be
+        greater than 1.
+    </div>
+
+    <h3>
+        Example
+    </h3>
+
+    <div class="formula">
+        F.S. = 130 / 80 = 1.625
+    </div>
+
+    <p>
+        The handwritten example in the notes is approximately
+        shown as 1.5.
+    </p>
+
+</section>
+
+
+<!-- TOPIC 07 -->
+
+<section class="topic" id="topic-7">
+
+    <div class="topic-number">07</div>
+
+    <h2>
+        Elastic Constants
+    </h2>
+
+    <p>
+        The notes list four important elastic constants:
+    </p>
+
+    <ol>
+        <li>Modulus of Elasticity / Young's Modulus (E)</li>
+        <li>Modulus of Rigidity / Shear Modulus (G)</li>
+        <li>Bulk Modulus (K)</li>
+        <li>Poisson's Ratio (μ)</li>
+    </ol>
+
+    <div class="diagram">
+
+        <div class="diagram-title">
+            Four Elastic Constants
+        </div>
+
+        <div class="diagram-row">
+
+            <div class="diagram-box">
+                Young's Modulus<br>
+                E
+            </div>
+
+            <div class="diagram-box">
+                Rigidity Modulus<br>
+                G
+            </div>
+
+            <div class="diagram-box">
+                Bulk Modulus<br>
+                K
+            </div>
+
+            <div class="diagram-box">
+                Poisson's Ratio<br>
+                μ
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TOPIC 08 -->
+
+<section class="topic" id="topic-8">
+
+    <div class="topic-number">08</div>
+
+    <h2>
+        Young's Modulus (E)
+    </h2>
+
+    <p>
+        Young's modulus is the ratio of normal stress to
+        longitudinal strain.
+    </p>
+
+    <div class="formula">
+        E = Normal Stress / Longitudinal Strain
+    </div>
+
+    <div class="formula">
+        E = σ / ε
+    </div>
+
+    <h3>
+        Use in Deformation
+    </h3>
+
+    <div class="formula">
+        δ = PL / AE
+    </div>
+
+    <p>
+        The notes also show:
+    </p>
+
+    <div class="formula">
+        δ = WL³ / 48EI
+    </div>
+
+    <h3>
+        Stiffness
+    </h3>
+
+    <div class="formula">
+        K = P / δ
+    </div>
+
+    <div class="formula">
+        K = AE / L
+    </div>
+
+    <div class="important">
+        The notes indicate that stiffness is directly proportional
+        to E and therefore increases when E increases.
+    </div>
+
+    <h3>
+        Values of Young's Modulus Mentioned in the Notes
+    </h3>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <tr>
+                <th>Material</th>
+                <th>Young's Modulus</th>
+            </tr>
+
+            <tr>
+                <td>Aluminium</td>
+                <td>70 GPa</td>
+            </tr>
+
+            <tr>
+                <td>Cast Iron</td>
+                <td>100 GPa</td>
+            </tr>
+
+            <tr>
+                <td>Mild Steel</td>
+                <td>200 GPa</td>
+            </tr>
+
+            <tr>
+                <td>Diamond</td>
+                <td>1200 GPa</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="note">
+        The notes also indicate that the units may be expressed
+        as N/mm² or Pa depending on the unit system.
+    </div>
+
+</section>
+
+
+<!-- TOPIC 09 -->
+
+<section class="topic" id="topic-9">
+
+    <div class="topic-number">09</div>
+
+    <h2>
+        Modulus of Rigidity / Shear Modulus (G)
+    </h2>
+
+    <p>
+        Modulus of rigidity is the ratio of shear stress to
+        shear strain.
+    </p>
+
+    <div class="formula">
+        G = Shear Stress / Shear Strain
+    </div>
+
+    <div class="formula">
+        G = τ / γ
+    </div>
+
+    <p>
+        The notes also relate shear strain to twisting or angular
+        deformation.
+    </p>
+
+    <div class="important">
+        Unit commonly used in the notes:
+        N/mm².
+    </div>
+
+</section>
+
+
+<!-- TOPIC 10 -->
+
+<section class="topic" id="topic-10">
+
+    <div class="topic-number">10</div>
+
+    <h2>
+        Bulk Modulus (K)
+    </h2>
+
+    <p>
+        Bulk modulus is the ratio of direct stress to volumetric strain.
+    </p>
+
+    <div class="formula">
+        K =
+        Direct Stress / Volumetric Strain
+    </div>
+
+    <div class="formula">
+        K = σ / ε<sub>v</sub>
+    </div>
+
+    <div class="formula">
+        Unit = N/mm²
+    </div>
+
+    <p>
+        The notes state that in all directions an equal amount
+        of stress is generated for bulk deformation.
+    </p>
+
+</section>
+
+
+<!-- TOPIC 11 -->
+
+<section class="topic" id="topic-11">
+
+    <div class="topic-number">11</div>
+
+    <h2>
+        Poisson's Ratio (μ)
+    </h2>
+
+    <p>
+        Poisson's ratio is the factor which represents the effect
+        of longitudinal force in the lateral direction.
+    </p>
+
+    <div class="formula">
+        μ =
+        Lateral Strain / Longitudinal Strain
+    </div>
+
+    <div class="formula">
+        μ = ε<sub>y</sub> / ε<sub>x</sub>
+        = ε<sub>z</sub> / ε<sub>x</sub>
+    </div>
+
+    <div class="important">
+        Poisson's ratio has no units.
+    </div>
+
+    <h3>
+        Range Mentioned in the Notes
+    </h3>
+
+    <ul>
+        <li>For any material: approximately −1 to 0.5</li>
+        <li>For engineering materials: approximately 0 to 0.5</li>
+        <li>For generic materials: approximately −1 to 0</li>
+        <li>For steel: approximately 0.3</li>
+        <li>For incompressible materials: μ = 0.5</li>
+    </ul>
+
+    <h3>
+        Notes on Material Behaviour
+    </h3>
+
+    <ul>
+        <li>For clay and rubber, the notes mention μ ≈ 0.5.</li>
+        <li>The notes indicate that for steel, μ is approximately 0.3.</li>
+    </ul>
+
+</section>
+
+
+<!-- TOPIC 12 -->
+
+<section class="topic" id="topic-12">
+
+    <div class="topic-number">12</div>
+
+    <h2>
+        Relations Between Elastic Constants
+    </h2>
+
+    <p>
+        The notes give the following relations between E, G, K
+        and μ.
+    </p>
+
+    <h3>
+        Relation 1
+    </h3>
+
+    <div class="formula">
+        E = 2G(1 + μ)
+    </div>
+
+    <h3>
+        Relation 2
+    </h3>
+
+    <div class="formula">
+        E = 3K(1 − 2μ)
+    </div>
+
+    <h3>
+        Relation 3
+    </h3>
+
+    <div class="formula">
+        E = 9KG / (3K + G)
+    </div>
+
+    <div class="diagram">
+
+        <div class="diagram-title">
+            Relations Between E, G, K and μ
+        </div>
+
+        <div class="diagram-row">
+
+            <div class="diagram-box">
+                E
+            </div>
+
+            <div class="arrow">↔</div>
+
+            <div class="diagram-box">
+                G
+            </div>
+
+            <div class="arrow">↔</div>
+
+            <div class="diagram-box">
+                K
+            </div>
+
+            <div class="arrow">↔</div>
+
+            <div class="diagram-box">
+                μ
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="note">
+        For any material having a positive rigidity modulus,
+        the notes indicate that G is less than E.
+    </div>
+
+</section>
+
+
+<!-- TOPIC 13 -->
+
+<section class="topic" id="topic-13">
+
+    <div class="topic-number">13</div>
+
+    <h2>
+        Numerical Problems
+    </h2>
+
+    <h3>
+        Numerical 1 — Find Poisson's Ratio
+    </h3>
+
+    <div class="question-box">
+
+        <strong>Given:</strong>
+
+        <p>
+            Young's modulus:
+            <strong>E = 200 GPa</strong>
+        </p>
+
+        <p>
+            Modulus of rigidity:
+            <strong>G = 80 GPa</strong>
+        </p>
+
+        <p>
+            Find Poisson's ratio μ.
+        </p>
+
+    </div>
+
+    <div class="step">
+
+        <strong>Step 1:</strong>
+
+        Use:
+
+        <div class="formula">
+            E = 2G(1 + μ)
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <strong>Step 2:</strong>
+
+        Substitute:
+
+        <div class="formula">
+            200 = 2(80)(1 + μ)
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <strong>Step 3:</strong>
+
+        <div class="formula">
+            200 = 160(1 + μ)
+        </div>
+
+        <div class="formula">
+            200 = 160 + 160μ
+        </div>
+
+        <div class="formula">
+            160μ = 40
+        </div>
+
+        <div class="formula">
+            μ = 40/160
+        </div>
+
+        <div class="formula">
+            <strong>μ = 0.25</strong>
+        </div>
+
+    </div>
+
+
+    <h3>
+        Numerical 2 — Find Modulus of Rigidity
+    </h3>
+
+    <div class="question-box">
+
+        <strong>Given:</strong>
+
+        <p>
+            Young's modulus:
+            <strong>E = 120 GPa</strong>
+        </p>
+
+        <p>
+            Poisson's ratio:
+            <strong>μ = 0.25</strong>
+        </p>
+
+        <p>
+            Find modulus of rigidity G.
+        </p>
+
+    </div>
+
+    <div class="step">
+
+        <strong>Step 1:</strong>
+
+        <div class="formula">
+            E = 2G(1 + μ)
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <strong>Step 2:</strong>
+
+        <div class="formula">
+            120 = 2G(1 + 0.25)
+        </div>
+
+        <div class="formula">
+            120 = 2.5G
+        </div>
+
+        <div class="formula">
+            <strong>G = 48 GPa</strong>
+        </div>
+
+    </div>
+
+    <div class="note">
+        The handwritten final figure on the supplied page is difficult
+        to read; using the displayed formula and given values gives
+        G = 48 GPa.
+    </div>
+
+
+    <h3>
+        Formula Revision
+    </h3>
+
+    <div class="formula">
+        E = 2G(1 + μ)
+    </div>
+
+    <div class="formula">
+        E = 3K(1 − 2μ)
+    </div>
+
+    <div class="formula">
+        E = 9KG / (3K + G)
+    </div>
+
+    <div class="formula">
+        μ = Lateral Strain / Longitudinal Strain
+    </div>
+
+</section>
+
+
+<!-- TOPIC 14 -->
+
+<section class="topic" id="topic-14">
+
+    <div class="topic-number">14</div>
+
+    <h2>
+        MCQ Practice
+    </h2>
+
+    <div class="score" id="score">
+        Score: 0 / 10
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 1
+        </div>
+
+        <p>
+            The approximate angle of shear failure shown in the notes is:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="false">30°</button>
+            <button class="option" data-correct="true">45°</button>
+            <button class="option" data-correct="false">60°</button>
+            <button class="option" data-correct="false">90°</button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: 45°.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 2
+        </div>
+
+        <p>
+            The formula for normal stress is:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="true">
+                σ = F/A
+            </button>
+
+            <button class="option" data-correct="false">
+                σ = A/F
+            </button>
+
+            <button class="option" data-correct="false">
+                σ = FL
+            </button>
+
+            <button class="option" data-correct="false">
+                σ = E/A
+            </button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: σ = F/A.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 3
+        </div>
+
+        <p>
+            Percentage elongation is calculated using:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="true">
+                [(L<sub>f</sub> − L<sub>0</sub>)/L<sub>0</sub>] × 100
+            </button>
+
+            <button class="option" data-correct="false">
+                [(L<sub>0</sub> − L<sub>f</sub>)/L<sub>f</sub>] × 100
+            </button>
+
+            <button class="option" data-correct="false">
+                L<sub>0</sub>/L<sub>f</sub>
+            </button>
+
+            <button class="option" data-correct="false">
+                L<sub>f</sub>/L<sub>0</sub>
+            </button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: [(L<sub>f</sub> − L<sub>0</sub>)/L<sub>0</sub>] × 100.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 4
+        </div>
+
+        <p>
+            Young's modulus is the ratio of:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="true">
+                Normal stress to longitudinal strain
+            </button>
+
+            <button class="option" data-correct="false">
+                Shear stress to shear strain
+            </button>
+
+            <button class="option" data-correct="false">
+                Load to area
+            </button>
+
+            <button class="option" data-correct="false">
+                Lateral strain to stress
+            </button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: Normal stress to longitudinal strain.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 5
+        </div>
+
+        <p>
+            The unit of Poisson's ratio is:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="false">N/mm²</button>
+            <button class="option" data-correct="false">Pa</button>
+            <button class="option" data-correct="true">No unit</button>
+            <button class="option" data-correct="false">m</button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: Poisson's ratio has no units.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 6
+        </div>
+
+        <p>
+            The modulus of rigidity is represented by:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="false">E</button>
+            <button class="option" data-correct="true">G</button>
+            <button class="option" data-correct="false">K</button>
+            <button class="option" data-correct="false">μ</button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: G.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 7
+        </div>
+
+        <p>
+            The bulk modulus is represented by:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="false">E</button>
+            <button class="option" data-correct="false">G</button>
+            <button class="option" data-correct="true">K</button>
+            <button class="option" data-correct="false">μ</button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: K.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 8
+        </div>
+
+        <p>
+            Factor of safety is:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="true">
+                Strength / Working Stress
+            </button>
+
+            <button class="option" data-correct="false">
+                Working Stress / Strength
+            </button>
+
+            <button class="option" data-correct="false">
+                Load / Area
+            </button>
+
+            <button class="option" data-correct="false">
+                Stress × Strain
+            </button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: Strength / Working Stress.
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 9
+        </div>
+
+        <p>
+            The relation between E, G and μ is:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="true">
+                E = 2G(1 + μ)
+            </button>
+
+            <button class="option" data-correct="false">
+                E = G(1 − μ)
+            </button>
+
+            <button class="option" data-correct="false">
+                E = 3G(1 + μ)
+            </button>
+
+            <button class="option" data-correct="false">
+                E = G/μ
+            </button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: E = 2G(1 + μ).
+        </div>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <div class="qnum">
+            Question 10
+        </div>
+
+        <p>
+            If E = 200 GPa and G = 80 GPa,
+            the Poisson's ratio is:
+        </p>
+
+        <div class="options">
+
+            <button class="option" data-correct="false">0.15</button>
+            <button class="option" data-correct="true">0.25</button>
+            <button class="option" data-correct="false">0.35</button>
+            <button class="option" data-correct="false">0.45</button>
+
+        </div>
+
+        <div class="explanation" hidden>
+            Correct answer: 0.25.
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    <strong>
+        Civil Engineering Study Portal
+    </strong>
+
+    <br>
+
+    CE2103 • Mechanics of Materials • Week 02
+
+</footer>
+
+
+<script>
+
+const topicButtons = document.querySelectorAll(".topic-nav button");
+
+topicButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const targetId = button.dataset.target;
+        const target = document.getElementById(targetId);
+
+        topicButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        if (target) {
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    });
+
+});
+
+
+const quizQuestions = document.querySelectorAll(".quiz-question");
+
+let score = 0;
+
+quizQuestions.forEach(question => {
+
+    const options = question.querySelectorAll(".option");
+    const explanation = question.querySelector(".explanation");
+
+    options.forEach(option => {
+
+        option.addEventListener("click", () => {
+
+            if (question.dataset.answered === "true") {
+                return;
+            }
+
+            question.dataset.answered = "true";
+
+            if (option.dataset.correct === "true") {
+                score++;
+            }
+
+            options.forEach(btn => {
+                btn.disabled = true;
+            });
+
+            explanation.hidden = false;
+
+            document.getElementById("score").textContent =
+                "Score: " + score + " / " + quizQuestions.length;
+
+        });
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
