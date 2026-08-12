@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>CMCT Week 02 — Cement</title>
+<style>
+:root{--primary:#123b63;--secondary:#1d5d8f;--accent:#d89b28;--bg:#f4f7fa;--white:#fff;--text:#17202a;--muted:#667085;--border:#d9e0e7;--good:#16834b;--bad:#c93636}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+header{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;text-align:center;padding:34px 18px}
+header h1{margin:0;font-size:32px} header p{margin:7px 0 0}
+.container{width:min(1180px,94%);margin:24px auto 50px}
+.back{display:inline-block;background:var(--primary);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;margin-bottom:18px}
+.reference{background:#fff;border-left:5px solid var(--accent);padding:18px;border-radius:10px;margin-bottom:18px}
+.topic-nav{display:flex;flex-wrap:wrap;gap:8px;background:#fff;padding:14px;position:sticky;top:0;z-index:20;border-bottom:1px solid var(--border)}
+.topic-btn,.mode-btn,.retry{border:1px solid var(--border);background:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+.topic-btn.active,.mode-btn.active{background:var(--primary);color:#fff}
+.topic-page{display:none;background:#fff;padding:28px;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,.07);margin-top:20px}
+.topic-page.active{display:block}
+.topic-head{display:flex;gap:16px;align-items:center;border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:18px}
+.topic-number{min-width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--primary);color:#fff;font-weight:800;font-size:19px}
+.topic-head h2{margin:0} .topic-head p{margin:4px 0;color:var(--muted)}
+.mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.mode-panel{display:none} .mode-panel.active{display:block}
+h3{color:var(--primary);margin-top:24px} h4{color:var(--secondary)}
+.important,.definition{padding:15px;border-radius:8px;margin:15px 0}
+.important{background:#fff7df;border-left:4px solid var(--accent)}
+.definition{background:#eef6ff;border-left:4px solid var(--secondary)}
+.formula{background:#f1f5f9;border:1px solid var(--border);padding:15px;border-radius:9px;font-family:"Courier New",monospace;overflow:auto}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:18px 0}
+.flow span{background:#eef6ff;border:1px solid #b8d3e8;padding:10px 12px;border-radius:8px;text-align:center}
+table{width:100%;border-collapse:collapse;margin:18px 0} th,td{border:1px solid var(--border);padding:9px;text-align:left} th{background:#edf3f8}
+.question{background:#fafafa;border:1px solid var(--border);padding:16px;border-radius:10px;margin:12px 0}
+.answer{background:#eefaf3;border-left:4px solid var(--good);padding:12px;margin-top:10px}
+.pyq-empty{background:#f8fafc;padding:25px;border-radius:10px;text-align:center}
+.quiz-score{background:var(--primary);color:#fff;padding:15px;border-radius:9px;text-align:center;font-size:20px;font-weight:800;margin-bottom:18px}
+.quiz-question{border:1px solid var(--border);border-radius:10px;padding:16px;margin:13px 0}
+.quiz-option{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--border);padding:11px;border-radius:8px;margin:7px 0;cursor:pointer}
+.quiz-option.correct{background:#eaf8f0;border-color:var(--good)} .quiz-option.wrong{background:#fff0f0;border-color:var(--bad)}
+.quiz-option:disabled{cursor:default}
+.quiz-explanation{display:none;background:#f4f8fc;border-left:4px solid var(--secondary);padding:10px;margin-top:9px}
+footer{background:#102d49;color:#fff;text-align:center;padding:22px}
+@media(max-width:700px){header h1{font-size:25px}.topic-page{padding:18px}.topic-head{align-items:flex-start}.topic-nav{position:static}.flow{flex-direction:column}}
+
+/* Simple point-wise study diagrams */
+.diagram{margin:18px 0;padding:16px;border:1px solid #d7e1ea;border-radius:14px;background:#fbfdff;overflow:auto}.diagram h3{margin-top:0}.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}.flow-box{border:1px solid #9eb3c7;border-radius:10px;padding:10px 12px;background:#fff;min-width:110px;text-align:center;font-weight:700;line-height:1.35}.arrow{font-size:20px;font-weight:900}.kiln{display:grid;grid-template-columns:1.1fr 4fr 1.3fr 1.1fr;align-items:center;gap:8px;min-width:650px}.kiln-in,.kiln-out{border:1px solid #9eb3c7;border-radius:10px;padding:12px;text-align:center;background:#fff;font-weight:700}.kiln-body{border:2px solid #6d7f90;border-radius:50px;padding:22px;text-align:center;background:#f2f6fa;font-weight:900}.kiln-hot{border:1px solid #9eb3c7;border-radius:10px;padding:12px;text-align:center;background:#fff;font-weight:800}.three-phase{display:grid;grid-template-columns:1.3fr .9fr 1.3fr;min-width:520px}.three-phase>div{padding:28px 12px;text-align:center;border:1px solid #9eb3c7;font-weight:900}.three-phase>div:nth-child(2){background:#eef3f7}.formula{overflow-x:auto}.important{line-height:1.55}
+</style>
+</head>
+<body>
+<header><h1>CMCT — Week 02</h1><p>Cement • Simple Point-wise Study Notes • Diagrams • MCQ Practice</p></header>
+<div class="container">
+<a class="back" href="../../index.html">← Back to Dashboard</a>
+<div class="reference"><strong>WEEK 02 STUDY FORMAT</strong><p>All Learn content is rewritten into simple point-to-point study notes while keeping the reference topics, values, formulas and reactions.</p></div>
+<nav class="topic-nav"><button class="topic-btn active" data-topic="01">01 • General &amp; History</button>
+<button class="topic-btn" data-topic="02">02 • Manufacture Overview</button>
+<button class="topic-btn" data-topic="03">03 • Wet Process</button>
+<button class="topic-btn" data-topic="04">04 • Dry Process</button>
+<button class="topic-btn" data-topic="05">05 • Rotary Kiln</button>
+<button class="topic-btn" data-topic="06">06 • Chemical Composition</button>
+<button class="topic-btn" data-topic="07">07 • Bogue's Compounds</button>
+<button class="topic-btn" data-topic="08">08 • Hydration of Cement</button>
+<button class="topic-btn" data-topic="09">09 • Heat of Hydration</button>
+<button class="topic-btn" data-topic="10">10 • Calcium Silicate Hydrates</button>
+<button class="topic-btn" data-topic="11">11 • Calcium Aluminate Hydrates</button>
+<button class="topic-btn" data-topic="12">12 • Structure, Transition Zone &amp; Water</button></nav>
+<section class="topic-page active" id="topic01">
+<div class="topic-head">
+<div class="topic-number">01</div>
+<div><h2>General &amp; History</h2><p>History and development of cementing materials and Portland cement.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic01">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic01">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic01">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic01">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic01-learn">
+<h3>General</h3>
+<ul>
+<li>Cementing materials have been used from ancient times.</li>
+<li>Early Egyptian records mention materials obtained by burning gypsum.</li>
+<li>Greeks and Romans used lime and hydraulic cementing materials.</li>
+</ul>
+<h3>Roman Practice</h3>
+<ul>
+<li>Roman builders mixed volcanic materials with lime.</li>
+<li>Volcanic tuff was used with lime to obtain good strength and durability.</li>
+<li><b>Pozzolana:</b> Natural pozzolanic material obtained near Mount Vesuvius.</li>
+<li>Artificial pozzolanic materials included powdered tiles and pottery.</li>
+<li><b>Surkhi:</b> Powdered brick used as a pozzolanic material.</li>
+<li>Roman lime mortar was mixed and long-rammed, sometimes with or without Surkhi.</li>
+</ul>
+<h3>John Smeaton</h3>
+<ul>
+<li>Investigated hydraulic lime.</li>
+<li>His work showed the importance of clayey limestone.</li>
+<li>His work during construction of the Eddystone Lighthouse helped establish the importance of hydraulic cementing materials.</li>
+</ul>
+<h3>L. J. Vicat</h3>
+<ul>
+<li>Investigated artificial hydraulic lime.</li>
+<li>Calcined mixtures of limestone and clay.</li>
+</ul>
+<h3>Joseph Aspdin and Portland Cement</h3>
+<ul>
+<li>Joseph Aspdin is credited with the invention of Portland cement.</li>
+<li>Patent date: <b>21 October 1824</b>.</li>
+<li>The hardened cement resembled natural stone from Portland, England.</li>
+</ul>
+<div class="diagram"><h3>History — Quick Timeline</h3><div class="flow"><div class="flow-box">Egypt<br/>Burnt gypsum</div><div class="arrow">→</div><div class="flow-box">Greeks &amp; Romans<br/>Lime + hydraulic materials</div><div class="arrow">→</div><div class="flow-box">Smeaton / Vicat<br/>Hydraulic cement studies</div><div class="arrow">→</div><div class="flow-box">Aspdin<br/>Portland cement<br/>1824</div></div></div>
+<h3>Development in India</h3>
+<ul>
+<li>Early attempt near Madras: <b>1904</b>.</li>
+<li>Indian Cement Company established at Porbandar: <b>1912–1913</b>.</li>
+<li>By 1918, three factories together produced about <b>85,000 tonnes/year</b>.</li>
+<li>The reference also records growth in production and capacity through successive Five-Year Plans.</li>
+</ul>
+</div>
+<div class="mode-panel" id="topic01-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>General &amp; History</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic01-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic01-quiz">
+<div class="quiz-container" data-quiz="01"></div>
+</div>
+</section>
+<section class="topic-page" id="topic02">
+<div class="topic-head">
+<div class="topic-number">02</div>
+<div><h2>Manufacture Overview</h2><p>Raw materials and general manufacture of Portland cement.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic02">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic02">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic02">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic02">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic02-learn">
+<h3>Raw Materials</h3>
+<ul>
+<li><b>Calcareous materials:</b> Limestone or chalk.</li>
+<li><b>Argillaceous materials:</b> Shale or clay.</li>
+<li>Correct proportions are selected to obtain the required lime, silica, alumina and iron oxide.</li>
+</ul>
+<h3>General Manufacturing Sequence</h3>
+<div class="diagram"><div class="flow"><div class="flow-box">Raw materials</div><div class="arrow">→</div><div class="flow-box">Crushing</div><div class="arrow">→</div><div class="flow-box">Grinding</div><div class="arrow">→</div><div class="flow-box">Proportioning<br/>&amp; mixing</div><div class="arrow">→</div><div class="flow-box">Burning</div><div class="arrow">→</div><div class="flow-box">Clinker</div><div class="arrow">→</div><div class="flow-box">Cooling</div><div class="arrow">→</div><div class="flow-box">Gypsum +<br/>final grinding</div><div class="arrow">→</div><div class="flow-box">Cement</div></div></div>
+<ul>
+<li>Raw materials are ground and mixed in correct proportions.</li>
+<li>Burning is carried out in a kiln at about <b>1300–1500°C</b>.</li>
+<li>Burning produces <b>clinker</b>.</li>
+<li>Clinker is ground with gypsum to produce Portland cement.</li>
+</ul>
+<h3>Processes</h3>
+<table><tr><th>Process</th><th>Material form</th></tr><tr><td>Wet</td><td>Slurry</td></tr><tr><td>Dry</td><td>Dry raw meal</td></tr><tr><td>Semi-dry</td><td>Nodules / pellets</td></tr></table>
+<h3>Modernisation</h3>
+<ul><li>Improved raw-material control.</li><li>Modern grinding and blending.</li><li>Preheaters and precalciners.</li><li>Improved process control.</li><li>Laboratory automation.</li><li>Computerised monitoring.</li></ul>
+</div>
+<div class="mode-panel" id="topic02-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Manufacture Overview</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic02-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic02-quiz">
+<div class="quiz-container" data-quiz="02"></div>
+</div>
+</section>
+<section class="topic-page" id="topic03">
+<div class="topic-head">
+<div class="topic-number">03</div>
+<div><h2>Wet Process</h2><p>Preparation and burning of slurry.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic03">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic03">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic03">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic03">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic03-learn">
+<h3>Wet Process</h3>
+<ul>
+<li>Limestone and clay are crushed.</li>
+<li>They may be washed where necessary.</li>
+<li>They are wet-ground with water to form <b>slurry</b>.</li>
+<li>Water in slurry: about <b>35–50%</b>.</li>
+</ul>
+<div class="diagram"><h3>Wet Process — Flow</h3><div class="flow"><div class="flow-box">Clay + Limestone</div><div class="arrow">→</div><div class="flow-box">Crushing / washing</div><div class="arrow">→</div><div class="flow-box">Wet grinding</div><div class="arrow">→</div><div class="flow-box">Slurry</div><div class="arrow">→</div><div class="flow-box">Blending &amp; correction</div><div class="arrow">→</div><div class="flow-box">Storage</div><div class="arrow">→</div><div class="flow-box">Rotary kiln</div><div class="arrow">→</div><div class="flow-box">Clinker</div><div class="arrow">→</div><div class="flow-box">Gypsum + grinding</div><div class="arrow">→</div><div class="flow-box">Cement</div></div></div>
+<h3>Slurry Preparation</h3>
+<ul>
+<li>Wet grinding gives a homogeneous slurry.</li>
+<li>Composition is tested and corrected periodically.</li>
+<li>Corrected slurry is stored in large tanks.</li>
+<li>Agitation keeps the slurry homogeneous.</li>
+</ul>
+<h3>Burning</h3>
+<ul>
+<li>Slurry enters the rotary kiln.</li>
+<li>Fuel may be powdered coal, oil or gas.</li>
+<li>Water is removed as the material moves through the kiln.</li>
+<li>Chemical reactions occur and clinker is formed.</li>
+</ul>
+<div class="important"><b>Main disadvantage:</b> A large amount of water must be evaporated, so the wet process requires more fuel than the dry process.</div>
+</div>
+<div class="mode-panel" id="topic03-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Wet Process</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic03-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic03-quiz">
+<div class="quiz-container" data-quiz="03"></div>
+</div>
+</section>
+<section class="topic-page" id="topic04">
+<div class="topic-head">
+<div class="topic-number">04</div>
+<div><h2>Dry Process</h2><p>Preparation of dry raw meal and modern dry-process manufacture.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic04">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic04">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic04">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic04">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic04-learn">
+<h3>Dry Process</h3>
+<ul>
+<li>Raw materials are crushed <b>dry</b>.</li>
+<li>They are proportioned and fed to grinding mills.</li>
+<li>Materials are dried and reduced to a fine powder.</li>
+<li>The powder is called <b>raw meal</b>.</li>
+<li>Raw meal is blended and corrected before entering the kiln.</li>
+</ul>
+<div class="diagram"><h3>Dry Process — Flow</h3><div class="flow"><div class="flow-box">Limestone</div><div class="arrow">→</div><div class="flow-box">Crusher</div><div class="arrow">→</div><div class="flow-box">Stacker /<br/>reclaimer</div><div class="arrow">→</div><div class="flow-box">Raw mill</div><div class="arrow">→</div><div class="flow-box">Raw meal silo</div><div class="arrow">→</div><div class="flow-box">Preheater /<br/>calciner</div><div class="arrow">→</div><div class="flow-box">Rotary kiln</div><div class="arrow">→</div><div class="flow-box">Cooler</div><div class="arrow">→</div><div class="flow-box">Clinker</div></div></div>
+<h3>Raw Meal Handling</h3>
+<ul>
+<li>Proportioned raw material is transported to the raw mill.</li>
+<li>Grinding produces powdered raw mix.</li>
+<li>Raw mix is stored in the raw meal silo.</li>
+<li>Blending takes place in the silo.</li>
+</ul>
+<h3>Semi-dry Process</h3>
+<ul>
+<li>Blended dry meal is partly mixed with water.</li>
+<li>It is formed into <b>nodules/pellets</b> in a disc granulator.</li>
+<li>Nodules allow air flow for heat exchange and further reactions.</li>
+</ul>
+<h3>Modern Dry Process Features</h3>
+<ul><li>Computerised control.</li><li>Online analysers.</li><li>Precalciners.</li><li>Vertical roller mills.</li><li>Stacker-reclaimers.</li><li>Process monitoring.</li><li>Automated sampling and laboratory analysis.</li></ul>
+</div>
+<div class="mode-panel" id="topic04-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Dry Process</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic04-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic04-quiz">
+<div class="quiz-container" data-quiz="04"></div>
+</div>
+</section>
+<section class="topic-page" id="topic05">
+<div class="topic-head">
+<div class="topic-number">05</div>
+<div><h2>Rotary Kiln</h2><p>Burning, clinker formation and cooling.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic05">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic05">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic05">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic05">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic05-learn">
+<h3>Rotary Kiln</h3>
+<ul>
+<li>A <b>refractory-lined rotating steel cylinder</b>.</li>
+<li>Raw material is heated and converted into clinker inside the kiln.</li>
+<li>Corrected slurry or dry raw meal enters the kiln.</li>
+<li>Material moves gradually towards the hot zone.</li>
+<li>Fuel may be powdered coal, oil or natural gas.</li>
+</ul>
+<div class="diagram"><h3>Rotary Kiln — Simple View</h3><div class="kiln"><div class="kiln-in">Raw meal / slurry</div><div class="kiln-body">ROTARY KILN<br/><small>Refractory lining</small></div><div class="kiln-hot">Hot zone<br/>≈ 1500°C</div><div class="kiln-out">Clinker</div></div></div>
+<h3>Burning and Clinker Formation</h3>
+<ul>
+<li>Temperature in the hottest part: about <b>1500°C</b>.</li>
+<li>About <b>20–30%</b> of material gets fused.</li>
+<li>Lime, silica and alumina react and combine.</li>
+<li>Fused mass forms nodular clinker.</li>
+<li>Clinker nodule size: about <b>3–20 mm</b>.</li>
+</ul>
+<h3>Clinker Cooling</h3>
+<ul>
+<li>Clinker is cooled in a rotary cooler.</li>
+<li>Clinker leaving the kiln may be about <b>1200°C</b>.</li>
+<li>It may be reduced to about <b>500°C</b> within about <b>15 minutes</b>.</li>
+<li>Cooling rate affects crystallisation, crystal size and clinker properties.</li>
+</ul>
+<h3>Grinding and Packing</h3>
+<ul>
+<li>Clinker is ground with about <b>2–3% gypsum</b> in a ball mill.</li>
+<li>Gypsum is added to prevent <b>flash setting</b>.</li>
+<li>Ground cement is stored in silos and packed.</li>
+</ul>
+</div>
+<div class="mode-panel" id="topic05-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Rotary Kiln</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic05-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic05-quiz">
+<div class="quiz-container" data-quiz="05"></div>
+</div>
+</section>
+<section class="topic-page" id="topic06">
+<div class="topic-head">
+<div class="topic-number">06</div>
+<div><h2>Chemical Composition</h2><p>Major oxides and Indian Standard chemical requirements.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic06">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic06">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic06">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic06">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic06-learn">
+<h3>Major Oxides</h3>
+<table><tr><th>Oxide</th><th>Approx. content (%)</th></tr><tr><td>CaO</td><td>60–67</td></tr><tr><td>SiO₂</td><td>17–25</td></tr><tr><td>Al₂O₃</td><td>3.0–8.0</td></tr><tr><td>Fe₂O₃</td><td>0.5–6.0</td></tr><tr><td>MgO</td><td>0.1–4.0</td></tr><tr><td>Alkalies (K₂O, Na₂O)</td><td>0.4–1.3</td></tr><tr><td>SO₃</td><td>1.3–3.0</td></tr></table>
+<ul>
+<li>Raw-material oxides combine in the kiln to form complex compounds.</li>
+<li>Their relative proportions influence cement properties.</li>
+<li>They also influence the heat generated during burning and hydration.</li>
+</ul>
+<h3>Indian Standard Chemical Requirements — 33 Grade</h3>
+<div class="formula">LSF = (CaO − 0.7 SO₃) / (2.8 SiO₂ + 1.2 Al₂O₃ + 0.65 Fe₂O₃)</div>
+<table><tr><th>Requirement</th><th>Reference limit</th></tr><tr><td>LSF</td><td>0.66 to 1.02</td></tr><tr><td>Al₂O₃ / Fe₂O₃</td><td>Not less than 0.66</td></tr><tr><td>Insoluble residue</td><td>Not more than 4%</td></tr><tr><td>MgO</td><td>Not more than 6%</td></tr><tr><td>SO₃</td><td>Not more than 2.5%</td></tr><tr><td>Loss on ignition</td><td>Not more than 5%</td></tr></table>
+<div class="important"><b>Exam focus:</b> Remember the oxide ranges, LSF formula and the stated limits for 33 grade cement.</div>
+</div>
+<div class="mode-panel" id="topic06-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Chemical Composition</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic06-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic06-quiz">
+<div class="quiz-container" data-quiz="06"></div>
+</div>
+</section>
+<section class="topic-page" id="topic07">
+<div class="topic-head">
+<div class="topic-number">07</div>
+<div><h2>Bogue's Compounds</h2><p>Principal compounds formed from the oxide composition.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic07">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic07">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic07">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic07">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic07-learn">
+<h3>Bogue's Compounds</h3>
+<ul><li>Oxides combine at clinker-forming temperature to form complex compounds.</li><li>The four major compounds are represented using Bogue notation.</li></ul>
+<table><tr><th>Name</th><th>Formula</th><th>Notation</th></tr><tr><td>Tricalcium silicate</td><td>3CaO·SiO₂</td><td><b>C₃S</b></td></tr><tr><td>Dicalcium silicate</td><td>2CaO·SiO₂</td><td><b>C₂S</b></td></tr><tr><td>Tricalcium aluminate</td><td>3CaO·Al₂O₃</td><td><b>C₃A</b></td></tr><tr><td>Tetracalcium aluminoferrite</td><td>4CaO·Al₂O₃·Fe₂O₃</td><td><b>C₄AF</b></td></tr></table>
+<h3>Bogue Notation</h3>
+<ul><li><b>C</b> = CaO</li><li><b>S</b> = SiO₂</li><li><b>A</b> = Al₂O₃</li><li><b>F</b> = Fe₂O₃</li></ul>
+<h3>Bogue Equations</h3>
+<div class="formula">C₃S = 4.07(CaO) − 7.60(SiO₂) − 6.72(Al₂O₃) − 1.43(Fe₂O₃) − 2.85(SO₃)</div>
+<div class="formula">C₂S = 2.87(SiO₂) − 0.754(C₃S)</div>
+<div class="formula">C₃A = 2.65(Al₂O₃) − 1.69(Fe₂O₃)</div>
+<div class="formula">C₄AF = 3.04(Fe₂O₃)</div>
+<div class="diagram"><h3>Oxides → Bogue Compounds</h3><div class="flow"><div class="flow-box">CaO + SiO₂<br/>+ Al₂O₃ + Fe₂O₃</div><div class="arrow">→</div><div class="flow-box">Clinker-forming reactions</div><div class="arrow">→</div><div class="flow-box">C₃S<br/>C₂S<br/>C₃A<br/>C₄AF</div></div></div>
+<h3>Typical Cement Calculation</h3>
+<table><tr><th>Oxide</th><th>Typical %</th><th>Calculated compound %</th></tr><tr><td>CaO</td><td>63</td><td>C₃S ≈ 54.1</td></tr><tr><td>SiO₂</td><td>20</td><td>C₂S ≈ 16.6</td></tr><tr><td>Al₂O₃</td><td>6</td><td>C₃A ≈ 10.8</td></tr><tr><td>Fe₂O₃</td><td>2.0</td><td>C₄AF ≈ 9.1</td></tr></table>
+</div>
+<div class="mode-panel" id="topic07-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Bogue's Compounds</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic07-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic07-quiz">
+<div class="quiz-container" data-quiz="07"></div>
+</div>
+</section>
+<section class="topic-page" id="topic08">
+<div class="topic-head">
+<div class="topic-number">08</div>
+<div><h2>Hydration of Cement</h2><p>Hydration mechanisms and products.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic08">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic08">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic08">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic08">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic08-learn">
+<h3>Meaning of Hydration</h3>
+<ul>
+<li><b>Anhydrous cement</b> does not bind fine and coarse aggregate by itself.</li>
+<li>It develops adhesive properties when mixed with water.</li>
+<li>Cement compounds react chemically with water.</li>
+<li>Hydrated products are formed.</li>
+</ul>
+<div class="diagram"><h3>Hydration Sequence</h3><div class="flow"><div class="flow-box">Raw materials</div><div class="arrow">→</div><div class="flow-box">Component elements<br/>O, Si, Ca, Al, Fe</div><div class="arrow">→</div><div class="flow-box">Oxides<br/>CaO, SiO₂, Al₂O₃, Fe₂O₃</div><div class="arrow">→</div><div class="flow-box">C₃S, C₂S, C₃A, C₄AF</div><div class="arrow">→</div><div class="flow-box">Portland cement</div><div class="arrow">→</div><div class="flow-box">+ Water<br/>Hydration</div><div class="arrow">→</div><div class="flow-box">C-S-H gel<br/>Ca(OH)₂<br/>Aluminate hydrates</div></div></div>
+<h3>Two Mechanisms</h3>
+<ul>
+<li><b>Through-solution:</b> Cement compounds dissolve in water → hydrated products form → products precipitate.</li>
+<li><b>Solid-state:</b> Water attacks cement compounds in the solid state → products develop from the surface inward.</li>
+<li>Through-solution is predominant in early hydration when large quantities of water are available.</li>
+<li>Both mechanisms may operate during later hydration.</li>
+</ul>
+<h3>Hydration Products</h3>
+<div class="formula">Cement compounds + Water → C-S-H gel + Ca(OH)₂ + Aluminate hydrates</div>
+<ul><li>Hydration products form the binding phases responsible for hardening and strength development.</li></ul>
+</div>
+<div class="mode-panel" id="topic08-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Hydration of Cement</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic08-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic08-quiz">
+<div class="quiz-container" data-quiz="08"></div>
+</div>
+</section>
+<section class="topic-page" id="topic09">
+<div class="topic-head">
+<div class="topic-number">09</div>
+<div><h2>Heat of Hydration</h2><p>Heat evolution during cement hydration.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic09">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic09">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic09">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic09">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic09-learn">
+<h3>Meaning</h3>
+<ul>
+<li>Reaction of cement with water is <b>exothermic</b>.</li>
+<li>It releases considerable heat.</li>
+<li>Heat can be observed by comparing cement-paste temperature with the surroundings.</li>
+</ul>
+<h3>Early Heat Evolution</h3>
+<div class="diagram"><h3>Heat Evolution — Simple Sequence</h3><div class="flow"><div class="flow-box">Mix cement + water</div><div class="arrow">→</div><div class="flow-box">Rapid heat evolution</div><div class="arrow">→</div><div class="flow-box">Reduced activity</div><div class="arrow">→</div><div class="flow-box">Renewed heat evolution</div></div></div>
+<ul><li>Immediately after mixing, rapid heat evolution occurs.</li><li>Early heat is associated with solution of aluminates and silicates.</li><li>After the initial rapid period, activity reduces.</li><li>Heat evolution occurs again as hydration proceeds.</li></ul>
+<h3>Heat of Hydration Values</h3>
+<table><tr><th>Compound</th><th>3 days (cal/g)</th><th>90 days (cal/g)</th><th>13 years (cal/g)</th></tr><tr><td>C₃S</td><td>58</td><td>104</td><td>122</td></tr><tr><td>C₂S</td><td>12</td><td>42</td><td>59</td></tr><tr><td>C₃A</td><td>212</td><td>311</td><td>324</td></tr><tr><td>C₄AF</td><td>69</td><td>98</td><td>102</td></tr></table>
+<h3>Expression</h3>
+<div class="formula">H = aA + bB + cC + dD</div>
+<ul><li><b>H:</b> Total heat of hydration.</li><li><b>A, B, C, D:</b> Percentages of C₃S, C₂S, C₃A and C₄AF.</li><li><b>a, b, c, d:</b> Respective heat contributions.</li></ul>
+<h3>Importance</h3>
+<ul><li>Important in <b>mass concrete</b>.</li><li>Temperature rise can cause thermal effects.</li><li>The reference also notes that clinker cooling rate affects clinker structure and cement properties.</li></ul>
+</div>
+<div class="mode-panel" id="topic09-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Heat of Hydration</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic09-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic09-quiz">
+<div class="quiz-container" data-quiz="09"></div>
+</div>
+</section>
+<section class="topic-page" id="topic10">
+<div class="topic-head">
+<div class="topic-number">10</div>
+<div><h2>Calcium Silicate Hydrates</h2><p>C-S-H, C₃S/C₂S hydration, strength and calcium hydroxide.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic10">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic10">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic10">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic10">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic10-learn">
+<h3>Calcium Silicate Hydrates — C-S-H</h3>
+<ul>
+<li>C₃S and C₂S react with water and form <b>calcium silicate hydrate (C-S-H)</b>.</li>
+<li>C-S-H occupies a large part of the solid volume in completely hydrated paste.</li>
+<li>C-S-H is the <b>principal binding product</b>.</li>
+</ul>
+<h3>C₃S Hydration</h3>
+<div class="formula">2(3CaO·SiO₂) + 6H₂O → 3CaO·2SiO₂·3H₂O + 3Ca(OH)₂</div>
+<div class="formula">2C₃S + 6H → C₃S₂H₃ + 3Ca(OH)₂</div>
+<ul><li>C₃S hydrates comparatively rapidly.</li><li>Main contribution: <b>early strength</b>.</li><li>C₃S-rich cement can be useful when early strength is important.</li></ul>
+<h3>C₂S Hydration</h3>
+<div class="formula">2(2CaO·SiO₂) + 4H₂O → 3CaO·2SiO₂·3H₂O + Ca(OH)₂</div>
+<div class="formula">2C₂S + 4H → C₃S₂H₃ + Ca(OH)₂</div>
+<ul><li>C₂S hydrates more slowly.</li><li>Main contribution: <b>later strength</b>.</li><li>It produces less Ca(OH)₂ than C₃S.</li></ul>
+<div class="diagram"><h3>C₃S vs C₂S — Easy Comparison</h3><table><tr><th>C₃S</th><th>C₂S</th></tr><tr><td>Faster hydration</td><td>Slower hydration</td></tr><tr><td>Early strength</td><td>Later strength</td></tr><tr><td>More Ca(OH)₂</td><td>Less Ca(OH)₂</td></tr></table></div>
+<h3>Calcium Hydroxide</h3>
+<ul><li>Another major hydration product.</li><li>Occupies about <b>20–25%</b> of the volume of solids in hydrated paste.</li><li>Comparatively weak.</li><li>Can be attacked by sulphates.</li><li>Fly ash and silica fume can consume calcium hydroxide.</li></ul>
+</div>
+<div class="mode-panel" id="topic10-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Calcium Silicate Hydrates</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic10-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic10-quiz">
+<div class="quiz-container" data-quiz="10"></div>
+</div>
+</section>
+<section class="topic-page" id="topic11">
+<div class="topic-head">
+<div class="topic-number">11</div>
+<div><h2>Calcium Aluminate Hydrates</h2><p>Hydration of C₃A/C₄AF, gypsum, ettringite and monosulphate.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic11">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic11">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic11">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic11">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic11-learn">
+<h3>C₃A Hydration</h3>
+<ul>
+<li>C₃A hydrates rapidly.</li>
+<li>It contributes little to long-term strength.</li>
+<li>Uncontrolled rapid reaction can cause rapid setting.</li>
+<li><b>Gypsum</b> is added during cement grinding to control the rapid reaction of C₃A.</li>
+</ul>
+<h3>Ettringite</h3>
+<ul>
+<li>Forms when C₃A reacts in the presence of sulphate.</li>
+<li>It is calcium aluminate trisulphate hydrate.</li>
+<li>It is commonly called <b>ettringite</b>.</li>
+<li>It is normally one of the first products to hydrate and crystallise.</li>
+</ul>
+<h3>Monosulphate</h3>
+<div class="diagram"><h3>Ettringite → Monosulphate</h3><div class="flow"><div class="flow-box">C₃A + sulphate</div><div class="arrow">→</div><div class="flow-box">Ettringite</div><div class="arrow">→</div><div class="flow-box">Sulphate becomes depleted</div><div class="arrow">→</div><div class="flow-box">Ettringite becomes unstable</div><div class="arrow">→</div><div class="flow-box">Monosulphate</div></div></div>
+<ul><li>The amount of gypsum influences the aluminate-to-sulphate ratio.</li></ul>
+<h3>C₄AF</h3>
+<ul><li>C₄AF is another aluminate/ferrite compound.</li><li>Its hydration products contribute relatively little to strength compared with calcium silicate hydrates.</li></ul>
+<h3>C-S-H Morphology</h3>
+<ul><li>C-S-H has a gel nature.</li><li>The reference describes porous gel, fibres and a poorly formed mass.</li><li>C-S-H is not a single sharply defined compound.</li></ul>
+</div>
+<div class="mode-panel" id="topic11-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Calcium Aluminate Hydrates</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic11-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic11-quiz">
+<div class="quiz-container" data-quiz="11"></div>
+</div>
+</section>
+<section class="topic-page" id="topic12">
+<div class="topic-head">
+<div class="topic-number">12</div>
+<div><h2>Structure, Transition Zone &amp; Water</h2><p>Structure of hydrated cement, transition zone, pores and water requirement.</p></div>
+</div>
+<div class="mode-tabs">
+<button class="mode-btn active" data-mode="learn" data-topic="topic12">📖 Learn</button>
+<button class="mode-btn" data-mode="questions" data-topic="topic12">📝 Questions</button>
+<button class="mode-btn" data-mode="pyq" data-topic="topic12">🎓 PYQs</button>
+<button class="mode-btn" data-mode="quiz" data-topic="topic12">✅ MCQ Practice</button>
+</div>
+<div class="mode-panel active" id="topic12-learn">
+<h3>Structure of Hydrated Cement</h3>
+<ul>
+<li>At macroscopic level, concrete can be considered as two phases: <b>paste + aggregate</b>.</li>
+<li>At microscopic level, the <b>transition zone</b> forms a third phase.</li>
+</ul>
+<div class="diagram"><h3>Concrete — Simple Structure</h3><div class="three-phase"><div>AGGREGATE</div><div>TRANSITION<br/>ZONE</div><div>CEMENT<br/>PASTE</div></div></div>
+<h3>Transition Zone</h3>
+<ul>
+<li>Generally a <b>region of weakness</b>.</li>
+<li>Its structure is influenced by bleeding.</li>
+<li>Crystal size and concentration are important.</li>
+<li>Drying shrinkage and temperature variation can cause microcracking.</li>
+<li>Calcium hydroxide and ettringite crystals can be larger and more concentrated here than in bulk cement paste.</li>
+<li>It is porous and can affect strength and durability.</li>
+</ul>
+<h3>Paste Structure and Water-Cement Ratio</h3>
+<ul>
+<li>Fresh paste is a plastic mass of cement and water.</li>
+<li>During hydration, products form and the relationships between water, unhydrated cement, hydration products and capillary cavities change.</li>
+<li>Water-cement ratio strongly affects capillary porosity, paste structure, strength and durability.</li>
+</ul>
+<h3>Water Requirements</h3>
+<table><tr><th>Quantity</th><th>Reference value</th></tr><tr><td>Water required by C₃S</td><td>24% by weight of cement</td></tr><tr><td>Water required by C₂S</td><td>21% by weight of cement</td></tr><tr><td>Average water for chemical reaction</td><td>23%</td></tr><tr><td>Water needed to fill gel pores</td><td>about 15%</td></tr><tr><td>Total for complete reaction + gel pores</td><td>about 38%</td></tr></table>
+<h3>Hydration Development</h3>
+<div class="diagram"><h3>Hydration — Stage by Stage</h3><div class="flow"><div class="flow-box">Fresh paste<br/>Cement + water</div><div class="arrow">→</div><div class="flow-box">Rapid early reactions</div><div class="arrow">→</div><div class="flow-box">C-S-H forms<br/>around grains</div><div class="arrow">→</div><div class="flow-box">Products bridge<br/>spaces</div><div class="arrow">→</div><div class="flow-box">More space filled<br/>Capillary cavities remain</div></div></div>
+<ul>
+<li>If water is less than about <b>38%</b> by weight of cement, complete hydration cannot occur throughout the paste.</li>
+<li>If water is much greater, excess water can remain as capillary cavities after evaporation.</li>
+<li>During the first few minutes, rapid reactions occur.</li>
+<li>As hydration proceeds, products bridge spaces between cement particles.</li>
+<li>Further hydration fills more space; remaining water may leave capillary cavities.</li>
+</ul>
+<div class="important"><b>Key idea:</b> Water-cement ratio strongly influences capillary porosity, paste structure, strength and durability.</div>
+</div>
+<div class="mode-panel" id="topic12-questions">
+<div class="question"><strong>Important Questions</strong>
+<p>Use this section for exam-oriented questions from the reference topic. The Learn section above contains the complete source-derived explanation for this topic.</p>
+<ol>
+<li>Define and explain <strong>Structure, Transition Zone &amp; Water</strong>.</li>
+<li>Write the important points, values, formulas and reactions related to this topic.</li>
+<li>Draw and explain the relevant flow chart/diagram where applicable.</li>
+<li>Write the differences or comparisons mentioned in the reference.</li>
+</ol>
+<div class="answer"><strong>Answer:</strong> Refer to the complete explanation in the Learn section. No outside points have been inserted into the source-derived explanation.</div>
+</div>
+</div>
+<div class="mode-panel" id="topic12-pyq">
+<div class="pyq-empty"><strong>PYQ section</strong><p>Only verified PYQs supplied by the user/reference should be placed here. No question is being falsely labelled as a PYQ.</p></div>
+</div>
+<div class="mode-panel" id="topic12-quiz">
+<div class="quiz-container" data-quiz="12"></div>
+</div>
+</section>
+</div>
+<footer>Civil Engineering Study Portal • CMCT • Week 02</footer>
+<script>
+const MCQ_DATA={"01": {"title": "General & History", "subtitle": "History and development of cementing materials and Portland cement.", "learn": "\n<h3>General</h3>\n<p>The reference introduces cementing materials as very old materials used in construction. Early Egyptian records describe materials obtained by burning gypsum. Lime and hydraulic cementing materials were also used by the Greeks and Romans.</p>\n<p>Roman builders used volcanic tuff and other volcanic materials with lime to produce mortar with good strength and durability. Pozzolana obtained near Mount Vesuvius was an important natural pozzolanic material. Where natural volcanic ash was not available, Romans used artificial pozzolanic materials such as powdered tiles and pottery.</p>\n<h3>Roman Practice and Surkhi</h3>\n<p>The reference describes the Roman practice of mixing and long ramming of lime mortar, sometimes with or without Surkhi. Surkhi is powdered brick used as a pozzolanic material.</p>\n<h3>John Smeaton</h3>\n<p>Investigations into hydraulic lime showed the importance of clayey limestone. John Smeaton's work during the construction of the Eddystone Lighthouse helped establish the importance of hydraulic cementing materials.</p>\n<h3>Early History of Modern Cement</h3>\n<p>L. J. Vicat carried out important investigations into artificial hydraulic lime by calcining mixtures of limestone and clay. Joseph Aspdin is credited with the invention of Portland cement.</p>\n<div class=\"important\"><strong>Joseph Aspdin:</strong> He took out the patent for Portland cement on 21 October 1824. The name Portland cement was given because the hardened cement resembled natural stone obtained at Portland in England.</div>\n<h3>Development in India</h3>\n<p>The reference records early attempts to manufacture cement in India, including the attempt near Madras in 1904 and the establishment of the Indian Cement Company at Porbandar in 1912–1913. Three factories together produced about 85,000 tonnes per year by 1918.</p>\n<p>The reference also presents production and capacity data through successive Five-Year Plans and notes the growth of the Indian cement industry.</p>\n", "mcq": [{"q": "Who patented Portland cement?", "o": ["Joseph Aspdin", "John Smeaton", "L. J. Vicat", "Vicat"], "a": 0, "e": "Joseph Aspdin patented Portland cement on 21 October 1824."}, {"q": "When was the Portland cement patent taken out?", "o": ["21 October 1820", "21 October 1834", "21 October 1824", "21 October 1850"], "a": 2, "e": "The reference gives 21 October 1824."}, {"q": "The name Portland cement was associated with resemblance to stone from:", "o": ["Rome", "Pozzuoli", "Madras", "Portland in England"], "a": 3, "e": "The reference says the name was given because the hardened cement resembled natural stone from Portland."}, {"q": "Pozzolana was associated with:", "o": ["Pure limestone", "Volcanic material", "Steel slag only", "Gypsum only"], "a": 1, "e": "Roman builders used volcanic tuff/pozzolana with lime."}, {"q": "Romans used artificial pozzolana when natural volcanic ash was unavailable. Which is one example?", "o": ["Powdered tiles and pottery", "Steel powder", "Glass fibres", "Cement clinker"], "a": 0, "e": "The reference mentions powdered tiles and pottery."}, {"q": "Surkhi is:", "o": ["Powdered steel", "Powdered gypsum", "Powdered brick", "Natural sand"], "a": 2, "e": "Surkhi is powdered brick used as a pozzolanic material."}, {"q": "Who investigated artificial hydraulic lime by calcining limestone and clay?", "o": ["Joseph Aspdin", "Smeaton", "Bogue", "L. J. Vicat"], "a": 3, "e": "The reference describes L. J. Vicat's investigations."}, {"q": "John Smeaton's work was associated with:", "o": ["Portland cement patent", "Hydraulic lime", "Bogue equations", "Clinker packing"], "a": 1, "e": "Smeaton's work helped establish the importance of hydraulic cementing materials."}, {"q": "Early Egyptian cementing materials included materials obtained by burning:", "o": ["Gypsum", "Steel", "Clay bricks only", "Clinker"], "a": 0, "e": "The reference mentions burning gypsum."}, {"q": "The Roman material obtained near Mount Vesuvius was:", "o": ["Surkhi", "Gypsum", "Pozzolana", "Clinker"], "a": 2, "e": "Pozzolana was obtained near Mount Vesuvius."}, {"q": "The Indian Cement Company was established at Porbandar in:", "o": ["1904–1905", "1918–1919", "1924–1925", "1912–1913"], "a": 3, "e": "The reference gives 1912–1913."}, {"q": "An early attempt to manufacture cement in India occurred near Madras in:", "o": ["1912", "1904", "1918", "1951"], "a": 1, "e": "The reference records an attempt near Madras in 1904."}, {"q": "Three Indian cement factories together produced about how much per year by 1918?", "o": ["85,000 tonnes", "8,500 tonnes", "850,000 tonnes", "5,000 tonnes"], "a": 0, "e": "The reference gives about 85,000 tonnes/year."}, {"q": "Portland cement is a modern form of:", "o": ["Timber", "Bitumen", "Hydraulic cementing material", "Aggregate"], "a": 2, "e": "The chapter traces the development of hydraulic cementing materials."}, {"q": "Roman mortar commonly used lime with:", "o": ["Steel powder", "Cement clinker", "Alumina only", "Volcanic material"], "a": 3, "e": "Romans used lime with volcanic materials."}, {"q": "The historical use of pozzolana is strongly associated with:", "o": ["Modern steel construction", "Roman construction", "Glass production", "Timber seasoning"], "a": 1, "e": "The reference discusses Roman use of pozzolana."}, {"q": "The patent for Portland cement was taken out by:", "o": ["Joseph Aspdin", "John Smeaton", "Vicat", "Bogue"], "a": 0, "e": "Joseph Aspdin is credited with the invention."}, {"q": "The term Surkhi refers to a:", "o": ["Hydraulic oil", "Cement kiln", "Pozzolanic powdered brick material", "Gypsum crystal"], "a": 2, "e": "Surkhi is powdered brick."}, {"q": "The chapter begins the history of cement with:", "o": ["Modern dry process", "Bogue equations", "C-S-H gel", "Ancient cementing materials"], "a": 3, "e": "The opening section is the general history."}, {"q": "The development of modern cement is linked to the study of:", "o": ["Steel rolling", "Hydraulic lime and cementing materials", "Timber defects", "Aggregate grading"], "a": 1, "e": "The historical discussion follows hydraulic lime and cement development."}]}, "02": {"title": "Manufacture Overview", "subtitle": "Raw materials and general manufacture of Portland cement.", "learn": "\n<h3>Raw Materials</h3>\n<p>The principal raw materials are calcareous materials such as limestone or chalk and argillaceous materials such as shale or clay. Cement factories establish proportions so that the required lime, silica, alumina and iron oxide are obtained.</p>\n<h3>General Manufacturing Sequence</h3>\n<div class=\"flow\"><span>Raw materials</span><b>→</b><span>Crushing</span><b>→</b><span>Grinding</span><b>→</b><span>Proportioning & mixing</span><b>→</b><span>Burning</span><b>→</b><span>Clinker</span><b>→</b><span>Cooling</span><b>→</b><span>Gypsum + final grinding</span><b>→</b><span>Cement</span></div>\n<p>The reference states that manufacture consists of grinding raw materials, mixing them in correct proportions, and burning them in a kiln at about 1300–1500°C. The product is clinker, which is ground with gypsum to produce Portland cement.</p>\n<h3>Processes</h3>\n<p>Three process conditions are discussed: wet, dry and semi-dry. The wet process uses slurry; the dry process uses dry raw meal; the semi-dry process forms nodules or pellets from the dry mix.</p>\n<h3>Modernisation</h3>\n<p>The reference describes developments such as improved raw-material control, modern grinding, blending, preheaters/precalciners, improved process control, laboratory automation, and computerised monitoring.</p>\n", "mcq": [{"q": "The two principal groups of cement raw materials are:", "o": ["Calcareous and argillaceous", "Metallic and nonmetallic", "Fine and coarse", "Organic and inorganic"], "a": 0, "e": "The reference identifies calcareous and argillaceous materials."}, {"q": "An example of a calcareous raw material is:", "o": ["Shale", "Clay only", "Limestone", "Gypsum only"], "a": 2, "e": "Limestone is calcareous."}, {"q": "An example of an argillaceous raw material is:", "o": ["Limestone", "Chalk only", "Clinker", "Clay"], "a": 3, "e": "Clay is argillaceous."}, {"q": "Cement manufacture includes grinding raw materials and:", "o": ["Packing them before burning", "Mixing them in correct proportions", "Adding aggregate", "Seasoning timber"], "a": 1, "e": "Correct proportioning and mixing are essential."}, {"q": "The raw material is burned in a kiln at approximately:", "o": ["1300–1500°C", "100–200°C", "300–500°C", "600–800°C"], "a": 0, "e": "The reference gives about 1300–1500°C."}, {"q": "The product obtained from kiln burning is:", "o": ["Slurry", "Raw meal", "Clinker", "Gypsum"], "a": 2, "e": "Burning produces clinker."}, {"q": "Clinker is ground with approximately:", "o": ["20–30% gypsum", "0.1% gypsum", "50% gypsum", "2–3% gypsum"], "a": 3, "e": "The reference states about 2–3% gypsum."}, {"q": "The three process conditions discussed are:", "o": ["Wet, steam and vacuum", "Wet, dry and semi-dry", "Dry, hot and cold", "Batch, continuous and manual"], "a": 1, "e": "The reference discusses wet, dry and semi-dry processes."}, {"q": "The wet process uses raw material mainly as:", "o": ["Slurry", "Dry pellets only", "Clinker", "Powdered cement"], "a": 0, "e": "Wet process uses slurry."}, {"q": "The dry process uses:", "o": ["Liquid slurry", "Only gypsum", "Dry raw meal", "Only water"], "a": 2, "e": "Dry process uses dry raw meal."}, {"q": "The semi-dry process forms:", "o": ["Steel bars", "Glass beads", "Liquid cement", "Nodules or pellets"], "a": 3, "e": "The reference describes nodules/pellets."}, {"q": "The final product of cement manufacture is obtained by grinding:", "o": ["Clay with water", "Clinker with gypsum", "Limestone with sand", "Raw meal with oil"], "a": 1, "e": "Final grinding uses clinker and gypsum."}, {"q": "Raw materials must be proportioned to obtain the required:", "o": ["Chemical composition", "Colour only", "Aggregate size", "Timber moisture"], "a": 0, "e": "Proportioning controls oxide composition."}, {"q": "Modern cement plants use improved:", "o": ["Timber seasoning", "Brick dressing", "Process control and monitoring", "Stone polishing"], "a": 2, "e": "The reference describes modern control and monitoring."}, {"q": "The cement manufacturing process is fundamentally based on:", "o": ["Mechanical compaction only", "Water evaporation only", "Stone dressing", "Oxide reactions during burning"], "a": 3, "e": "Burning causes the raw oxides to combine."}, {"q": "Clinker is produced before:", "o": ["Raw material crushing", "Final cement grinding", "Quarrying", "Blending"], "a": 1, "e": "Clinker is subsequently ground."}, {"q": "Gypsum is added mainly during:", "o": ["Final grinding", "Quarrying", "Initial crushing", "Raw meal storage"], "a": 0, "e": "The reference places gypsum addition at final grinding."}, {"q": "A key purpose of proportioning is to control:", "o": ["Aggregate grading", "Steel yield", "Lime, silica, alumina and iron oxide", "Timber grain"], "a": 2, "e": "These are the major oxide constituents."}, {"q": "Cement manufacture starts with:", "o": ["Hydrated cement", "C-S-H gel", "Calcium hydroxide", "Raw materials"], "a": 3, "e": "Raw materials are the starting point."}, {"q": "The kiln stage is important because it forms:", "o": ["Surkhi", "Clinker compounds", "Slurry", "Aggregate"], "a": 1, "e": "High-temperature burning forms clinker compounds."}]}, "03": {"title": "Wet Process", "subtitle": "Preparation and burning of slurry.", "learn": "\n<h3>Wet Process</h3>\n<p>In the wet process, limestone and clay are crushed, washed where necessary and wet-ground with water to form slurry. The reference gives about 35–50% water in the slurry.</p>\n<div class=\"flow\"><span>Clay + Limestone</span><b>→</b><span>Crushing / washing</span><b>→</b><span>Wet grinding</span><b>→</b><span>Slurry</span><b>→</b><span>Blending & correction</span><b>→</b><span>Storage</span><b>→</b><span>Rotary kiln</span><b>→</b><span>Clinker</span><b>→</b><span>Gypsum + grinding</span><b>→</b><span>Cement</span></div>\n<p>Wet grinding produces a homogeneous slurry. The composition is tested and corrected periodically. The corrected slurry is stored in large tanks and kept homogeneous by agitation.</p>\n<p>The slurry is fed to a rotary kiln. Fuel may be powdered coal, oil or gas. As the material moves through the kiln, water is removed and the material undergoes chemical reactions until clinker is formed.</p>\n<div class=\"important\"><strong>Main disadvantage:</strong> A large amount of water has to be evaporated, so the wet process requires more fuel than the dry process.</div>\n", "mcq": [{"q": "The wet process produces raw material in the form of:", "o": ["Slurry", "Dry raw meal", "Clinker", "Cement paste"], "a": 0, "e": "Wet grinding with water produces slurry."}, {"q": "Approximate water content of slurry is:", "o": ["5–10%", "60–80%", "35–50%", "1–2%"], "a": 2, "e": "The reference gives 35–50%."}, {"q": "Wet grinding is used to make:", "o": ["Clinker", "Gypsum", "C-S-H", "Slurry"], "a": 3, "e": "Wet grinding produces slurry."}, {"q": "The slurry composition is corrected before:", "o": ["Quarrying", "Feeding to the rotary kiln", "Packing", "Final hydration"], "a": 1, "e": "Corrected slurry is fed to the kiln."}, {"q": "Corrected slurry is stored in:", "o": ["Large storage tanks", "Clinker coolers", "Cement bags", "Ball mills"], "a": 0, "e": "The reference describes large slurry storage tanks."}, {"q": "Slurry is kept homogeneous by:", "o": ["Cooling only", "Packing", "Agitation", "Drying"], "a": 2, "e": "Agitation maintains homogeneity."}, {"q": "Fuel mentioned for the kiln includes:", "o": ["Timber only", "Surkhi only", "Gypsum only", "Powdered coal, oil or gas"], "a": 3, "e": "The reference lists these fuels."}, {"q": "The main disadvantage of the wet process is:", "o": ["No mixing", "High fuel requirement", "No clinker formation", "No grinding"], "a": 1, "e": "Water must be evaporated, requiring more fuel."}, {"q": "Wet process is particularly associated with:", "o": ["Water-containing slurry", "Dry raw meal", "Clinker dust", "C-S-H gel"], "a": 0, "e": "That is its defining feature."}, {"q": "The wet process begins with:", "o": ["Clinker and gypsum", "C-S-H and Ca(OH)₂", "Clay and limestone", "Cement paste"], "a": 2, "e": "Clay and limestone are processed into slurry."}, {"q": "Clay may undergo:", "o": ["Clinker cooling", "Final packing", "Hydration", "Washing before wet grinding"], "a": 3, "e": "The flow diagram includes wash mill."}, {"q": "Limestone is first subjected to:", "o": ["Hydration", "Crushing", "Cement grinding", "Gypsum addition"], "a": 1, "e": "The wet-process diagram shows limestone crusher."}, {"q": "Wet grinding produces a slurry that is:", "o": ["Blended and corrected", "Immediately packed", "Immediately hydrated", "Used as aggregate"], "a": 0, "e": "Correction and blending occur before kiln feeding."}, {"q": "The kiln converts slurry into:", "o": ["Raw meal", "Gypsum", "Clinker", "Surkhi"], "a": 2, "e": "The slurry is converted to clinker."}, {"q": "After clinker formation, the reference shows addition of:", "o": ["20% water", "50% clay", "10% sand", "2 to 3% gypsum"], "a": 3, "e": "The wet-process flow diagram gives 2–3% gypsum."}, {"q": "The final grinding of clinker is shown using a:", "o": ["Crusher only", "Ball mill", "Wash mill", "Reclaimer"], "a": 1, "e": "The flow diagram shows a ball mill."}, {"q": "The final product is stored in:", "o": ["Cement silos", "Wash basins", "Slurry tanks", "Kiln shell"], "a": 0, "e": "The flow diagram shows cement silos."}, {"q": "The wet process requires more heat because of:", "o": ["Gypsum melting", "Steel heating", "Evaporation of water", "Aggregate drying"], "a": 2, "e": "Water in slurry must be evaporated."}, {"q": "The slurry enters the kiln after:", "o": ["Final hydration", "Packing", "Clinker grinding", "Composition correction and storage"], "a": 3, "e": "The process includes correction and storage."}, {"q": "The wet-process flow ends with:", "o": ["Quarry", "Packing plant", "Wash mill", "Raw meal silo"], "a": 1, "e": "The diagram ends at the packing plant."}]}, "04": {"title": "Dry Process", "subtitle": "Preparation of dry raw meal and modern dry-process manufacture.", "learn": "\n<h3>Dry Process</h3>\n<p>In the dry process the raw materials are crushed dry and fed in correct proportions to grinding mills. They are dried and reduced to a fine powder. The raw meal is then blended and corrected before entering the kiln.</p>\n<div class=\"flow\"><span>Limestone</span><b>→</b><span>Crusher</span><b>→</b><span>Stacker / reclaimer</span><b>→</b><span>Raw mill</span><b>→</b><span>Raw meal silo</span><b>→</b><span>Preheater / calciner</span><b>→</b><span>Rotary kiln</span><b>→</b><span>Cooler</span><b>→</b><span>Clinker</span></div>\n<p>The reference illustrates proportioned raw material being transported by belt conveyor to a raw mill for grinding. After grinding, powdered raw mix is stored in a raw meal silo where blending takes place.</p>\n<h3>Semi-dry Process</h3>\n<p>The blended meal is partly mixed with water and formed into nodules or pellets in a disc granulator. This allows air flow for heat exchange and further chemical reactions.</p>\n<h3>Modern Dry Process Features</h3>\n<p>The reference describes modern plants using computerised control, online analysers, precalciners, vertical roller mills, stacker-reclaimers and process monitoring. Quality control can include automated sampling and laboratory analysis.</p>\n", "mcq": [{"q": "The dry process starts with raw materials that are:", "o": ["Crushed dry", "Mixed as slurry", "Hydrated", "Packed"], "a": 0, "e": "The reference states the raw materials are crushed dry."}, {"q": "Dry raw materials are fed in correct proportions to a:", "o": ["Wash mill", "Slurry tank", "Grinding mill", "Cement bag"], "a": 2, "e": "The dry process uses grinding mills."}, {"q": "The raw meal is reduced to a:", "o": ["Large nodule only", "Liquid", "Coarse aggregate", "Very fine powder"], "a": 3, "e": "Dry grinding produces fine powder."}, {"q": "After grinding, the raw meal is stored in a:", "o": ["Slurry tank", "Raw meal silo", "Cement bag", "Kiln cooler"], "a": 1, "e": "The dry-process diagram shows a raw meal silo."}, {"q": "The raw meal silo is used for:", "o": ["Blending", "Hydration", "Packing", "Clinker cooling"], "a": 0, "e": "The reference describes blending in the silo."}, {"q": "The dry process generally has lower fuel consumption because:", "o": ["It uses more water", "It avoids burning", "It does not require evaporation of slurry water", "It avoids grinding"], "a": 2, "e": "Dry process avoids the large water load of wet process."}, {"q": "A modern dry process may use a:", "o": ["Wash mill", "Surkhi mixer", "Stone polisher", "Precalciner"], "a": 3, "e": "Precalciners are described."}, {"q": "A raw mill is used for:", "o": ["Cooling clinker", "Grinding raw material", "Packing cement", "Hydrating C₃S"], "a": 1, "e": "The reference shows the raw mill."}, {"q": "A stacker is associated with:", "o": ["Crushed limestone storage/homogenisation", "Final hydration", "Cement packing", "Gypsum production"], "a": 0, "e": "The reference illustrates a stacker."}, {"q": "A reclaimer is used with:", "o": ["Hydrated paste", "C-S-H gel", "Crushed limestone", "Cement bags only"], "a": 2, "e": "The diagram shows a reclaimer for crushed limestone."}, {"q": "The dry process may use:", "o": ["Wash basins", "Hydraulic jacks only", "Timber rollers", "Vertical roller mills"], "a": 3, "e": "The reference lists vertical roller mills."}, {"q": "The semi-dry process forms raw meal into:", "o": ["Cement bags", "Nodules or pellets", "Clinker dust", "Slurry"], "a": 1, "e": "The reference describes granulation into nodules/pellets."}, {"q": "A disc granulator is used in the:", "o": ["Semi-dry process", "Wet process only", "Final hydration", "Cement packing"], "a": 0, "e": "It forms pellets for semi-dry processing."}, {"q": "The dry-process raw material is finally fed to:", "o": ["A wash mill", "A concrete mixer", "The kiln", "A timber yard"], "a": 2, "e": "Raw meal enters the kiln."}, {"q": "The clinker cooler is used after:", "o": ["Raw quarrying", "Raw grinding", "Packing", "The rotary kiln"], "a": 3, "e": "Clinker is cooled after burning."}, {"q": "Modern plants may use online analysers for:", "o": ["Timber defects", "Process and quality control", "Stone polishing", "Brick dressing"], "a": 1, "e": "The reference discusses online analysis."}, {"q": "The dry process is described as more economical in:", "o": ["Fuel consumption", "Gypsum production", "Stone quarrying", "Timber seasoning"], "a": 0, "e": "It uses less fuel than wet process."}, {"q": "The raw meal is blended to obtain:", "o": ["Maximum water content", "Timber moisture", "Uniform composition", "Aggregate size"], "a": 2, "e": "Blending homogenises the raw meal."}, {"q": "The dry-process flow includes a:", "o": ["Wash mill", "Surkhi kiln", "Timber mill", "Cement mill"], "a": 3, "e": "The figure shows a cement mill."}, {"q": "The modern dry process includes improved:", "o": ["Manual brick making", "Automation and control", "Stone dressing", "Timber polishing"], "a": 1, "e": "The reference describes automated sampling and control."}]}, "05": {"title": "Rotary Kiln", "subtitle": "Burning, clinker formation and cooling.", "learn": "\n<h3>Rotary Kiln</h3>\n<p>The rotary kiln is a refractory-lined rotating steel cylinder in which the raw material is heated and transformed into clinker. The reference describes a thick refractory lining and controlled rotation.</p>\n<p>Corrected slurry or dry raw meal enters the kiln and moves gradually toward the hot zone. Fuel may be powdered coal, oil or natural gas.</p>\n<h3>Burning and Clinker Formation</h3>\n<p>In the hottest part of the kiln the temperature is about 1500°C. About 20–30% of the material gets fused. Lime, silica and alumina react and combine. The fused mass turns into nodular clinker, with the reference describing nodules around 3–20 mm.</p>\n<h3>Clinker Cooling</h3>\n<p>The clinker is cooled in a rotary cooler. The reference notes that clinker leaving the kiln may be about 1200°C and is brought down to about 500°C within about 15 minutes. The rate of cooling affects crystallisation, crystal size and the properties of clinker.</p>\n<h3>Grinding and Packing</h3>\n<p>Clinker is ground with about 2–3% gypsum in a ball mill. Gypsum is added to prevent flash setting. The ground cement is stored in silos and packed for use.</p>\n", "mcq": [{"q": "The rotary kiln is used mainly for:", "o": ["Burning raw material", "Grinding cement", "Packing bags", "Hydrating paste"], "a": 0, "e": "The kiln burns the raw material."}, {"q": "The hottest part of the kiln reaches approximately:", "o": ["150°C", "500°C", "1500°C", "800°C"], "a": 2, "e": "The reference gives about 1500°C."}, {"q": "About what fraction of material is fused in the hottest part according to the reference?", "o": ["1–2%", "50–60%", "80–90%", "20–30%"], "a": 3, "e": "The reference states about 20–30%."}, {"q": "The principal oxides combine in the kiln to form:", "o": ["Surkhi", "Clinker compounds", "Timber", "Aggregate"], "a": 1, "e": "Lime, silica and alumina combine."}, {"q": "Clinker is described as:", "o": ["Nodular", "Liquid", "Fibrous", "Timber-like"], "a": 0, "e": "Clinker forms nodules."}, {"q": "The reference gives clinker nodule size approximately:", "o": ["0.01–0.02 mm", "50–100 mm", "3–20 mm", "1–2 m"], "a": 2, "e": "The reference gives about 3–20 mm."}, {"q": "Fuel for the kiln may be:", "o": ["Surkhi", "Gypsum", "Limestone only", "Powdered coal"], "a": 3, "e": "Powdered coal is one listed fuel."}, {"q": "The kiln is lined with:", "o": ["Timber", "Refractory material", "Plastic", "Glass"], "a": 1, "e": "The reference describes a refractory-lined steel cylinder."}, {"q": "The raw material moves through the kiln toward:", "o": ["The hot zone", "The packing plant", "The quarry", "The laboratory only"], "a": 0, "e": "Material gradually reaches the hot zone."}, {"q": "After burning, clinker is:", "o": ["Hydrated immediately in concrete", "Washed", "Cooled", "Converted to clay"], "a": 2, "e": "Clinker is cooled before final grinding."}, {"q": "The reference gives clinker leaving the kiln at about:", "o": ["100°C", "300°C", "50°C", "1200°C"], "a": 3, "e": "It states about 1200°C."}, {"q": "The clinker is cooled to about 500°C within approximately:", "o": ["15 hours", "15 minutes", "2 days", "1 minute"], "a": 1, "e": "The reference gives about 15 minutes."}, {"q": "Cooling rate affects:", "o": ["Crystallisation and crystal size", "Only bag colour", "Timber grain", "Aggregate grading"], "a": 0, "e": "The reference explicitly discusses cooling rate effects."}, {"q": "Clinker is ground with gypsum in a:", "o": ["Wash mill", "Stacker", "Ball mill", "Reclaimer"], "a": 2, "e": "Final grinding uses a ball mill."}, {"q": "Gypsum is added to prevent:", "o": ["Clinker formation", "Limestone crushing", "Raw meal blending", "Flash setting"], "a": 3, "e": "Gypsum controls rapid setting."}, {"q": "Cement after grinding is stored in:", "o": ["Wash basins", "Silos", "Kiln shell", "Quarry"], "a": 1, "e": "Cement silos are shown."}, {"q": "The rotary kiln is:", "o": ["A rotating steel cylinder", "A stationary concrete tank", "A timber drum", "A water tank"], "a": 0, "e": "That is the kiln description."}, {"q": "The kiln lining protects the shell from:", "o": ["Water only", "Timber insects", "High temperature", "Sunlight"], "a": 2, "e": "Refractory lining withstands kiln heat."}, {"q": "Clinker properties are influenced by:", "o": ["Packing colour", "Bag size only", "Quarry road length", "Cooling conditions"], "a": 3, "e": "Cooling affects clinker structure and properties."}, {"q": "The burning zone is where:", "o": ["Cement is packed", "Major clinker-forming reactions occur", "Gypsum is mined", "Concrete is mixed"], "a": 1, "e": "High-temperature reactions form clinker."}]}, "06": {"title": "Chemical Composition", "subtitle": "Major oxides and Indian Standard chemical requirements.", "learn": "\n<h3>Major Oxides</h3>\n<table><tr><th>Oxide</th><th>Approximate content (%)</th></tr>\n<tr><td>CaO</td><td>60–67</td></tr><tr><td>SiO₂</td><td>17–25</td></tr><tr><td>Al₂O₃</td><td>3.0–8.0</td></tr><tr><td>Fe₂O₃</td><td>0.5–6.0</td></tr><tr><td>MgO</td><td>0.1–4.0</td></tr><tr><td>Alkalies (K₂O, Na₂O)</td><td>0.4–1.3</td></tr><tr><td>SO₃</td><td>1.3–3.0</td></tr></table>\n<p>The raw-material oxides combine in the kiln to form more complex compounds. The relative proportions influence cement properties and the amount of heat generated during burning and hydration.</p>\n<h3>Indian Standard Chemical Requirements</h3>\n<p>For 33 grade cement, the reference cites IS 269-1989 and gives limits for lime saturation factor, alumina-to-iron ratio, insoluble residue, magnesia, sulphuric anhydride and loss on ignition.</p>\n<div class=\"formula\">LSF = (CaO − 0.7 SO₃) / (2.8 SiO₂ + 1.2 Al₂O₃ + 0.65 Fe₂O₃)</div>\n<table><tr><th>Requirement</th><th>Reference limit</th></tr>\n<tr><td>LSF</td><td>Not greater than 1.02 and not less than 0.66</td></tr>\n<tr><td>Al₂O₃ / Fe₂O₃</td><td>Not less than 0.66</td></tr>\n<tr><td>Insoluble residue</td><td>Not more than 4%</td></tr>\n<tr><td>MgO</td><td>Not more than 6%</td></tr>\n<tr><td>SO₃</td><td>Not more than 2.5%</td></tr>\n<tr><td>Loss on ignition</td><td>Not more than 5%</td></tr></table>\n", "mcq": [{"q": "The largest oxide range in ordinary Portland cement is for:", "o": ["CaO", "Fe₂O₃", "SO₃", "MgO"], "a": 0, "e": "CaO is about 60–67%."}, {"q": "The approximate SiO₂ range is:", "o": ["1–3%", "40–50%", "17–25%", "60–67%"], "a": 2, "e": "The reference table gives 17–25%."}, {"q": "The approximate Al₂O₃ range is:", "o": ["10–20%", "0.1–1%", "20–30%", "3.0–8.0%"], "a": 3, "e": "The table gives 3.0–8.0%."}, {"q": "The approximate Fe₂O₃ range is:", "o": ["10–20%", "0.5–6.0%", "15–25%", "0.01–0.1%"], "a": 1, "e": "The table gives 0.5–6.0%."}, {"q": "The approximate MgO range is:", "o": ["0.1–4.0%", "10–15%", "20–25%", "50–60%"], "a": 0, "e": "The table gives 0.1–4.0%."}, {"q": "The approximate alkali range is:", "o": ["5–10%", "20–30%", "0.4–1.3%", "30–40%"], "a": 2, "e": "The table gives 0.4–1.3%."}, {"q": "The approximate SO₃ range is:", "o": ["10–20%", "0.01–0.1%", "20–30%", "1.3–3.0%"], "a": 3, "e": "The table gives 1.3–3.0%."}, {"q": "LSF stands for:", "o": ["Loss Setting Factor", "Lime Saturation Factor", "Lime Strength Formula", "Low Silica Factor"], "a": 1, "e": "LSF means Lime Saturation Factor."}, {"q": "The LSF formula contains a correction term for:", "o": ["SO₃", "MgO only", "K₂O only", "Na₂O only"], "a": 0, "e": "The numerator is CaO − 0.7 SO₃."}, {"q": "The LSF denominator contains SiO₂, Al₂O₃ and:", "o": ["MgO", "SO₃ only", "Fe₂O₃", "K₂O only"], "a": 2, "e": "The denominator contains 2.8SiO₂ + 1.2Al₂O₃ + 0.65Fe₂O₃."}, {"q": "The reference gives an upper LSF limit of:", "o": ["2.02", "0.02", "6.0", "1.02"], "a": 3, "e": "It states not greater than 1.02."}, {"q": "The reference gives a lower LSF limit of:", "o": ["0.06", "0.66", "1.66", "6.6"], "a": 1, "e": "It states not less than 0.66."}, {"q": "Insoluble residue should be:", "o": ["Not more than 4%", "Not more than 40%", "Not more than 14%", "Not less than 40%"], "a": 0, "e": "The cited limit is 4%."}, {"q": "MgO should be:", "o": ["Not more than 60%", "Not less than 6%", "Not more than 6%", "Exactly 16%"], "a": 2, "e": "The reference gives 6%."}, {"q": "SO₃ should be:", "o": ["Not more than 25%", "Not less than 2.5%", "Exactly 12.5%", "Not more than 2.5%"], "a": 3, "e": "The reference gives 2.5%."}, {"q": "Loss on ignition should be:", "o": ["Not more than 50%", "Not more than 5%", "Not less than 5%", "Exactly 15%"], "a": 1, "e": "The reference gives 5%."}, {"q": "The oxides combine at high temperature to form:", "o": ["Complex compounds", "Timber", "Aggregate", "Water"], "a": 0, "e": "The chapter states this explicitly."}, {"q": "Oxide proportions influence:", "o": ["Only bag colour", "Only quarry size", "Properties of cement", "Timber defects"], "a": 2, "e": "The reference notes their effect on properties."}, {"q": "The oxide composition is important for:", "o": ["Stone polishing", "Timber seasoning", "Brick dressing", "Bogue compound calculation"], "a": 3, "e": "Bogue equations use oxide percentages."}, {"q": "Chemical composition is determined from:", "o": ["Only water", "The raw materials and clinker composition", "Only aggregate", "Only gypsum bags"], "a": 1, "e": "The chapter links raw-material oxides to clinker compounds."}]}, "07": {"title": "Bogue's Compounds", "subtitle": "Principal compounds formed from the oxide composition.", "learn": "\n<h3>Bogue's Compounds</h3>\n<p>When the oxides present in raw materials are heated to clinker-forming temperature, they combine to form complex compounds. The four major compounds are commonly represented using Bogue notation.</p>\n<table><tr><th>Name</th><th>Formula</th><th>Notation</th></tr>\n<tr><td>Tricalcium silicate</td><td>3CaO·SiO₂</td><td>C₃S</td></tr>\n<tr><td>Dicalcium silicate</td><td>2CaO·SiO₂</td><td>C₂S</td></tr>\n<tr><td>Tricalcium aluminate</td><td>3CaO·Al₂O₃</td><td>C₃A</td></tr>\n<tr><td>Tetracalcium aluminoferrite</td><td>4CaO·Al₂O₃·Fe₂O₃</td><td>C₄AF</td></tr></table>\n<p>In Bogue notation, C represents CaO, S represents SiO₂, A represents Al₂O₃ and F represents Fe₂O₃.</p>\n<h3>Bogue Equations</h3>\n<div class=\"formula\">C₃S = 4.07(CaO) − 7.60(SiO₂) − 6.72(Al₂O₃) − 1.43(Fe₂O₃) − 2.85(SO₃)<br><br>C₂S = 2.87(SiO₂) − 0.754(C₃S)<br><br>C₃A = 2.65(Al₂O₃) − 1.69(Fe₂O₃)<br><br>C₄AF = 3.04(Fe₂O₃)</div>\n<h3>Typical Cement Calculation</h3>\n<table><tr><th>Oxide</th><th>Typical %</th><th>Calculated compound %</th></tr>\n<tr><td>CaO</td><td>63</td><td>C₃S ≈ 54.1</td></tr><tr><td>SiO₂</td><td>20</td><td>C₂S ≈ 16.6</td></tr><tr><td>Al₂O₃</td><td>6</td><td>C₃A ≈ 10.8</td></tr><tr><td>Fe₂O₃</td><td>2.0</td><td>C₄AF ≈ 9.1</td></tr></table>\n", "mcq": [{"q": "C₃S is:", "o": ["Tricalcium silicate", "Dicalcium silicate", "Tricalcium aluminate", "Tetracalcium aluminoferrite"], "a": 0, "e": "C₃S is tricalcium silicate."}, {"q": "C₂S is:", "o": ["Tricalcium silicate", "Tricalcium aluminate", "Dicalcium silicate", "Ferrite"], "a": 2, "e": "C₂S is dicalcium silicate."}, {"q": "C₃A is:", "o": ["Tricalcium silicate", "Dicalcium silicate", "Tetracalcium aluminoferrite", "Tricalcium aluminate"], "a": 3, "e": "C₃A is tricalcium aluminate."}, {"q": "C₄AF is:", "o": ["Tricalcium silicate", "Tetracalcium aluminoferrite", "Dicalcium silicate", "Tricalcium aluminate"], "a": 1, "e": "C₄AF is tetracalcium aluminoferrite."}, {"q": "C in Bogue notation stands for:", "o": ["CaO", "SiO₂", "Al₂O₃", "Fe₂O₃"], "a": 0, "e": "C represents CaO."}, {"q": "S in Bogue notation stands for:", "o": ["CaO", "Al₂O₃", "SiO₂", "Fe₂O₃"], "a": 2, "e": "S represents SiO₂."}, {"q": "A in Bogue notation stands for:", "o": ["CaO", "SiO₂", "Fe₂O₃", "Al₂O₃"], "a": 3, "e": "A represents Al₂O₃."}, {"q": "F in Bogue notation stands for:", "o": ["CaO", "Fe₂O₃", "SiO₂", "Al₂O₃"], "a": 1, "e": "F represents Fe₂O₃."}, {"q": "The formula of C₃S is:", "o": ["3CaO·SiO₂", "2CaO·SiO₂", "3CaO·Al₂O₃", "4CaO·Al₂O₃·Fe₂O₃"], "a": 0, "e": "C₃S is 3CaO·SiO₂."}, {"q": "The formula of C₂S is:", "o": ["3CaO·SiO₂", "3CaO·Al₂O₃", "2CaO·SiO₂", "4CaO·Al₂O₃·Fe₂O₃"], "a": 2, "e": "C₂S is 2CaO·SiO₂."}, {"q": "The formula of C₃A is:", "o": ["3CaO·SiO₂", "2CaO·SiO₂", "4CaO·Al₂O₃·Fe₂O₃", "3CaO·Al₂O₃"], "a": 3, "e": "C₃A is 3CaO·Al₂O₃."}, {"q": "The formula of C₄AF is:", "o": ["3CaO·SiO₂", "4CaO·Al₂O₃·Fe₂O₃", "2CaO·SiO₂", "3CaO·Al₂O₃"], "a": 1, "e": "C₄AF is 4CaO·Al₂O₃·Fe₂O₃."}, {"q": "The Bogue equation for C₄AF is:", "o": ["3.04(Fe₂O₃)", "2.87(SiO₂)", "2.65(Al₂O₃)", "4.07(CaO)"], "a": 0, "e": "The reference gives C₄AF = 3.04(Fe₂O₃)."}, {"q": "The Bogue equation for C₃A contains:", "o": ["MgO and SO₃ only", "SiO₂ only", "Al₂O₃ and Fe₂O₃", "Na₂O only"], "a": 2, "e": "C₃A = 2.65Al₂O₃ − 1.69Fe₂O₃."}, {"q": "The C₂S equation includes:", "o": ["C₄AF only", "SO₃ only", "MgO only", "C₃S"], "a": 3, "e": "C₂S = 2.87SiO₂ − 0.754C₃S."}, {"q": "The C₃S equation includes:", "o": ["Only MgO", "CaO, SiO₂, Al₂O₃, Fe₂O₃ and SO₃", "Only Na₂O", "Only gypsum"], "a": 1, "e": "The reference gives all these terms."}, {"q": "In the typical cement table, C₃S is approximately:", "o": ["54.1%", "5.41%", "14.1%", "91.0%"], "a": 0, "e": "The reference table gives about 54.1%."}, {"q": "In the typical cement table, C₂S is approximately:", "o": ["1.66%", "66%", "16.6%", "26.1%"], "a": 2, "e": "The reference table gives about 16.6%."}, {"q": "In the typical cement table, C₃A is approximately:", "o": ["1.08%", "80.1%", "18.0%", "10.8%"], "a": 3, "e": "The reference table gives about 10.8%."}, {"q": "In the typical cement table, C₄AF is approximately:", "o": ["0.91%", "9.1%", "19.1%", "91%"], "a": 1, "e": "The reference table gives about 9.1%."}]}, "08": {"title": "Hydration of Cement", "subtitle": "Hydration mechanisms and products.", "learn": "\n<h3>Meaning of Hydration</h3>\n<p>Anhydrous cement does not bind fine and coarse aggregate by itself. It acquires adhesive properties when mixed with water. Chemical reactions occur between cement and water and hydrated products are formed.</p>\n<h3>Mechanisms</h3>\n<p><strong>Through-solution mechanism:</strong> Cement compounds dissolve in water until saturation is reached and hydrated products precipitate.</p>\n<p><strong>Solid-state mechanism:</strong> Water attacks cement compounds in the solid state and hydrated products develop from the surface inward.</p>\n<p>The reference notes that the through-solution mechanism is predominant in early hydration when large quantities of water are available, while both mechanisms may operate during later hydration.</p>\n<h3>Hydration Products</h3>\n<div class=\"flow\"><span>Cement compounds</span><b>+</b><span>Water</span><b>→</b><span>C-S-H gel</span><b>+</b><span>Ca(OH)₂</span><b>+</b><span>Aluminate hydrates</span></div>\n<p>Hydration produces the binding phases responsible for hardening and strength development. The reference includes a schematic progression from raw materials to oxides, compounds, Portland cement and hydration products.</p>\n", "mcq": [{"q": "Hydration occurs when cement compounds react with:", "o": ["Water", "Oil", "Air only", "Sand only"], "a": 0, "e": "Hydration is the reaction of cement compounds with water."}, {"q": "Hydration gives cement:", "o": ["Timber properties", "Stone colour", "Adhesive/binding properties", "Brick texture"], "a": 2, "e": "Hydration produces the binding products."}, {"q": "One mechanism of hydration is:", "o": ["Quarrying", "Grinding", "Packing", "Through-solution"], "a": 3, "e": "The reference describes the through-solution mechanism."}, {"q": "The other hydration mechanism described is:", "o": ["Wet process", "Solid-state", "Dry process", "Burning"], "a": 1, "e": "The reference describes the solid-state mechanism."}, {"q": "In the through-solution mechanism, cement compounds:", "o": ["Dissolve in water", "Remain completely inert", "Become aggregate", "Turn into timber"], "a": 0, "e": "Dissolution precedes precipitation of hydrated products."}, {"q": "Hydrated products then:", "o": ["Become raw meal", "Become fuel", "Precipitate from solution", "Become clay"], "a": 2, "e": "The reference describes precipitation."}, {"q": "The solid-state mechanism involves water attacking:", "o": ["Only aggregate", "Only gypsum bags", "Only clinker silos", "Cement compounds in the solid state"], "a": 3, "e": "That is the mechanism described."}, {"q": "The through-solution mechanism is predominant particularly in:", "o": ["Only after 20 years", "Early stages", "Only before water addition", "Only during quarrying"], "a": 1, "e": "The reference says it predominates in early hydration."}, {"q": "A principal hydration product is:", "o": ["C-S-H gel", "Limestone", "Surkhi", "Raw meal"], "a": 0, "e": "C-S-H is a major product."}, {"q": "Another hydration product is:", "o": ["Steel", "Clay", "Calcium hydroxide", "Chalk only"], "a": 2, "e": "Calcium hydroxide forms during silicate hydration."}, {"q": "Hydration causes cement paste to:", "o": ["Become raw material", "Become limestone", "Stop reacting immediately", "Develop strength"], "a": 3, "e": "Hydration products form the hardened structure."}, {"q": "Anhydrous cement means cement:", "o": ["After complete hydration", "Before hydration", "After packing only", "Mixed with aggregate only"], "a": 1, "e": "Anhydrous refers to unhydrated cement compounds."}, {"q": "The chemistry of concrete is essentially the chemistry of:", "o": ["Reaction between cement and water", "Steel and oil", "Timber and air", "Stone and paint"], "a": 0, "e": "The reference states this explicitly."}, {"q": "Hydration products are important for:", "o": ["Only colour", "Only packaging", "Continuity and stability of the hardened paste", "Only quarrying"], "a": 2, "e": "The reference emphasises these properties."}, {"q": "The reaction products formed depend on:", "o": ["Only aggregate size", "Only bag size", "Only kiln shell", "Cement compounds and water"], "a": 3, "e": "Hydration chemistry depends on cement compounds and water."}, {"q": "Hydration is not simply:", "o": ["A chemical reaction", "A physical drying process", "A reaction with water", "A source of heat"], "a": 1, "e": "It is a chemical reaction."}, {"q": "The early hydration period has:", "o": ["Large quantities of water available around particles", "No water", "Only oil", "Only dry air"], "a": 0, "e": "This supports through-solution hydration."}, {"q": "Hydration products eventually:", "o": ["Become raw meal", "Become limestone", "Form the hardened cement paste structure", "Become gypsum"], "a": 2, "e": "They form the hardened structure."}, {"q": "The main binding product discussed later is:", "o": ["C₃A only", "C₄AF only", "Gypsum only", "C-S-H"], "a": 3, "e": "C-S-H is the main binding phase."}, {"q": "Hydration is essential because it:", "o": ["Only cools the kiln", "Transforms anhydrous cement into binding hydrated products", "Only packs bags", "Only crushes limestone"], "a": 1, "e": "That is the central role of hydration."}]}, "09": {"title": "Heat of Hydration", "subtitle": "Heat evolution during cement hydration.", "learn": "\n<h3>Heat of Hydration</h3>\n<p>The reaction of cement with water is exothermic and releases considerable heat. The reference explains that this heat can be observed by comparing the temperature of a cement paste with that of the surroundings.</p>\n<h3>Early Heat Evolution</h3>\n<p>Immediately after mixing, there is rapid heat evolution due to solution of aluminates and silicates. The first few minutes show rapid evolution, followed by a period of reduced activity and then renewed heat evolution as hydration proceeds.</p>\n<h3>Heat of Hydration Values</h3>\n<table><tr><th>Compound</th><th>3 days (cal/g)</th><th>90 days (cal/g)</th><th>13 years (cal/g)</th></tr>\n<tr><td>C₃S</td><td>58</td><td>104</td><td>122</td></tr>\n<tr><td>C₂S</td><td>12</td><td>42</td><td>59</td></tr>\n<tr><td>C₃A</td><td>212</td><td>311</td><td>324</td></tr>\n<tr><td>C₄AF</td><td>69</td><td>98</td><td>102</td></tr></table>\n<div class=\"formula\">H = aA + bB + cC + dD</div>\n<p>Here H is the total heat of hydration and A, B, C and D represent the percentages of C₃S, C₂S, C₃A and C₄AF; a, b, c and d are their respective heat contributions.</p>\n<h3>Importance of Cooling</h3>\n<p>The heat liberated during hydration is important in mass concrete because temperature rise can lead to thermal effects. The reference also discusses cooling of clinker because cooling rate influences clinker structure and cement properties.</p>\n", "mcq": [{"q": "Hydration of cement is:", "o": ["Exothermic", "Endothermic only", "Non-chemical", "Mechanical only"], "a": 0, "e": "The reaction releases heat."}, {"q": "Heat of hydration is heat released during:", "o": ["Limestone quarrying", "Cement packing", "Cement-water reaction", "Aggregate crushing"], "a": 2, "e": "It is associated with hydration."}, {"q": "The earliest heat evolution is associated with:", "o": ["Only long-term drying", "Only packing", "Only cooling clinker", "Rapid reactions after mixing"], "a": 3, "e": "The reference describes rapid initial heat evolution."}, {"q": "A later renewed heat evolution is associated with:", "o": ["Quarrying", "Continued hydration", "Packing", "Grinding only"], "a": 1, "e": "Hydration continues after the initial period."}, {"q": "At 3 days, heat of hydration of C₃S is:", "o": ["58 cal/g", "12 cal/g", "212 cal/g", "69 cal/g"], "a": 0, "e": "The table gives 58 cal/g."}, {"q": "At 90 days, heat of hydration of C₃S is:", "o": ["42 cal/g", "311 cal/g", "104 cal/g", "98 cal/g"], "a": 2, "e": "The table gives 104 cal/g."}, {"q": "At 13 years, heat of hydration of C₃S is:", "o": ["59 cal/g", "324 cal/g", "102 cal/g", "122 cal/g"], "a": 3, "e": "The table gives 122 cal/g."}, {"q": "At 3 days, heat of hydration of C₂S is:", "o": ["58 cal/g", "12 cal/g", "212 cal/g", "69 cal/g"], "a": 1, "e": "The table gives 12 cal/g."}, {"q": "At 90 days, heat of hydration of C₂S is:", "o": ["42 cal/g", "104 cal/g", "311 cal/g", "98 cal/g"], "a": 0, "e": "The table gives 42 cal/g."}, {"q": "At 13 years, heat of hydration of C₂S is:", "o": ["122 cal/g", "324 cal/g", "59 cal/g", "102 cal/g"], "a": 2, "e": "The table gives 59 cal/g."}, {"q": "At 3 days, heat of hydration of C₃A is:", "o": ["12 cal/g", "58 cal/g", "69 cal/g", "212 cal/g"], "a": 3, "e": "The table gives 212 cal/g."}, {"q": "At 90 days, heat of hydration of C₃A is:", "o": ["104 cal/g", "311 cal/g", "42 cal/g", "98 cal/g"], "a": 1, "e": "The table gives 311 cal/g."}, {"q": "At 13 years, heat of hydration of C₃A is:", "o": ["324 cal/g", "122 cal/g", "59 cal/g", "102 cal/g"], "a": 0, "e": "The table gives 324 cal/g."}, {"q": "At 3 days, heat of hydration of C₄AF is:", "o": ["58 cal/g", "12 cal/g", "69 cal/g", "212 cal/g"], "a": 2, "e": "The table gives 69 cal/g."}, {"q": "At 90 days, heat of hydration of C₄AF is:", "o": ["104 cal/g", "42 cal/g", "311 cal/g", "98 cal/g"], "a": 3, "e": "The table gives 98 cal/g."}, {"q": "At 13 years, heat of hydration of C₄AF is:", "o": ["122 cal/g", "102 cal/g", "59 cal/g", "324 cal/g"], "a": 1, "e": "The table gives 102 cal/g."}, {"q": "The compound with the highest 3-day heat in the table is:", "o": ["C₃A", "C₂S", "C₃S", "C₄AF"], "a": 0, "e": "C₃A has 212 cal/g at 3 days."}, {"q": "Total heat can be estimated using:", "o": ["H = A/B only", "H = mc²", "H = aA + bB + cC + dD", "H = 4.07CaO"], "a": 2, "e": "The reference gives the additive heat expression."}, {"q": "Heat of hydration is important in:", "o": ["Timber seasoning", "Stone polishing", "Brick dressing", "Mass concrete"], "a": 3, "e": "The reference discusses temperature effects in mass concrete."}, {"q": "Cooling of clinker affects:", "o": ["Only bag colour", "Crystallisation and clinker properties", "Only cement packing", "Only water content"], "a": 1, "e": "The reference links cooling rate to clinker properties."}]}, "10": {"title": "Calcium Silicate Hydrates", "subtitle": "C-S-H, C₃S/C₂S hydration, strength and calcium hydroxide.", "learn": "\n<h3>Calcium Silicate Hydrates</h3>\n<p>During hydration of C₃S and C₂S, calcium silicate hydrate, abbreviated C-S-H, is formed. It occupies a large portion of the volume of solids in a completely hydrated cement paste and is the principal binding product.</p>\n<h3>C₃S Hydration</h3>\n<div class=\"formula\">2(3CaO·SiO₂) + 6H₂O → 3CaO·2SiO₂·3H₂O + 3Ca(OH)₂<br><br>or: 2C₃S + 6H → C₃S₂H₃ + 3Ca(OH)₂</div>\n<p>C₃S reacts comparatively rapidly and is responsible for early strength. The reference notes that C₃S-rich cement can be useful where early strength is important.</p>\n<h3>C₂S Hydration</h3>\n<div class=\"formula\">2(2CaO·SiO₂) + 4H₂O → 3CaO·2SiO₂·3H₂O + Ca(OH)₂<br><br>or: 2C₂S + 4H → C₃S₂H₃ + Ca(OH)₂</div>\n<p>C₂S hydrates more slowly and is responsible for later strength. It produces less calcium hydroxide than C₃S.</p>\n<h3>Calcium Hydroxide</h3>\n<p>Calcium hydroxide is another major hydration product. The reference states that it occupies about 20–25% of the volume of solids in hydrated paste. It is comparatively weak and can be attacked by sulphates; pozzolanic materials such as fly ash and silica fume can consume calcium hydroxide.</p>\n", "mcq": [{"q": "C-S-H stands for:", "o": ["Calcium silicate hydrate", "Calcium sulphate hydrate", "Calcium sodium hydrate", "Calcium silica hydroxide only"], "a": 0, "e": "The reference uses C-S-H for calcium silicate hydrate."}, {"q": "C-S-H is the principal:", "o": ["Fuel", "Raw material", "Binding product", "Aggregate"], "a": 2, "e": "C-S-H is the principal binding product."}, {"q": "C₃S hydration produces:", "o": ["Only gypsum", "Only C₃A", "Only water", "C-S-H and Ca(OH)₂"], "a": 3, "e": "The equation shows C-S-H and calcium hydroxide."}, {"q": "C₂S hydration produces:", "o": ["Only gypsum", "C-S-H and Ca(OH)₂", "Only C₄AF", "Only limestone"], "a": 1, "e": "The equation shows these products."}, {"q": "C₃S hydration equation uses how many water molecules?", "o": ["6", "2", "4", "10"], "a": 0, "e": "2C₃S + 6H → C₃S₂H₃ + 3Ca(OH)₂."}, {"q": "C₂S hydration equation uses how many water molecules?", "o": ["2", "6", "4", "12"], "a": 2, "e": "2C₂S + 4H → C₃S₂H₃ + Ca(OH)₂."}, {"q": "C₃S reacts:", "o": ["More slowly than C₂S", "Without water", "Only after C₄AF", "More rapidly than C₂S"], "a": 3, "e": "C₃S is comparatively rapid."}, {"q": "C₂S is mainly associated with:", "o": ["Immediate flash set", "Later strength", "Only heat", "No strength"], "a": 1, "e": "C₂S hydrates slowly and contributes to later strength."}, {"q": "C₃S is mainly associated with:", "o": ["Early strength", "Only later strength", "No strength", "Only colour"], "a": 0, "e": "C₃S contributes to early strength."}, {"q": "C₂S produces calcium hydroxide compared with C₃S:", "o": ["More", "Exactly ten times more", "Less", "None at all"], "a": 2, "e": "C₂S produces one Ca(OH)₂ in the simplified equation versus three for C₃S."}, {"q": "The C-S-H formula used in the reference is approximately:", "o": ["C₄AF", "C₃A", "C₂S", "C₃S₂H₃"], "a": 3, "e": "The simplified hydration equations use C₃S₂H₃."}, {"q": "The reference notes C-S-H is not:", "o": ["A hydration product", "A well-defined single compound", "A binding product", "A major solid phase"], "a": 1, "e": "C-S-H is a poorly defined gel-like phase."}, {"q": "C-S-H occupies a large portion of the volume of:", "o": ["Solids in completely hydrated cement paste", "Raw limestone", "Dry clay", "Fuel"], "a": 0, "e": "The reference says it makes up a large portion of solids."}, {"q": "Calcium hydroxide from C₃S occupies about:", "o": ["2–5%", "50–60%", "20–25% of volume of solids", "70–80%"], "a": 2, "e": "The reference gives about 20–25%."}, {"q": "Calcium hydroxide can be attacked by:", "o": ["Air only", "Timber", "Aggregate grading", "Sulphates"], "a": 3, "e": "The reference notes sulphate attack."}, {"q": "Pozzolanic materials can consume:", "o": ["C₃A only", "Calcium hydroxide", "Gypsum only", "Raw limestone"], "a": 1, "e": "Fly ash and silica fume can consume Ca(OH)₂."}, {"q": "C-S-H is important for:", "o": ["Strength development", "Only packing", "Only quarrying", "Only colour"], "a": 0, "e": "It is the main binding product."}, {"q": "C₃S-rich cement can be useful when:", "o": ["No strength is required", "Only later colour is required", "Early strength is required", "Only packing is required"], "a": 2, "e": "The reference notes early-strength applications."}, {"q": "C₂S-rich cement can be useful for:", "o": ["Immediate flash set", "Only gypsum production", "Only packing", "Later strength and lower heat considerations"], "a": 3, "e": "The reference links C₂S with later strength."}, {"q": "The hydration of calcium silicates contributes to:", "o": ["Raw meal only", "Hardened cement paste", "Quarrying only", "Packing only"], "a": 1, "e": "Hydration products form the hardened paste."}]}, "11": {"title": "Calcium Aluminate Hydrates", "subtitle": "Hydration of C₃A/C₄AF, gypsum, ettringite and monosulphate.", "learn": "\n<h3>C₃A Hydration</h3>\n<p>C₃A hydrates rapidly and contributes little to long-term strength. Without control it can cause rapid setting. The reference explains that gypsum is added during cement grinding to control the rapid reaction of C₃A.</p>\n<h3>Ettringite</h3>\n<p>In the presence of sulphate, C₃A reacts to form calcium aluminate trisulphate hydrate, commonly called ettringite. It is normally one of the first products to hydrate and crystallise.</p>\n<h3>Monosulphate</h3>\n<p>As hydration proceeds and sulphate becomes depleted, ettringite may become unstable and the aluminate phase can form monosulphate. The amount of gypsum has an important influence on the aluminate-to-sulphate ratio.</p>\n<h3>C₄AF</h3>\n<p>The reference discusses C₄AF as another aluminate/ferrite compound. Its hydration products contribute relatively little to strength compared with the calcium silicate hydrates.</p>\n<h3>C-S-H Morphology</h3>\n<p>The reference also discusses the gel nature of C-S-H, including descriptions of porous gel, fibres and a poorly formed mass. The hydration product is not a single sharply defined compound.</p>\n", "mcq": [{"q": "C₃A reacts with water:", "o": ["Rapidly", "Very slowly", "Not at all", "Only after 100 years"], "a": 0, "e": "C₃A is a rapid-reacting compound."}, {"q": "Uncontrolled C₃A hydration may cause:", "o": ["Only later strength", "No reaction", "Rapid setting/flash set", "Clinker cooling"], "a": 2, "e": "The reference says gypsum is used to control rapid setting."}, {"q": "Gypsum is added during cement grinding to:", "o": ["Increase raw meal water", "Form limestone", "Cool clinker", "Control C₃A hydration"], "a": 3, "e": "This is its key role here."}, {"q": "Ettringite is formed in the presence of:", "o": ["Only NaCl", "Sulphate", "Only oil", "Only aggregate"], "a": 1, "e": "Ettringite is a sulphate-containing aluminate hydrate."}, {"q": "Ettringite is commonly described as:", "o": ["Calcium aluminate trisulphate hydrate", "Calcium silicate", "Calcium carbonate", "Iron oxide"], "a": 0, "e": "The reference names it."}, {"q": "As sulphate becomes depleted, ettringite may:", "o": ["Become raw meal", "Become limestone", "Become unstable and lead to monosulphate formation", "Become fuel"], "a": 2, "e": "The reference discusses this transformation."}, {"q": "The amount of gypsum affects:", "o": ["Aggregate size", "Timber grain", "Stone polish", "The aluminate-to-sulphate balance"], "a": 3, "e": "The reference discusses the aluminate-to-sulphate ratio."}, {"q": "C₄AF is a:", "o": ["Silicate only", "Calcium aluminoferrite compound", "Gypsum only", "Pozzolana"], "a": 1, "e": "C₄AF is tetracalcium aluminoferrite."}, {"q": "C₄AF contributes comparatively:", "o": ["Little to strength", "All strength", "Only early strength", "Only later strength"], "a": 0, "e": "The reference states it contributes little to strength."}, {"q": "The first sulphate-containing aluminate hydrate discussed is:", "o": ["C₃S", "C₂S", "Ettringite", "C-S-H"], "a": 2, "e": "Ettringite forms early in the presence of sulphate."}, {"q": "Gypsum helps prevent:", "o": ["Clinker cooling", "Raw grinding", "Limestone crushing", "Flash setting"], "a": 3, "e": "Gypsum controls C₃A reaction."}, {"q": "C₃A is one of the:", "o": ["Raw materials", "Four major Bogue compounds", "Aggregates", "Hydration waters"], "a": 1, "e": "C₃A is one of the four major compounds."}, {"q": "The aluminate-to-sulphate ratio affects:", "o": ["Setting phenomena", "Quarry depth", "Bag colour", "Aggregate grading"], "a": 0, "e": "The reference discusses setting behaviour."}, {"q": "The hydrated aluminates are studied because they affect:", "o": ["Timber defects", "Stone dressing", "Setting and hydration behaviour", "Brick strength only"], "a": 2, "e": "Their reactions influence paste setting."}, {"q": "C₄AF hydration products contribute:", "o": ["Most early strength", "All later strength", "No chemistry", "Relatively little to strength"], "a": 3, "e": "This is the reference's conclusion."}, {"q": "C-S-H is different from aluminate hydrates because C-S-H is mainly:", "o": ["Calcium aluminate sulphate", "Calcium silicate hydrate", "Ferrite", "Gypsum"], "a": 1, "e": "C-S-H is the calcium silicate hydrate phase."}, {"q": "Ettringite has a:", "o": ["Needle-like/prismatic crystalline form", "Metallic form", "Liquid form", "Timber form"], "a": 0, "e": "The reference describes short prismatic needle crystals."}, {"q": "Monosulphate is associated with:", "o": ["Raw material crushing", "Kiln fuel", "Later sulphate depletion conditions", "Clinker quarrying"], "a": 2, "e": "It can form as sulphate becomes depleted."}, {"q": "Gypsum is added to:", "o": ["Raw limestone at quarry", "Aggregate after mixing", "Concrete after hardening", "Cement during grinding"], "a": 3, "e": "The reference says gypsum is added during grinding."}, {"q": "The major purpose of gypsum in ordinary cement is:", "o": ["Increasing aggregate size", "Regulation of setting", "Reducing limestone content", "Making raw meal"], "a": 1, "e": "It regulates rapid C₃A hydration and setting."}]}, "12": {"title": "Structure, Transition Zone & Water", "subtitle": "Structure of hydrated cement, transition zone, pores and water requirement.", "learn": "\n<h3>Structure of Hydrated Cement</h3>\n<p>Concrete may be considered as a two-phase material at the macroscopic level: paste phase and aggregate. At the microscopic level, a transition zone between aggregate and cement paste forms a third phase.</p>\n<h3>Transition Zone</h3>\n<p>The transition zone is generally a region of weakness. The reference notes that its structure is influenced by bleeding, crystal size and concentration, drying shrinkage, temperature variation and microcracking.</p>\n<p>Calcium hydroxide and ettringite crystals can be larger and more concentrated in the transition zone than in the bulk cement paste. Because it is porous, the transition zone can be important to strength and durability.</p>\n<h3>Paste Structure and Water-Cement Ratio</h3>\n<p>The reference discusses fresh paste as a plastic mass of water and cement. With hydration, products form and the volume relationships between water, unhydrated cement, hydration products and capillary cavities change.</p>\n<table><tr><th>Quantity</th><th>Reference value</th></tr>\n<tr><td>Water required by C₃S</td><td>24% by weight of cement</td></tr>\n<tr><td>Water required by C₂S</td><td>21% by weight of cement</td></tr>\n<tr><td>Average water for chemical reaction</td><td>23%</td></tr>\n<tr><td>Water needed to fill gel pores</td><td>about 15%</td></tr>\n<tr><td>Total for complete reaction + gel pores</td><td>about 38%</td></tr></table>\n<p>If water is less than about 38% by weight of cement, complete hydration cannot occur throughout the paste. If water is much greater, excess water can remain as capillary cavities after evaporation.</p>\n<h3>Hydration Development</h3>\n<ol><li>Fresh paste contains cement particles dispersed in water.</li><li>During the first few minutes, rapid reactions occur and calcium silicate hydrate begins to form around grains.</li><li>As hydration proceeds, products bridge spaces between particles.</li><li>Further hydration fills more space, while remaining water may leave capillary cavities.</li></ol>\n<div class=\"important\"><strong>Key idea:</strong> Water-cement ratio strongly influences capillary porosity, paste structure, strength and durability.</div>\n", "mcq": [{"q": "At macroscopic level, concrete is commonly considered to have:", "o": ["Paste and aggregate", "Only paste", "Only aggregate", "Only steel"], "a": 0, "e": "The reference begins with paste and aggregate."}, {"q": "At microscopic level, the transition zone is considered a:", "o": ["Fuel phase", "Raw material", "Third phase", "Gypsum phase"], "a": 2, "e": "The transition zone forms a third phase."}, {"q": "The transition zone occurs between:", "o": ["Two cement bags", "Two kilns", "Two raw mills", "Aggregate and cement paste"], "a": 3, "e": "It is the interfacial region."}, {"q": "The transition zone is generally:", "o": ["The strongest region", "A region of weakness", "Only raw material", "A fuel zone"], "a": 1, "e": "The reference calls it a region of weakness."}, {"q": "Bleeding can influence the:", "o": ["Transition zone", "Raw quarry only", "Cement bag only", "Kiln fuel"], "a": 0, "e": "Bleeding is discussed as a factor in transition-zone structure."}, {"q": "Microcracks can develop due to:", "o": ["Gypsum packing", "Stone polishing", "Drying shrinkage or temperature variation", "Raw grinding only"], "a": 2, "e": "The reference discusses drying shrinkage and temperature variation."}, {"q": "Crystals can be larger in the transition zone, including:", "o": ["Only C₃S", "Only gypsum bags", "Only limestone", "Calcium hydroxide and ettringite"], "a": 3, "e": "The reference notes larger crystal size/concentration."}, {"q": "The transition zone is often more porous than:", "o": ["Raw limestone", "Bulk cement paste", "Clinker dust", "Gypsum"], "a": 1, "e": "The reference states the transition zone is more porous."}, {"q": "Water required by C₃S is approximately:", "o": ["24%", "2.4%", "42%", "34%"], "a": 0, "e": "The reference gives 24%."}, {"q": "Water required by C₂S is approximately:", "o": ["2.1%", "51%", "21%", "31%"], "a": 2, "e": "The reference gives 21%."}, {"q": "Average water required for chemical reaction is approximately:", "o": ["2.3%", "43%", "53%", "23%"], "a": 3, "e": "The reference gives about 23%."}, {"q": "Water needed to fill gel pores is approximately:", "o": ["1.5%", "15%", "50%", "35%"], "a": 1, "e": "The reference gives about 15%."}, {"q": "Total water for complete reaction plus gel pores is approximately:", "o": ["38%", "3.8%", "83%", "18%"], "a": 0, "e": "The reference gives about 38%."}, {"q": "If water is below about 38% by weight of cement:", "o": ["All capillary pores disappear", "No hydration starts", "Complete hydration cannot occur throughout", "Clinker forms"], "a": 2, "e": "The reference explains this water requirement."}, {"q": "Excess water can leave behind:", "o": ["More clinker", "More raw meal", "More gypsum crystals only", "Capillary cavities"], "a": 3, "e": "Excess water can evaporate and leave capillary cavities."}, {"q": "Higher water-cement ratio generally increases:", "o": ["Cement compound content", "Capillary porosity", "Clinker temperature", "Raw material lime"], "a": 1, "e": "The reference links higher w/c to capillary cavities."}, {"q": "The fresh cement paste consists mainly of:", "o": ["Cement and water", "Aggregate and steel", "Only gypsum", "Only sand"], "a": 0, "e": "The reference defines fresh paste this way."}, {"q": "During hydration, products:", "o": ["Become quarry stone", "Become fuel", "Fill and bridge spaces between cement grains", "Disappear completely"], "a": 2, "e": "The hydration products occupy space and bridge particles."}, {"q": "The final hardened paste structure depends strongly on:", "o": ["Only bag size", "Only kiln length", "Only quarry depth", "Water-cement ratio and hydration"], "a": 3, "e": "The reference discusses these structural factors."}, {"q": "Capillary cavities are associated with:", "o": ["Only gypsum", "Mixing water not retained in gel/hydration products", "Only limestone", "Only C₄AF"], "a": 1, "e": "The reference discusses remaining water and capillary cavities."}]}};
+const topicIds=Object.keys(MCQ_DATA);
+
+document.querySelectorAll('.topic-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.topic-page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('topic'+btn.dataset.topic).classList.add('active');
+    document.querySelectorAll('.topic-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+document.querySelectorAll('.mode-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const topic=btn.dataset.topic, mode=btn.dataset.mode;
+    const page=document.getElementById(topic);
+    page.querySelectorAll('.mode-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(topic+'-'+mode).classList.add('active');
+    page.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+function renderQuiz(topic){
+  const box=document.querySelector('[data-quiz="'+topic+'"]');
+  const qs=MCQ_DATA[topic].mcq;
+  box.innerHTML='';
+  const score=document.createElement('div');
+  score.className='quiz-score';
+  score.textContent='Score: 0 / '+qs.length;
+  box.appendChild(score);
+  let answered=0,correct=0;
+  qs.forEach((q,i)=>{
+    const wrap=document.createElement('div'); wrap.className='quiz-question';
+    const title=document.createElement('div'); title.innerHTML='<strong>Q'+(i+1)+'. '+q.q+'</strong>'; wrap.appendChild(title);
+    const opts=document.createElement('div');
+    q.o.forEach((o,j)=>{
+      const b=document.createElement('button'); b.className='quiz-option'; b.textContent=String.fromCharCode(65+j)+'. '+o;
+      b.addEventListener('click',()=>{
+        if(wrap.dataset.done) return;
+        wrap.dataset.done='1'; answered++;
+        [...opts.children].forEach(x=>x.disabled=true);
+        if(j===q.a){b.classList.add('correct');correct++;}
+        else{b.classList.add('wrong');opts.children[q.a].classList.add('correct');}
+        exp.style.display='block'; exp.innerHTML='<strong>Explanation:</strong> '+q.e;
+        score.textContent='Score: '+correct+' / '+qs.length+' • Answered: '+answered+' / '+qs.length;
+      });
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+    const exp=document.createElement('div'); exp.className='quiz-explanation'; wrap.appendChild(exp);
+    box.appendChild(wrap);
+  });
+  const retry=document.createElement('button'); retry.className='retry'; retry.textContent='Retry Quiz';
+  retry.addEventListener('click',()=>renderQuiz(topic)); box.appendChild(retry);
+}
+topicIds.forEach(renderQuiz);
+</script>
+</body>
+</html>
