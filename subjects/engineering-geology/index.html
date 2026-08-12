@@ -132,7 +132,7 @@ main {
 
 .week-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px;
 }
 
@@ -236,6 +236,10 @@ footer strong {
     h1 {
         font-size: 38px;
     }
+
+    .week-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -331,6 +335,38 @@ footer strong {
                 href="week-01.html"
             >
                 Open Week 01 →
+            </a>
+
+        </article>
+
+
+        <!-- WEEK 02 -->
+
+        <article class="week-card">
+
+            <div class="week-number">
+                02
+            </div>
+
+            <div class="week-label">
+                Week 02
+            </div>
+
+            <h2>
+                Engineering Geology — Week 02
+            </h2>
+
+            <p>
+                Open Week 02 and study the complete
+                Engineering Geology notes, questions,
+                diagrams and MCQ practice.
+            </p>
+
+            <a
+                class="open-button"
+                href="week-02.html"
+            >
+                Open Week 02 →
             </a>
 
         </article>
