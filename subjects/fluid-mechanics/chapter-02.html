@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CE2104 | Fluid Mechanics | Chapter 02</title>
+<style>
+:root{--navy:#071f36;--navy2:#0b3557;--blue:#1677ff;--cyan:#20c6e8;--ink:#10233e;--muted:#60718b;--bg:#f4f7fb;--card:#fff;--line:#dbe4ef;--good:#0b9b66;--bad:#d64045;--gold:#f0c84b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:var(--bg);line-height:1.65}
+header{background:linear-gradient(120deg,var(--navy),var(--navy2));color:white;padding:18px max(6vw,24px) 42px;position:relative;overflow:hidden}header:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:#19c6e81a;right:-120px;top:-250px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:800}.logo{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center}.back{color:#fff;text-decoration:none;border:1px solid #ffffff35;padding:9px 14px;border-radius:11px}
+.hero{max-width:1000px;margin-top:34px}.hero small,.topic-head small{font-weight:900;letter-spacing:.12em;color:#69d9ff}h1{font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.04;margin:8px 0 14px}.hero p{max-width:900px;color:#d6e7f5}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);padding:10px max(6vw,24px);display:flex;gap:8px;overflow:auto}nav a{white-space:nowrap;text-decoration:none;color:#24415f;background:#edf4fb;padding:8px 12px;border-radius:999px;font-weight:800;font-size:.82rem}
+main{width:min(1180px,88vw);margin:36px auto 90px}.chapter-note{background:#eaf5ff;border-left:4px solid var(--blue);padding:16px 18px;border-radius:12px;margin-bottom:28px}
+.topic{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:0 0 28px;box-shadow:0 12px 35px #0d2b4a0b;overflow:hidden}.topic-head{padding:28px 30px 10px}.topic-head small{color:var(--blue)}h2{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.15;margin:5px 0 8px}h3{margin-top:24px}.tabs{display:flex;gap:8px;padding:12px 30px 18px;overflow:auto;border-bottom:1px solid var(--line)}.tab{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:11px;font-weight:800;color:#304964;cursor:pointer;white-space:nowrap}.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}.panel{display:none;padding:28px 30px 34px}.panel.active{display:block}.callout,.box,.important,.empty{padding:16px 18px;border-radius:14px;margin:14px 0}.callout{background:#eef6ff;border-left:4px solid var(--blue)}.box{background:#f7f9fc;border:1px solid var(--line)}.important{background:#fff7dc;border:1px solid #f0d77a}.empty{background:#f7f9fc;text-align:center;color:var(--muted)}.formula{font-family:Cambria Math,Georgia,serif;font-size:1.18rem;font-weight:700;text-align:center;background:#071f36;color:#fff;padding:14px;border-radius:12px;margin:14px 0;overflow:auto}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.qa{border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}.qa span{display:inline-block;background:#e8f2ff;color:#0966d8;padding:4px 9px;border-radius:999px;font-size:.78rem;font-weight:900}.qa h4{margin:10px 0 5px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;margin:14px 0}.study-table{width:100%;border-collapse:collapse;min-width:620px}.study-table th,.study-table td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left}.study-table th{background:#edf4fb}.study-table tr:last-child td{border-bottom:0}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}.flow .node{padding:12px 15px;border:1px solid #b9d0e8;background:#eef6ff;border-radius:12px;font-weight:800;text-align:center}.flow .arrow{font-weight:900;color:var(--blue);font-size:1.2rem}
+.diagram{border:1px solid var(--line);border-radius:16px;background:#fbfdff;padding:18px;margin:16px 0;text-align:center}.diagram-title{font-weight:900;margin-bottom:10px}.tube{width:220px;height:150px;margin:10px auto;border:5px solid #526a80;border-top:0;border-radius:0 0 80px 80px;position:relative;background:linear-gradient(to top,#e5c36b 0 45%,transparent 45%)}.tube:before,.tube:after{content:"";position:absolute;bottom:60px;width:38px;height:72px;border:5px solid #526a80;border-bottom:0}.tube:before{left:-5px}.tube:after{right:-5px}.press{display:flex;align-items:center;justify-content:center;gap:14px;min-height:170px}.press .piston{width:70px;height:35px;border:4px solid #526a80;background:#d9e8f6}.press .smallp{height:85px;width:75px;border:4px solid #526a80;background:#d9e8f6}.press .largep{height:125px;width:110px;border:4px solid #526a80;background:#d9e8f6}.arrowup{font-weight:900;color:var(--blue);font-size:1.3rem}.element{width:190px;height:130px;margin:auto;border:2px solid #526a80;position:relative;background:#eaf5ff}.element span{position:absolute;font-weight:900}.element .l{left:-34px;top:52px}.element .r{right:-34px;top:52px}.element .t{top:-26px;left:82px}.element .b{bottom:-26px;left:82px}
+.quiz-card{border:1px solid var(--line);border-radius:18px;padding:22px}.quiz-meta{display:flex;justify-content:space-between;color:var(--muted);font-weight:800}.option{display:block;width:100%;text-align:left;margin:9px 0;padding:13px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}.option.selected{border-color:var(--blue);background:#eef6ff}.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 16px;font-weight:900;cursor:pointer;background:var(--blue);color:#fff}.btn.secondary{background:#eaf1f8;color:#24415f}.feedback{margin-top:14px;padding:14px;border-radius:12px}.feedback.good{background:#e9f8f2;color:#08744f}.feedback.bad{background:#fff0f1;color:#a6282d}.mini{color:var(--muted);font-size:.92rem}
+footer{background:var(--navy);color:#c9d9e8;text-align:center;padding:26px}
+@media(max-width:720px){main{width:92vw}.grid2,.grid3{grid-template-columns:1fr}.topic-head,.tabs,.panel{padding-left:18px;padding-right:18px}.top{align-items:flex-start}.brand span:last-child{font-size:.9rem}}
+</style>
+</head>
+<body>
+<header>
+<div class="top"><div class="brand"><div class="logo">CE</div><span>CIVIL ENGINEERING STUDY PORTAL<br>CE2104 • Fluid Mechanics</span></div><a class="back" href="../../index.html">← Dashboard</a></div>
+<div class="hero"><small>CHAPTER 02 • COMPLETE MODULE</small><h1>Pressure and its Measurement</h1><p>Complete Chapter 02 study module based on the uploaded reference: fluid pressure, Pascal's law, pressure variation in fluids at rest, pressure types, pressure measurement, manometers, differential manometers and pressure in compressible fluids.</p></div>
+</header>
+<nav>
+<a href="#pressure-point">01 • Fluid Pressure at a Point</a>
+<a href="#pascal">02 • Pascal's Law</a>
+<a href="#hydrostatic">03 • Pressure Variation in a Fluid at Rest</a>
+<a href="#pressure-types">04 • Absolute, Gauge, Atmospheric & Vacuum Pressures</a>
+<a href="#measurement">05 • Measurement of Pressure</a>
+<a href="#simple-mano">06 • Simple Manometers</a>
+<a href="#differential">07 • Differential Manometers</a>
+<a href="#compressible">08 • Pressure at a Point in a Compressible Fluid</a>
+</nav>
+<main>
+<div class="chapter-note"><b>Study rule:</b> Learn content is written in simple point-to-point form from the uploaded Chapter 02 reference. Important equations, worked-problem methods, diagrams and exercise questions are kept with their related topics. PYQ panels are kept empty until verified papers are supplied. MCQs are topic-wise and independent.</div>
+
+<section class="topic" id="pressure-point">
+<div class="topic-head"><small>TOPIC 01</small><h2>Fluid Pressure at a Point</h2></div>
+<div class="tabs"><button class="tab active" data-panel="pressure-point-learn">📖 Learn Topic</button><button class="tab" data-panel="pressure-point-questions">📝 Topic Questions</button><button class="tab" data-panel="pressure-point-pyq">🎓 PYQs</button><button class="tab" data-panel="pressure-point-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="pressure-point-learn">
+<div class="callout"><b>Pressure at a point:</b> pressure is the normal force acting per unit area at a point in a fluid.</div>
+<div class="formula">p = dF / dA</div>
+<ul><li><b>p</b> = pressure</li><li><b>dF</b> = small normal force</li><li><b>dA</b> = small area</li></ul>
+<div class="formula">For uniform pressure: &nbsp; p = F / A</div>
+<div class="box"><b>Units given in the reference</b><ul><li>N/m² or N/m² in SI</li><li>1 Pa = 1 N/m²</li><li>1 kPa = 1000 N/m²</li><li>1 bar = 100 kPa</li></ul></div>
+<div class="diagram"><div class="diagram-title">Concept diagram — pressure force on a fluid element</div><div class="element"><span class="l">pₓ</span><span class="r">pₓ</span><span class="t">pᵧ</span><span class="b">pᵧ</span></div><p class="mini">For a small fluid element, pressure forces act normal to its faces.</p></div>
+<div class="important">⭐ Main point: pressure is a normal force per unit area.</div>
+</div>
+<div class="panel" id="pressure-point-questions"><h3>Important Questions</h3>
+<div class="qa"><span>2 Marks</span><h4>Define pressure at a point in a fluid.</h4><p>Pressure is the normal force acting per unit area at a point in a fluid.</p></div>
+<div class="qa"><span>2 Marks</span><h4>Write the expression for pressure.</h4><p>p = dF/dA. For uniform pressure, p = F/A.</p></div>
+<div class="qa"><span>3 Marks</span><h4>Write the important pressure units and conversions.</h4><p>Pa = N/m², 1 kPa = 1000 N/m² and 1 bar = 100 kPa.</p></div>
+</div>
+<div class="panel" id="pressure-point-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="pressure-point-quiz"><div class="quiz-shell" data-topic="pressure-point"></div></div>
+</section>
+
+<section class="topic" id="pascal">
+<div class="topic-head"><small>TOPIC 02</small><h2>Pascal's Law</h2></div>
+<div class="tabs"><button class="tab active" data-panel="pascal-learn">📖 Learn Topic</button><button class="tab" data-panel="pascal-questions">📝 Topic Questions</button><button class="tab" data-panel="pascal-pyq">🎓 PYQs</button><button class="tab" data-panel="pascal-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="pascal-learn">
+<div class="callout"><b>Pascal's law:</b> the pressure or intensity of pressure at a point in a static fluid is equal in all directions.</div>
+<ul><li>Consider a very small fluid element.</li><li>Pressure acts normal to the surfaces.</li><li>Resolving the pressure forces in different directions gives equal pressure components.</li></ul>
+<div class="formula">pₓ = pᵧ = p𝓏</div>
+<div class="box"><b>Meaning:</b> pressure at a point in a static fluid is the same in x, y and z directions.</div>
+<div class="diagram"><div class="diagram-title">Hydraulic press — application of Pascal's law</div><div class="press"><div><div class="piston"></div><div class="smallp"></div><b>Small piston</b></div><div class="arrowup">→ pressure transmitted →</div><div><div class="piston"></div><div class="largep"></div><b>Large piston</b></div></div></div>
+<div class="formula">Pressure intensity = Force / Area</div>
+<p>The reference uses Pascal's law to show that the pressure developed at the small piston is transmitted through the fluid and acts at the large piston.</p>
+<div class="important">⭐ Application: hydraulic press.</div>
+<h3>Reference worked problems</h3>
+<div class="box"><b>Problem 2.1:</b> hydraulic ram force from a force applied to a plunger.</div>
+<div class="box"><b>Problem 2.2:</b> hydraulic press used for lifting a weight by applying force on a small plunger.</div>
+<div class="box"><b>Problem 2.7:</b> hydraulic jack with small and large piston diameters; force required on the large piston is found using equal pressure.</div>
+</div>
+<div class="panel" id="pascal-questions"><h3>Important Questions</h3>
+<div class="qa"><span>3 Marks</span><h4>State Pascal's law.</h4><p>Pressure or pressure intensity at a point in a static fluid is equal in all directions.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Explain the principle of a hydraulic press.</h4><p>Pressure applied to the fluid at the small piston is transmitted through the fluid. Equal pressure acts on the large piston, so the larger area produces a larger force.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Show that pressure at a point is equal in all directions.</h4><p>Consider the small fluid element, resolve the pressure forces in x, y and z directions and apply equilibrium. The reference obtains pₓ = pᵧ = p𝓏.</p></div>
+</div>
+<div class="panel" id="pascal-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="pascal-quiz"><div class="quiz-shell" data-topic="pascal"></div></div>
+</section>
+
+<section class="topic" id="hydrostatic">
+<div class="topic-head"><small>TOPIC 03</small><h2>Pressure Variation in a Fluid at Rest</h2></div>
+<div class="tabs"><button class="tab active" data-panel="hydrostatic-learn">📖 Learn Topic</button><button class="tab" data-panel="hydrostatic-questions">📝 Topic Questions</button><button class="tab" data-panel="hydrostatic-pyq">🎓 PYQs</button><button class="tab" data-panel="hydrostatic-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="hydrostatic-learn">
+<div class="callout"><b>Hydrostatic pressure:</b> pressure in a fluid at rest varies with vertical position because of the weight of the fluid.</div>
+<div class="box"><b>Forces on a small fluid element</b><ul><li>Pressure force on the lower face.</li><li>Pressure force on the upper face.</li><li>Weight of the fluid element.</li><li>The element is in equilibrium.</li></ul></div>
+<div class="formula">dp/dz = −ρg</div>
+<p>Here z is measured vertically upward in the reference convention.</p>
+<div class="formula">dp = ρg dz &nbsp; (when depth is measured downward)</div>
+<div class="formula">p = p₀ + ρgz</div>
+<p>where ρ is density, g is acceleration due to gravity and z is the depth below the reference/free surface according to the depth convention.</p>
+<div class="formula">Pressure head = p / (ρg)</div>
+<div class="diagram"><div class="diagram-title">Fluid below a free surface</div><div style="width:240px;margin:auto;border:2px solid #526a80;border-top:0;position:relative;height:170px;background:linear-gradient(to bottom,#dff4ff,#b8e5ff)"><div style="position:absolute;top:8px;left:20px;font-weight:900">Free surface</div><div style="position:absolute;top:85px;left:70px;border:2px solid #1677ff;border-radius:50%;width:75px;height:55px;display:grid;place-items:center;background:#eef6ff;font-weight:900">A</div><div style="position:absolute;top:48px;right:18px;font-weight:900">z</div></div><p class="mini">Pressure increases as depth increases.</p></div>
+<h3>Reference numerical examples</h3>
+<div class="box"><b>Problems 2.3–2.8:</b> pressure at a given depth for water, oil, mercury and fluids with specified specific gravity; conversion of pressure into equivalent head of water/oil.</div>
+<div class="important">⭐ Main relation: pressure variation in a static fluid is governed by the hydrostatic law.</div>
+</div>
+<div class="panel" id="hydrostatic-questions"><h3>Important Questions</h3>
+<div class="qa"><span>3 Marks</span><h4>State the hydrostatic law.</h4><p>For a fluid at rest, dp/dz = −ρg when z is measured upward.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Derive the pressure variation in a fluid at rest.</h4><p>Take a small fluid element, write the pressure forces on its faces and its weight, apply equilibrium, obtain dp/dz = −ρg, and integrate to obtain the pressure relation.</p></div>
+<div class="qa"><span>3 Marks</span><h4>Define pressure head.</h4><p>Pressure head is p/(ρg).</p></div>
+<div class="qa"><span>5 Marks</span><h4>Explain how pressure changes with depth.</h4><p>For a fluid at rest, pressure increases as depth increases because the fluid above contributes its weight.</p></div>
+</div>
+<div class="panel" id="hydrostatic-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="hydrostatic-quiz"><div class="quiz-shell" data-topic="hydrostatic"></div></div>
+</section>
+
+<section class="topic" id="pressure-types">
+<div class="topic-head"><small>TOPIC 04</small><h2>Absolute, Gauge, Atmospheric and Vacuum Pressures</h2></div>
+<div class="tabs"><button class="tab active" data-panel="pressure-types-learn">📖 Learn Topic</button><button class="tab" data-panel="pressure-types-questions">📝 Topic Questions</button><button class="tab" data-panel="pressure-types-pyq">🎓 PYQs</button><button class="tab" data-panel="pressure-types-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="pressure-types-learn">
+<div class="grid2">
+<div class="box"><b>Absolute pressure</b><p>Pressure measured with reference to absolute zero pressure.</p></div>
+<div class="box"><b>Gauge pressure</b><p>Pressure measured with atmospheric pressure as the reference.</p></div>
+<div class="box"><b>Atmospheric pressure</b><p>Pressure exerted by the atmosphere.</p></div>
+<div class="box"><b>Vacuum pressure</b><p>Pressure below atmospheric pressure.</p></div>
+</div>
+<div class="formula">P<sub>absolute</sub> = P<sub>atmospheric</sub> + P<sub>gauge</sub></div>
+<div class="formula">Vacuum pressure = P<sub>atmospheric</sub> − P<sub>absolute</sub></div>
+<div class="diagram"><div class="diagram-title">Relationship between pressure references</div><div class="flow"><div class="node">Absolute zero</div><div class="arrow">→</div><div class="node">Absolute pressure</div><div class="arrow">→</div><div class="node">Atmospheric pressure</div><div class="arrow">→</div><div class="node">Gauge pressure</div></div><p class="mini">Vacuum pressure represents the amount by which absolute pressure is below atmospheric pressure.</p></div>
+<div class="box"><b>Reference example:</b> Problem 2.8 finds the corresponding liquid column height for a given pressure intensity in water, oil and mercury.</div>
+<div class="important">⭐ Always identify the pressure reference before selecting the equation.</div>
+</div>
+<div class="panel" id="pressure-types-questions"><h3>Important Questions</h3>
+<div class="qa"><span>2 Marks</span><h4>Define absolute pressure.</h4><p>Absolute pressure is measured with reference to absolute zero pressure.</p></div>
+<div class="qa"><span>2 Marks</span><h4>Define gauge pressure.</h4><p>Gauge pressure is pressure measured using atmospheric pressure as the reference.</p></div>
+<div class="qa"><span>2 Marks</span><h4>Define vacuum pressure.</h4><p>Vacuum pressure is pressure below atmospheric pressure.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Write the relationship between absolute, gauge and atmospheric pressures.</h4><p>Pabsolute = Patmospheric + Pgauge.</p></div>
+</div>
+<div class="panel" id="pressure-types-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="pressure-types-quiz"><div class="quiz-shell" data-topic="pressure-types"></div></div>
+</section>
+
+<section class="topic" id="measurement">
+<div class="topic-head"><small>TOPIC 05</small><h2>Measurement of Pressure</h2></div>
+<div class="tabs"><button class="tab active" data-panel="measurement-learn">📖 Learn Topic</button><button class="tab" data-panel="measurement-questions">📝 Topic Questions</button><button class="tab" data-panel="measurement-pyq">🎓 PYQs</button><button class="tab" data-panel="measurement-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="measurement-learn">
+<div class="callout">The reference gives two main groups of pressure-measuring devices: <b>manometers</b> and <b>mechanical gauges</b>.</div>
+<div class="grid2">
+<div class="box"><h3>Manometers</h3><p>Measure pressure by balancing a column of liquid against the pressure to be measured.</p><p>Types include simple manometers and differential manometers.</p></div>
+<div class="box"><h3>Mechanical gauges</h3><p>Mechanical devices used for measuring pressure.</p><ul><li>Diaphragm pressure gauge</li><li>Bourdon tube pressure gauge</li><li>Dead-weight pressure gauge</li><li>Bellows pressure gauge</li></ul></div>
+</div>
+<div class="table-wrap"><table class="study-table"><tr><th>Group</th><th>Reference types</th><th>Purpose</th></tr><tr><td>Manometers</td><td>Simple and differential</td><td>Pressure measurement by liquid columns</td></tr><tr><td>Mechanical gauges</td><td>Diaphragm, Bourdon tube, dead-weight, bellows</td><td>Mechanical pressure measurement</td></tr></table></div>
+<div class="important">⭐ The chapter continues with simple manometers and then differential manometers.</div>
+</div>
+<div class="panel" id="measurement-questions"><h3>Important Questions</h3>
+<div class="qa"><span>3 Marks</span><h4>Classify the pressure-measuring devices given in the reference.</h4><p>They are broadly classified into manometers and mechanical gauges.</p></div>
+<div class="qa"><span>5 Marks</span><h4>List the types of mechanical gauges mentioned in the chapter.</h4><p>Diaphragm pressure gauge, Bourdon tube pressure gauge, dead-weight pressure gauge and bellows pressure gauge.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Differentiate simple and differential manometers.</h4><p>Simple manometers measure pressure at a point using a liquid column. Differential manometers are used to measure the difference of pressure between two points.</p></div>
+</div>
+<div class="panel" id="measurement-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="measurement-quiz"><div class="quiz-shell" data-topic="measurement"></div></div>
+</section>
+
+<section class="topic" id="simple-mano">
+<div class="topic-head"><small>TOPIC 06</small><h2>Simple Manometers</h2></div>
+<div class="tabs"><button class="tab active" data-panel="simple-mano-learn">📖 Learn Topic</button><button class="tab" data-panel="simple-mano-questions">📝 Topic Questions</button><button class="tab" data-panel="simple-mano-pyq">🎓 PYQs</button><button class="tab" data-panel="simple-mano-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="simple-mano-learn">
+<h3>6.1 Piezometer</h3>
+<ul><li>A simple pressure-measuring arrangement.</li><li>A small tube is connected to the point where pressure is to be measured.</li><li>The liquid rises in the tube.</li></ul>
+<div class="formula">p = ρgh</div>
+<div class="diagram"><div class="diagram-title">Piezometer</div><div style="height:145px;width:220px;margin:auto;border:4px solid #526a80;border-top:0;border-radius:0 0 50px 50px;position:relative;background:linear-gradient(to top,#b8e5ff 0 55%,transparent 55%)"><div style="position:absolute;right:40px;top:15px;font-weight:900">h</div><div style="position:absolute;left:38px;bottom:-24px;font-weight:900">A</div></div><p class="mini">Liquid-column height gives pressure head.</p></div>
+<h3>6.2 U-tube Manometer</h3>
+<p>The reference gives a U-tube with a heavy liquid. It can be used for gauge pressure and vacuum pressure.</p>
+<div class="grid2">
+<div class="diagram"><div class="diagram-title">Gauge pressure arrangement</div><div class="tube"></div><p class="mini">Pressure at A is related to the difference in liquid-column levels.</p></div>
+<div class="diagram"><div class="diagram-title">Vacuum pressure arrangement</div><div class="tube"></div><p class="mini">The column arrangement is used when pressure at A is below atmospheric pressure.</p></div>
+</div>
+<div class="box"><b>U-tube method:</b> write pressure at one level, move through the connected liquids using ρgh changes, and equate pressures at the same horizontal level.</div>
+<h3>6.3 Single Column Manometer</h3>
+<ul><li>It is a modified form of a U-tube manometer.</li><li>One limb is a large reservoir and the other is a small tube.</li><li>Types in the reference: vertical single column and inclined single column manometer.</li></ul>
+<div class="formula">Pressure relation uses the reservoir area, tube area, liquid densities and the change in liquid levels.</div>
+<div class="diagram"><div class="diagram-title">Single-column manometer concept</div><div style="display:flex;justify-content:center;align-items:flex-end;gap:20px;height:150px"><div style="width:120px;height:65px;border:4px solid #526a80;border-radius:50%;background:#e5c36b"></div><div style="width:32px;height:135px;border:4px solid #526a80;border-bottom:0;background:linear-gradient(to top,#e5c36b 0 50%,transparent 50%)"></div></div><p class="mini">The large reservoir makes the level change in it small compared with the tube.</p></div>
+<div class="box"><b>Reference problems:</b> Problems 2.9–2.14 include U-tube, vacuum/gauge, single-column and related manometer calculations.</div>
+<div class="important">⭐ For manometer problems, keep the datum level and move from one point to another using ρgh pressure changes.</div>
+</div>
+<div class="panel" id="simple-mano-questions"><h3>Important Questions</h3>
+<div class="qa"><span>3 Marks</span><h4>What is a piezometer?</h4><p>A piezometer is a simple pressure-measuring device in which a tube is connected to the point where pressure is measured and the liquid column gives the pressure head.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Explain the working of a U-tube manometer.</h4><p>Connect the U-tube to the point of pressure measurement, use the heavy manometric liquid, and equate pressures at the same horizontal datum by adding or subtracting ρgh terms.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Explain a single-column manometer.</h4><p>It is a modified U-tube in which one limb is a large reservoir and the other is a small tube. The reference includes vertical and inclined types.</p></div>
+<div class="qa"><span>8 Marks</span><h4>Write the procedure for solving a manometer numerical.</h4><p>Choose a datum level, write pressure at a known point, move through each liquid column using ρgh, equate pressure at the same level, and solve for the unknown pressure or level.</p></div>
+</div>
+<div class="panel" id="simple-mano-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="simple-mano-quiz"><div class="quiz-shell" data-topic="simple-mano"></div></div>
+</section>
+
+<section class="topic" id="differential">
+<div class="topic-head"><small>TOPIC 07</small><h2>Differential Manometers</h2></div>
+<div class="tabs"><button class="tab active" data-panel="differential-learn">📖 Learn Topic</button><button class="tab" data-panel="differential-questions">📝 Topic Questions</button><button class="tab" data-panel="differential-pyq">🎓 PYQs</button><button class="tab" data-panel="differential-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="differential-learn">
+<div class="callout">Differential manometers are used for measuring the <b>difference of pressures between two points</b> in a pipe or between two different pipes.</div>
+<h3>7.1 U-tube differential manometer</h3>
+<ul><li>Contains a manometric liquid in a U-tube.</li><li>The two pressure points may be at different levels.</li><li>The two points may also be at the same level.</li><li>Pressure equations are obtained by moving through the liquids and equating pressures at the same datum.</li></ul>
+<div class="diagram"><div class="diagram-title">U-tube differential manometer</div><div class="tube"></div><p class="mini">The pressure difference between A and B is obtained from the liquid levels and densities.</p></div>
+<h3>7.2 Inverted U-tube differential manometer</h3>
+<ul><li>An inverted U-tube arrangement is used for pressure difference measurement.</li><li>The reference derives the pressure relation by considering the liquids in the two limbs.</li><li>The arrangement can be used for two pressure points containing liquids of different densities.</li></ul>
+<div class="diagram"><div class="diagram-title">Inverted U-tube concept</div><div style="width:250px;height:130px;margin:auto;border:5px solid #526a80;border-bottom:0;border-radius:80px 80px 0 0;position:relative;background:linear-gradient(to top,#b8e5ff 0 45%,transparent 45%)"><div style="position:absolute;top:20px;left:90px;font-weight:900">manometric liquid</div><div style="position:absolute;bottom:-24px;left:35px;font-weight:900">A</div><div style="position:absolute;bottom:-24px;right:35px;font-weight:900">B</div></div></div>
+<div class="box"><b>Reference problems:</b> Problems 2.15–2.21 cover U-tube differential and inverted U-tube differential arrangements, including pressure difference and absolute-pressure calculations.</div>
+<div class="important">⭐ Differential manometer = compare pressure at two points.</div>
+</div>
+<div class="panel" id="differential-questions"><h3>Important Questions</h3>
+<div class="qa"><span>3 Marks</span><h4>What is a differential manometer?</h4><p>It is a device used to measure the difference of pressure between two points.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Explain a U-tube differential manometer.</h4><p>Connect its two limbs to the two pressure points, identify the manometric liquid levels, choose a datum, and equate pressures at the same level.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Explain an inverted U-tube differential manometer.</h4><p>It is an inverted U-tube arrangement used to determine pressure difference between two points. The pressure relation is obtained by balancing the pressure changes through the connected liquids.</p></div>
+<div class="qa"><span>8 Marks</span><h4>How is a differential-manometer numerical solved?</h4><p>Write pressure at one point, move through each liquid column, account for density and elevation changes, and equate pressure at the second point.</p></div>
+</div>
+<div class="panel" id="differential-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="differential-quiz"><div class="quiz-shell" data-topic="differential"></div></div>
+</section>
+
+<section class="topic" id="compressible">
+<div class="topic-head"><small>TOPIC 08</small><h2>Pressure at a Point in a Compressible Fluid</h2></div>
+<div class="tabs"><button class="tab active" data-panel="compressible-learn">📖 Learn Topic</button><button class="tab" data-panel="compressible-questions">📝 Topic Questions</button><button class="tab" data-panel="compressible-pyq">🎓 PYQs</button><button class="tab" data-panel="compressible-quiz">✅ Practice MCQs</button></div>
+<div class="panel active" id="compressible-learn">
+<div class="callout">For compressible fluids, density changes with pressure and temperature. The reference develops pressure variation with height using the equation of state and specified processes.</div>
+<h3>8.1 Basic equation of state</h3>
+<div class="formula">p = ρRT</div>
+<p>The reference uses the gas equation in the derivation of pressure variation.</p>
+<h3>8.2 Isothermal process</h3>
+<ul><li>Temperature T is constant.</li><li>The reference combines the gas equation with the hydrostatic relation.</li><li>The pressure variation with height is obtained by integration.</li></ul>
+<div class="formula">p / p₀ = e<sup>−gz/(RT)</sup> &nbsp; (isothermal form used in the reference)</div>
+<h3>8.3 Adiabatic process</h3>
+<div class="formula">p / ρ<sup>k</sup> = C</div>
+<ul><li>Temperature is not constant.</li><li>The reference combines the adiabatic relation with the hydrostatic equation.</li><li>The resulting pressure relation is expressed using k, R, g, z, p₀ and ρ₀.</li></ul>
+<div class="formula">p = p₀ [1 − ((k−1)/k)(ρ₀/p₀)gz]<sup>k/(k−1)</sup></div>
+<h3>8.4 Temperature at any point in a compressible fluid</h3>
+<div class="formula">T = T₀ [1 − ((k−1)/k)(gz/(RT₀))]</div>
+<p>The reference derives temperature at height z by combining pressure-density and gas relations.</p>
+<h3>8.5 Temperature lapse rate</h3>
+<div class="formula">L = −dT/dz = g(k−1)/(kR)</div>
+<ul><li><b>L</b> = temperature lapse-rate parameter.</li><li>For k = 1, the temperature is constant.</li><li>For k &gt; 1, temperature decreases with increase of height.</li></ul>
+<div class="box"><b>Reference problems 2.22–2.26</b><ul><li>Pressure variation with altitude using hydrostatic law.</li><li>Pressure variation using isothermal law.</li><li>Pressure variation using adiabatic law.</li><li>Density at a given height.</li><li>Temperature at a given height.</li><li>Temperature lapse-rate calculations.</li></ul></div>
+<div class="important">⭐ Remember the process: equation of state → hydrostatic relation → process condition → integration → pressure/temperature relation.</div>
+</div>
+<div class="panel" id="compressible-questions"><h3>Important Questions</h3>
+<div class="qa"><span>3 Marks</span><h4>Write the equation of state used for a compressible fluid in the reference.</h4><p>p = ρRT.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Explain pressure variation in an isothermal atmosphere.</h4><p>Use the equation of state with the hydrostatic equation and integrate under constant-temperature condition to obtain the reference's pressure-height relation.</p></div>
+<div class="qa"><span>8 Marks</span><h4>Derive pressure variation for an adiabatic atmosphere.</h4><p>Use p/ρ<sup>k</sup> = C with the hydrostatic equation, integrate, and apply the ground-level conditions to obtain the pressure-height relation given in the reference.</p></div>
+<div class="qa"><span>5 Marks</span><h4>Define temperature lapse rate and state its expression from the reference.</h4><p>L = −dT/dz = g(k−1)/(kR).</p></div>
+<div class="qa"><span>Numerical</span><h4>What types of compressible-fluid numericals are included?</h4><p>The reference includes pressure, density and temperature calculations at altitude using hydrostatic, isothermal and adiabatic relations.</p></div>
+</div>
+<div class="panel" id="compressible-pyq"><div class="empty"><b>No verified PYQs added yet.</b><p>Actual previous-year questions will be added only when supplied.</p></div></div>
+<div class="panel" id="compressible-quiz"><div class="quiz-shell" data-topic="compressible"></div></div>
+</section>
+</main>
+<footer>CE2104 • Fluid Mechanics • Chapter 02 — Pressure and its Measurement</footer>
+
+<script>
+const BANKS={
+"pressure-point":[
+{q:"Pressure at a point is defined as normal force per unit",correct:"Area",wrong:["Volume","Mass","Length"],explain:"The reference defines pressure using normal force per unit area."},
+{q:"The differential expression for pressure is",correct:"p = dF/dA",wrong:["p = dA/dF","p = FdA","p = dF·dA"],explain:"For pressure at a point, p = dF/dA."},
+{q:"For uniform pressure, the pressure is",correct:"p = F/A",wrong:["p = A/F","p = F·A","p = F + A"],explain:"The reference gives p = F/A for uniform pressure."},
+{q:"The SI unit of pressure is",correct:"N/m²",wrong:["N/m","kg/m³","m³/kg"],explain:"Pressure is measured in N/m², also called pascal."},
+{q:"One kPa equals",correct:"1000 N/m²",wrong:["100 N/m²","10 N/m²","10000 N/m²"],explain:"The reference states 1 kPa = 1000 N/m²."},
+{q:"One bar equals",correct:"100 kPa",wrong:["10 kPa","1000 kPa","1 kPa"],explain:"The reference states 1 bar = 100 kPa."},
+{q:"Pressure acts",correct:"Normal to the surface",wrong:["Tangentially only","Along the fluid velocity only","Only vertically"],explain:"Pressure force is normal to the surface."},
+{q:"The pressure force on a small area depends on",correct:"Pressure and area",wrong:["Density only","Temperature only","Volume only"],explain:"For uniform pressure, F = pA."},
+{q:"Pressure intensity is another way of describing",correct:"Pressure",wrong:["Specific gravity","Viscosity","Velocity"],explain:"The chapter uses pressure intensity for pressure at a point."},
+{q:"The force used in the pressure definition is",correct:"Normal force",wrong:["Shear force","Centrifugal force only","Friction force only"],explain:"Pressure is based on normal force per unit area."}
+],
+"pascal":[
+{q:"Pascal's law applies to a fluid that is",correct:"Static",wrong:["Always moving rapidly","Solid","Only gaseous"],explain:"The reference states Pascal's law for a static fluid."},
+{q:"According to Pascal's law, pressure at a point is",correct:"Equal in all directions",wrong:["Equal only vertically","Equal only horizontally","Zero in all directions"],explain:"The reference obtains equal pressure in all directions."},
+{q:"The directional pressure relation is",correct:"pₓ = pᵧ = p𝓏",wrong:["pₓ > pᵧ > p𝓏","pₓ = 0","pᵧ = 2pₓ"],explain:"The reference derives pₓ = pᵧ = p𝓏."},
+{q:"A hydraulic press is an application of",correct:"Pascal's law",wrong:["Newton's law of viscosity","Capillarity","Compressibility only"],explain:"The hydraulic press uses pressure transmission through a fluid."},
+{q:"In a hydraulic press, pressure is transmitted",correct:"Through the fluid",wrong:["Only through the piston metal","Only through air","Only downward"],explain:"Applied fluid pressure is transmitted through the fluid."},
+{q:"If pressure intensity is F/A, increasing piston area at the same pressure gives",correct:"Greater force",wrong:["Smaller force","Zero force","No force change possible"],explain:"Force equals pressure intensity multiplied by area."},
+{q:"The small fluid element in the Pascal-law derivation is",correct:"In equilibrium",wrong:["Accelerating upward","Rotating only","Compressing without balance"],explain:"The pressure forces and weight are considered under equilibrium."},
+{q:"Pascal's law is mainly about",correct:"Transmission of pressure",wrong:["Change of density with temperature","Surface tension","Viscosity"],explain:"Its application in the chapter is pressure transmission in hydraulic systems."},
+{q:"A hydraulic press converts fluid pressure into",correct:"A force on a piston",wrong:["Only temperature","Only velocity","Only density"],explain:"The large piston receives the transmitted pressure and develops force."},
+{q:"For equal pressure, piston force is proportional to",correct:"Piston area",wrong:["Piston colour","Fluid volume only","Pipe length only"],explain:"F = pA, so at equal pressure force depends on area."}
+],
+"hydrostatic":[
+{q:"Pressure variation in a fluid at rest is called",correct:"Hydrostatic pressure variation",wrong:["Viscous flow","Surface tension","Capillary action"],explain:"The section derives the hydrostatic pressure relation."},
+{q:"The hydrostatic equation in the upward z convention is",correct:"dp/dz = −ρg",wrong:["dp/dz = ρ/g","dp/dz = ρg","dp/dz = 0 always"],explain:"The reference gives dp/dz = −ρg."},
+{q:"The pressure gradient is caused by",correct:"Weight of the fluid",wrong:["Surface tension only","Viscosity only","Capillarity only"],explain:"The weight of the fluid element causes pressure to vary with height."},
+{q:"For depth measured downward, pressure",correct:"Increases with depth",wrong:["Always decreases","Is always zero","Is independent of depth"],explain:"The reference states that pressure increases in the downward direction."},
+{q:"Pressure head is",correct:"p/(ρg)",wrong:["ρg/p","pρg","p/g"],explain:"The reference gives pressure head as p/(ρg)."},
+{q:"The pressure at depth z below a free surface is represented as",correct:"p = p₀ + ρgz",wrong:["p = p₀ − ρgz","p = ρ/(gz)","p = p₀/(ρgz)"],explain:"With depth measured downward, the reference uses p = p₀ + ρgz."},
+{q:"In the hydrostatic derivation, the fluid element is",correct:"In equilibrium",wrong:["In uniform acceleration","In turbulent motion","Rotating"],explain:"The pressure forces and weight balance for a fluid at rest."},
+{q:"The density term in the hydrostatic equation is",correct:"ρ",wrong:["μ","σ","ν"],explain:"ρ is fluid density."},
+{q:"The acceleration due to gravity is represented by",correct:"g",wrong:["k","R","L"],explain:"The hydrostatic equation contains g."},
+{q:"Pressure at a point below a free surface depends on",correct:"Surface pressure, density, gravity and depth",wrong:["Viscosity only","Surface tension only","Pipe diameter only"],explain:"The pressure relation contains p₀, ρ, g and z."},
+{q:"Equivalent liquid head is obtained from",correct:"p/(ρg)",wrong:["pρg","ρ/(pg)","p/g²"],explain:"Pressure head is pressure divided by specific weight ρg."},
+{q:"For a heavier liquid at the same depth, pressure due to the liquid column is",correct:"Greater",wrong:["Always smaller","Zero","Independent of density"],explain:"The hydrostatic term contains ρgz."}
+],
+"pressure-types":[
+{q:"Absolute pressure is measured from",correct:"Absolute zero pressure",wrong:["Atmospheric pressure only","Gauge zero only","Vacuum gauge only"],explain:"Absolute pressure uses absolute zero pressure as reference."},
+{q:"Gauge pressure is measured with reference to",correct:"Atmospheric pressure",wrong:["Absolute zero only","Vacuum pressure only","Surface tension"],explain:"Gauge pressure uses atmospheric pressure as reference."},
+{q:"Vacuum pressure is pressure",correct:"Below atmospheric pressure",wrong:["Above atmospheric pressure","Equal to zero always","Equal to gauge pressure always"],explain:"Vacuum pressure represents pressure below atmospheric pressure."},
+{q:"Atmospheric pressure is exerted by",correct:"The atmosphere",wrong:["Only a manometer","Only a piston","Only a liquid column"],explain:"Atmospheric pressure is the pressure exerted by the atmosphere."},
+{q:"The relation between absolute, atmospheric and gauge pressure is",correct:"Pabsolute = Patmospheric + Pgauge",wrong:["Pabsolute = Patmospheric − Pgauge","Pgauge = Pabsolute + Patmospheric","Pabsolute = Pgauge/Patmospheric"],explain:"The reference gives this pressure relationship."},
+{q:"Vacuum pressure can be written as",correct:"Patmospheric − Pabsolute",wrong:["Pabsolute − Patmospheric","Pabsolute + Patmospheric","Pgauge + Pabsolute"],explain:"Vacuum pressure is the amount by which absolute pressure is below atmospheric pressure."},
+{q:"Gauge pressure uses atmospheric pressure as",correct:"Reference",wrong:["Fluid density","Manometric liquid","Pressure head"],explain:"Gauge pressure is measured relative to atmospheric pressure."},
+{q:"Absolute pressure can be represented on a pressure scale beginning at",correct:"Absolute zero",wrong:["Gauge zero only","The liquid surface only","The manometer datum only"],explain:"Absolute pressure is measured from absolute zero pressure."},
+{q:"When absolute pressure is below atmospheric pressure, the corresponding pressure is",correct:"Vacuum pressure",wrong:["Positive gauge pressure","Specific gravity","Pressure head only"],explain:"That difference is described as vacuum pressure."},
+{q:"Before solving a pressure problem, you should identify the",correct:"Pressure reference",wrong:["Colour of the liquid","Shape of the paper","Temperature only"],explain:"The reference distinguishes absolute, gauge, atmospheric and vacuum pressures."}
+],
+"measurement":[
+{q:"The chapter groups pressure-measuring devices into",correct:"Manometers and mechanical gauges",wrong:["Pumps and turbines","Nozzles and jets","Valves and pipes"],explain:"Section 2.5 lists manometers and mechanical gauges."},
+{q:"A manometer measures pressure using",correct:"A column of fluid",wrong:["Only an electric motor","Only a spring","Only a thermometer"],explain:"Manometers balance pressure using liquid columns."},
+{q:"The two main manometer groups in the chapter are",correct:"Simple and differential",wrong:["Vertical and horizontal only","Liquid and gas only","Static and dynamic"],explain:"The reference identifies simple and differential manometers."},
+{q:"Mechanical gauges are used for measuring",correct:"Pressure",wrong:["Only density","Only temperature","Only viscosity"],explain:"They are devices for pressure measurement."},
+{q:"Which is a mechanical gauge named in the reference?",correct:"Bourdon tube pressure gauge",wrong:["Piezometer only","U-tube only","Capillary tube only"],explain:"Bourdon tube pressure gauge is listed under mechanical gauges."},
+{q:"Which is another mechanical gauge in the reference?",correct:"Diaphragm pressure gauge",wrong:["Hydraulic press","Piezometer","U-tube differential"],explain:"Diaphragm pressure gauge is listed."},
+{q:"Which is another mechanical gauge in the reference?",correct:"Dead-weight pressure gauge",wrong:["Inclined manometer","Piezometer","Hydraulic ram"],explain:"Dead-weight pressure gauge is listed."},
+{q:"Which is another mechanical gauge in the reference?",correct:"Bellows pressure gauge",wrong:["U-tube differential","Piezometer","Hydraulic jack"],explain:"Bellows pressure gauge is listed."},
+{q:"A differential manometer is used to measure",correct:"Difference of pressure between two points",wrong:["Only atmospheric pressure","Only temperature","Only surface tension"],explain:"That is the purpose stated in section 2.7."},
+{q:"A simple manometer is mainly used to measure",correct:"Pressure at a point",wrong:["Fluid temperature","Pipe roughness","Surface tension"],explain:"Simple manometers are introduced for pressure measurement at a point."}
+],
+"simple-mano":[
+{q:"A piezometer is a",correct:"Simple pressure-measuring device",wrong:["Mechanical gauge only","Pump","Turbine"],explain:"The chapter introduces the piezometer as a simple manometer."},
+{q:"The pressure relation for a piezometer is",correct:"p = ρgh",wrong:["p = ρ/g","p = gh/ρ","p = ρh/g"],explain:"The reference gives p = ρgh."},
+{q:"A piezometer uses the height of a",correct:"Liquid column",wrong:["Solid rod","Spring","Gas bubble"],explain:"The liquid rises in the tube and the column gives pressure head."},
+{q:"A U-tube manometer contains a",correct:"Manometric liquid",wrong:["Solid piston only","Thermometer fluid only","Vacuum only"],explain:"The U-tube contains a manometric liquid."},
+{q:"The U-tube arrangement can measure",correct:"Gauge and vacuum pressure",wrong:["Only temperature","Only viscosity","Only density"],explain:"The reference shows gauge-pressure and vacuum-pressure arrangements."},
+{q:"In manometer calculations, a useful pressure change through a liquid column is",correct:"ρgh",wrong:["μdu/dy","σ/L","F/A only"],explain:"The pressure change due to a liquid column is expressed using ρgh."},
+{q:"A single-column manometer is a modified form of a",correct:"U-tube manometer",wrong:["Bourdon gauge","Piezometer only","Hydraulic press"],explain:"The reference describes it as a modified U-tube."},
+{q:"In a single-column manometer, one limb is a",correct:"Large reservoir",wrong:["Small piston only","Closed gas chamber only","Solid bar"],explain:"The reference uses a large reservoir and a small tube."},
+{q:"The single-column manometer types in the reference are",correct:"Vertical and inclined",wrong:["Gauge and vacuum only","Simple and complex only","Liquid and gas only"],explain:"The reference gives vertical and inclined single-column manometers."},
+{q:"A manometer numerical is commonly solved by equating pressure at the same",correct:"Horizontal level",wrong:["Temperature","Velocity","Area"],explain:"The reference solutions equate pressures at the same datum/horizontal level."},
+{q:"Problem 2.9 is associated with a",correct:"U-tube manometer",wrong:["Bourdon tube gauge","Compressible atmosphere","Piezometer only"],explain:"The reference's Problem 2.9 is a U-tube manometer pressure calculation."},
+{q:"Problems 2.13 and related problems include",correct:"Single-column manometer calculations",wrong:["Only vapour pressure","Only surface tension","Only density measurement"],explain:"The reference develops single-column manometer examples in this range."}
+],
+"differential":[
+{q:"A differential manometer measures",correct:"Pressure difference between two points",wrong:["Only absolute zero","Only temperature","Only viscosity"],explain:"This is the stated purpose of differential manometers."},
+{q:"A U-tube differential manometer can connect",correct:"Two pressure points",wrong:["Only one point","Only a thermometer","Only a piston"],explain:"Its two limbs are connected to two pressure points."},
+{q:"The two pressure points may be at",correct:"Different or the same level",wrong:["Only different temperatures","Only zero elevation","Only the free surface"],explain:"The reference includes both different-level and same-level arrangements."},
+{q:"A differential manometer uses a",correct:"Manometric liquid",wrong:["Solid piston","Thermometer","Spring only"],explain:"The U-tube contains a manometric liquid."},
+{q:"Pressure difference is found by following",correct:"Pressure changes through the connected liquid columns",wrong:["Only pipe diameter","Only velocity","Only temperature"],explain:"The reference derives equations by moving through the liquid columns."},
+{q:"An inverted U-tube differential manometer has its tube",correct:"Inverted in the form of an inverted U",wrong:["Completely straight","Coiled into a circle","Closed at both ends"],explain:"The arrangement is an inverted U-tube."},
+{q:"An inverted U-tube can be used when the two pipes contain",correct:"Liquids of different densities",wrong:["Only solids","Only vacuum","Only air"],explain:"The reference considers two pipes containing liquids of different densities."},
+{q:"The datum level in a differential-manometer solution is used to",correct:"Equate pressures at a common level",wrong:["Find temperature","Find viscosity","Measure pipe diameter"],explain:"Pressure is compared at the same horizontal level."},
+{q:"Problems 2.15 onward mainly develop",correct:"Differential manometer calculations",wrong:["Only hydraulic press calculations","Only surface tension","Only viscosity"],explain:"The reference section 2.7 contains these differential-manometer problems."},
+{q:"An absolute-pressure calculation can also be made using an",correct:"Inverted U-tube arrangement",wrong:["Ideal fluid model only","Inclined plate","Surface tension film"],explain:"The reference includes an absolute-pressure problem with an inverted U-tube arrangement."}
+],
+"compressible":[
+{q:"For a compressible fluid, density can change with",correct:"Pressure and temperature",wrong:["Only pipe colour","Only surface tension","Only area"],explain:"The reference states that density changes with pressure and temperature."},
+{q:"The equation of state used in the reference is",correct:"p = ρRT",wrong:["p = ρg","p = F/A","p = μdu/dy"],explain:"The compressible-fluid section uses the gas equation p = ρRT."},
+{q:"In an isothermal process, temperature is",correct:"Constant",wrong:["Increasing always","Decreasing always","Zero"],explain:"Isothermal means constant temperature."},
+{q:"The isothermal pressure-height relation in the reference is",correct:"p/p₀ = e^(−gz/RT)",wrong:["p/p₀ = ρgz","p = p₀ + ρgz only","p/p₀ = 1 + gz"],explain:"The reference derives an exponential pressure variation for the isothermal case."},
+{q:"An adiabatic process in the reference uses",correct:"p/ρ^k = C",wrong:["pρ^k = 0","p = ρg only","p/ρ = 0"],explain:"The adiabatic relation is p/ρ^k = C."},
+{q:"The symbol k represents the",correct:"Ratio of specific constants",wrong:["Pressure head","Density","Lapse height"],explain:"The reference defines k as the ratio of specific constants."},
+{q:"For an adiabatic atmosphere, temperature is",correct:"Not constant",wrong:["Always constant","Always zero","Independent of height"],explain:"The reference distinguishes the adiabatic process from the isothermal process."},
+{q:"Temperature lapse rate is represented by",correct:"L",wrong:["p","ρ","k"],explain:"The reference denotes temperature lapse-rate by L."},
+{q:"The lapse-rate expression in the reference is",correct:"L = g(k−1)/(kR)",wrong:["L = kR/g","L = ρg","L = p/ρ"],explain:"The reference gives L = g(k−1)/(kR)."},
+{q:"For k = 1, the temperature condition in the reference is",correct:"Temperature is zero in the lapse-rate expression",wrong:["Temperature always doubles","Pressure is zero","Density is zero"],explain:"The reference notes that for k = 1, temperature is zero change in the stated lapse-rate relation."},
+{q:"For k > 1, temperature",correct:"Decreases with increase of height",wrong:["Increases without limit","Is constant always","Becomes zero immediately"],explain:"The reference states that for k > 1 temperature decreases with increase of height."},
+{q:"Problem 2.22 includes pressure calculation using",correct:"Hydrostatic and isothermal relations",wrong:["Only Pascal's law","Only capillarity","Only viscosity"],explain:"The reference problem compares pressure calculations using hydrostatic and isothermal laws."},
+{q:"Problems 2.24–2.26 involve",correct:"Pressure, density and temperature at altitude",wrong:["Only hydraulic press force","Only manometer liquid level","Only surface tension"],explain:"The final numerical problems calculate atmospheric pressure, density and temperature at height."},
+{q:"The standard atmospheric reference mentioned is at",correct:"Sea level",wrong:["Only the bottom of a tank","A manometer datum only","A piston surface"],explain:"The reference uses sea-level pressure, temperature and density as standard reference values."}
+]
+};
+
+const state={};
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+ const topic=b.closest('.topic');
+ topic.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+ topic.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active'); document.getElementById(b.dataset.panel).classList.add('active');
+}));
+function startQuiz(key){
+ state[key]={i:0,score:0,locked:false,selected:null,qs:BANKS[key].map(x=>({...x}))};
+ renderQuiz(key);
+}
+function renderQuiz(key){
+ const s=state[key],root=document.querySelector('.quiz-shell[data-topic="'+key+'"]');
+ if(s.i>=s.qs.length){
+   const pct=s.qs.length?Math.round(s.score/s.qs.length*100):0;
+   root.innerHTML=`<div class="quiz-card"><h3>Quiz Complete</h3><p><b>Total:</b> ${s.qs.length} &nbsp; <b>Correct:</b> ${s.score} &nbsp; <b>Wrong:</b> ${s.qs.length-s.score}</p><div class="formula">${pct}%</div><button class="btn" onclick="startQuiz('${key}')">↻ Retry Quiz</button></div>`;
+   return;
+ }
+ const q=s.qs[s.i],opts=shuffle([q.correct,...q.wrong]);
+ root.innerHTML=`<div class="quiz-card"><div class="quiz-meta"><span>Question ${s.i+1} of ${s.qs.length}</span><span>Score: ${s.score}</span></div><h3>${q.q}</h3><div class="opts">${opts.map((o,i)=>`<button class="option" data-v="${String(o).replace(/"/g,'&quot;')}" onclick="choose('${key}',this)">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div><div class="actions"><button class="btn" onclick="submitAnswer('${key}')">Submit Answer</button></div><div class="feedback-area"></div></div>`;
+}
+function choose(key,el){
+ if(state[key].locked)return;
+ state[key].selected=el.dataset.v;
+ el.parentElement.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));
+ el.classList.add('selected');
+}
+function submitAnswer(key){
+ const s=state[key];
+ if(s.locked||!s.selected)return;
+ const q=s.qs[s.i];s.locked=true;
+ const ok=s.selected===q.correct;if(ok)s.score++;
+ const area=document.querySelector('.quiz-shell[data-topic="'+key+'"] .feedback-area');
+ area.innerHTML=`<div class="feedback ${ok?'good':'bad'}"><b>${ok?'✓ Correct':'✗ Wrong'}</b><br>Correct answer: <b>${q.correct}</b><br><small>${q.explain}</small></div><div class="actions"><button class="btn" onclick="nextQuestion('${key}')">Next Question →</button></div>`;
+}
+function nextQuestion(key){state[key].i++;state[key].locked=false;state[key].selected=null;renderQuiz(key)}
+Object.keys(BANKS).forEach(startQuiz);
+</script>
+</body>
+</html>
