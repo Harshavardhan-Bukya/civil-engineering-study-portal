@@ -428,6 +428,23 @@
       font-weight: 800;
     }
 
+    .cmct-week-links {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .cmct-week-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cmct-week-row .open-link {
+      white-space: nowrap;
+    }
+
     .subject-card.disabled {
       box-shadow: none;
       background: #fafbfd;
@@ -711,23 +728,37 @@
     </h3>
 
     <p>
-        Cement — Week 02 covering cement manufacture,
-        composition, compounds, hydration, structure,
-        important questions, diagrams and MCQ practice.
+        Cement — Week 01 and Week 02 study modules
+        with notes, questions, diagrams and MCQ practice.
     </p>
 
-    <div class="card-footer">
+    <div class="card-footer cmct-week-links">
 
-        <span class="availability active">
-            ● Week 02 Active
-        </span>
+        <div class="cmct-week-row">
+            <span class="availability active">
+                ● Week 01 Available
+            </span>
 
-        <a
-            class="open-link"
-            href="subjects/construction-materials-concrete-technology/week-02.html"
-        >
-            Open →
-        </a>
+            <a
+                class="open-link"
+                href="subjects/construction-materials-concrete-technology/week-01.html"
+            >
+                Open Week 01 →
+            </a>
+        </div>
+
+        <div class="cmct-week-row">
+            <span class="availability active">
+                ● Week 02 Active
+            </span>
+
+            <a
+                class="open-link"
+                href="subjects/construction-materials-concrete-technology/week-02.html"
+            >
+                Open Week 02 →
+            </a>
+        </div>
 
     </div>
 
