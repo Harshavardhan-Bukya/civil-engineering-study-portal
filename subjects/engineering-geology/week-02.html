@@ -1,0 +1,3252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CE2101 — Engineering Geology — Unit 02 Mineralogy</title>
+
+<style>
+:root{
+    --primary:#12395b;
+    --secondary:#1677a8;
+    --accent:#d97706;
+    --soft:#eef6fb;
+    --line:#d8e1e8;
+    --text:#17202a;
+    --muted:#64748b;
+    --good:#15803d;
+    --bad:#dc2626;
+    --white:#ffffff;
+    --bg:#f5f8fb;
+    --shadow:0 8px 25px rgba(15,40,65,.08);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+}
+
+header{
+    background:linear-gradient(135deg,#102d49,#155e82);
+    color:white;
+    padding:38px 20px;
+}
+
+.header-inner{
+    max-width:1200px;
+    margin:auto;
+}
+
+header h1{
+    margin:0;
+    font-size:34px;
+    font-weight:900;
+}
+
+header .subtitle{
+    margin-top:8px;
+    font-size:16px;
+    opacity:.92;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:24px;
+}
+
+.back{
+    display:inline-block;
+    text-decoration:none;
+    color:var(--secondary);
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.reference{
+    background:#fff7ed;
+    border-left:5px solid var(--accent);
+    padding:18px;
+    border-radius:10px;
+    margin-bottom:22px;
+}
+
+.reference strong{
+    color:#9a3412;
+}
+
+.topic-nav-wrap{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.topic-nav{
+    max-width:1200px;
+    margin:auto;
+    padding:12px 20px;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+}
+
+.topic-btn{
+    flex:none;
+    border:1px solid var(--line);
+    background:white;
+    padding:10px 13px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:800;
+    color:var(--primary);
+}
+
+.topic-btn:hover{
+    background:var(--soft);
+}
+
+.topic-btn.active{
+    background:var(--primary);
+    color:white;
+    border-color:var(--primary);
+}
+
+.topic-page{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:16px;
+    margin:24px 0;
+    padding:25px;
+    box-shadow:var(--shadow);
+    scroll-margin-top:85px;
+}
+
+.topic-head{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.topic-number{
+    min-width:58px;
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--primary);
+    color:white;
+    border-radius:13px;
+    font-size:20px;
+    font-weight:900;
+}
+
+.topic-head h2{
+    margin:0;
+    color:var(--primary);
+    font-size:25px;
+}
+
+.topic-head p{
+    margin:5px 0 0;
+    color:var(--muted);
+}
+
+.mode-tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+    margin-bottom:20px;
+}
+
+.mode-btn{
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--primary);
+    padding:10px 14px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:800;
+}
+
+.mode-btn.active{
+    background:var(--secondary);
+    color:#fff;
+    border-color:var(--secondary);
+}
+
+.mode-panel{
+    display:none;
+}
+
+.mode-panel.active{
+    display:block;
+}
+
+h3{
+    color:var(--primary);
+    margin-top:25px;
+}
+
+h4{
+    color:var(--primary);
+}
+
+p{
+    margin:10px 0;
+}
+
+ul,ol{
+    padding-left:25px;
+}
+
+li{
+    margin:6px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0;
+    background:white;
+}
+
+th,td{
+    border:1px solid var(--line);
+    padding:10px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#eaf2f8;
+    color:var(--primary);
+    font-weight:900;
+}
+
+tr:nth-child(even) td{
+    background:#fafcfd;
+}
+
+.formula{
+    background:#f1f5f9;
+    border-left:5px solid var(--secondary);
+    padding:15px;
+    border-radius:8px;
+    margin:16px 0;
+    font-weight:800;
+    font-family:"Courier New",monospace;
+}
+
+.important{
+    background:#fff7ed;
+    border-left:5px solid var(--accent);
+    padding:15px;
+    border-radius:9px;
+    margin:18px 0;
+}
+
+.note{
+    background:#eff6ff;
+    border-left:5px solid var(--secondary);
+    padding:15px;
+    border-radius:9px;
+    margin:18px 0;
+}
+
+.answer{
+    background:#eefaf3;
+    border-left:5px solid var(--good);
+    padding:14px;
+    border-radius:8px;
+    margin-top:12px;
+}
+
+.pyq-empty{
+    background:#f8fafc;
+    border:1px dashed #94a3b8;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.diagram{
+    margin:20px 0;
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#fafcff;
+}
+
+.flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.flow span{
+    background:#eef6ff;
+    border:1px solid #b8d3e8;
+    padding:11px 14px;
+    border-radius:9px;
+    text-align:center;
+    font-weight:800;
+}
+
+.flow b{
+    color:var(--secondary);
+    font-size:20px;
+}
+
+.property-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin:20px 0;
+}
+
+.property-card{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    background:#fbfdff;
+}
+
+.property-card strong{
+    color:var(--secondary);
+}
+
+.silicate-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:20px 0;
+}
+
+.silicate-card{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    background:#fbfdff;
+}
+
+.silicate-symbol{
+    font-size:30px;
+    color:var(--secondary);
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.quiz-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.score{
+    font-weight:900;
+    color:var(--secondary);
+    font-size:18px;
+}
+
+.quiz-question{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:17px;
+    margin:15px 0;
+}
+
+.qnum{
+    font-size:12px;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:900;
+}
+
+.options{
+    display:grid;
+    gap:8px;
+    margin-top:12px;
+}
+
+.option{
+    text-align:left;
+    border:1px solid var(--line);
+    background:#fff;
+    padding:11px 13px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.option:hover:not(:disabled){
+    background:#f1f5f9;
+}
+
+.option.correct{
+    border-color:#16a34a;
+    background:#dcfce7;
+}
+
+.option.wrong{
+    border-color:#dc2626;
+    background:#fee2e2;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.explanation{
+    display:none;
+    margin-top:10px;
+    padding:11px;
+    background:#f8fafc;
+    border-left:4px solid var(--secondary);
+    border-radius:6px;
+}
+
+.retry{
+    margin:10px 0 20px;
+    padding:11px 17px;
+    border:0;
+    border-radius:9px;
+    background:var(--primary);
+    color:#fff;
+    cursor:pointer;
+    font-weight:900;
+}
+
+.retry:hover{
+    opacity:.9;
+}
+
+footer{
+    background:#102d49;
+    color:#fff;
+    text-align:center;
+    padding:25px;
+    margin-top:40px;
+}
+
+.small{
+    font-size:13px;
+    color:var(--muted);
+}
+
+@media(max-width:800px){
+    header h1{
+        font-size:27px;
+    }
+
+    .container{
+        padding:14px;
+    }
+
+    .topic-page{
+        padding:18px;
+    }
+
+    .property-grid,
+    .silicate-grid{
+        grid-template-columns:1fr;
+    }
+
+    .topic-head{
+        align-items:flex-start;
+    }
+
+    .topic-number{
+        min-width:48px;
+        height:48px;
+        font-size:17px;
+    }
+
+    .topic-head h2{
+        font-size:21px;
+    }
+
+    .flow{
+        flex-direction:column;
+    }
+
+    .flow b{
+        transform:rotate(90deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <h1>CE2101 — Engineering Geology — Unit 02</h1>
+        <div class="subtitle">
+            Mineralogy • Mineral Identification • Physical Properties • Rock Forming Minerals
+        </div>
+    </div>
+</header>
+
+<div class="topic-nav-wrap">
+<nav class="topic-nav">
+
+<button class="topic-btn active" data-topic="topic1">
+01 • Mineralogy Basics
+</button>
+
+<button class="topic-btn" data-topic="topic2">
+02 • Forms & Habits
+</button>
+
+<button class="topic-btn" data-topic="topic3">
+03 • Colour
+</button>
+
+<button class="topic-btn" data-topic="topic4">
+04 • Streak
+</button>
+
+<button class="topic-btn" data-topic="topic5">
+05 • Lustre
+</button>
+
+<button class="topic-btn" data-topic="topic6">
+06 • Fracture
+</button>
+
+<button class="topic-btn" data-topic="topic7">
+07 • Cleavage
+</button>
+
+<button class="topic-btn" data-topic="topic8">
+08 • Hardness
+</button>
+
+<button class="topic-btn" data-topic="topic9">
+09 • Specific Gravity
+</button>
+
+<button class="topic-btn" data-topic="topic10">
+10 • Transparency
+</button>
+
+<button class="topic-btn" data-topic="topic11">
+11 • Special Properties
+</button>
+
+<button class="topic-btn" data-topic="topic12">
+12 • Rock Forming Minerals
+</button>
+
+</nav>
+</div>
+
+<main class="container">
+
+<a class="back" href="../../index.html">
+← Back to Dashboard
+</a>
+
+<div class="reference">
+<strong>UNIT 02 — MINERALOGY</strong>
+<p>
+Complete learning module based on the supplied Mineralogy reference.
+Use the four modes in every topic:
+<strong>Learn → Questions → PYQs → MCQ Practice</strong>.
+</p>
+</div>
+
+
+<!-- =========================================================
+TOPIC 01
+========================================================= -->
+
+<section class="topic-page" id="topic1">
+
+<div class="topic-head">
+<span class="topic-number">01</span>
+<div>
+<h2>Mineralogy Basics & Mineral Identification</h2>
+<p>
+Definition of mineralogy, definition of minerals and physical-property identification.
+</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+
+<button class="mode-btn active"
+data-topic="topic1"
+data-mode="learn">📘 Learn</button>
+
+<button class="mode-btn"
+data-topic="topic1"
+data-mode="questions">📝 Questions</button>
+
+<button class="mode-btn"
+data-topic="topic1"
+data-mode="pyq">📚 PYQs</button>
+
+<button class="mode-btn"
+data-topic="topic1"
+data-mode="quiz">🎯 MCQ Practice</button>
+
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Define Mineralogy</h3>
+
+<p>
+Mineralogy deals with the study of <strong>minerals</strong>.
+It deals with the detailed mode of formation, composition,
+occurrence, types, association, properties, uses etc.
+</p>
+
+<h3>Definition of Mineral</h3>
+
+<p>
+A mineral is a <strong>naturally-occurring, homogeneous, solid</strong>
+with a definite, but generally not fixed, chemical composition and
+an ordered atomic arrangement. It is usually formed by inorganic processes.
+</p>
+
+<div class="property-grid">
+
+<div class="property-card">
+<strong>1. Natural</strong>
+<p>Occurs naturally and is not man-made.</p>
+</div>
+
+<div class="property-card">
+<strong>2. Homogeneous</strong>
+<p>It is the same throughout and cannot be broken into simpler components.</p>
+</div>
+
+<div class="property-card">
+<strong>3. Solid</strong>
+<p>Minerals maintain a set shape nearly indefinitely. Liquids are not minerals.</p>
+</div>
+
+<div class="property-card">
+<strong>4. Chemical Composition</strong>
+<p>
+A mineral can be described by a chemical formula.
+</p>
+</div>
+
+<div class="property-card">
+<strong>5. Ordered Arrangement of Atoms</strong>
+<p>
+Minerals have a fixed atomic pattern that repeats over a large region.
+</p>
+</div>
+
+<div class="property-card">
+<strong>6. Generally Inorganic</strong>
+<p>
+Most minerals are inorganic. Only a few organic substances are considered minerals.
+</p>
+</div>
+
+</div>
+
+<h3>Examples of Chemical Formulae</h3>
+
+<table>
+<tr>
+<th>Mineral</th>
+<th>Formula stated in the reference</th>
+</tr>
+<tr>
+<td>Quartz</td>
+<td>SiO₂</td>
+</tr>
+<tr>
+<td>Biotite</td>
+<td>K(Mg,Fe)₃(AlSi₃O₁₀)(OH)₂</td>
+</tr>
+<tr>
+<td>Diamond</td>
+<td>C</td>
+</tr>
+</table>
+
+<h3>Crystal Structure</h3>
+
+<p>
+A crystal solid or crystal lattice is the organized structure of a mineral.
+The source notes that a glass is not a mineral because it has no organized structure.
+</p>
+
+<div class="diagram">
+<div class="flow">
+<span>Ordered atoms</span>
+<b>→</b>
+<span>Crystal lattice</span>
+<b>→</b>
+<span>Mineral structure</span>
+</div>
+</div>
+
+<h3>Mineral Identification</h3>
+
+<p>
+Minerals can be identified using visual and chemical properties called
+<strong>physical properties</strong>.
+The physical properties covered in this unit are:
+</p>
+
+<ol>
+<li>Forms and Habits</li>
+<li>Colour</li>
+<li>Streak</li>
+<li>Lustre</li>
+<li>Fracture</li>
+<li>Cleavage</li>
+<li>Hardness</li>
+<li>Specific Gravity</li>
+<li>Degree of Transparency</li>
+<li>Special Properties</li>
+</ol>
+
+<div class="important">
+<strong>Exam Focus:</strong>
+Remember the six main characteristics given in the definition:
+Natural, Homogeneous, Solid, Chemical Composition,
+Ordered Arrangement of Atoms and Generally Inorganic.
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define Mineralogy.</li>
+<li>Define a mineral.</li>
+<li>Explain the characteristics of minerals.</li>
+<li>Explain the term homogeneous with respect to minerals.</li>
+<li>Explain the importance of chemical composition in minerals.</li>
+<li>What is meant by ordered arrangement of atoms?</li>
+<li>Why is glass not considered a mineral according to the reference?</li>
+<li>List the physical properties used for mineral identification.</li>
+</ol>
+
+<div class="answer">
+<strong>Short Answer:</strong>
+Mineralogy is the study of minerals, including their formation,
+composition, occurrence, types, association, properties and uses.
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>PYQ Status</strong>
+<p>
+No verified university PYQ paper was supplied for this unit.
+Therefore no question is falsely labelled as a university PYQ.
+</p>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<div>
+<h3>MCQ Practice</h3>
+<p>5 questions • Click an option to reveal the answer.</p>
+</div>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>Mineralogy deals with the study of:</h4>
+<div class="options">
+<button class="option" data-index="0">Minerals</button>
+<button class="option" data-index="1">Only rocks</button>
+<button class="option" data-index="2">Only soils</button>
+<button class="option" data-index="3">Only metals</button>
+</div>
+<div class="explanation">Correct answer: Minerals</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 2</div>
+<h4>A mineral is generally:</h4>
+<div class="options">
+<button class="option" data-index="0">Liquid</button>
+<button class="option" data-index="1">Solid</button>
+<button class="option" data-index="2">Gas</button>
+<button class="option" data-index="3">Plasma</button>
+</div>
+<div class="explanation">Correct answer: Solid</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 3</div>
+<h4>Which property refers to the same composition throughout?</h4>
+<div class="options">
+<button class="option" data-index="0">Natural</button>
+<button class="option" data-index="1">Solid</button>
+<button class="option" data-index="2">Homogeneous</button>
+<button class="option" data-index="3">Opaque</button>
+</div>
+<div class="explanation">Correct answer: Homogeneous</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 4</div>
+<h4>Quartz has the chemical formula:</h4>
+<div class="options">
+<button class="option" data-index="0">C</button>
+<button class="option" data-index="1">NaCl</button>
+<button class="option" data-index="2">CaCO₃</button>
+<button class="option" data-index="3">SiO₂</button>
+</div>
+<div class="explanation">Correct answer: SiO₂</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 5</div>
+<h4>Glass is not considered a mineral in the reference because it lacks:</h4>
+<div class="options">
+<button class="option" data-index="0">Colour</button>
+<button class="option" data-index="1">Organized atomic structure</button>
+<button class="option" data-index="2">Mass</button>
+<button class="option" data-index="3">Hardness</button>
+</div>
+<div class="explanation">Correct answer: Organized atomic structure</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 02
+========================================================= -->
+
+<section class="topic-page" id="topic2">
+
+<div class="topic-head">
+<span class="topic-number">02</span>
+<div>
+<h2>Forms and Habits</h2>
+<p>Common modes of occurrence and forms of minerals.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic2" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic2" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic2" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic2" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Forms and Habits</h3>
+
+<p>
+The form represents the common mode of occurrence of a mineral in nature.
+It is also called the <strong>habit or structure</strong> of minerals.
+To some extent, it is a function of the atomic structure of minerals.
+</p>
+
+<table>
+<tr>
+<th>Form / Habit</th>
+<th>Example stated in source</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>Lamellar</td>
+<td>Mica</td>
+<td>Mineral appears as thin separable layers.</td>
+</tr>
+
+<tr>
+<td>Tabular</td>
+<td>Feldspar</td>
+<td>Mineral appears as a slab of uniform thickness.</td>
+</tr>
+
+<tr>
+<td>Fibrous</td>
+<td>Asbestos</td>
+<td>Mineral appears to be made of thin thread.</td>
+</tr>
+
+<tr>
+<td>Pisolitic</td>
+<td>Bauxite</td>
+<td>Mineral appears to be made of small spherical grain.</td>
+</tr>
+
+<tr>
+<td>Oolitic</td>
+<td>Limestone</td>
+<td>Mineral appears to be made of small spherical grain.</td>
+</tr>
+
+<tr>
+<td>Rhombic</td>
+<td>Calcite</td>
+<td>Mineral appears rhombic in shape.</td>
+</tr>
+
+<tr>
+<td>Granular</td>
+<td>Magnetite, Chromite</td>
+<td>Mineral appears to be made of innumerable equidimensional grains.</td>
+</tr>
+
+<tr>
+<td>Bladed</td>
+<td>Kyanite</td>
+<td>Cluster or independent lath-shaped grains.</td>
+</tr>
+
+<tr>
+<td>Botryoidal</td>
+<td>Hematite, Chalcedony</td>
+<td>Smaller curved faces like a bunch of grapes.</td>
+</tr>
+
+<tr>
+<td>Acicular</td>
+<td>Natrolite, Actinolite</td>
+<td>Thin needles.</td>
+</tr>
+
+<tr>
+<td>Columnar</td>
+<td>Quartz, Apatite</td>
+<td>Long slender prism.</td>
+</tr>
+
+<tr>
+<td>Prismatic</td>
+<td>Quartz, Apatite</td>
+<td>Elongated independent crystals.</td>
+</tr>
+
+<tr>
+<td>Spongy</td>
+<td>Pyrolusite, Bauxite, Pumice</td>
+<td>Porous appearance.</td>
+</tr>
+
+<tr>
+<td>Crystal</td>
+<td>Quartz, Amethyst, Pyrite, Galena</td>
+<td>Polyhedral geometrical shapes.</td>
+</tr>
+
+<tr>
+<td>Massive</td>
+<td>Graphite, Olivine, Jasper</td>
+<td>No definite shape for minerals.</td>
+</tr>
+
+<tr>
+<td>Nodular</td>
+<td>Flint, Limestone</td>
+<td>Irregular compacted body with curved surface.</td>
+</tr>
+</table>
+
+<div class="important">
+<strong>Remember:</strong>
+Forms and habits are related to the way a mineral commonly occurs
+and the atomic structure of the mineral.
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define forms and habits of minerals.</li>
+<li>Explain Lamellar form with example.</li>
+<li>Explain Tabular form with example.</li>
+<li>Explain Fibrous form with example.</li>
+<li>Explain Pisolitic and Oolitic forms.</li>
+<li>Explain Granular form.</li>
+<li>Explain Botryoidal and Acicular forms.</li>
+<li>Explain Columnar and Prismatic forms.</li>
+<li>Explain Spongy and Crystal forms.</li>
+<li>Differentiate Massive and Nodular forms.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+<p>
+Use the Important Questions section for source-based exam preparation.
+</p>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>Mica shows which form?</h4>
+<div class="options">
+<button class="option" data-index="0">Lamellar</button>
+<button class="option" data-index="1">Massive</button>
+<button class="option" data-index="2">Spongy</button>
+<button class="option" data-index="3">Nodular</button>
+</div>
+<div class="explanation">Correct answer: Lamellar</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 2</div>
+<h4>Asbestos has which form?</h4>
+<div class="options">
+<button class="option" data-index="0">Tabular</button>
+<button class="option" data-index="1">Massive</button>
+<button class="option" data-index="2">Fibrous</button>
+<button class="option" data-index="3">Crystal</button>
+</div>
+<div class="explanation">Correct answer: Fibrous</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 3</div>
+<h4>Bauxite is associated with:</h4>
+<div class="options">
+<button class="option" data-index="0">Lamellar form</button>
+<button class="option" data-index="1">Pisolitic form</button>
+<button class="option" data-index="2">Bladed form</button>
+<button class="option" data-index="3">Prismatic form</button>
+</div>
+<div class="explanation">Correct answer: Pisolitic form</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 4</div>
+<h4>Kyanite commonly shows:</h4>
+<div class="options">
+<button class="option" data-index="0">Massive form</button>
+<button class="option" data-index="1">Oolitic form</button>
+<button class="option" data-index="2">Spongy form</button>
+<button class="option" data-index="3">Bladed form</button>
+</div>
+<div class="explanation">Correct answer: Bladed form</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 5</div>
+<h4>Graphite is given as an example of:</h4>
+<div class="options">
+<button class="option" data-index="0">Acicular form</button>
+<button class="option" data-index="1">Columnar form</button>
+<button class="option" data-index="2">Massive form</button>
+<button class="option" data-index="3">Botryoidal form</button>
+</div>
+<div class="explanation">Correct answer: Massive form</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 03
+========================================================= -->
+
+<section class="topic-page" id="topic3">
+
+<div class="topic-head">
+<span class="topic-number">03</span>
+<div>
+<h2>Colour</h2>
+<p>Colour as a physical property used in mineral identification.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic3" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic3" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic3" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic3" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Colour of Minerals</h3>
+
+<p>
+Colour is due to the composition of the mineral. In some minerals,
+colour is imparted by trace elements, inclusions and atomic structure.
+</p>
+
+<p>
+Great consistency in ore-forming minerals is referred to as
+<strong>Idiochromatic</strong>.
+Less consistency in rock-forming minerals is referred to as
+<strong>Allochromatic</strong>.
+</p>
+
+<table>
+<tr>
+<th>Mineral</th>
+<th>Colour stated in source</th>
+</tr>
+<tr><td>Graphite</td><td>Shining black</td></tr>
+<tr><td>Hematite</td><td>Dark steel grey</td></tr>
+<tr><td>Amethyst</td><td>Violet</td></tr>
+<tr><td>Calcite</td><td>White</td></tr>
+<tr><td>Jasper</td><td>Red</td></tr>
+<tr><td>Olivine</td><td>Olive green</td></tr>
+<tr><td>Quartz</td><td>Colourless or white</td></tr>
+<tr><td>Asbestos</td><td>White, less commonly green, yellow, grey</td></tr>
+<tr><td>Pyrolusite</td><td>Dark grey, nearly black</td></tr>
+<tr><td>Galena</td><td>Dark lead grey</td></tr>
+<tr><td>Barytes</td><td>White or pale grey</td></tr>
+</table>
+
+<h3>Colour and Chemical Composition</h3>
+
+<ul>
+<li>Minerals rich in Al, Ca, Na and Mg are often light coloured.</li>
+<li>Minerals rich in Fe, Ti, Ni and Cr are often dark in colour.</li>
+</ul>
+
+<h3>Colour and Atomic Structure</h3>
+
+<p>
+Atomic structure controls which components of white light are absorbed or reflected.
+</p>
+
+<ul>
+<li>White minerals reflect all components of white light.</li>
+<li>Black minerals absorb all components of white light.</li>
+<li>Green minerals reflect green light and absorb the others.</li>
+</ul>
+
+<div class="important">
+<strong>Limitation:</strong>
+Colour is not particularly useful as a diagnostic property because some
+minerals show a wide variety of colours and many minerals have similar colours.
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Explain colour as a physical property of minerals.</li>
+<li>What is Idiochromatic colour?</li>
+<li>What is Allochromatic colour?</li>
+<li>Explain the effect of chemical composition on mineral colour.</li>
+<li>Explain the effect of atomic structure on colour.</li>
+<li>Why is colour not particularly useful as a diagnostic property?</li>
+<li>Write the colours of important minerals given in the reference.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 1</div>
+<h4>Amethyst is generally:</h4>
+<div class="options">
+<button class="option" data-index="0">Red</button>
+<button class="option" data-index="1">White</button>
+<button class="option" data-index="2">Violet</button>
+<button class="option" data-index="3">Black</button>
+</div>
+<div class="explanation">Correct answer: Violet</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 2</div>
+<h4>Jasper is given as:</h4>
+<div class="options">
+<button class="option" data-index="0">Blue</button>
+<button class="option" data-index="1">Red</button>
+<button class="option" data-index="2">White</button>
+<button class="option" data-index="3">Violet</button>
+</div>
+<div class="explanation">Correct answer: Red</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 3</div>
+<h4>Minerals rich in Fe, Ti, Ni and Cr are often:</h4>
+<div class="options">
+<button class="option" data-index="0">White</button>
+<button class="option" data-index="1">Colourless</button>
+<button class="option" data-index="2">Pale</button>
+<button class="option" data-index="3">Dark</button>
+</div>
+<div class="explanation">Correct answer: Dark</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 4</div>
+<h4>Great consistency in ore-forming minerals is called:</h4>
+<div class="options">
+<button class="option" data-index="0">Idiochromatic</button>
+<button class="option" data-index="1">Allochromatic</button>
+<button class="option" data-index="2">Opaque</button>
+<button class="option" data-index="3">Acicular</button>
+</div>
+<div class="explanation">Correct answer: Idiochromatic</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 5</div>
+<h4>Colour is not a very useful diagnostic property because:</h4>
+<div class="options">
+<button class="option" data-index="0">All minerals are black</button>
+<button class="option" data-index="1">Minerals may show many similar or different colours</button>
+<button class="option" data-index="2">Minerals have no composition</button>
+<button class="option" data-index="3">Colour is absent in minerals</button>
+</div>
+<div class="explanation">Correct answer: Minerals may show many similar or different colours</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 04
+========================================================= -->
+
+<section class="topic-page" id="topic4">
+
+<div class="topic-head">
+<span class="topic-number">04</span>
+<div>
+<h2>Streak</h2>
+<p>Colour of mineral powder obtained by rubbing the mineral on a streak plate.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic4" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic4" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic4" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic4" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Definition</h3>
+
+<p>
+Streak is the colour of a mineral's powder obtained by rubbing a mineral
+specimen on an unglazed white porcelain tile.
+</p>
+
+<ul>
+<li>Useful for identifying metallic ore minerals.</li>
+<li>Silicates generally do not mark the tile and have no streak.</li>
+<li>White minerals streaked on a white tile will have a white streak.</li>
+<li>Minerals harder than the tile (6) have no streak.</li>
+</ul>
+
+<h3>Important Streak Examples</h3>
+
+<table>
+<tr>
+<th>Mineral</th>
+<th>Streak</th>
+</tr>
+<tr><td>Hematite</td><td>Cherry red</td></tr>
+<tr><td>Pyrite</td><td>Greenish black</td></tr>
+<tr><td>Orpiment</td><td>Yellow</td></tr>
+<tr><td>Sphalerite</td><td>Brown</td></tr>
+<tr><td>Sulphur</td><td>Yellow</td></tr>
+<tr><td>Graphite</td><td>Black / dark streak</td></tr>
+<tr><td>Azurite</td><td>Blue</td></tr>
+<tr><td>Malachite</td><td>Green</td></tr>
+</table>
+
+<div class="important">
+<strong>Very Important:</strong>
+Hematite gives a <strong>cherry red streak</strong>.
+Quartz may occur in different colours, but the source notes that quartz
+always leaves a white streak.
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define streak.</li>
+<li>How is streak determined?</li>
+<li>Why is streak useful in mineral identification?</li>
+<li>Why do silicates generally have no streak?</li>
+<li>What is the streak of hematite?</li>
+<li>Write the characteristic streaks of important metallic ore minerals.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>Streak is obtained by rubbing a mineral on:</h4>
+<div class="options">
+<button class="option" data-index="0">Unglazed white porcelain tile</button>
+<button class="option" data-index="1">Glass plate</button>
+<button class="option" data-index="2">Steel plate</button>
+<button class="option" data-index="3">Wood</button>
+</div>
+<div class="explanation">Correct answer: Unglazed white porcelain tile</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 2</div>
+<h4>Hematite gives a:</h4>
+<div class="options">
+<button class="option" data-index="0">Black streak</button>
+<button class="option" data-index="1">Blue streak</button>
+<button class="option" data-index="2">Cherry red streak</button>
+<button class="option" data-index="3">White streak</button>
+</div>
+<div class="explanation">Correct answer: Cherry red streak</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 3</div>
+<h4>Streak is particularly useful for identifying:</h4>
+<div class="options">
+<button class="option" data-index="0">Liquids</button>
+<button class="option" data-index="1">Metallic ore minerals</button>
+<button class="option" data-index="2">Gases</button>
+<button class="option" data-index="3">Only glasses</button>
+</div>
+<div class="explanation">Correct answer: Metallic ore minerals</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 4</div>
+<h4>Minerals harder than the tile (6) generally have:</h4>
+<div class="options">
+<button class="option" data-index="0">Red streak</button>
+<button class="option" data-index="1">Blue streak</button>
+<button class="option" data-index="2">Green streak</button>
+<button class="option" data-index="3">No streak</button>
+</div>
+<div class="explanation">Correct answer: No streak</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 5</div>
+<h4>Quartz is noted in the reference as leaving a:</h4>
+<div class="options">
+<button class="option" data-index="0">White streak</button>
+<button class="option" data-index="1">Black streak</button>
+<button class="option" data-index="2">Red streak</button>
+<button class="option" data-index="3">Green streak</button>
+</div>
+<div class="explanation">Correct answer: White streak</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 05
+========================================================= -->
+
+<section class="topic-page" id="topic5">
+
+<div class="topic-head">
+<span class="topic-number">05</span>
+<div>
+<h2>Lustre</h2>
+<p>The way in which a mineral reflects light.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic5" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic5" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic5" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic5" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Definition</h3>
+
+<p>
+Lustre is the way in which a mineral reflects light.
+It is controlled by the atomic structure of the mineral.
+It represents the nature of shining on the surface of minerals.
+</p>
+
+<p>
+Based on the quality or type of shining, lustres are grouped as
+<strong>metallic</strong> and <strong>non-metallic</strong>.
+</p>
+
+<table>
+<tr>
+<th>Lustre</th>
+<th>Examples</th>
+<th>Description from source</th>
+</tr>
+<tr>
+<td>Metallic</td>
+<td>Pyrite, Galena, Gold</td>
+<td>Shining appearance like metals.</td>
+</tr>
+<tr>
+<td>Sub-metallic</td>
+<td>Hematite, Magnetite, Chromite</td>
+<td>Amount of shining is less compared to metallic lustre.</td>
+</tr>
+<tr>
+<td>Vitreous</td>
+<td>Quartz, Dolomite, Calcite</td>
+<td>Non-metallic minerals shining like a glass sheet.</td>
+</tr>
+<tr>
+<td>Pearly</td>
+<td>Talc, Muscovite Mica, Gypsum</td>
+<td>Non-metallic minerals shining like pearls.</td>
+</tr>
+<tr>
+<td>Silky</td>
+<td>Asbestos, Satinspar</td>
+<td>Non-metallic minerals shining like silk.</td>
+</tr>
+<tr>
+<td>Resinous</td>
+<td>Opal, Chalcedony</td>
+<td>Non-metallic minerals shining like resin.</td>
+</tr>
+<tr>
+<td>Adamantine</td>
+<td>Adamantine minerals</td>
+<td>Non-metallic minerals shining like diamond.</td>
+</tr>
+<tr>
+<td>Earthy / Dull</td>
+<td>Kaolin, Bauxite, Magnesite</td>
+<td>Earth or chalk-like appearance.</td>
+</tr>
+</table>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define lustre.</li>
+<li>What controls lustre?</li>
+<li>Explain metallic lustre.</li>
+<li>Explain sub-metallic lustre.</li>
+<li>Explain vitreous lustre.</li>
+<li>Explain pearly lustre.</li>
+<li>Explain silky lustre.</li>
+<li>Explain resinous lustre.</li>
+<li>Explain adamantine lustre.</li>
+<li>Explain earthy or dull lustre.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 1</div>
+<h4>Which lustre is associated with metals?</h4>
+<div class="options">
+<button class="option" data-index="0">Pearly</button>
+<button class="option" data-index="1">Metallic</button>
+<button class="option" data-index="2">Silky</button>
+<button class="option" data-index="3">Earthy</button>
+</div>
+<div class="explanation">Correct answer: Metallic</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 2</div>
+<h4>Quartz is an example of:</h4>
+<div class="options">
+<button class="option" data-index="0">Pearly lustre</button>
+<button class="option" data-index="1">Silky lustre</button>
+<button class="option" data-index="2">Earthy lustre</button>
+<button class="option" data-index="3">Vitreous lustre</button>
+</div>
+<div class="explanation">Correct answer: Vitreous lustre</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 3</div>
+<h4>Talc is associated with:</h4>
+<div class="options">
+<button class="option" data-index="0">Pearly lustre</button>
+<button class="option" data-index="1">Metallic lustre</button>
+<button class="option" data-index="2">Adamantine lustre</button>
+<button class="option" data-index="3">Resinous lustre</button>
+</div>
+<div class="explanation">Correct answer: Pearly lustre</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 4</div>
+<h4>Asbestos shows:</h4>
+<div class="options">
+<button class="option" data-index="0">Metallic lustre</button>
+<button class="option" data-index="1">Vitreous lustre</button>
+<button class="option" data-index="2">Silky lustre</button>
+<button class="option" data-index="3">Earthy lustre</button>
+</div>
+<div class="explanation">Correct answer: Silky lustre</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 5</div>
+<h4>Kaolin is associated with:</h4>
+<div class="options">
+<button class="option" data-index="0">Metallic lustre</button>
+<button class="option" data-index="1">Earthy or dull lustre</button>
+<button class="option" data-index="2">Vitreous lustre</button>
+<button class="option" data-index="3">Pearly lustre</button>
+</div>
+<div class="explanation">Correct answer: Earthy or dull lustre</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 06
+========================================================= -->
+
+<section class="topic-page" id="topic6">
+
+<div class="topic-head">
+<span class="topic-number">06</span>
+<div>
+<h2>Fracture</h2>
+<p>Breaking of minerals along irregular or curved surfaces.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic6" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic6" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic6" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic6" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Definition</h3>
+
+<p>
+Fracture is the tendency of minerals to break along a flat surface
+or to break unevenly along a curved surface or irregular surface.
+</p>
+
+<p>
+Fracture occurs where bond strength is generally the same in all directions.
+Minerals that have fracture do not exhibit cleavage.
+</p>
+
+<h3>Types of Fracture</h3>
+
+<table>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Example stated in source</th>
+</tr>
+
+<tr>
+<td>Even Fracture</td>
+<td>Broken surface is plain and smooth.</td>
+<td>Magnesite, Chalk</td>
+</tr>
+
+<tr>
+<td>Uneven Fracture</td>
+<td>Broken surface is rough or irregular.</td>
+<td>Sodalite</td>
+</tr>
+
+<tr>
+<td>Hackly Fracture</td>
+<td>Broken surface is very irregular like a broken stick.</td>
+<td>Kyanite, Asbestos, Tremolite</td>
+</tr>
+
+<tr>
+<td>Conchoidal Fracture</td>
+<td>Broken surface is smooth and curved.</td>
+<td>Volcanic glass, Opal</td>
+</tr>
+
+<tr>
+<td>Sub-conchoidal Fracture</td>
+<td>Surface is smooth and curved, but curved nature is less predominant.</td>
+<td>Flint, Agate, Jasper</td>
+</tr>
+</table>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define fracture.</li>
+<li>Explain fracture in minerals.</li>
+<li>Differentiate fracture and cleavage.</li>
+<li>Explain even fracture.</li>
+<li>Explain uneven fracture.</li>
+<li>Explain hackly fracture.</li>
+<li>Explain conchoidal fracture.</li>
+<li>Explain sub-conchoidal fracture.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>A smooth and curved broken surface is called:</h4>
+<div class="options">
+<button class="option" data-index="0">Conchoidal fracture</button>
+<button class="option" data-index="1">Hackly fracture</button>
+<button class="option" data-index="2">Uneven fracture</button>
+<button class="option" data-index="3">Even fracture</button>
+</div>
+<div class="explanation">Correct answer: Conchoidal fracture</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 2</div>
+<h4>Hackly fracture is described as:</h4>
+<div class="options">
+<button class="option" data-index="0">Flat and smooth</button>
+<button class="option" data-index="1">Like a glass sheet</button>
+<button class="option" data-index="2">Very irregular like a broken stick</button>
+<button class="option" data-index="3">Perfectly curved</button>
+</div>
+<div class="explanation">Correct answer: Very irregular like a broken stick</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 3</div>
+<h4>Sodalite is associated with:</h4>
+<div class="options">
+<button class="option" data-index="0">Even fracture</button>
+<button class="option" data-index="1">Conchoidal fracture</button>
+<button class="option" data-index="2">Sub-conchoidal fracture</button>
+<button class="option" data-index="3">Uneven fracture</button>
+</div>
+<div class="explanation">Correct answer: Uneven fracture</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 4</div>
+<h4>Volcanic glass is associated with:</h4>
+<div class="options">
+<button class="option" data-index="0">Hackly fracture</button>
+<button class="option" data-index="1">Conchoidal fracture</button>
+<button class="option" data-index="2">Even fracture</button>
+<button class="option" data-index="3">Uneven fracture</button>
+</div>
+<div class="explanation">Correct answer: Conchoidal fracture</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 5</div>
+<h4>Chalk is given as an example of:</h4>
+<div class="options">
+<button class="option" data-index="0">Even fracture</button>
+<button class="option" data-index="1">Hackly fracture</button>
+<button class="option" data-index="2">Conchoidal fracture</button>
+<button class="option" data-index="3">Uneven fracture</button>
+</div>
+<div class="explanation">Correct answer: Even fracture</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 07
+========================================================= -->
+
+<section class="topic-page" id="topic7">
+
+<div class="topic-head">
+<span class="topic-number">07</span>
+<div>
+<h2>Cleavage</h2>
+<p>Definite direction or plane along which minerals break easily.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic7" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic7" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic7" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic7" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Definition</h3>
+
+<p>
+Cleavage is the definite direction or plane along which a mineral
+tends to break easily.
+</p>
+
+<p>
+It is related to crystallinity. Only crystalline minerals have cleavage.
+Cleavage represents the plane of weakness in the atomic structure of minerals.
+</p>
+
+<table>
+<tr>
+<th>Cleavage</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>Basal — One direction</td>
+<td>Muscovite mica</td>
+<td>Splits into very thin sheets along a horizontal plane.</td>
+</tr>
+
+<tr>
+<td>Prismatic — Two directions</td>
+<td>Orthoclase</td>
+<td>Two mutually perpendicular sets of cleavage.</td>
+</tr>
+
+<tr>
+<td>Cubic — Three directions</td>
+<td>Halite</td>
+<td>Three mutually perpendicular sets of cleavage.</td>
+</tr>
+
+<tr>
+<td>Cubic — Three directions with some angles</td>
+<td>Calcite</td>
+<td>Three cleavage directions with some angles.</td>
+</tr>
+</table>
+
+<div class="diagram">
+
+<div class="flow">
+<span>Basal<br>1 direction</span>
+<b>→</b>
+<span>Prismatic<br>2 directions</span>
+<b>→</b>
+<span>Cubic<br>3 directions</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define cleavage.</li>
+<li>Why is cleavage related to crystallinity?</li>
+<li>Explain basal cleavage.</li>
+<li>Explain prismatic cleavage.</li>
+<li>Explain cubic cleavage.</li>
+<li>Write the cleavage of muscovite mica.</li>
+<li>Write the cleavage of orthoclase.</li>
+<li>Write the cleavage of halite.</li>
+<li>Write the cleavage of calcite.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>Muscovite mica has:</h4>
+<div class="options">
+<button class="option" data-index="0">Basal cleavage</button>
+<button class="option" data-index="1">Cubic cleavage</button>
+<button class="option" data-index="2">No cleavage</button>
+<button class="option" data-index="3">Only conchoidal fracture</button>
+</div>
+<div class="explanation">Correct answer: Basal cleavage</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 2</div>
+<h4>Orthoclase has:</h4>
+<div class="options">
+<button class="option" data-index="0">One direction</button>
+<button class="option" data-index="1">Two mutually perpendicular sets</button>
+<button class="option" data-index="2">No cleavage</button>
+<button class="option" data-index="3">Only one curved plane</button>
+</div>
+<div class="explanation">Correct answer: Two mutually perpendicular sets</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 3</div>
+<h4>Halite exhibits:</h4>
+<div class="options">
+<button class="option" data-index="0">One direction</button>
+<button class="option" data-index="1">Two directions</button>
+<button class="option" data-index="2">Three mutually perpendicular directions</button>
+<button class="option" data-index="3">No cleavage</button>
+</div>
+<div class="explanation">Correct answer: Three mutually perpendicular directions</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 4</div>
+<h4>Cleavage represents a:</h4>
+<div class="options">
+<button class="option" data-index="0">Colour variation</button>
+<button class="option" data-index="1">Streak</button>
+<button class="option" data-index="2">Lustre</button>
+<button class="option" data-index="3">Plane of weakness</button>
+</div>
+<div class="explanation">Correct answer: Plane of weakness</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 5</div>
+<h4>Only ______ minerals have cleavage according to the reference.</h4>
+<div class="options">
+<button class="option" data-index="0">Liquid</button>
+<button class="option" data-index="1">Crystalline</button>
+<button class="option" data-index="2">Organic</button>
+<button class="option" data-index="3">Amorphous</button>
+</div>
+<div class="explanation">Correct answer: Crystalline</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 08
+========================================================= -->
+
+<section class="topic-page" id="topic8">
+
+<div class="topic-head">
+<span class="topic-number">08</span>
+<div>
+<h2>Hardness</h2>
+<p>Resistance offered by minerals to abrasion or scratching.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic8" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic8" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic8" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic8" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Definition</h3>
+
+<p>
+Hardness is the resistance offered by minerals to abrasion or scratching.
+It is related to the atomic structure of minerals.
+</p>
+
+<p>
+The source notes that chemical composition appears to have less influence
+over hardness.
+</p>
+
+<h3>Absolute and Relative Hardness</h3>
+
+<ul>
+<li><strong>Absolute hardness:</strong> Total hardness.</li>
+<li><strong>Relative hardness:</strong> Comparative hardness.</li>
+</ul>
+
+<h3>Mohs Scale of Hardness</h3>
+
+<table>
+<tr>
+<th>Rating</th>
+<th>Mineral</th>
+</tr>
+<tr><td>1</td><td>Talc</td></tr>
+<tr><td>2</td><td>Gypsum</td></tr>
+<tr><td>3</td><td>Calcite</td></tr>
+<tr><td>4</td><td>Fluorite</td></tr>
+<tr><td>5</td><td>Apatite</td></tr>
+<tr><td>6</td><td>Feldspar</td></tr>
+<tr><td>7</td><td>Quartz</td></tr>
+<tr><td>8</td><td>Topaz</td></tr>
+<tr><td>9</td><td>Corundum</td></tr>
+<tr><td>10</td><td>Diamond</td></tr>
+</table>
+
+<p>
+The relative hardness of an unknown mineral is determined by scratching it
+with minerals of the Mohs scale, starting with talc and proceeding through
+the minerals.
+</p>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define hardness of a mineral.</li>
+<li>Explain the relation between hardness and atomic structure.</li>
+<li>Differentiate absolute hardness and relative hardness.</li>
+<li>Explain Mohs scale of hardness.</li>
+<li>Write the Mohs scale from 1 to 10.</li>
+<li>How is the relative hardness of an unknown mineral determined?</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>The hardness of a mineral is resistance to:</h4>
+<div class="options">
+<button class="option" data-index="0">Scratching</button>
+<button class="option" data-index="1">Melting</button>
+<button class="option" data-index="2">Heating</button>
+<button class="option" data-index="3">Colour change</button>
+</div>
+<div class="explanation">Correct answer: Scratching</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 2</div>
+<h4>The hardness of diamond on Mohs scale is:</h4>
+<div class="options">
+<button class="option" data-index="0">5</button>
+<button class="option" data-index="1">7</button>
+<button class="option" data-index="2">9</button>
+<button class="option" data-index="3">10</button>
+</div>
+<div class="explanation">Correct answer: 10</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 3</div>
+<h4>Quartz has hardness:</h4>
+<div class="options">
+<button class="option" data-index="0">5</button>
+<button class="option" data-index="1">7</button>
+<button class="option" data-index="2">8</button>
+<button class="option" data-index="3">10</button>
+</div>
+<div class="explanation">Correct answer: 7</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 4</div>
+<h4>Which mineral has hardness 1?</h4>
+<div class="options">
+<button class="option" data-index="0">Gypsum</button>
+<button class="option" data-index="1">Calcite</button>
+<button class="option" data-index="2">Talc</button>
+<button class="option" data-index="3">Quartz</button>
+</div>
+<div class="explanation">Correct answer: Talc</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 5</div>
+<h4>Corundum has hardness:</h4>
+<div class="options">
+<button class="option" data-index="0">9</button>
+<button class="option" data-index="1">8</button>
+<button class="option" data-index="2">7</button>
+<button class="option" data-index="3">6</button>
+</div>
+<div class="explanation">Correct answer: 9</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 09
+========================================================= -->
+
+<section class="topic-page" id="topic9">
+
+<div class="topic-head">
+<span class="topic-number">09</span>
+<div>
+<h2>Specific Gravity / Density</h2>
+<p>Ratio of mass of a substance to the mass of a reference substance for the same volume.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic9" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic9" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic9" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic9" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Definition</h3>
+
+<p>
+Specific gravity is the ratio of the mass of a substance to the mass of
+a reference substance for the same given volume.
+</p>
+
+<p>
+Specific gravity of minerals depends on their chemical composition and
+atomic structure.
+</p>
+
+<p>
+The source states that specific gravity of minerals can be determined using
+either <strong>Walker's steel yard</strong> or <strong>Jolly's spring</strong>.
+</p>
+
+<h3>Important Values</h3>
+
+<table>
+<tr>
+<th>Material / Mineral</th>
+<th>Specific Gravity stated in source</th>
+</tr>
+<tr><td>Quartz</td><td>2.7</td></tr>
+<tr><td>Opal</td><td>2.2</td></tr>
+<tr><td>Amber</td><td>Nearly 1</td></tr>
+<tr><td>Platiniridium</td><td>22.84</td></tr>
+<tr><td>Rock-forming minerals</td><td>2.5 – 3.5</td></tr>
+<tr><td>Ore-forming minerals</td><td>Over 3.5</td></tr>
+<tr><td>Most sulphides</td><td>4.5 – 6.0</td></tr>
+<tr><td>Iron metal</td><td>About 8</td></tr>
+<tr><td>Lead</td><td>About 13</td></tr>
+<tr><td>Gold and platinum</td><td>19 – 22</td></tr>
+</table>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define specific gravity.</li>
+<li>On what factors does specific gravity of minerals depend?</li>
+<li>How is specific gravity determined?</li>
+<li>Write the specific gravity of quartz.</li>
+<li>Write the specific gravity of opal.</li>
+<li>Write the specific gravity of amber.</li>
+<li>What is the specific gravity range of rock-forming minerals?</li>
+<li>What is the specific gravity of ore-forming minerals according to the reference?</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 1</div>
+<h4>The specific gravity of quartz stated in the reference is:</h4>
+<div class="options">
+<button class="option" data-index="0">1.0</button>
+<button class="option" data-index="1">2.2</button>
+<button class="option" data-index="2">2.7</button>
+<button class="option" data-index="3">3.5</button>
+</div>
+<div class="explanation">Correct answer: 2.7</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 2</div>
+<h4>Specific gravity of amber is nearly:</h4>
+<div class="options">
+<button class="option" data-index="0">1</button>
+<button class="option" data-index="1">2.7</button>
+<button class="option" data-index="2">13</button>
+<button class="option" data-index="3">22.84</button>
+</div>
+<div class="explanation">Correct answer: 1</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 3</div>
+<h4>Rock-forming minerals have specific gravity of:</h4>
+<div class="options">
+<button class="option" data-index="0">0–1</button>
+<button class="option" data-index="1">1–2</button>
+<button class="option" data-index="2">4–6</button>
+<button class="option" data-index="3">2.5–3.5</button>
+</div>
+<div class="explanation">Correct answer: 2.5–3.5</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 4</div>
+<h4>Lead has specific gravity approximately:</h4>
+<div class="options">
+<button class="option" data-index="0">2.7</button>
+<button class="option" data-index="1">13</button>
+<button class="option" data-index="2">8</button>
+<button class="option" data-index="3">1</button>
+</div>
+<div class="explanation">Correct answer: About 13</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 5</div>
+<h4>Which method is mentioned for determining specific gravity?</h4>
+<div class="options">
+<button class="option" data-index="0">Mohs scale</button>
+<button class="option" data-index="1">Streak plate</button>
+<button class="option" data-index="2">Jolly's spring</button>
+<button class="option" data-index="3">Scratch test only</button>
+</div>
+<div class="explanation">Correct answer: Jolly's spring</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 10
+========================================================= -->
+
+<section class="topic-page" id="topic10">
+
+<div class="topic-head">
+<span class="topic-number">10</span>
+<div>
+<h2>Degree of Transparency</h2>
+<p>Resistance offered by materials to the passage of light.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic10" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic10" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic10" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic10" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Definition</h3>
+
+<p>
+Degree of transparency is the resistance offered by materials to the
+passage of light through them.
+</p>
+
+<ul>
+<li>Transparency depends on chemical composition.</li>
+<li>Ore minerals exhibit opaque behaviour.</li>
+<li>Degree of transparency mainly depends on thickness.</li>
+</ul>
+
+<table>
+<tr>
+<th>Type</th>
+<th>Meaning / Example</th>
+</tr>
+<tr>
+<td>Transparent</td>
+<td>Light can pass through clearly. Examples: Muscovite mica, Quartz.</td>
+</tr>
+<tr>
+<td>Translucent</td>
+<td>Light passes through but not clearly. Examples: Calcite, Agate.</td>
+</tr>
+<tr>
+<td>Opaque</td>
+<td>Light does not pass through. Examples shown include Galena and opaque mineral specimens.</td>
+</tr>
+</table>
+
+<div class="diagram">
+<div class="flow">
+<span>Transparent</span>
+<b>→</b>
+<span>Translucent</span>
+<b>→</b>
+<span>Opaque</span>
+</div>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define degree of transparency.</li>
+<li>What factors affect transparency?</li>
+<li>Explain transparent minerals.</li>
+<li>Explain translucent minerals.</li>
+<li>Explain opaque minerals.</li>
+<li>Write examples of transparent, translucent and opaque minerals.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>Transparency refers to the passage of:</h4>
+<div class="options">
+<button class="option" data-index="0">Light</button>
+<button class="option" data-index="1">Sound</button>
+<button class="option" data-index="2">Heat only</button>
+<button class="option" data-index="3">Electricity</button>
+</div>
+<div class="explanation">Correct answer: Light</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 2</div>
+<h4>Quartz is given as an example of:</h4>
+<div class="options">
+<button class="option" data-index="0">Opaque</button>
+<button class="option" data-index="1">Translucent</button>
+<button class="option" data-index="2">Transparent</button>
+<button class="option" data-index="3">Metallic</button>
+</div>
+<div class="explanation">Correct answer: Transparent</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 3</div>
+<h4>Agate is given as:</h4>
+<div class="options">
+<button class="option" data-index="0">Transparent</button>
+<button class="option" data-index="1">Translucent</button>
+<button class="option" data-index="2">Opaque</button>
+<button class="option" data-index="3">Metallic</button>
+</div>
+<div class="explanation">Correct answer: Translucent</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 4</div>
+<h4>Ore minerals generally exhibit:</h4>
+<div class="options">
+<button class="option" data-index="0">Transparent behaviour</button>
+<button class="option" data-index="1">Vitreous behaviour</button>
+<button class="option" data-index="2">Translucent behaviour</button>
+<button class="option" data-index="3">Opaque behaviour</button>
+</div>
+<div class="explanation">Correct answer: Opaque behaviour</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 5</div>
+<h4>Degree of transparency mainly depends on:</h4>
+<div class="options">
+<button class="option" data-index="0">Streak</button>
+<button class="option" data-index="1">Lustre only</button>
+<button class="option" data-index="2">Thickness</button>
+<button class="option" data-index="3">Crystal colour only</button>
+</div>
+<div class="explanation">Correct answer: Thickness</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 11
+========================================================= -->
+
+<section class="topic-page" id="topic11">
+
+<div class="topic-head">
+<span class="topic-number">11</span>
+<div>
+<h2>Special Properties & Importance of Minerals</h2>
+<p>Special identifying properties and importance in Civil Engineering.</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic11" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic11" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic11" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic11" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Special Properties</h3>
+
+<p>
+Some minerals exhibit peculiar characters which enable them to be identified easily.
+</p>
+
+<table>
+<tr>
+<th>Mineral</th>
+<th>Special property stated in source</th>
+</tr>
+
+<tr>
+<td>Talc</td>
+<td>Very soft (h=1); exhibits smooth touch or soapy feel.</td>
+</tr>
+
+<tr>
+<td>Graphite</td>
+<td>Low hardness; black colour; marks easily on paper.</td>
+</tr>
+
+<tr>
+<td>Realgar</td>
+<td>Gives garlic smell when struck or heated and on a freshly broken surface.</td>
+</tr>
+
+<tr>
+<td>Orpiment</td>
+<td>Associated with the garlic-smell observation in the source.</td>
+</tr>
+
+<tr>
+<td>Kaolin</td>
+<td>Gives a clayey smell and adheres strongly to the tongue.</td>
+</tr>
+
+<tr>
+<td>Halite</td>
+<td>Has a saline taste.</td>
+</tr>
+
+<tr>
+<td>Magnetic mineral specimen shown in source</td>
+<td>Strongly attracted by an ordinary magnet.</td>
+</tr>
+</table>
+
+<h3>Importance of Minerals</h3>
+
+<p>
+The solid Earth consists of rocks and rocks are made of minerals.
+Understanding minerals helps in understanding rocks.
+</p>
+
+<p>
+Civil engineers need to know the properties of rocks precisely so that
+different rocks can be considered for purposes such as:
+</p>
+
+<ul>
+<li>Foundation rocks</li>
+<li>Road metals</li>
+<li>Building stone</li>
+</ul>
+
+<p>
+Minerals are also heavily used in manufacturing plastics, clothes,
+pencil lead, glass, chalk board, chalk and salts.
+</p>
+
+<p>
+Minerals serve as raw materials for manufacturing chemicals,
+dimension stone, aggregates for roads and concrete.
+</p>
+
+<div class="important">
+<strong>Civil Engineering Importance:</strong>
+Knowledge of minerals helps in understanding the properties and uses
+of rocks for foundations, roads and building materials.
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>What are special properties of minerals?</li>
+<li>Explain the special property of talc.</li>
+<li>Explain the special property of graphite.</li>
+<li>Write the special smell associated with realgar.</li>
+<li>Write the special property of kaolin.</li>
+<li>Write the special property of halite.</li>
+<li>Explain the importance of minerals to Civil Engineering.</li>
+<li>List the uses of minerals mentioned in the reference.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 1</div>
+<h4>Talc is characterized by:</h4>
+<div class="options">
+<button class="option" data-index="0">Soapy feel</button>
+<button class="option" data-index="1">Saline taste</button>
+<button class="option" data-index="2">Metallic lustre</button>
+<button class="option" data-index="3">Magnetic attraction</button>
+</div>
+<div class="explanation">Correct answer: Soapy feel</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 2</div>
+<h4>Graphite can:</h4>
+<div class="options">
+<button class="option" data-index="0">Taste salty</button>
+<button class="option" data-index="1">Smell like clay</button>
+<button class="option" data-index="2">Mark easily on paper</button>
+<button class="option" data-index="3">Split into cubic pieces</button>
+</div>
+<div class="explanation">Correct answer: Mark easily on paper</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 3</div>
+<h4>Halite has a:</h4>
+<div class="options">
+<button class="option" data-index="0">Garlic smell</button>
+<button class="option" data-index="1">Soapy feel</button>
+<button class="option" data-index="2">Clayey smell</button>
+<button class="option" data-index="3">Saline taste</button>
+</div>
+<div class="explanation">Correct answer: Saline taste</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 4</div>
+<h4>Minerals help Civil Engineers in understanding:</h4>
+<div class="options">
+<button class="option" data-index="0">Only water</button>
+<button class="option" data-index="1">Rocks</button>
+<button class="option" data-index="2">Only air</button>
+<button class="option" data-index="3">Only timber</button>
+</div>
+<div class="explanation">Correct answer: Rocks</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 5</div>
+<h4>Minerals can serve as raw materials for:</h4>
+<div class="options">
+<button class="option" data-index="0">Chemicals, dimension stone and aggregates</button>
+<button class="option" data-index="1">Only water</button>
+<button class="option" data-index="2">Only timber</button>
+<button class="option" data-index="3">Only soil</button>
+</div>
+<div class="explanation">Correct answer: Chemicals, dimension stone and aggregates</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TOPIC 12
+========================================================= -->
+
+<section class="topic-page" id="topic12">
+
+<div class="topic-head">
+<span class="topic-number">12</span>
+<div>
+<h2>Rock Forming Minerals & Silicate Structures</h2>
+<p>
+Rock-forming minerals, chemical composition of Earth's crust,
+silicate structures and important mineral groups.
+</p>
+</div>
+</div>
+
+<div class="mode-tabs">
+<button class="mode-btn active" data-topic="topic12" data-mode="learn">📘 Learn</button>
+<button class="mode-btn" data-topic="topic12" data-mode="questions">📝 Questions</button>
+<button class="mode-btn" data-topic="topic12" data-mode="pyq">📚 PYQs</button>
+<button class="mode-btn" data-topic="topic12" data-mode="quiz">🎯 MCQ Practice</button>
+</div>
+
+<div class="mode-panel active" data-panel="learn">
+
+<h3>Rock Forming Minerals</h3>
+
+<p>
+Based on nature and economic importance, minerals are grouped into
+<strong>rock-forming</strong> and <strong>economic-forming</strong> minerals.
+Some economic minerals serve as sources for extraction of valuable metals,
+while others become useful because of their physical properties.
+</p>
+
+<p>
+The source states that about <strong>99% of the Earth's crust</strong>
+is made up of about 20–25 rock-forming minerals.
+</p>
+
+<h3>Chemical Composition of Earth's Crust</h3>
+
+<table>
+<tr>
+<th>Element</th>
+<th>Percentage</th>
+</tr>
+<tr><td>Oxygen</td><td>46.71%</td></tr>
+<tr><td>Silicon</td><td>27.69%</td></tr>
+<tr><td>Aluminium</td><td>8.07%</td></tr>
+<tr><td>Iron</td><td>5.05%</td></tr>
+<tr><td>Calcium</td><td>3.65%</td></tr>
+<tr><td>Sodium</td><td>2.75%</td></tr>
+<tr><td>Potassium</td><td>2.58%</td></tr>
+<tr><td>Magnesium</td><td>2.08%</td></tr>
+<tr><td>Titanium</td><td>0.62%</td></tr>
+<tr><td>Others</td><td>0.80%</td></tr>
+</table>
+
+<p>
+The source states that 99.2% of the Earth's crust is made of these nine elements
+and oxygen and silicate together constitute 74.4%.
+</p>
+
+<p>
+Rock-forming minerals are mainly silicates, although oxides and carbonates
+are also included.
+</p>
+
+<h3>Structure of Silicates</h3>
+
+<p>
+The <strong>silicate tetrahedron</strong> is the fundamental unit of all
+silicate minerals. It may occur alone or in different combinations
+within mineral structures.
+</p>
+
+<div class="silicate-grid">
+
+<div class="silicate-card">
+<div class="silicate-symbol">SiO₄</div>
+<strong>Nesosilicates</strong>
+<p>Independent tetrahedral units.</p>
+<p>Si:O = 1:4</p>
+<p>Example: Olivine</p>
+</div>
+
+<div class="silicate-card">
+<div class="silicate-symbol">SiO₄</div>
+<strong>Sorosilicates</strong>
+<p>Tetrahedra occur in pairs.</p>
+<p>Si:O = 1:3.5</p>
+<p>Example: Melilite</p>
+</div>
+
+<div class="silicate-card">
+<div class="silicate-symbol">SiO₄</div>
+<strong>Inosilicates</strong>
+<p>Tetrahedra occur in chains.</p>
+<p>Single chain Si:O = 1:3</p>
+<p>Example: Pyroxenes</p>
+</div>
+
+<div class="silicate-card">
+<div class="silicate-symbol">SiO₄</div>
+<strong>Double-chain silicates</strong>
+<p>Tetrahedra occur in double chains.</p>
+<p>Si:O = 2:3</p>
+<p>Example: Amphiboles</p>
+</div>
+
+<div class="silicate-card">
+<div class="silicate-symbol">SiO₄</div>
+<strong>Phyllosilicates</strong>
+<p>Tetrahedra occur as sheets.</p>
+<p>Si:O = 1:2.5</p>
+<p>Example stated: Amphiboles in the source.</p>
+</div>
+
+<div class="silicate-card">
+<div class="silicate-symbol">SiO₄</div>
+<strong>Tectosilicates</strong>
+<p>Three-dimensional framework.</p>
+<p>Si:O = 1:3</p>
+<p>Example stated: Muscovite mica.</p>
+</div>
+
+</div>
+
+<h3>Rock Forming Mineral Groups</h3>
+
+<table>
+<tr>
+<th>Group</th>
+<th>Important points from source</th>
+</tr>
+
+<tr>
+<td>Feldspar Group</td>
+<td>
+Feldspar is not a single mineral. Aluminium silicates of sodium,
+potassium and calcium, rarely barium. Alkali and lime feldspar.
+All feldspars are tectosilicates. Occurs more commonly in metamorphic rocks.
+</td>
+</tr>
+
+<tr>
+<td>Quartz Group</td>
+<td>
+Quartz is the most common rock-forming mineral. Silica composition.
+Silica occurs in crystalline nature. All quartz are tectosilicates.
+Occurs more commonly in igneous rocks.
+</td>
+</tr>
+
+<tr>
+<td>Pyroxene Group</td>
+<td>
+Related to feldspar and mafic minerals. Silicates of calcium,
+magnesium and ferrous iron. Single-chain silicate.
+Occurs more commonly in igneous rocks.
+</td>
+</tr>
+
+<tr>
+<td>Olivine Group</td>
+<td>
+Related to mafic minerals. Silicates of magnesium and ferrous iron.
+Olivine are nesosilicates. Occurs more commonly in igneous rocks.
+</td>
+</tr>
+
+<tr>
+<td>Amphibole Group</td>
+<td>
+Related to ferro-magnesium minerals. Silicates of calcium, magnesium,
+sodium and ferrous iron. Inosilicates with double-chain silicates.
+Occurs more commonly in igneous rocks.
+</td>
+</tr>
+
+<tr>
+<td>Mica Group</td>
+<td>
+Related to silicate minerals. Silicates of aluminium, magnesium and potassium.
+Mica are phyllosilicates. Occurs more commonly in igneous rocks.
+</td>
+</tr>
+
+<tr>
+<td>Kyanite Group</td>
+<td>
+Related to metamorphic minerals. Silicates of aluminium, magnesium and potassium.
+Kyanite are nesosilicates. Occurs more commonly in metamorphic rocks.
+</td>
+</tr>
+
+<tr>
+<td>Talc Group</td>
+<td>
+Extremely soft, non-metallic economic mineral. Hydrous magnesium silicates.
+Talc are phyllosilicates. Occurs more commonly in metamorphic rocks.
+</td>
+</tr>
+</table>
+
+<h3>Quick Revision</h3>
+
+<div class="flow">
+<span>Nesosilicate<br>Independent</span>
+<b>→</b>
+<span>Sorosilicate<br>Pairs</span>
+<b>→</b>
+<span>Inosilicate<br>Chains</span>
+<b>→</b>
+<span>Phyllosilicate<br>Sheets</span>
+<b>→</b>
+<span>Tectosilicate<br>Framework</span>
+</div>
+
+<div class="important">
+<strong>Important:</strong>
+The terminology and examples in this section are retained from the supplied
+reference material.
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="questions">
+
+<h3>Important Questions</h3>
+
+<ol>
+<li>Define rock-forming minerals.</li>
+<li>Differentiate rock-forming and economic-forming minerals.</li>
+<li>Write the chemical composition of the Earth's crust given in the reference.</li>
+<li>Explain the structure of silicate tetrahedron.</li>
+<li>Explain nesosilicate structure.</li>
+<li>Explain sorosilicate structure.</li>
+<li>Explain inosilicate structure.</li>
+<li>Explain double-chain silicate structure.</li>
+<li>Explain phyllosilicate structure.</li>
+<li>Explain tectosilicate structure.</li>
+<li>Write a short note on Feldspar group.</li>
+<li>Write a short note on Quartz group.</li>
+<li>Write a short note on Pyroxene group.</li>
+<li>Write a short note on Olivine group.</li>
+<li>Write a short note on Amphibole group.</li>
+<li>Write a short note on Mica group.</li>
+<li>Write a short note on Kyanite group.</li>
+<li>Write a short note on Talc group.</li>
+</ol>
+
+</div>
+
+<div class="mode-panel" data-panel="pyq">
+
+<div class="pyq-empty">
+<strong>No verified university PYQs supplied.</strong>
+<p>
+Do not treat the Important Questions as university PYQs.
+They are source-based examination questions prepared from the supplied notes.
+</p>
+</div>
+
+</div>
+
+<div class="mode-panel" data-panel="quiz">
+
+<div class="quiz-header">
+<h3>MCQ Practice</h3>
+<div class="score">Score: <span>0</span> / 5</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 1</div>
+<h4>The fundamental unit of silicate minerals is:</h4>
+<div class="options">
+<button class="option" data-index="0">Carbonate unit</button>
+<button class="option" data-index="1">Oxide unit</button>
+<button class="option" data-index="2">Silicate tetrahedron</button>
+<button class="option" data-index="3">Sulphide unit</button>
+</div>
+<div class="explanation">Correct answer: Silicate tetrahedron</div>
+</div>
+
+<div class="quiz-question" data-answer="0">
+<div class="qnum">Question 2</div>
+<h4>Olivine belongs to:</h4>
+<div class="options">
+<button class="option" data-index="0">Nesosilicates</button>
+<button class="option" data-index="1">Tectosilicates</button>
+<button class="option" data-index="2">Phyllosilicates</button>
+<button class="option" data-index="3">Double-chain silicates</button>
+</div>
+<div class="explanation">Correct answer: Nesosilicates</div>
+</div>
+
+<div class="quiz-question" data-answer="3">
+<div class="qnum">Question 3</div>
+<h4>Pyroxenes are:</h4>
+<div class="options">
+<button class="option" data-index="0">Nesosilicates</button>
+<button class="option" data-index="1">Tectosilicates</button>
+<button class="option" data-index="2">Phyllosilicates</button>
+<button class="option" data-index="3">Single-chain silicates</button>
+</div>
+<div class="explanation">Correct answer: Single-chain silicates</div>
+</div>
+
+<div class="quiz-question" data-answer="1">
+<div class="qnum">Question 4</div>
+<h4>Feldspar belongs to:</h4>
+<div class="options">
+<button class="option" data-index="0">Nesosilicates</button>
+<button class="option" data-index="1">Tectosilicates</button>
+<button class="option" data-index="2">Phyllosilicates</button>
+<button class="option" data-index="3">Sorosilicates</button>
+</div>
+<div class="explanation">Correct answer: Tectosilicates</div>
+</div>
+
+<div class="quiz-question" data-answer="2">
+<div class="qnum">Question 5</div>
+<h4>Mica is classified as:</h4>
+<div class="options">
+<button class="option" data-index="0">Nesosilicate</button>
+<button class="option" data-index="1">Tectosilicate</button>
+<button class="option" data-index="2">Phyllosilicate</button>
+<button class="option" data-index="3">Single-chain silicate</button>
+</div>
+<div class="explanation">Correct answer: Phyllosilicate</div>
+</div>
+
+<button class="retry">↻ Retry Topic</button>
+
+</div>
+</section>
+
+
+</main>
+
+
+<footer>
+<strong>CE2101 — Engineering Geology</strong>
+<br>
+Unit 02 • Mineralogy
+<br>
+<span class="small">
+Structured Civil Engineering learning and examination practice.
+</span>
+</footer>
+
+
+<script>
+
+/* =========================================================
+TOPIC NAVIGATION
+========================================================= */
+
+const topicButtons = document.querySelectorAll(".topic-btn");
+const topicPages = document.querySelectorAll(".topic-page");
+
+topicButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const target = button.dataset.topic;
+
+        topicButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const page = document.getElementById(target);
+
+        if(page){
+            page.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+MODE TABS
+========================================================= */
+
+document.querySelectorAll(".mode-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const topic = button.dataset.topic;
+        const mode = button.dataset.mode;
+
+        const page = document.getElementById(topic);
+
+        if(!page) return;
+
+        page.querySelectorAll(".mode-btn").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        page.querySelectorAll(".mode-panel").forEach(panel => {
+            panel.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const targetPanel = page.querySelector(
+            `.mode-panel[data-panel="${mode}"]`
+        );
+
+        if(targetPanel){
+            targetPanel.classList.add("active");
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+QUIZ SYSTEM
+========================================================= */
+
+document.querySelectorAll(".topic-page").forEach(topic => {
+
+    const questions = topic.querySelectorAll(".quiz-question");
+
+    if(!questions.length) return;
+
+    let score = 0;
+    let answered = 0;
+
+    const scoreElement = topic.querySelector(".score span");
+    const retryButton = topic.querySelector(".retry");
+
+    questions.forEach(question => {
+
+        const correctAnswer =
+            Number(question.dataset.answer);
+
+        const options =
+            question.querySelectorAll(".option");
+
+        const explanation =
+            question.querySelector(".explanation");
+
+        options.forEach(option => {
+
+            option.addEventListener("click", () => {
+
+                if(option.disabled) return;
+
+                const selected =
+                    Number(option.dataset.index);
+
+                options.forEach(btn => {
+                    btn.disabled = true;
+                });
+
+                answered++;
+
+                if(selected === correctAnswer){
+
+                    option.classList.add("correct");
+                    score++;
+
+                }else{
+
+                    option.classList.add("wrong");
+
+                    options.forEach(btn => {
+
+                        if(
+                            Number(btn.dataset.index)
+                            === correctAnswer
+                        ){
+                            btn.classList.add("correct");
+                        }
+
+                    });
+
+                }
+
+                if(explanation){
+                    explanation.style.display = "block";
+                }
+
+                scoreElement.textContent = score;
+
+            });
+
+        });
+
+    });
+
+
+    retryButton.addEventListener("click", () => {
+
+        score = 0;
+        answered = 0;
+
+        scoreElement.textContent = "0";
+
+        questions.forEach(question => {
+
+            question
+                .querySelectorAll(".option")
+                .forEach(option => {
+
+                    option.disabled = false;
+
+                    option.classList.remove(
+                        "correct",
+                        "wrong"
+                    );
+
+                });
+
+            const explanation =
+                question.querySelector(".explanation");
+
+            if(explanation){
+                explanation.style.display = "none";
+            }
+
+        });
+
+    });
+
+});
+
+
+/* =========================================================
+ACTIVE TOPIC WHILE SCROLLING
+========================================================= */
+
+const observer = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                const id = entry.target.id;
+
+                topicButtons.forEach(button => {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.topic === id
+                    );
+
+                });
+
+            }
+
+        });
+
+    },
+    {
+        rootMargin:"-120px 0px -60% 0px"
+    }
+);
+
+topicPages.forEach(page => {
+    observer.observe(page);
+});
+
+</script>
+
+</body>
+</html>
